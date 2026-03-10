@@ -95,6 +95,8 @@
     .testimonial-nav:hover { background: rgba(255,255,255,0.2); }
     .testimonial-nav--prev { left: -20px; }
     .testimonial-nav--next { right: -20px; }
+    .testimonial-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); border: none; cursor: pointer; padding: 0; transition: all 0.3s; }
+    .testimonial-dot.is-active { background: var(--color-accent); width: 24px; border-radius: 4px; }
 
     /* Science Section */
     .science { padding: 80px 0; background: #fff; }
@@ -677,20 +679,6 @@
     </div>
   </section>
 
-  <!-- As Seen In Press Bar -->
-  <section style="padding: 40px 0; background: #fff; border-top: 1px solid var(--color-border);">
-    <div class="container" style="text-align: center;">
-      <p style="font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 20px; opacity: 0.6;">As Seen In</p>
-      <div style="display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap; opacity: 0.4;">
-        <span style="font-family: Georgia,serif; font-size: 20px; font-weight: 700; color: var(--color-text-muted);">Men's Health</span>
-        <span style="font-family: Georgia,serif; font-size: 20px; font-style: italic; color: var(--color-text-muted);">Vogue</span>
-        <span style="font-family: var(--font-body); font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-text-muted);">GQ</span>
-        <span style="font-family: Georgia,serif; font-size: 18px; color: var(--color-text-muted);">The Telegraph</span>
-        <span style="font-family: var(--font-body); font-size: 17px; font-weight: 600; color: var(--color-text-muted);">Healthline</span>
-      </div>
-    </div>
-  </section>
-
   <!-- Homepage FAQ -->
   <section style="padding: 80px 0; background: var(--color-bg);">
     <div class="container" style="max-width: 750px;">
@@ -727,8 +715,8 @@
     </div>
   </section>
 
-  <!-- Testimonials (Dark Section) -->
-  <section class="social-proof testimonials-section">
+  <!-- Testimonials (Dark Section) — Auto-rotating carousel -->
+  <section class="social-proof testimonials-section" data-testimonial-carousel>
     <div class="container">
       <div class="section-head">
         <h2>What People Are Saying</h2>
@@ -736,7 +724,7 @@
       </div>
       <div class="social-proof__wrapper">
         <button class="testimonial-nav testimonial-nav--prev" data-testimonial-prev aria-label="Previous testimonial"><i data-lucide="chevron-left" style="width:20px;height:20px;"></i></button>
-        <div class="social-proof__grid">
+        <div class="social-proof__grid" data-testimonial-track>
           <div class="testimonial">
             <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             <p class="testimonial__text">"The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
@@ -770,9 +758,77 @@
               </div>
             </div>
           </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Emma R.</div>
+                <div class="testimonial__meta">Daily Wellness Stack — 4 months</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. The Energy Stack gives me sustained focus all day — no jitters, no afternoon slump. Absolutely worth it."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Michael B.</div>
+                <div class="testimonial__meta">Energy Stack — 2 months</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            <p class="testimonial__text">"Started taking the Sleep Stack after years of poor sleep. Within the first week I noticed I was falling asleep faster and actually waking up refreshed. My Fitbit confirms it too."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Lauren W.</div>
+                <div class="testimonial__meta">Sleep Stack — 5 weeks</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Tom H.</div>
+                <div class="testimonial__meta">Focus Stack — 6 weeks</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too — they actually know their stuff."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Priya K.</div>
+                <div class="testimonial__meta">Gym Performance Stack — 5 months</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery. Clean ingredients, no bloating."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Chris A.</div>
+                <div class="testimonial__meta">Gym Performance Stack — 3 months</div>
+              </div>
+            </div>
+          </div>
         </div>
         <button class="testimonial-nav testimonial-nav--next" data-testimonial-next aria-label="Next testimonial"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i></button>
       </div>
+      <!-- Dot indicators -->
+      <div class="testimonial-dots" data-testimonial-dots style="display: flex; justify-content: center; gap: 8px; margin-top: 24px;"></div>
     </div>
   </section>
 
@@ -1820,21 +1876,75 @@ document.querySelectorAll('.catalog-card').forEach(function(card) {
   });
 });
 
-/* Testimonial carousel navigation */
-document.querySelectorAll('[data-testimonial-prev]').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var grid = btn.closest('.testimonials-section').querySelector('.social-proof__grid');
-    var cardW = grid.querySelector('.testimonial').offsetWidth + 24;
-    grid.scrollBy({ left: -cardW, behavior: 'smooth' });
+/* Testimonial auto-rotating carousel */
+(function() {
+  var section = document.querySelector('[data-testimonial-carousel]');
+  if (!section) return;
+  var track = section.querySelector('[data-testimonial-track]');
+  var cards = track.querySelectorAll('.testimonial');
+  var dotsContainer = section.querySelector('[data-testimonial-dots]');
+  var prevBtn = section.querySelector('[data-testimonial-prev]');
+  var nextBtn = section.querySelector('[data-testimonial-next]');
+  var autoInterval = null;
+  var currentIndex = 0;
+  var totalCards = cards.length;
+
+  // Build dot indicators
+  for (var i = 0; i < totalCards; i++) {
+    var dot = document.createElement('button');
+    dot.className = 'testimonial-dot' + (i === 0 ? ' is-active' : '');
+    dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+    dot.dataset.index = i;
+    dot.addEventListener('click', function() {
+      goTo(parseInt(this.dataset.index));
+      resetAuto();
+    });
+    dotsContainer.appendChild(dot);
+  }
+  var dots = dotsContainer.querySelectorAll('.testimonial-dot');
+
+  function goTo(index) {
+    currentIndex = ((index % totalCards) + totalCards) % totalCards;
+    var cardW = cards[0].offsetWidth + 24; // card width + gap
+    track.scrollTo({ left: currentIndex * cardW, behavior: 'smooth' });
+    updateDots();
+  }
+
+  function updateDots() {
+    dots.forEach(function(d, i) {
+      d.classList.toggle('is-active', i === currentIndex);
+    });
+  }
+
+  function next() { goTo(currentIndex + 1); }
+  function prev() { goTo(currentIndex - 1); }
+
+  function resetAuto() {
+    clearInterval(autoInterval);
+    autoInterval = setInterval(next, 4500);
+  }
+
+  // Arrow buttons
+  prevBtn.addEventListener('click', function() { prev(); resetAuto(); });
+  nextBtn.addEventListener('click', function() { next(); resetAuto(); });
+
+  // Update dots on manual scroll
+  track.addEventListener('scroll', function() {
+    var cardW = cards[0].offsetWidth + 24;
+    var scrollIndex = Math.round(track.scrollLeft / cardW);
+    if (scrollIndex !== currentIndex && scrollIndex >= 0 && scrollIndex < totalCards) {
+      currentIndex = scrollIndex;
+      updateDots();
+    }
   });
-});
-document.querySelectorAll('[data-testimonial-next]').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var grid = btn.closest('.testimonials-section').querySelector('.social-proof__grid');
-    var cardW = grid.querySelector('.testimonial').offsetWidth + 24;
-    grid.scrollBy({ left: cardW, behavior: 'smooth' });
-  });
-});
+
+  // Pause auto-rotate on hover
+  section.addEventListener('mouseenter', function() { clearInterval(autoInterval); });
+  section.addEventListener('mouseleave', function() { resetAuto(); });
+
+  // Start auto-rotation
+  autoInterval = setInterval(next, 4500);
+})();
 </script>
 </body>
 </html>
