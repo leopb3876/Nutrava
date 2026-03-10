@@ -150,6 +150,33 @@
     .catalog-card:hover { border-color: var(--color-primary) !important; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(90,122,94,0.12); }
     .catalog-card.hidden { display: none; }
 
+    /* Expandable product detail panel */
+    .catalog-card { position: relative; }
+    .product-expand { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; border-top: 0px solid transparent; }
+    .product-expand.is-open { max-height: 600px; border-top: 1px solid var(--color-border); }
+    .product-expand__inner { padding: 0 20px; opacity: 0; transition: opacity 0.3s ease 0.1s, padding 0.3s ease; }
+    .product-expand.is-open .product-expand__inner { padding: 20px 20px 24px; opacity: 1; }
+    .product-expand__section { margin-bottom: 16px; }
+    .product-expand__section:last-child { margin-bottom: 0; }
+    .product-expand__label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 6px; display: block; }
+    .product-expand__text { font-size: 13px; color: var(--color-text-body); line-height: 1.6; margin: 0; }
+    .product-expand__benefits { list-style: none; padding: 0; margin: 0; }
+    .product-expand__benefits li { font-size: 13px; color: var(--color-text-body); line-height: 1.6; padding: 3px 0; padding-left: 20px; position: relative; }
+    .product-expand__benefits li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: 700; }
+    .product-expand__facts { width: 100%; font-size: 12px; border-collapse: collapse; }
+    .product-expand__facts td { padding: 5px 0; border-bottom: 1px solid var(--color-border); }
+    .product-expand__facts td:first-child { color: var(--color-text); font-weight: 500; }
+    .product-expand__facts td:last-child { text-align: right; color: var(--color-text-muted); }
+    .product-expand__pairs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .product-expand__pair { font-size: 12px; padding: 4px 12px; border-radius: var(--radius-pill); background: var(--color-mint-mist); color: var(--color-primary); font-weight: 600; }
+    .product-expand__toggle { display: block; width: 100%; text-align: center; padding: 10px; font-size: 12px; font-weight: 600; color: var(--color-primary); cursor: pointer; background: none; border: none; border-top: 1px solid var(--color-border); transition: background 0.15s; letter-spacing: 0.5px; }
+    .product-expand__toggle:hover { background: var(--color-mint-mist); }
+    .catalog-card.is-expanded { transform: none !important; box-shadow: 0 12px 40px rgba(90,122,94,0.15) !important; border-color: var(--color-primary) !important; }
+
+    /* Home FAQ toggle */
+    .home-faq[open] summary span:last-child { transform: rotate(45deg); }
+    .home-faq summary::-webkit-details-marker { display: none; }
+
     /* Search toggle */
     .search-toggle { background: none; border: none; cursor: pointer; color: var(--color-text-body); padding: 4px; transition: color 0.15s; position: relative; }
     .search-toggle:hover { color: var(--color-primary); }
@@ -159,6 +186,15 @@
     @media (max-width: 768px) {
       .why-nutrava-grid { grid-template-columns: 1fr !important; }
       .why-nutrava-visual { display: none; }
+    }
+
+    /* Best sellers & ingredient spotlight responsive */
+    @media (max-width: 900px) {
+      .home-bestsellers-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .home-ingredients-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      .home-bestsellers-grid { grid-template-columns: 1fr !important; }
     }
 
     /* Stacks responsive */
@@ -296,6 +332,70 @@
       </div>
       <div class="hero-v2__image">
         <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Wellness supplements and natural ingredients" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Sellers -->
+  <section style="padding: 80px 0; background: #fff;">
+    <div class="container">
+      <div class="section-head">
+        <h2>Best Sellers</h2>
+        <p>Our most popular supplements, loved by thousands</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto;">
+        <div style="background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer; position: relative;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'" onclick="showPage('shop')">
+          <span style="position:absolute; top:12px; left:12px; background:var(--color-accent); color:#fff; font-size:10px; font-weight:700; padding:4px 10px; border-radius:var(--radius-pill); letter-spacing:0.5px; text-transform:uppercase; z-index:2;">#1 Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80" alt="Lion's Mane Extract" loading="lazy" style="width:100%; height:180px; object-fit:cover;">
+          <div style="padding: 16px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Focus</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin: 4px 0 6px;">Lion's Mane Extract</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 10px;">Supports cognitive function and mental clarity.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-primary);">£24.99</span>
+              <span style="color:#c7a373; font-size:12px;">★★★★★ <span style="color:var(--color-text-muted);">(127)</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'" onclick="showPage('shop')">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80" alt="Ashwagandha KSM-66" loading="lazy" style="width:100%; height:180px; object-fit:cover;">
+          <div style="padding: 16px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Gym / Stress</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin: 4px 0 6px;">Ashwagandha KSM-66</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 10px;">Reduces cortisol and supports recovery.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-primary);">£22.99</span>
+              <span style="color:#c7a373; font-size:12px;">★★★★★ <span style="color:var(--color-text-muted);">(203)</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'" onclick="showPage('shop')">
+          <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&q=80" alt="Creatine Monohydrate" loading="lazy" style="width:100%; height:180px; object-fit:cover;">
+          <div style="padding: 16px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Gym</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin: 4px 0 6px;">Creatine Monohydrate</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 10px;">The most researched performance supplement.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-primary);">£14.99</span>
+              <span style="color:#c7a373; font-size:12px;">★★★★★ <span style="color:var(--color-text-muted);">(156)</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'" onclick="showPage('shop')">
+          <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80" alt="Magnesium Glycinate" loading="lazy" style="width:100%; height:180px; object-fit:cover;">
+          <div style="padding: 16px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Sleep</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin: 4px 0 6px;">Magnesium Glycinate</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 10px;">Promotes relaxation and deeper sleep.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-primary);">£16.99</span>
+              <span style="color:#c7a373; font-size:12px;">★★★★☆ <span style="color:var(--color-text-muted);">(89)</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="#" onclick="showPage('shop')" class="btn btn--outline">View All Supplements</a>
       </div>
     </div>
   </section>
@@ -472,6 +572,111 @@
     </div>
   </section>
 
+  <!-- Nutrava vs Generic Comparison -->
+  <section style="padding: 80px 0; background: var(--color-bg);">
+    <div class="container">
+      <div class="section-head">
+        <h2>Nutrava vs. Generic Supplements</h2>
+        <p>Not all supplements are created equal</p>
+      </div>
+      <div style="max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--color-border); background: #fff;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+          <thead>
+            <tr style="background: var(--color-dark-section);">
+              <th style="padding: 16px 20px; text-align: left; color: var(--color-dark-text); font-weight: 600; width: 40%;"></th>
+              <th style="padding: 16px 20px; text-align: center; color: var(--color-accent); font-family: var(--font-heading); font-size: 1.1rem; width: 30%;">Nutrava</th>
+              <th style="padding: 16px 20px; text-align: center; color: rgba(245,242,236,0.5); font-weight: 500; width: 30%;">Generic Brands</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Personalised to your goals</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Clinically effective doses</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">No proprietary blends</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Third-party lab tested</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 14px;">Rarely</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Free from fillers & binders</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+            </tr>
+            <tr>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Transparent ingredient labels</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
+              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 14px;">Sometimes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredient Spotlight -->
+  <section style="padding: 80px 0; background: #fff;">
+    <div class="container">
+      <div class="section-head">
+        <h2>Ingredient Spotlight</h2>
+        <p>A closer look at what goes into our best-selling supplements</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; margin: 0 auto;">
+        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
+          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=128&q=80" alt="Lion's Mane" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+          </div>
+          <div>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Lion's Mane Mushroom</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">500mg per serving</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health. Used for centuries in traditional medicine.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
+          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=128&q=80" alt="Ashwagandha" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+          </div>
+          <div>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Ashwagandha KSM-66</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">600mg per serving</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels in men. The most studied ashwagandha extract.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
+          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=128&q=80" alt="Magnesium" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+          </div>
+          <div>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Magnesium Glycinate</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">400mg per serving</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">The most bioavailable form of magnesium, chelated with glycine for maximum absorption. Supports relaxation, sleep quality, and muscle recovery.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
+          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=128&q=80" alt="Creatine" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+          </div>
+          <div>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Creatine Monohydrate</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">5g per serving</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Backed by over 500 peer-reviewed studies. Increases strength, power output, and lean muscle mass. Also shown to support cognitive function under stress.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- As Seen In Press Bar -->
   <section style="padding: 40px 0; background: #fff; border-top: 1px solid var(--color-border);">
     <div class="container" style="text-align: center;">
@@ -482,6 +687,42 @@
         <span style="font-family: var(--font-body); font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-text-muted);">GQ</span>
         <span style="font-family: Georgia,serif; font-size: 18px; color: var(--color-text-muted);">The Telegraph</span>
         <span style="font-family: var(--font-body); font-size: 17px; font-weight: 600; color: var(--color-text-muted);">Healthline</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Homepage FAQ -->
+  <section style="padding: 80px 0; background: var(--color-bg);">
+    <div class="container" style="max-width: 750px;">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know before getting started</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">What makes Nutrava different from other supplement brands?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Unlike generic supplement brands, Nutrava personalises your stack based on your unique goals, lifestyle, and health profile. Every ingredient is clinically dosed (no pixie dusting), third-party lab tested, and completely transparent — no proprietary blends, no fillers, no hidden ingredients.</div>
+        </details>
+        <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">How does the personalised quiz work?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Our adaptive quiz takes about 60 seconds and asks about your wellness goals, sleep habits, diet, activity level, and lifestyle. It branches based on your answers, getting more specific until it can confidently recommend the right supplement stack. No two recommendations are exactly alike.</div>
+        </details>
+        <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">How long until I see results?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Most people notice initial effects within 1-2 weeks, particularly with supplements like magnesium (better sleep) and creatine (strength gains). Full benefits typically build over 4-8 weeks of consistent daily use. Adaptogens like ashwagandha tend to show their best results around the 6-8 week mark.</div>
+        </details>
+        <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Can I take these supplements together?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan. For example, our Focus Stack pairs Lion's Mane with L-Theanine and Omega-3, which research shows work better together than individually.</div>
+        </details>
+        <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">What's your shipping and returns policy?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">We offer free UK shipping on all orders over £50, delivered within 2-4 business days. Every product comes with our 30-day satisfaction guarantee — if you're not happy, we'll refund you in full, no questions asked. Subscriptions can be paused, modified, or cancelled anytime.</div>
+        </details>
+        <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Are your supplements vegan and gluten-free?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">The majority of our supplements are vegan and gluten-free. A few products (like Omega-3 Fish Oil) are sourced from fish, but we always offer plant-based alternatives. Every product page clearly lists all ingredients, allergens, and dietary information so you know exactly what you're taking.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -704,9 +945,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£24.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(127)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1001,handle:'lions-mane',title:'Lion\'s Mane Extract',price:2499,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1001,handle:'lions-mane',title:'Lion\'s Mane Extract',price:2499,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">Extracted from organic Lion's Mane mushroom (Hericium erinaceus), standardised to 30% beta-glucans. Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory, and long-term brain health.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Enhances focus and mental clarity</li><li>Supports memory and learning</li><li>Promotes nerve regeneration</li><li>May reduce mild anxiety</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>2 capsules</td></tr><tr><td>Lion's Mane Extract (30% beta-glucans)</td><td>500mg</td></tr><tr><td>Servings Per Container</td><td>30</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Alpha-GPC</span><span class="product-expand__pair">L-Theanine</span><span class="product-expand__pair">Omega-3</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <div class="catalog-card" data-category="focus" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400&q=80" alt="Alpha-GPC supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
@@ -719,9 +967,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£19.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(64)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1002,handle:'alpha-gpc',title:'Alpha-GPC',price:1999,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1002,handle:'alpha-gpc',title:'Alpha-GPC',price:1999,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">Alpha-GPC (L-Alpha Glycerylphosphorylcholine) is the most bioavailable form of choline. It crosses the blood-brain barrier efficiently, directly boosting acetylcholine levels — the neurotransmitter essential for learning, memory, and focus.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Rapidly boosts acetylcholine levels</li><li>Sharpens focus and reaction time</li><li>Supports memory consolidation</li><li>May enhance power output during exercise</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 capsule</td></tr><tr><td>Alpha-GPC 50%</td><td>300mg</td></tr><tr><td>Servings Per Container</td><td>60</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Lion's Mane</span><span class="product-expand__pair">Bacopa Monnieri</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <!-- Gym products -->
         <div class="catalog-card" data-category="gym" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
@@ -735,9 +990,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£14.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(156)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1003,handle:'creatine',title:'Creatine Monohydrate',price:1499,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1003,handle:'creatine',title:'Creatine Monohydrate',price:1499,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">Pure creatine monohydrate — the gold standard backed by over 500 peer-reviewed studies. Increases phosphocreatine stores in muscles, providing more ATP energy during high-intensity exercise.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Increases strength and power output</li><li>Supports lean muscle growth</li><li>Enhances high-intensity exercise performance</li><li>May support cognitive function under stress</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 scoop (5g)</td></tr><tr><td>Creatine Monohydrate</td><td>5,000mg</td></tr><tr><td>Servings Per Container</td><td>60</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Ashwagandha</span><span class="product-expand__pair">Zinc & Mag</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <div class="catalog-card" data-category="gym" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer; position: relative;">
           <span style="position:absolute; top:12px; left:12px; background:var(--color-accent); color:#fff; font-size:11px; font-weight:700; padding:4px 10px; border-radius:var(--radius-pill); letter-spacing:0.5px; text-transform:uppercase; z-index:2;">Best Seller</span>
@@ -751,9 +1013,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£22.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(203)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1004,handle:'ashwagandha',title:'Ashwagandha KSM-66',price:2299,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1004,handle:'ashwagandha',title:'Ashwagandha KSM-66',price:2299,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">KSM-66 is the most clinically studied ashwagandha extract, produced through a unique extraction process using only the root. Clinically shown to reduce cortisol by up to 30% and improve stress resilience, testosterone, and endurance.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Reduces cortisol and stress levels</li><li>Supports testosterone in men</li><li>Improves endurance and recovery</li><li>Promotes restful sleep</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 capsule</td></tr><tr><td>Ashwagandha Root Extract (KSM-66)</td><td>600mg</td></tr><tr><td>Withanolides (5%)</td><td>30mg</td></tr><tr><td>Servings Per Container</td><td>60</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Creatine</span><span class="product-expand__pair">Rhodiola</span><span class="product-expand__pair">Magnesium</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <!-- Sleep products -->
         <div class="catalog-card" data-category="sleep" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
@@ -767,9 +1036,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£16.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★☆</span><span style="font-size:12px; color:var(--color-text-muted);">(89)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1005,handle:'magnesium',title:'Magnesium Glycinate',price:1699,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1005,handle:'magnesium',title:'Magnesium Glycinate',price:1699,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">Magnesium chelated with glycine for maximum bioavailability and gentle absorption. Most people are magnesium deficient — this form is the easiest on the stomach and most effective for relaxation and sleep quality.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Promotes deep, restful sleep</li><li>Reduces muscle tension and cramps</li><li>Supports nervous system relaxation</li><li>Gentle on the stomach</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>2 capsules</td></tr><tr><td>Magnesium (as Glycinate)</td><td>400mg</td></tr><tr><td>Servings Per Container</td><td>30</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">L-Theanine</span><span class="product-expand__pair">Ashwagandha</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <div class="catalog-card" data-category="sleep" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&q=80" alt="L-Theanine supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
@@ -782,9 +1058,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£18.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(78)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1006,handle:'l-theanine',title:'L-Theanine',price:1899,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1006,handle:'l-theanine',title:'L-Theanine',price:1899,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">An amino acid naturally found in green tea. L-Theanine promotes alpha brain wave activity, creating a state of calm, relaxed focus without sedation. Works synergistically with caffeine to smooth out jitters.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Promotes calm without drowsiness</li><li>Increases alpha brain waves</li><li>Reduces stress and anxiety</li><li>Improves sleep quality when taken at night</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 capsule</td></tr><tr><td>L-Theanine</td><td>200mg</td></tr><tr><td>Servings Per Container</td><td>60</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Lion's Mane</span><span class="product-expand__pair">Magnesium</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <!-- Energy products -->
         <div class="catalog-card" data-category="energy" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
@@ -798,9 +1081,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£21.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(43)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1007,handle:'rhodiola',title:'Rhodiola Rosea',price:2199,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1007,handle:'rhodiola',title:'Rhodiola Rosea',price:2199,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">An adaptogenic herb used for centuries in Scandinavian and Russian traditional medicine. Rhodiola helps the body adapt to physical and mental stress, fighting fatigue at the cellular level.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Fights mental and physical fatigue</li><li>Improves endurance and stamina</li><li>Enhances mood and motivation</li><li>Supports stress resilience</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 capsule</td></tr><tr><td>Rhodiola Rosea Extract (3% rosavins, 1% salidroside)</td><td>500mg</td></tr><tr><td>Servings Per Container</td><td>60</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Ashwagandha</span><span class="product-expand__pair">B-Complex</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <div class="catalog-card" data-category="energy" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1577401239170-897c5ba98a77?w=400&q=80" alt="B-Complex supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
@@ -813,9 +1103,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£12.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★☆</span><span style="font-size:12px; color:var(--color-text-muted);">(92)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1008,handle:'b-complex',title:'B-Complex',price:1299,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1008,handle:'b-complex',title:'B-Complex',price:1299,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">A complete complex of all 8 essential B vitamins in their most bioavailable forms (methylated where applicable). B vitamins are co-factors in hundreds of metabolic reactions, especially energy production.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Converts food into cellular energy</li><li>Supports nervous system function</li><li>Reduces tiredness and fatigue</li><li>Supports healthy red blood cell formation</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 capsule</td></tr><tr><td>Vitamin B1 (Thiamine)</td><td>25mg</td></tr><tr><td>Vitamin B6 (P-5-P)</td><td>25mg</td></tr><tr><td>Vitamin B12 (Methylcobalamin)</td><td>1,000mcg</td></tr><tr><td>Folate (5-MTHF)</td><td>400mcg</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Rhodiola</span><span class="product-expand__pair">Vitamin D3</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <!-- Wellness products -->
         <div class="catalog-card" data-category="wellness" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
@@ -829,9 +1126,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£14.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(112)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1009,handle:'vitamin-d3-k2',title:'Vitamin D3 + K2',price:1499,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1009,handle:'vitamin-d3-k2',title:'Vitamin D3 + K2',price:1499,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">Vitamin D3 (cholecalciferol) paired with Vitamin K2 (MK-7) for optimal calcium absorption and distribution. Most people in the UK are deficient in Vitamin D, especially during autumn and winter months.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Supports immune system function</li><li>Strengthens bones and teeth</li><li>K2 directs calcium to bones (not arteries)</li><li>Supports mood and mental health</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 softgel</td></tr><tr><td>Vitamin D3</td><td>4,000 IU (100mcg)</td></tr><tr><td>Vitamin K2 (MK-7)</td><td>100mcg</td></tr><tr><td>Servings Per Container</td><td>90</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Omega-3</span><span class="product-expand__pair">Magnesium</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <div class="catalog-card" data-category="wellness" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=400&q=80" alt="Omega-3 Fish Oil supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
@@ -844,9 +1148,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£19.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(55)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1010,handle:'omega-3',title:'Omega-3 Fish Oil',price:1999,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1010,handle:'omega-3',title:'Omega-3 Fish Oil',price:1999,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">Wild-caught, molecularly distilled fish oil with high concentrations of EPA and DHA. Triglyceride form for 70% better absorption than ethyl ester alternatives. Third-party tested for purity and heavy metals.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Supports heart and cardiovascular health</li><li>Reduces inflammation throughout the body</li><li>Supports brain function and mood</li><li>Promotes joint flexibility</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>2 softgels</td></tr><tr><td>EPA (Eicosapentaenoic Acid)</td><td>600mg</td></tr><tr><td>DHA (Docosahexaenoic Acid)</td><td>400mg</td></tr><tr><td>Servings Per Container</td><td>30</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Vitamin D3</span><span class="product-expand__pair">Lion's Mane</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <!-- Multi-category products -->
         <div class="catalog-card" data-category="focus energy" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
@@ -860,9 +1171,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£17.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(31)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1011,handle:'bacopa',title:'Bacopa Monnieri',price:1799,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1011,handle:'bacopa',title:'Bacopa Monnieri',price:1799,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">An Ayurvedic herb used for over 3,000 years to enhance cognitive function. Standardised to 50% bacosides, the active compounds that support memory, learning speed, and information retention.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Enhances memory and recall</li><li>Improves learning speed</li><li>Reduces anxiety naturally</li><li>Antioxidant protection for the brain</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>1 capsule</td></tr><tr><td>Bacopa Monnieri Extract (50% bacosides)</td><td>300mg</td></tr><tr><td>Servings Per Container</td><td>60</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Alpha-GPC</span><span class="product-expand__pair">Lion's Mane</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
         <div class="catalog-card" data-category="gym wellness" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=400&q=80" alt="Zinc and Magnesium supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
@@ -875,9 +1193,16 @@
                 <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£15.99</span>
                 <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c7a373; font-size:13px;">★★★★☆</span><span style="font-size:12px; color:var(--color-text-muted);">(47)</span></div>
               </div>
-              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1012,handle:'zinc-magnesium',title:'Zinc & Magnesium',price:1599,quantity:1})">Add to Cart</button>
+              <button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:1012,handle:'zinc-magnesium',title:'Zinc & Magnesium',price:1599,quantity:1})">Add to Cart</button>
             </div>
           </div>
+          <div class="product-expand"><div class="product-expand__inner">
+            <div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">A synergistic combination of Zinc Bisglycinate and Magnesium Glycinate — two minerals critical for hormone production, muscle recovery, and immune function. Chelated forms for superior absorption.</p></div>
+            <div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits"><li>Supports healthy testosterone levels</li><li>Aids muscle recovery post-workout</li><li>Strengthens immune function</li><li>Improves sleep quality</li></ul></div>
+            <div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts"><tr><td>Serving Size</td><td>2 capsules</td></tr><tr><td>Zinc (as Bisglycinate)</td><td>30mg</td></tr><tr><td>Magnesium (as Glycinate)</td><td>300mg</td></tr><tr><td>Vitamin B6 (P-5-P)</td><td>10mg</td></tr></table></div>
+            <div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs"><span class="product-expand__pair">Creatine</span><span class="product-expand__pair">Ashwagandha</span></div></div>
+          </div></div>
+          <button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details ↓</button>
         </div>
       </div>
     </div>
@@ -1460,6 +1785,40 @@ history.replaceState({ page: 'home' }, '', '#home');
     }, 300);
   });
 })();
+
+/* Product expand/collapse on shop page */
+function toggleProductExpand(btn) {
+  var card = btn.closest('.catalog-card');
+  var panel = card.querySelector('.product-expand');
+  var isOpen = panel.classList.contains('is-open');
+
+  // Close all other expanded cards
+  document.querySelectorAll('.product-expand.is-open').forEach(function(p) {
+    p.classList.remove('is-open');
+    p.closest('.catalog-card').classList.remove('is-expanded');
+    p.closest('.catalog-card').querySelector('.product-expand__toggle').textContent = 'View Details \u2193';
+  });
+
+  if (!isOpen) {
+    panel.classList.add('is-open');
+    card.classList.add('is-expanded');
+    btn.textContent = 'Hide Details \u2191';
+    // Scroll card into view smoothly
+    setTimeout(function() {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+}
+
+// Also allow clicking the card image/header area to toggle expand
+document.querySelectorAll('.catalog-card').forEach(function(card) {
+  card.addEventListener('click', function(e) {
+    // Don't toggle if clicking the Add to Cart button
+    if (e.target.closest('.btn')) return;
+    var toggleBtn = card.querySelector('.product-expand__toggle');
+    if (toggleBtn) toggleProductExpand(toggleBtn);
+  });
+});
 
 /* Testimonial carousel navigation */
 document.querySelectorAll('[data-testimonial-prev]').forEach(function(btn) {
