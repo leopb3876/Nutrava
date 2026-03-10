@@ -76,14 +76,19 @@
     .goals-v2__name { font-weight: 600; font-size: 14px; color: var(--color-text); margin-bottom: 4px; }
     .goals-v2__desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.4; }
 
-    /* Social Proof / Testimonials (Dark Section) */
-    .social-proof { padding: 80px 0; background: var(--color-dark-section); }
+    /* Social Proof / Testimonials (Dark Section) — infinite ticker */
+    .social-proof { padding: 80px 0; background: var(--color-dark-section); overflow: hidden; }
     .social-proof .section-head h2 { color: var(--color-dark-text); }
     .social-proof .section-head p { color: rgba(245,242,236,0.7); }
-    .social-proof__wrapper { position: relative; max-width: 1000px; margin: 0 auto; }
-    .social-proof__grid { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scroll-behavior: smooth; }
-    .social-proof__grid::-webkit-scrollbar { display: none; }
-    .testimonial { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; min-width: 300px; flex: 0 0 calc(33.333% - 16px); scroll-snap-align: start; }
+    .social-proof__ticker-wrap { overflow: hidden; position: relative; }
+    .social-proof__ticker-wrap::before,
+    .social-proof__ticker-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+    .social-proof__ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--color-dark-section) 0%, transparent 100%); }
+    .social-proof__ticker-wrap::after { right: 0; background: linear-gradient(270deg, var(--color-dark-section) 0%, transparent 100%); }
+    .social-proof__ticker { display: flex; gap: 24px; width: max-content; animation: ticker-scroll 60s linear infinite; }
+    .social-proof__ticker:hover { animation-play-state: paused; }
+    @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .testimonial { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; width: 340px; flex-shrink: 0; }
     .testimonial__stars-text { color: var(--color-accent); font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; display: block; }
     .testimonial__text { font-size: 15px; color: var(--color-dark-text); opacity: 0.9; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
     .testimonial__footer { display: flex; align-items: center; gap: 12px; }
@@ -91,12 +96,6 @@
     .testimonial__info { }
     .testimonial__author { font-size: 14px; font-weight: 600; color: var(--color-dark-text); }
     .testimonial__meta { font-size: 12px; color: var(--color-accent); }
-    .testimonial-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--color-dark-text); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2; }
-    .testimonial-nav:hover { background: rgba(255,255,255,0.2); }
-    .testimonial-nav--prev { left: -20px; }
-    .testimonial-nav--next { right: -20px; }
-    .testimonial-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); border: none; cursor: pointer; padding: 0; transition: all 0.3s; }
-    .testimonial-dot.is-active { background: var(--color-accent); width: 24px; border-radius: 4px; }
 
     /* Science Section */
     .science { padding: 80px 0; background: #fff; }
@@ -651,120 +650,129 @@
     </div>
   </section>
 
-  <!-- Testimonials (Dark Section) — Auto-rotating carousel -->
-  <section class="social-proof testimonials-section" data-testimonial-carousel>
+  <!-- Testimonials (Dark Section) — seamless infinite ticker -->
+  <section class="social-proof">
     <div class="container">
       <div class="section-head">
         <h2>What People Are Saying</h2>
         <p>Real results from real people</p>
       </div>
-      <div class="social-proof__wrapper">
-        <button class="testimonial-nav testimonial-nav--prev" data-testimonial-prev aria-label="Previous testimonial"><i data-lucide="chevron-left" style="width:20px;height:20px;"></i></button>
-        <div class="social-proof__grid" data-testimonial-track>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">James T.</div>
-                <div class="testimonial__meta">Focus Stack — 3 months</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting the Sleep & Recovery Stack."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Sophie M.</div>
-                <div class="testimonial__meta">Sleep Stack — 6 weeks</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. The Gym Stack has noticeably improved my recovery between training sessions."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Daniel K.</div>
-                <div class="testimonial__meta">Gym Performance Stack — 2 months</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Emma R.</div>
-                <div class="testimonial__meta">Daily Wellness Stack — 4 months</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. The Energy Stack gives me sustained focus all day — no jitters, no afternoon slump. Absolutely worth it."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Michael B.</div>
-                <div class="testimonial__meta">Energy Stack — 2 months</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-            <p class="testimonial__text">"Started taking the Sleep Stack after years of poor sleep. Within the first week I noticed I was falling asleep faster and actually waking up refreshed. My Fitbit confirms it too."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Lauren W.</div>
-                <div class="testimonial__meta">Sleep Stack — 5 weeks</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Tom H.</div>
-                <div class="testimonial__meta">Focus Stack — 6 weeks</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too — they actually know their stuff."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Priya K.</div>
-                <div class="testimonial__meta">Gym Performance Stack — 5 months</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <p class="testimonial__text">"My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery. Clean ingredients, no bloating."</p>
-            <div class="testimonial__footer">
-              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
-              <div class="testimonial__info">
-                <div class="testimonial__author">Chris A.</div>
-                <div class="testimonial__meta">Gym Performance Stack — 3 months</div>
-              </div>
-            </div>
+    </div>
+    <div class="social-proof__ticker-wrap">
+      <div class="social-proof__ticker" data-testimonial-ticker>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
+            <div class="testimonial__info"><div class="testimonial__author">James T.</div><div class="testimonial__meta">Focus Stack — 3 months</div></div>
           </div>
         </div>
-        <button class="testimonial-nav testimonial-nav--next" data-testimonial-next aria-label="Next testimonial"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i></button>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting the Sleep & Recovery Stack."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
+            <div class="testimonial__info"><div class="testimonial__author">Sophie M.</div><div class="testimonial__meta">Sleep Stack — 6 weeks</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. The Gym Stack has noticeably improved my recovery between training sessions."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
+            <div class="testimonial__info"><div class="testimonial__author">Daniel K.</div><div class="testimonial__meta">Gym Performance Stack — 2 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
+            <div class="testimonial__info"><div class="testimonial__author">Emma R.</div><div class="testimonial__meta">Daily Wellness Stack — 4 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. The Energy Stack gives me sustained focus all day — no jitters, no afternoon slump."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
+            <div class="testimonial__info"><div class="testimonial__author">Michael B.</div><div class="testimonial__meta">Energy Stack — 2 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <p class="testimonial__text">"Started taking the Sleep Stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed. My Fitbit confirms it too."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
+            <div class="testimonial__info"><div class="testimonial__author">Lauren W.</div><div class="testimonial__meta">Sleep Stack — 5 weeks</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
+            <div class="testimonial__info"><div class="testimonial__author">Tom H.</div><div class="testimonial__meta">Focus Stack — 6 weeks</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
+            <div class="testimonial__info"><div class="testimonial__author">Priya K.</div><div class="testimonial__meta">Gym Performance Stack — 5 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
+            <div class="testimonial__info"><div class="testimonial__author">Chris A.</div><div class="testimonial__meta">Gym Performance Stack — 3 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"Nutrava helped me figure out what I actually need. The quiz was spot on — I'm taking fewer supplements now but getting better results than before."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&q=80" alt="Hannah L.">
+            <div class="testimonial__info"><div class="testimonial__author">Hannah L.</div><div class="testimonial__meta">Focus Stack — 2 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"Proper doses, clean ingredients, and they actually explain why each supplement is in your stack. First brand I've trusted enough to set up a subscription."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=96&q=80" alt="Alex D.">
+            <div class="testimonial__info"><div class="testimonial__author">Alex D.</div><div class="testimonial__meta">Daily Wellness Stack — 3 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <p class="testimonial__text">"Got the Energy & Stress stack after burnout from work. Two months in and I feel like a different person. More energy, better mood, sleeping properly again."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=96&q=80" alt="Olivia S.">
+            <div class="testimonial__info"><div class="testimonial__author">Olivia S.</div><div class="testimonial__meta">Energy Stack — 2 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"I was spending £60/month on random supplements. Nutrava streamlined everything into one stack for less money and I actually feel the difference now."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=96&q=80" alt="Ryan P.">
+            <div class="testimonial__info"><div class="testimonial__author">Ryan P.</div><div class="testimonial__meta">Gym Performance Stack — 4 months</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p class="testimonial__text">"My mum recommended Nutrava to me. We both take the Daily Wellness stack now. Love that it's UK-based with free shipping and actually arrives quickly."</p>
+          <div class="testimonial__footer">
+            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=96&q=80" alt="Natasha G.">
+            <div class="testimonial__info"><div class="testimonial__author">Natasha G.</div><div class="testimonial__meta">Daily Wellness Stack — 6 months</div></div>
+          </div>
+        </div>
       </div>
-      <!-- Dot indicators -->
-      <div class="testimonial-dots" data-testimonial-dots style="display: flex; justify-content: center; gap: 8px; margin-top: 24px;"></div>
     </div>
   </section>
 
@@ -1800,74 +1808,15 @@ document.querySelectorAll('.catalog-card').forEach(function(card) {
   });
 });
 
-/* Testimonial auto-rotating carousel */
+/* Testimonial infinite ticker — duplicate cards for seamless loop */
 (function() {
-  var section = document.querySelector('[data-testimonial-carousel]');
-  if (!section) return;
-  var track = section.querySelector('[data-testimonial-track]');
-  var cards = track.querySelectorAll('.testimonial');
-  var dotsContainer = section.querySelector('[data-testimonial-dots]');
-  var prevBtn = section.querySelector('[data-testimonial-prev]');
-  var nextBtn = section.querySelector('[data-testimonial-next]');
-  var autoInterval = null;
-  var currentIndex = 0;
-  var totalCards = cards.length;
-
-  // Build dot indicators
-  for (var i = 0; i < totalCards; i++) {
-    var dot = document.createElement('button');
-    dot.className = 'testimonial-dot' + (i === 0 ? ' is-active' : '');
-    dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
-    dot.dataset.index = i;
-    dot.addEventListener('click', function() {
-      goTo(parseInt(this.dataset.index));
-      resetAuto();
-    });
-    dotsContainer.appendChild(dot);
-  }
-  var dots = dotsContainer.querySelectorAll('.testimonial-dot');
-
-  function goTo(index) {
-    currentIndex = ((index % totalCards) + totalCards) % totalCards;
-    var cardW = cards[0].offsetWidth + 24; // card width + gap
-    track.scrollTo({ left: currentIndex * cardW, behavior: 'smooth' });
-    updateDots();
-  }
-
-  function updateDots() {
-    dots.forEach(function(d, i) {
-      d.classList.toggle('is-active', i === currentIndex);
-    });
-  }
-
-  function next() { goTo(currentIndex + 1); }
-  function prev() { goTo(currentIndex - 1); }
-
-  function resetAuto() {
-    clearInterval(autoInterval);
-    autoInterval = setInterval(next, 4500);
-  }
-
-  // Arrow buttons
-  prevBtn.addEventListener('click', function() { prev(); resetAuto(); });
-  nextBtn.addEventListener('click', function() { next(); resetAuto(); });
-
-  // Update dots on manual scroll
-  track.addEventListener('scroll', function() {
-    var cardW = cards[0].offsetWidth + 24;
-    var scrollIndex = Math.round(track.scrollLeft / cardW);
-    if (scrollIndex !== currentIndex && scrollIndex >= 0 && scrollIndex < totalCards) {
-      currentIndex = scrollIndex;
-      updateDots();
-    }
+  var ticker = document.querySelector('[data-testimonial-ticker]');
+  if (!ticker) return;
+  // Clone all cards and append to create seamless infinite scroll
+  var cards = ticker.querySelectorAll('.testimonial');
+  cards.forEach(function(card) {
+    ticker.appendChild(card.cloneNode(true));
   });
-
-  // Pause auto-rotate on hover
-  section.addEventListener('mouseenter', function() { clearInterval(autoInterval); });
-  section.addEventListener('mouseleave', function() { resetAuto(); });
-
-  // Start auto-rotation
-  autoInterval = setInterval(next, 4500);
 })();
 </script>
 </body>
