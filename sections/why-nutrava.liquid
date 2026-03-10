@@ -1,0 +1,170 @@
+<section class="why-nutrava section-padding bg-white">
+  <div class="container">
+    <div class="why-nutrava__grid">
+      <div class="why-nutrava__content">
+        <span class="label mb-sm">{{ section.settings.label | default: 'The Nutrava Difference' }}</span>
+        <h2 class="why-nutrava__heading">{{ section.settings.heading | default: 'Why Nutrava?' }}</h2>
+        <div class="why-nutrava__points">
+          {%- for block in section.blocks -%}
+            <div class="why-nutrava__point" {{ block.shopify_attributes }}>
+              <div class="why-nutrava__icon">
+                <i data-lucide="{{ block.settings.icon }}"></i>
+              </div>
+              <div>
+                <strong class="why-nutrava__point-title">{{ block.settings.title }}</strong>
+                <p class="why-nutrava__point-text">{{ block.settings.text }}</p>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="why-nutrava__visual">
+        <i data-lucide="heart-pulse"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-nutrava__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .why-nutrava__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    color: var(--color-text);
+    margin-bottom: var(--space-xl);
+  }
+
+  .why-nutrava__points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .why-nutrava__point {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .why-nutrava__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-mint-mist);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .why-nutrava__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .why-nutrava__point-title {
+    font-size: 15px;
+    color: var(--color-text);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .why-nutrava__point-text {
+    font-size: 14px;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .why-nutrava__visual {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--color-mint-mist) 0%, var(--color-fern) 50%, var(--color-mint-mist) 100%);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+
+  .why-nutrava__visual svg {
+    width: 80px;
+    height: 80px;
+    stroke-width: 1;
+  }
+
+  @media (max-width: 768px) {
+    .why-nutrava__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-nutrava__visual {
+      display: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Why Nutrava",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "The Nutrava Difference"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Nutrava?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Differentiator",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Lucide icon name",
+          "default": "user"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Personalised to You"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "Not one-size-fits-all. Your stack is built around your goals."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Nutrava",
+      "blocks": [
+        { "type": "point", "settings": { "icon": "user", "title": "Personalised to You", "text": "Not one-size-fits-all. Your stack is built around your goals." } },
+        { "type": "point", "settings": { "icon": "flask-conical", "title": "Clinically Dosed", "text": "Every ingredient at its researched dose. No under-dosing." } },
+        { "type": "point", "settings": { "icon": "shield-check", "title": "No Junk", "text": "No fillers, binders, or proprietary blends. Ever." } },
+        { "type": "point", "settings": { "icon": "eye", "title": "Transparent Labels", "text": "You see exactly what's inside and how much." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

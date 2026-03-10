@@ -1,0 +1,155 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "label": "Personalised Wellness",
+        "heading": "Your Wellness, Personalised",
+        "subheading": "Take our 60-second quiz and discover your science-backed supplement stack",
+        "cta_quiz": "Take the Quiz",
+        "cta_shop": "Shop Stacks"
+      }
+    },
+    "featured-stacks": {
+      "type": "featured-stacks",
+      "settings": {
+        "heading": "Popular Stacks",
+        "view_all_link": "/collections/all"
+      }
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {
+        "heading": "How It Works"
+      },
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "title": "Take the Quiz",
+            "text": "Answer a few questions about your lifestyle, goals, and wellness needs"
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "title": "Get Your Stack",
+            "text": "We'll recommend a personalised supplement stack backed by science"
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "title": "Delivered to You",
+            "text": "Your supplements are shipped directly to your door"
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3"]
+    },
+    "goals": {
+      "type": "goal-categories",
+      "settings": {
+        "heading": "Explore Your Goals"
+      },
+      "blocks": {
+        "focus": { "type": "goal", "settings": { "icon": "brain", "title": "Focus & Study", "description": "Sharpen concentration and mental clarity" } },
+        "gym": { "type": "goal", "settings": { "icon": "dumbbell", "title": "Gym & Performance", "description": "Build strength and recover faster" } },
+        "sleep": { "type": "goal", "settings": { "icon": "moon", "title": "Sleep & Recovery", "description": "Fall asleep faster, wake refreshed" } },
+        "energy": { "type": "goal", "settings": { "icon": "zap", "title": "Energy & Stress", "description": "Sustained energy without the crash" } },
+        "wellness": { "type": "goal", "settings": { "icon": "leaf", "title": "Daily Wellness", "description": "Support your overall health daily" } }
+      },
+      "block_order": ["focus", "gym", "sleep", "energy", "wellness"]
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {},
+      "blocks": {
+        "badge-1": { "type": "badge", "settings": { "text": "Science-backed" } },
+        "badge-2": { "type": "badge", "settings": { "text": "Clean ingredients" } },
+        "badge-3": { "type": "badge", "settings": { "text": "Free UK shipping" } },
+        "badge-4": { "type": "badge", "settings": { "text": "30-day guarantee" } }
+      },
+      "block_order": ["badge-1", "badge-2", "badge-3", "badge-4"]
+    },
+    "stats-bar": {
+      "type": "stats-bar",
+      "settings": {},
+      "blocks": {
+        "stat-1": { "type": "stat", "settings": { "icon": "fingerprint", "number": "Unique", "label": "Stacks built for you" } },
+        "stat-2": { "type": "stat", "settings": { "icon": "flask-conical", "number": "100%", "label": "Science-backed" } },
+        "stat-3": { "type": "stat", "settings": { "icon": "leaf", "number": "Zero", "label": "Fillers or binders" } },
+        "stat-4": { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "UK delivery" } }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
+    },
+    "science-bar": {
+      "type": "science-bar",
+      "settings": {
+        "heading": "What Goes In Matters",
+        "subheading": "Every ingredient is selected based on clinical research"
+      },
+      "blocks": {
+        "card-1": { "type": "card", "settings": { "icon": "flask-conical", "title": "Clinically Dosed", "text": "Every ingredient at its researched effective dose — no pixie dusting." } },
+        "card-2": { "type": "card", "settings": { "icon": "shield-check", "title": "Third-Party Lab Tested", "text": "Independent verification for purity and potency you can trust." } },
+        "card-3": { "type": "card", "settings": { "icon": "eye", "title": "No Proprietary Blends", "text": "Full transparency — you see exactly what you're taking and how much." } }
+      },
+      "block_order": ["card-1", "card-2", "card-3"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What People Are Saying",
+        "subheading": "Real results from real people"
+      },
+      "blocks": {
+        "t-1": { "type": "testimonial", "settings": { "quote": "The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon.", "author": "James T.", "meta": "Focus Stack — 3 months" } },
+        "t-2": { "type": "testimonial", "settings": { "quote": "I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively.", "author": "Sophie M.", "meta": "Sleep Stack — 6 weeks" } },
+        "t-3": { "type": "testimonial", "settings": { "quote": "Love that everything is science-backed and the ingredients are clean. Recovery between training sessions is noticeably better.", "author": "Daniel K.", "meta": "Gym Performance Stack — 2 months" } }
+      },
+      "block_order": ["t-1", "t-2", "t-3"]
+    },
+    "why-nutrava": {
+      "type": "why-nutrava",
+      "settings": {
+        "label": "The Nutrava Difference",
+        "heading": "Why Nutrava?"
+      },
+      "blocks": {
+        "point-1": { "type": "point", "settings": { "icon": "user", "title": "Personalised to You", "text": "Not one-size-fits-all. Your stack is built around your goals." } },
+        "point-2": { "type": "point", "settings": { "icon": "flask-conical", "title": "Clinically Dosed", "text": "Every ingredient at its researched dose. No under-dosing." } },
+        "point-3": { "type": "point", "settings": { "icon": "shield-check", "title": "No Junk", "text": "No fillers, binders, or proprietary blends. Ever." } },
+        "point-4": { "type": "point", "settings": { "icon": "eye", "title": "Transparent Labels", "text": "You see exactly what's inside and how much." } }
+      },
+      "block_order": ["point-1", "point-2", "point-3", "point-4"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Stay in the loop",
+        "subheading": "Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers."
+      }
+    },
+    "quiz-cta": {
+      "type": "quiz-cta",
+      "settings": {
+        "heading": "Not sure where to start?",
+        "text": "Take our personalised quiz and we'll match you with the perfect supplement stack in 60 seconds",
+        "cta_text": "Take the Quiz"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "stats-bar",
+    "featured-stacks",
+    "how-it-works",
+    "goals",
+    "why-nutrava",
+    "trust-bar",
+    "science-bar",
+    "testimonials",
+    "newsletter",
+    "quiz-cta"
+  ]
+}

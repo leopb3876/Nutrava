@@ -1,0 +1,24 @@
+{
+  "current": {
+    "color_primary": "#5a7a5e",
+    "color_background": "#faf8f2",
+    "color_background_alt": "#eef3eb",
+    "color_text": "#3d3229",
+    "color_text_body": "#5c4f3d",
+    "color_accent": "#c2d4b5",
+    "font_heading": "georgia_n4",
+    "font_body": "helvetica_n4",
+    "social_instagram": "",
+    "social_tiktok": "",
+    "social_twitter": "",
+    "sections": {
+      "header": {
+        "type": "header"
+      },
+      "footer": {
+        "type": "footer"
+      }
+    },
+    "content_for_index": []
+  }
+}

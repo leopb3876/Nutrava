@@ -1,0 +1,66 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "menu": "Menu",
+    "close": "Close",
+    "view_all": "View all",
+    "learn_more": "Learn more"
+  },
+  "header": {
+    "take_quiz": "Take the Quiz",
+    "shop_stacks": "Shop Stacks",
+    "learn": "Learn",
+    "account": "Account"
+  },
+  "hero": {
+    "label": "Personalised Wellness",
+    "heading": "Your Wellness, Personalised",
+    "subheading": "Take our 60-second quiz and discover your science-backed supplement stack",
+    "cta_quiz": "Take the Quiz",
+    "cta_shop": "Shop Stacks"
+  },
+  "how_it_works": {
+    "heading": "How It Works",
+    "step_1_title": "Take the Quiz",
+    "step_1_text": "Answer a few questions about your lifestyle, goals, and wellness needs",
+    "step_2_title": "Get Your Stack",
+    "step_2_text": "We'll recommend a personalised supplement stack backed by science",
+    "step_3_title": "Delivered to You",
+    "step_3_text": "Your supplements are shipped directly to your door"
+  },
+  "goals": {
+    "heading": "Explore Your Goals",
+    "focus": "Focus & Study",
+    "focus_desc": "Sharpen concentration and mental clarity",
+    "gym": "Gym & Performance",
+    "gym_desc": "Build strength and recover faster",
+    "sleep": "Sleep & Recovery",
+    "sleep_desc": "Fall asleep faster, wake refreshed",
+    "energy": "Energy & Stress",
+    "energy_desc": "Sustained energy without the crash",
+    "wellness": "Daily Wellness",
+    "wellness_desc": "Support your overall health daily"
+  },
+  "trust": {
+    "science": "Science-backed",
+    "clean": "Clean ingredients",
+    "shipping": "Free UK shipping"
+  },
+  "quiz": {
+    "back": "Back",
+    "step_of": "of",
+    "your_stack": "Your Personalised Stack",
+    "add_to_cart": "Add Stack to Cart",
+    "customise": "or customise your stack",
+    "stack_total": "Stack total",
+    "retake": "Retake Quiz"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "quick_links": "Quick Links",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us"
+  }
+}

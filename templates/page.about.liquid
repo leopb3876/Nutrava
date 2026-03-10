@@ -1,0 +1,220 @@
+<!-- Brand Story -->
+<section class="about-hero section-padding bg-mint">
+  <div class="container container--narrow text-center">
+    <span class="label">Our Story</span>
+    <h1>Wellness That Works for You</h1>
+    <p class="about-hero__text">
+      We believe supplements shouldn't be one-size-fits-all. At Nutrava, we combine science-backed ingredients with personalised recommendations to help you find exactly what your body needs.
+    </p>
+  </div>
+</section>
+
+<!-- How Stacks Work -->
+<section class="about-section section-padding bg-white">
+  <div class="container container--narrow">
+    <h2 class="text-center mb-xl">How Stacks Work</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <span class="about-card__icon"><i data-lucide="flask-conical"></i></span>
+        <h3>Science-First Approach</h3>
+        <p>Every supplement in our stacks is selected based on clinical research and evidence-based dosing. We don't guess — we follow the science.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-card__icon"><i data-lucide="puzzle"></i></span>
+        <h3>Synergistic Formulas</h3>
+        <p>Supplements in each stack are chosen to complement each other. Some enhance absorption, others amplify effects — together they work better than alone.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-card__icon"><i data-lucide="target"></i></span>
+        <h3>Goal-Specific</h3>
+        <p>Whether you want sharper focus, better sleep, or peak gym performance, each stack is designed around a specific outcome so every ingredient serves your goal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Promise -->
+<section class="about-section section-padding">
+  <div class="container container--narrow">
+    <h2 class="text-center mb-xl">Our Promise</h2>
+    <div class="about-promises">
+      <div class="about-promise">
+        <span class="trust-badge__icon" aria-hidden="true">✓</span>
+        <div>
+          <h4>Clean Ingredients</h4>
+          <p>No fillers, artificial colours, or unnecessary additives. Just the ingredients that matter.</p>
+        </div>
+      </div>
+      <div class="about-promise">
+        <span class="trust-badge__icon" aria-hidden="true">✓</span>
+        <div>
+          <h4>Evidence-Based Dosing</h4>
+          <p>We use clinically studied doses, not pixie dust. You get what actually works.</p>
+        </div>
+      </div>
+      <div class="about-promise">
+        <span class="trust-badge__icon" aria-hidden="true">✓</span>
+        <div>
+          <h4>Transparent Labels</h4>
+          <p>Full ingredient lists with exact amounts. No proprietary blends hiding behind fancy names.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="about-section section-padding bg-white">
+  <div class="container container--narrow">
+    <h2 class="text-center mb-xl">Frequently Asked Questions</h2>
+    <div class="about-faq">
+      <details class="faq-item">
+        <summary class="faq-question">How does the personalised quiz work?</summary>
+        <p class="faq-answer">Our quiz asks you questions about your lifestyle, goals, sleep, diet, and activity level. Based on your answers, our system matches you with a supplement stack designed for your specific needs.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can I buy individual supplements instead of a stack?</summary>
+        <p class="faq-answer">Yes! While we recommend stacks for the best results, you can browse and purchase individual supplements from our shop.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">How long until I see results?</summary>
+        <p class="faq-answer">Most people notice initial effects within 1-2 weeks, with full benefits building over 4-8 weeks of consistent use. Some supplements like creatine may take a few weeks to fully saturate.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Are your supplements safe?</summary>
+        <p class="faq-answer">All our supplements are manufactured in certified facilities and tested for purity and potency. However, we always recommend consulting with your healthcare provider before starting any new supplement regimen.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What's your shipping and returns policy?</summary>
+        <p class="faq-answer">We offer free UK shipping on orders over £50. Orders are typically delivered within 2-4 business days. We offer a 30-day satisfaction guarantee on all products.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Quiz CTA -->
+{% section 'quiz-cta' %}
+
+<style>
+  .about-hero__text {
+    font-size: 1.125rem;
+    color: var(--color-text-body);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: var(--space-lg) auto 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .about-card {
+    text-align: center;
+    padding: var(--space-xl);
+  }
+
+  .about-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+    color: var(--color-primary);
+  }
+
+  .about-card__icon svg {
+    width: 36px;
+    height: 36px;
+    stroke-width: 1.5;
+  }
+
+  .about-card h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .about-card p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .about-promises {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .about-promise {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .about-promise h4 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+  }
+
+  .about-promise p {
+    font-size: 14px;
+    color: var(--color-text-body);
+    line-height: 1.6;
+  }
+
+  .about-faq {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .faq-item {
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: var(--space-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    padding: 0 var(--space-lg) var(--space-lg);
+    font-size: 15px;
+    color: var(--color-text-body);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

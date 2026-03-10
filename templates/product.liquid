@@ -1,0 +1,411 @@
+{{ 'product.css' | asset_url | stylesheet_tag }}
+
+<div class="product-page">
+  <!-- Product Hero -->
+  <section class="product-hero">
+    <div class="container">
+      <div class="product-hero__grid">
+        <!-- Product Image -->
+        <div class="product-hero__image">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}">
+          {% else %}
+            <div class="product-hero__placeholder">
+              <i data-lucide="pill"></i>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-hero__info">
+          {% if product.metafields.custom.category %}
+            <span class="label mb-sm">{{ product.metafields.custom.category }}</span>
+          {% endif %}
+
+          <h1 class="product-hero__title">{{ product.title }}</h1>
+
+          <div class="product-hero__rating">
+            <span class="product-hero__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="product-hero__reviews-count">4.8 (127 reviews)</span>
+          </div>
+
+          <p class="product-hero__price">{{ product.price | money }}</p>
+
+          {% if product.description != blank %}
+            <div class="product-hero__description">
+              {{ product.description }}
+            </div>
+          {% endif %}
+
+          <!-- Add to Cart -->
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button
+              type="submit"
+              class="btn btn--primary btn--lg product-hero__atc"
+              data-add-to-cart
+              data-product-handle="{{ product.handle }}"
+              data-product-title="{{ product.title }}"
+              data-product-price="{{ product.price }}"
+              {% unless product.available %}disabled{% endunless %}
+            >
+              {% if product.available %}
+                <i data-lucide="shopping-bag"></i>
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+          {% endform %}
+
+          <!-- Subscribe & Save Toggle -->
+          <div class="product-subscribe" data-subscribe-toggle>
+            <div class="product-subscribe__options">
+              <label class="product-subscribe__option product-subscribe__option--active" data-purchase-type="onetime">
+                <input type="radio" name="purchase_type" value="onetime" checked>
+                <span class="product-subscribe__radio"></span>
+                <span>One-time purchase</span>
+              </label>
+              <label class="product-subscribe__option" data-purchase-type="subscribe">
+                <input type="radio" name="purchase_type" value="subscribe">
+                <span class="product-subscribe__radio"></span>
+                <span>Subscribe & save — <strong>15% off</strong></span>
+              </label>
+            </div>
+            <p class="product-subscribe__note" data-subscribe-note style="display: none;">Delivered every 30 days. Cancel anytime.</p>
+          </div>
+
+          <!-- Guarantee Badge -->
+          <div class="product-guarantee">
+            <i data-lucide="shield-check"></i>
+            <div>
+              <strong>30-Day Money-Back Guarantee</strong>
+              <span>No questions asked</span>
+            </div>
+          </div>
+
+          <!-- Trust Row -->
+          <div class="product-trust">
+            <div class="product-trust__item">
+              <i data-lucide="shield-check"></i>
+              <span>Third-party tested</span>
+            </div>
+            <div class="product-trust__item">
+              <i data-lucide="leaf"></i>
+              <span>No fillers</span>
+            </div>
+            <div class="product-trust__item">
+              <i data-lucide="truck"></i>
+              <span>Free UK shipping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredients Section -->
+  {% if product.metafields.custom.ingredients %}
+    <section class="product-ingredients section-padding">
+      <div class="container container--narrow">
+        <h2 class="product-section__heading">What's Inside</h2>
+        <div class="product-ingredients__list">
+          {% for ingredient in product.metafields.custom.ingredients.value %}
+            <div class="product-ingredient">
+              <div class="product-ingredient__icon">
+                <i data-lucide="check"></i>
+              </div>
+              <div>
+                <span class="product-ingredient__name">{{ ingredient.name }}</span>
+                {% if ingredient.dose %}
+                  <span class="product-ingredient__dose">{{ ingredient.dose }}</span>
+                {% endif %}
+                {% if ingredient.benefit %}
+                  <p class="product-ingredient__benefit">{{ ingredient.benefit }}</p>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- How to Take -->
+  <section class="product-usage section-padding bg-mint">
+    <div class="container container--narrow">
+      <h2 class="product-section__heading">How to Take</h2>
+      <div class="product-usage__card">
+        <div class="product-usage__item">
+          <i data-lucide="calendar"></i>
+          <div>
+            <strong>Daily Use</strong>
+            <p>Take daily for best results. Consistency is key.</p>
+          </div>
+        </div>
+        <div class="product-usage__item">
+          <i data-lucide="clock"></i>
+          <div>
+            <strong>When to Take</strong>
+            <p>{{ product.metafields.custom.timing | default: "Take with food, preferably in the morning." }}</p>
+          </div>
+        </div>
+        <div class="product-usage__item">
+          <i data-lucide="droplets"></i>
+          <div>
+            <strong>Dosage</strong>
+            <p>{{ product.metafields.custom.dosage | default: "Follow the serving size on the label." }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supplement Facts -->
+  <section class="product-facts section-padding">
+    <div class="container container--narrow">
+      <h2 class="product-section__heading"><i data-lucide="clipboard-list" style="width:20px;height:20px;color:var(--color-primary);"></i> Supplement Facts</h2>
+      <div class="product-facts__header">Serving Size: 2 capsules &middot; Servings Per Container: 30</div>
+      <table class="product-facts__table">
+        <thead>
+          <tr><th>Ingredient</th><th>Amount Per Serving</th><th>% Daily Value</th></tr>
+        </thead>
+        <tbody>
+          <!-- Populated via product metafields in production -->
+          <tr><td>Active ingredient blend</td><td>See label</td><td>*</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px; color:var(--color-text-muted); margin-top:8px;">* Daily Value not established</p>
+    </div>
+  </section>
+
+  <!-- Backed by Science -->
+  <section class="product-studies section-padding bg-mint">
+    <div class="container container--narrow">
+      <h2 class="product-section__heading"><i data-lucide="flask-conical" style="width:20px;height:20px;color:var(--color-primary);"></i> Backed by Science</h2>
+      <div class="product-studies__list">
+        <!-- Studies populated via product metafields in production -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="product-faq section-padding">
+    <div class="container container--narrow">
+      <h2 class="product-section__heading"><i data-lucide="help-circle" style="width:20px;height:20px;color:var(--color-primary);"></i> Frequently Asked Questions</h2>
+      <div class="product-faq__list">
+        <div class="product-faq__item">
+          <button class="product-faq__question" type="button">When will I see results? <i data-lucide="chevron-down"></i></button>
+          <div class="product-faq__answer"><div class="product-faq__answer-inner">Most people notice improvements within 2-4 weeks of consistent daily use. Full benefits are typically experienced after 8-12 weeks.</div></div>
+        </div>
+        <div class="product-faq__item">
+          <button class="product-faq__question" type="button">Can I take this with other supplements? <i data-lucide="chevron-down"></i></button>
+          <div class="product-faq__answer"><div class="product-faq__answer-inner">Yes, our supplements are designed to work together as part of a stack. If you take prescription medication, please consult your doctor first.</div></div>
+        </div>
+        <div class="product-faq__item">
+          <button class="product-faq__question" type="button">Are there any side effects? <i data-lucide="chevron-down"></i></button>
+          <div class="product-faq__answer"><div class="product-faq__answer-inner">Our supplements use clinically researched ingredients at safe dosages. Side effects are rare. Discontinue use if you experience any adverse reactions.</div></div>
+        </div>
+        <div class="product-faq__item">
+          <button class="product-faq__question" type="button">How should I store this? <i data-lucide="chevron-down"></i></button>
+          <div class="product-faq__answer"><div class="product-faq__answer-inner">Store in a cool, dry place away from direct sunlight. Keep the lid tightly closed to maintain freshness.</div></div>
+        </div>
+        <div class="product-faq__item">
+          <button class="product-faq__question" type="button">Is this vegan and gluten-free? <i data-lucide="chevron-down"></i></button>
+          <div class="product-faq__answer"><div class="product-faq__answer-inner">Yes, all Nutrava supplements are vegan-friendly, gluten-free, and made without artificial fillers or binders.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="product-reviews section-padding bg-mint">
+    <div class="container container--narrow">
+      <h2 class="product-section__heading"><i data-lucide="message-square" style="width:20px;height:20px;color:var(--color-primary);"></i> Customer Reviews</h2>
+      <div class="product-reviews__summary">
+        <div class="product-reviews__score">
+          <span class="product-reviews__number">4.8</span>
+          <span class="product-reviews__stars-big">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="product-reviews__total">Based on 127 reviews</span>
+        </div>
+        <div class="product-reviews__bars">
+          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">5 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:80%"></div></div><span class="product-reviews__bar-pct">80%</span></div>
+          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">4 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:15%"></div></div><span class="product-reviews__bar-pct">15%</span></div>
+          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">3 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:3%"></div></div><span class="product-reviews__bar-pct">3%</span></div>
+          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">2 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:1%"></div></div><span class="product-reviews__bar-pct">1%</span></div>
+          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">1 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:1%"></div></div><span class="product-reviews__bar-pct">1%</span></div>
+        </div>
+      </div>
+
+      <div class="product-review">
+        <div class="product-review__header"><span class="product-review__author">Sarah L.</span><span class="product-review__date">Jan 28, 2026</span></div>
+        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="product-review__verified">Verified Purchase</span>
+        <p class="product-review__text">Noticed a real difference in focus after about 2 weeks. I can concentrate for longer stretches without my mind wandering. Highly recommend.</p>
+      </div>
+      <div class="product-review">
+        <div class="product-review__header"><span class="product-review__author">Mark T.</span><span class="product-review__date">Feb 3, 2026</span></div>
+        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="product-review__verified">Verified Purchase</span>
+        <p class="product-review__text">Clean ingredients and I can actually feel it working. No jitters or crash like with caffeine pills. The subscribe option saves a decent amount too.</p>
+      </div>
+      <div class="product-review">
+        <div class="product-review__header"><span class="product-review__author">Emma R.</span><span class="product-review__date">Dec 15, 2025</span></div>
+        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+        <span class="product-review__verified">Verified Purchase</span>
+        <p class="product-review__text">Good quality supplement, takes a few weeks to kick in but worth the wait. Only giving 4 stars because I wish the capsules were a bit smaller.</p>
+      </div>
+      <div class="product-review">
+        <div class="product-review__header"><span class="product-review__author">David P.</span><span class="product-review__date">Feb 18, 2026</span></div>
+        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="product-review__verified">Verified Purchase</span>
+        <p class="product-review__text">Best nootropic stack I've tried. The combination works better than anything I've used before. Will be subscribing.</p>
+      </div>
+      <div style="text-align:center; margin-top:24px;">
+        <button class="btn btn--outline" onclick="alert('Review form (preview mode)')">Write a Review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Add to Cart Bar -->
+  <div class="sticky-atc" data-sticky-atc>
+    <div class="container">
+      <div class="sticky-atc__inner">
+        <div class="sticky-atc__info">
+          <span class="sticky-atc__name">{{ product.title }}</span>
+          <span class="sticky-atc__price" data-sticky-price>{{ product.price | money }}</span>
+        </div>
+        <button
+          class="btn btn--primary btn--sm sticky-atc__btn"
+          data-sticky-add-to-cart
+          data-product-handle="{{ product.handle }}"
+          data-product-title="{{ product.title }}"
+          data-product-price="{{ product.price }}"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {% if product.collections.first %}
+    <section class="product-related section-padding">
+      <div class="container">
+        <h2 class="product-section__heading text-center">Complete Your Stack</h2>
+        <div class="product-related__grid">
+          {% for related in product.collections.first.products limit: 4 %}
+            {% unless related.handle == product.handle %}
+              {% render 'product-card', product: related %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    /* ---------- AJAX Add to Cart ---------- */
+    var mainBtn = document.querySelector('[data-add-to-cart]');
+    if (mainBtn) {
+      mainBtn.closest('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = mainBtn;
+        var handle = btn.dataset.productHandle;
+        var title = btn.dataset.productTitle;
+        var price = btn.dataset.productPrice;
+        var variantId = this.querySelector('[name="id"]').value;
+
+        NutravaCart.addItem({
+          id: parseInt(variantId),
+          handle: handle,
+          title: title,
+          price: parseInt(price),
+          quantity: 1
+        });
+      });
+    }
+
+    /* ---------- Sticky Add to Cart ---------- */
+    var stickyBar = document.querySelector('[data-sticky-atc]');
+    var stickyBtn = document.querySelector('[data-sticky-add-to-cart]');
+    if (mainBtn && stickyBar) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          stickyBar.classList.toggle('is-visible', !entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+      observer.observe(mainBtn);
+
+      if (stickyBtn) {
+        stickyBtn.addEventListener('click', function() {
+          var handle = this.dataset.productHandle;
+          var title = this.dataset.productTitle;
+          var price = this.dataset.productPrice;
+          NutravaCart.addItem({
+            id: Date.now(),
+            handle: handle,
+            title: title,
+            price: parseInt(price),
+            quantity: 1
+          });
+        });
+      }
+    }
+
+    /* ---------- FAQ Accordion ---------- */
+    document.querySelectorAll('.product-faq__question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var answer = btn.nextElementSibling;
+        var isOpen = btn.classList.contains('is-open');
+        btn.closest('.product-faq__list').querySelectorAll('.product-faq__question').forEach(function(q) {
+          q.classList.remove('is-open');
+          q.nextElementSibling.style.maxHeight = null;
+        });
+        if (!isOpen) {
+          btn.classList.add('is-open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    /* ---------- Subscribe & Save Toggle ---------- */
+    var subscribeToggle = document.querySelector('[data-subscribe-toggle]');
+    if (subscribeToggle) {
+      var radios = subscribeToggle.querySelectorAll('input[name="purchase_type"]');
+      var options = subscribeToggle.querySelectorAll('.product-subscribe__option');
+      var note = subscribeToggle.querySelector('[data-subscribe-note]');
+      var priceEl = document.querySelector('.product-hero__price');
+      var stickyPrice = document.querySelector('[data-sticky-price]');
+      var originalPrice = {{ product.price }};
+      var discountedPrice = Math.round(originalPrice * 0.85);
+
+      radios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+          options.forEach(function(o) { o.classList.remove('product-subscribe__option--active'); });
+          this.closest('.product-subscribe__option').classList.add('product-subscribe__option--active');
+
+          if (this.value === 'subscribe') {
+            if (priceEl) priceEl.innerHTML = '<span class="product-hero__price-original">' + formatMoney(originalPrice) + '</span> ' + formatMoney(discountedPrice);
+            if (stickyPrice) stickyPrice.innerHTML = formatMoney(discountedPrice);
+            if (note) note.style.display = 'block';
+            if (mainBtn) mainBtn.innerHTML = '<i data-lucide="shopping-bag"></i> Subscribe & Add to Cart';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+          } else {
+            if (priceEl) priceEl.textContent = formatMoney(originalPrice);
+            if (stickyPrice) stickyPrice.textContent = formatMoney(originalPrice);
+            if (note) note.style.display = 'none';
+            if (mainBtn) mainBtn.innerHTML = '<i data-lucide="shopping-bag"></i> Add to Cart';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+          }
+        });
+      });
+
+      function formatMoney(pence) {
+        return '\u00A3' + (pence / 100).toFixed(2);
+      }
+    }
+  });
+</script>

@@ -1,0 +1,14 @@
+{{ 'quiz.css' | asset_url | stylesheet_tag }}
+
+<div class="quiz-container" data-quiz-container>
+  <!-- Quiz renders here via JavaScript -->
+  <noscript>
+    <div class="container text-center" style="padding: 64px 24px;">
+      <h2>JavaScript Required</h2>
+      <p>Please enable JavaScript to take the personalised supplement quiz.</p>
+    </div>
+  </noscript>
+</div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+{{ 'quiz.js' | asset_url | script_tag }}

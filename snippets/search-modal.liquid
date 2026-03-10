@@ -1,0 +1,158 @@
+<!-- Search Overlay -->
+<div class="search-overlay" data-search-overlay></div>
+
+<!-- Search Modal -->
+<div class="search-modal" data-search-modal>
+  <div class="search-modal__inner">
+    <div class="search-modal__field">
+      <i data-lucide="search"></i>
+      <input
+        type="text"
+        data-search-input
+        placeholder="Search supplements..."
+        autocomplete="off"
+        aria-label="Search products"
+      >
+      <button data-search-close aria-label="Close search">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="search-modal__results" data-search-results></div>
+  </div>
+</div>
+
+<style>
+  .search-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(61, 50, 41, 0.5);
+    z-index: 200;
+    backdrop-filter: blur(4px);
+  }
+
+  .search-overlay.is-open {
+    display: block;
+  }
+
+  .search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 201;
+    padding: 80px 24px 24px;
+  }
+
+  .search-modal.is-open {
+    display: block;
+  }
+
+  .search-modal__inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .search-modal__field {
+    position: relative;
+  }
+
+  .search-modal__field > [data-lucide="search"] {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+
+  .search-modal__field input {
+    width: 100%;
+    padding: 16px 48px;
+    font-size: 16px;
+    font-family: var(--font-body);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--color-text);
+    outline: none;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    transition: border-color var(--transition-fast);
+  }
+
+  .search-modal__field input:focus {
+    border-color: var(--color-primary);
+  }
+
+  .search-modal__field [data-search-close] {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    padding: 4px;
+  }
+
+  .search-modal__field [data-search-close]:hover {
+    color: var(--color-text);
+  }
+
+  .search-modal__field [data-search-close] svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search-modal__results {
+    display: none;
+    margin-top: 12px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .search-modal__results.has-results {
+    display: block;
+  }
+
+  .search-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background var(--transition-fast);
+  }
+
+  .search-result:last-child {
+    border-bottom: none;
+  }
+
+  .search-result:hover {
+    background: var(--color-mint-mist);
+  }
+
+  .search-result__price {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+  }
+
+  .search-result__empty {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,132 @@
+<section class="stats-bar section-padding--sm bg-mint">
+  <div class="container">
+    <div class="stats-bar__grid">
+      {% for block in section.blocks %}
+        <div class="stats-bar__item" {{ block.shopify_attributes }}>
+          <div class="stats-bar__icon">
+            <i data-lucide="{{ block.settings.icon }}"></i>
+          </div>
+          <div>
+            <span class="stats-bar__number">{{ block.settings.number }}</span>
+            <span class="stats-bar__label">{{ block.settings.label }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-bar__grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3xl);
+    flex-wrap: wrap;
+  }
+
+  .stats-bar__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .stats-bar__icon {
+    width: 44px;
+    height: 44px;
+    background: var(--color-card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .stats-bar__icon svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.75;
+  }
+
+  .stats-bar__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .stats-bar__label {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .stats-bar__grid {
+      gap: var(--space-xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-bar__grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Stats Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Lucide icon name",
+          "default": "sparkles"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number / headline",
+          "default": "100%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Science-backed"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stats Bar",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": { "icon": "layers", "number": "5", "label": "Personalised stacks" }
+        },
+        {
+          "type": "stat",
+          "settings": { "icon": "flask-conical", "number": "100%", "label": "Science-backed" }
+        },
+        {
+          "type": "stat",
+          "settings": { "icon": "leaf", "number": "Zero", "label": "Fillers or binders" }
+        },
+        {
+          "type": "stat",
+          "settings": { "icon": "truck", "number": "Free", "label": "UK delivery" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

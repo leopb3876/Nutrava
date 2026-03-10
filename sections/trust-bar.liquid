@@ -1,0 +1,57 @@
+<section class="trust-bar section-padding--sm bg-mint" data-fade-in>
+  <div class="container">
+    <div class="trust-bar__items">
+      {%- for block in section.blocks -%}
+        <div class="trust-badge" {{ block.shopify_attributes }}>
+          <span class="trust-badge__icon" aria-hidden="true">✓</span>
+          <span>{{ block.settings.text }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-bar__items {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .trust-bar__items {
+      gap: var(--space-lg);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "blocks": [
+        { "type": "badge", "settings": { "text": "Science-backed" } },
+        { "type": "badge", "settings": { "text": "Clean ingredients" } },
+        { "type": "badge", "settings": { "text": "Free UK shipping" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

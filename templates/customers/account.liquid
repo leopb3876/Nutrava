@@ -1,0 +1,297 @@
+<section class="account-hero section-padding">
+  <div class="container container--narrow">
+
+    <!-- Profile Header -->
+    <div class="account-profile">
+      <div class="account-profile__info">
+        <h1>Welcome back, {{ customer.first_name }}</h1>
+        <p>{{ customer.email }}</p>
+      </div>
+      <a href="/account/logout" class="btn--sm-outline">
+        <i data-lucide="log-out" style="width:14px; height:14px;"></i>
+        Sign Out
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="account-stats">
+      <div class="account-stat">
+        <div class="account-stat__icon"><i data-lucide="package"></i></div>
+        <span class="account-stat__number">{{ customer.orders_count }}</span>
+        <span class="account-stat__label">Orders</span>
+      </div>
+      <div class="account-stat">
+        <div class="account-stat__icon"><i data-lucide="refresh-cw"></i></div>
+        <span class="account-stat__number">0</span>
+        <span class="account-stat__label">Active Subscriptions</span>
+      </div>
+      <div class="account-stat">
+        <div class="account-stat__icon"><i data-lucide="truck"></i></div>
+        <span class="account-stat__number" data-in-transit-count>0</span>
+        <span class="account-stat__label">In Transit</span>
+      </div>
+    </div>
+
+    <!-- Order History -->
+    <div class="account-section">
+      <h2 class="account-section__title"><i data-lucide="clock"></i> Order History</h2>
+
+      {%- if customer.orders.size > 0 -%}
+        {%- for order in customer.orders -%}
+          <div class="account-card">
+            <div class="account-card__header">
+              <div>
+                <div class="account-card__title">{{ order.name }}</div>
+                <div class="account-card__meta">{{ order.created_at | date: "%b %d, %Y" }} &middot; {{ order.line_items.size }} item{{ order.line_items.size | pluralize: '', 's' }}</div>
+              </div>
+              <div style="text-align: right;">
+                {%- if order.fulfillment_status == 'fulfilled' -%}
+                  <span class="account-badge account-badge--delivered">Delivered</span>
+                {%- elsif order.fulfillment_status == 'partial' -%}
+                  <span class="account-badge account-badge--transit">Partially Shipped</span>
+                {%- else -%}
+                  <span class="account-badge account-badge--transit">Processing</span>
+                {%- endif -%}
+                <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">{{ order.total_price | money }}</div>
+              </div>
+            </div>
+            <div class="account-card__actions">
+              <a href="{{ order.customer_url }}" class="btn--sm-outline">View Details</a>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="account-card" style="text-align: center; padding: 40px;">
+          <p style="color: var(--color-text-muted); margin-bottom: 16px;">No orders yet. Find your perfect stack!</p>
+          <a href="/pages/quiz" class="btn btn--primary">Take the Quiz</a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Account Settings -->
+    <div class="account-section">
+      <h2 class="account-section__title"><i data-lucide="settings"></i> Account Settings</h2>
+      <div class="account-card">
+        <div class="account-settings__row">
+          <div>
+            <div class="account-settings__label">Full Name</div>
+            <div class="account-settings__value">{{ customer.first_name }} {{ customer.last_name }}</div>
+          </div>
+        </div>
+        <div class="account-settings__row">
+          <div>
+            <div class="account-settings__label">Email</div>
+            <div class="account-settings__value">{{ customer.email }}</div>
+          </div>
+        </div>
+        <div class="account-settings__row">
+          <div>
+            <div class="account-settings__label">Default Address</div>
+            <div class="account-settings__value">
+              {%- if customer.default_address -%}
+                {{ customer.default_address | format_address }}
+              {%- else -%}
+                No address saved
+              {%- endif -%}
+            </div>
+          </div>
+          <a href="/account/addresses" class="account-settings__action">Manage</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .account-hero { padding: var(--space-3xl) 0; }
+
+  .account-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .account-profile__info h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .account-profile__info p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  .account-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .account-stat {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: border-color var(--transition-fast);
+  }
+
+  .account-stat:hover { border-color: var(--color-primary); }
+
+  .account-stat__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-mint-mist);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-sm);
+    color: var(--color-primary);
+  }
+
+  .account-stat__icon svg { width: 20px; height: 20px; }
+
+  .account-stat__number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    display: block;
+  }
+
+  .account-stat__label {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .account-section { margin-bottom: var(--space-3xl); }
+
+  .account-section__title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .account-section__title svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+  }
+
+  .account-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .account-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-sm);
+  }
+
+  .account-card__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .account-card__meta {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .account-card__actions {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .account-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .account-badge--delivered { background: #e6f4ea; color: #1e7e34; }
+  .account-badge--transit { background: #e8f0fe; color: #1a73e8; }
+
+  .account-settings__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .account-settings__row:last-child { border-bottom: none; }
+
+  .account-settings__label {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
+  }
+
+  .account-settings__value {
+    font-size: 15px;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .account-settings__action {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .account-settings__action:hover { text-decoration: underline; }
+
+  .btn--sm-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--color-text-body);
+    background: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .btn--sm-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .account-stats { grid-template-columns: 1fr; }
+    .account-profile { flex-direction: column; align-items: flex-start; }
+  }
+</style>

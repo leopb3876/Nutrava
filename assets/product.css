@@ -1,0 +1,657 @@
+/* ==========================================================================
+   Nutrava — Product Page Styles
+   ========================================================================== */
+
+.product-page {
+  background: var(--color-bg);
+}
+
+/* ---------- Hero ---------- */
+.product-hero {
+  padding: var(--space-3xl) 0;
+}
+
+.product-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+.product-hero__image img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.product-hero__placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--color-mint-mist), var(--color-fern));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.product-hero__placeholder svg {
+  width: 64px;
+  height: 64px;
+  stroke-width: 1.25;
+}
+
+.product-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+  line-height: 1.2;
+}
+
+.product-hero__price {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.product-hero__description {
+  font-size: 15px;
+  color: var(--color-text-body);
+  line-height: 1.7;
+  margin-bottom: var(--space-xl);
+}
+
+.product-hero__description p {
+  margin-bottom: var(--space-md);
+}
+
+.product-hero__atc {
+  width: 100%;
+  margin-bottom: var(--space-xl);
+}
+
+.product-hero__atc svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Trust Row */
+.product-trust {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.product-trust__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.product-trust__item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+}
+
+/* ---------- Section Heading ---------- */
+.product-section__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--color-text);
+  margin-bottom: var(--space-xl);
+}
+
+/* ---------- Ingredients ---------- */
+.product-ingredients__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.product-ingredient {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.product-ingredient__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  margin-top: 2px;
+}
+
+.product-ingredient__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.product-ingredient__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.product-ingredient__dose {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-left: var(--space-sm);
+}
+
+.product-ingredient__benefit {
+  font-size: 14px;
+  color: var(--color-text-body);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ---------- Usage ---------- */
+.product-usage__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.product-usage__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+}
+
+.product-usage__item > svg,
+.product-usage__item > i {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  margin-top: 2px;
+}
+
+.product-usage__item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.product-usage__item strong {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.product-usage__item p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- Subscribe & Save ---------- */
+.product-subscribe {
+  margin-bottom: var(--space-lg);
+}
+
+.product-subscribe__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.product-subscribe__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-body);
+  transition: all var(--transition-fast);
+}
+
+.product-subscribe__option:hover {
+  border-color: var(--color-primary);
+}
+
+.product-subscribe__option--active {
+  border-color: var(--color-primary);
+  background: var(--color-mint-mist);
+}
+
+.product-subscribe__option input {
+  display: none;
+}
+
+.product-subscribe__radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.product-subscribe__option--active .product-subscribe__radio {
+  border-color: var(--color-primary);
+}
+
+.product-subscribe__option--active .product-subscribe__radio::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.product-subscribe__note {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+  padding-left: 4px;
+}
+
+.product-hero__price-original {
+  text-decoration: line-through;
+  opacity: 0.5;
+  font-size: 1.1rem;
+}
+
+/* ---------- Guarantee Badge ---------- */
+.product-guarantee {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-mint-mist);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.product-guarantee > i,
+.product-guarantee > svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.product-guarantee strong {
+  font-size: 14px;
+  color: var(--color-text);
+  display: block;
+}
+
+.product-guarantee span {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Sticky Add to Cart ---------- */
+.sticky-atc {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-card-bg);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -4px 20px rgba(61, 50, 41, 0.08);
+  z-index: 90;
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.sticky-atc.is-visible {
+  transform: translateY(0);
+}
+
+.sticky-atc__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  gap: var(--space-md);
+}
+
+.sticky-atc__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.sticky-atc__name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.sticky-atc__price {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+/* ---------- Star Rating ---------- */
+.product-hero__rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+.product-hero__stars {
+  color: var(--color-accent, #c8965d);
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.product-hero__reviews-count {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Supplement Facts ---------- */
+.product-facts__header {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  padding: 10px 14px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.product-facts__table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  overflow: hidden;
+}
+.product-facts__table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-mint-mist);
+  border-bottom: 2px solid var(--color-primary);
+}
+.product-facts__table td {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--color-text-body);
+  border-bottom: 1px solid var(--color-border);
+}
+.product-facts__table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- Clinical References ---------- */
+.product-studies__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.product-study {
+  padding: var(--space-lg);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.product-study__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+.product-study__finding {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.product-study__source {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ---------- FAQ Accordion ---------- */
+.product-faq__list {
+  display: flex;
+  flex-direction: column;
+}
+.product-faq__item {
+  border-bottom: 1px solid var(--color-border);
+}
+.product-faq__item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+.product-faq__question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+}
+.product-faq__question svg,
+.product-faq__question i {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.product-faq__question.is-open svg,
+.product-faq__question.is-open i {
+  transform: rotate(180deg);
+}
+.product-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.product-faq__answer-inner {
+  padding: 0 0 16px;
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.7;
+}
+
+/* ---------- Reviews ---------- */
+.product-reviews__summary {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-xl);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.product-reviews__score {
+  text-align: center;
+  min-width: 120px;
+}
+.product-reviews__number {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-text);
+  line-height: 1;
+}
+.product-reviews__stars-big {
+  color: var(--color-accent, #c8965d);
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin: 4px 0;
+  display: block;
+}
+.product-reviews__total {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+.product-reviews__bars {
+  flex: 1;
+}
+.product-reviews__bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 6px;
+}
+.product-reviews__bar-label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  min-width: 40px;
+}
+.product-reviews__bar {
+  flex: 1;
+  height: 8px;
+  background: var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.product-reviews__bar-fill {
+  height: 100%;
+  background: var(--color-accent, #c8965d);
+  border-radius: 4px;
+}
+.product-reviews__bar-pct {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  min-width: 32px;
+  text-align: right;
+}
+.product-review {
+  padding: var(--space-lg);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+}
+.product-review__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-sm);
+}
+.product-review__author {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.product-review__date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.product-review__stars {
+  color: var(--color-accent, #c8965d);
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  display: block;
+}
+.product-review__verified {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-mint-mist);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill, 50px);
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+}
+.product-review__text {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.7;
+}
+
+/* ---------- Cross-sell ---------- */
+.product-crosssell__row {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-sm);
+}
+.product-crosssell__row::-webkit-scrollbar { display: none; }
+.product-crosssell__item {
+  min-width: 220px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ---------- Related Products ---------- */
+.product-related__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .product-hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .product-trust {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .product-related__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-reviews__summary {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-related__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-atc__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    padding: 12px 0;
+  }
+
+  .sticky-atc__info {
+    justify-content: space-between;
+  }
+
+  .sticky-atc__btn {
+    width: 100%;
+  }
+}

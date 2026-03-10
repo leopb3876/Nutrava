@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nutrava — Personalised Wellness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/quiz.css">
+  <style>
+    :root {
+      --font-heading: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* Preview pages */
+    .preview-page { display: none; }
+    .preview-page.active { display: block; }
+    [data-fade-in] { opacity: 1; transform: none; }
+
+    /* Header */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .header__logo { font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-text); letter-spacing: -0.5px; }
+    .header__links { display: flex; align-items: center; gap: 32px; }
+    .header__link { font-size: 14px; color: var(--color-text-body); font-weight: 500; transition: color 0.15s; }
+    .header__link:hover { color: var(--color-primary); }
+
+    /* Announcement Bar */
+    .announcement-bar { background: var(--color-primary); color: #fff; position: relative; z-index: 101; overflow: hidden; }
+    .announcement-bar.is-hidden { display: none; }
+    .announcement-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px 10px 24px; display: flex; align-items: center; justify-content: center; position: relative; min-height: 40px; }
+    .announcement-bar__messages { position: relative; text-align: center; width: 100%; }
+    .announcement-bar__message { font-size: 13px; font-weight: 600; letter-spacing: 0.3px; opacity: 0; position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); transition: opacity 0.4s ease; pointer-events: none; }
+    .announcement-bar__message.is-active { opacity: 1; position: relative; pointer-events: auto; }
+    .announcement-bar__message a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+    .announcement-bar__close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7); padding: 4px; cursor: pointer; background: none; border: none; }
+    .announcement-bar__close:hover { color: #fff; }
+    .announcement-bar__close svg { width: 16px; height: 16px; }
+
+    /* Hero - Split layout: text left, lifestyle photo right */
+    .hero-v2 { padding: 80px 0 60px; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); }
+    .hero-v2__grid { display: grid; grid-template-columns: 55% 45%; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .hero-v2__content { text-align: left; }
+    .hero-v2__label { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 20px; display: block; }
+    .hero-v2__heading { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--color-text); line-height: 1.15; margin-bottom: 16px; }
+    .hero-v2__heading .text-accent { color: var(--color-accent); }
+    .hero-v2__sub { font-size: 1.1rem; color: var(--color-text-body); line-height: 1.6; max-width: 520px; margin: 0 0 32px; }
+    .hero-v2__actions { display: flex; gap: 14px; margin-bottom: 48px; }
+    .hero-v2__trust { display: flex; gap: 32px; flex-wrap: wrap; }
+    .hero-v2__trust-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--color-text-body); font-weight: 500; }
+    .hero-v2__trust-icon { width: 36px; height: 36px; background: var(--color-primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .hero-v2__trust-icon svg { width: 18px; height: 18px; stroke-width: 1.75; }
+    .hero-v2__image { border-radius: 20px; overflow: hidden; position: relative; }
+    .hero-v2__image img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; display: block; border-radius: 20px; }
+    .hero-v2__image::after { content: ''; position: absolute; inset: 0; border-radius: 20px; background: linear-gradient(135deg, rgba(61,107,79,0.08) 0%, transparent 60%); pointer-events: none; }
+
+    /* 3-Step Section - Persona inspired */
+    .steps-v2 { padding: 80px 0; background: #fff; }
+    .steps-v2__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; max-width: 900px; margin: 0 auto; }
+    .steps-v2__step { text-align: center; }
+    .steps-v2__num { width: 64px; height: 64px; border-radius: 50%; background: var(--color-mint-mist); color: var(--color-primary); font-family: var(--font-heading); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 2px solid var(--color-fern); }
+    .steps-v2__title { font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px; }
+    .steps-v2__text { font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 260px; margin: 0 auto; }
+    .steps-v2__connector { display: none; }
+
+    /* Goals Grid */
+    .goals-v2 { padding: 80px 0; }
+    .goals-v2__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
+    .goals-v2__card { background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; padding: 28px 16px; text-align: center; cursor: pointer; transition: all 0.25s; }
+    .goals-v2__card:hover { border-color: var(--color-primary); background: var(--color-mint-mist); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(90,122,94,0.12); }
+    .goals-v2__icon { margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: var(--color-primary); }
+    .goals-v2__icon svg { width: 36px; height: 36px; stroke-width: 1.5; }
+    .goals-v2__name { font-weight: 600; font-size: 14px; color: var(--color-text); margin-bottom: 4px; }
+    .goals-v2__desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.4; }
+
+    /* Social Proof / Testimonials (Dark Section) */
+    .social-proof { padding: 80px 0; background: var(--color-dark-section); }
+    .social-proof .section-head h2 { color: var(--color-dark-text); }
+    .social-proof .section-head p { color: rgba(245,242,236,0.7); }
+    .social-proof__wrapper { position: relative; max-width: 1000px; margin: 0 auto; }
+    .social-proof__grid { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scroll-behavior: smooth; }
+    .social-proof__grid::-webkit-scrollbar { display: none; }
+    .testimonial { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; min-width: 300px; flex: 0 0 calc(33.333% - 16px); scroll-snap-align: start; }
+    .testimonial__stars-text { color: var(--color-accent); font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; display: block; }
+    .testimonial__text { font-size: 15px; color: var(--color-dark-text); opacity: 0.9; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .testimonial__footer { display: flex; align-items: center; gap: 12px; }
+    .testimonial__avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.15); }
+    .testimonial__info { }
+    .testimonial__author { font-size: 14px; font-weight: 600; color: var(--color-dark-text); }
+    .testimonial__meta { font-size: 12px; color: var(--color-accent); }
+    .testimonial-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--color-dark-text); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2; }
+    .testimonial-nav:hover { background: rgba(255,255,255,0.2); }
+    .testimonial-nav--prev { left: -20px; }
+    .testimonial-nav--next { right: -20px; }
+
+    /* Science Section */
+    .science { padding: 80px 0; background: #fff; }
+    .science__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .science__stat { text-align: center; padding: 24px; }
+    .science__number { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-primary); margin-bottom: 8px; }
+    .science__label { font-size: 13px; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* Big CTA */
+    .big-cta { padding: 100px 0; background: linear-gradient(135deg, var(--color-mint-mist) 0%, var(--color-fern) 50%, var(--color-mint-mist) 100%); text-align: center; }
+    .big-cta__heading { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 12px; }
+    .big-cta__sub { font-size: 1rem; color: var(--color-text-body); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    /* Footer */
+    .footer-v2 { background: var(--color-espresso); color: var(--color-sand); padding: 64px 0 32px; }
+    .footer-v2__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 0 24px; margin-bottom: 48px; }
+    .footer-v2__logo { font-family: var(--font-heading); font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+    .footer-v2__tagline { font-size: 14px; color: rgba(255,255,255,0.6); }
+    .footer-v2__heading { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+    .footer-v2__link { display: block; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px; transition: color 0.15s; }
+    .footer-v2__link:hover { color: #fff; }
+    .footer-v2__bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.35); max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+    .footer-v2__social { display: flex; gap: 12px; margin-top: 12px; }
+    .footer-v2__social a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-v2__social a:hover { color: #fff; }
+
+    /* Section helpers */
+    .section-head { text-align: center; margin-bottom: 48px; }
+    .section-head h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.5vw, 2rem); color: var(--color-text); margin-bottom: 8px; }
+    .section-head p { font-size: 1rem; color: var(--color-text-muted); max-width: 480px; margin: 0 auto; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-v2 { padding: 48px 0 40px; }
+      .hero-v2__grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-v2__content { text-align: center; }
+      .hero-v2__sub { margin-left: auto; margin-right: auto; }
+      .hero-v2__actions { justify-content: center; }
+      .hero-v2__trust { gap: 20px; justify-content: center; }
+      .hero-v2__image img { min-height: 280px; }
+      .steps-v2__grid { grid-template-columns: 1fr; gap: 32px; }
+      .goals-v2__grid { grid-template-columns: repeat(2, 1fr); }
+      .social-proof__grid { grid-template-columns: 1fr; }
+      .science__grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-v2__grid { grid-template-columns: 1fr 1fr; }
+      .header__links { display: none; }
+    }
+
+    /* Catalog */
+    .catalog-pill { padding: 8px 20px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 600; border: 1.5px solid var(--color-border); background: #fff; color: var(--color-text-body); cursor: pointer; transition: all 0.2s; }
+    .catalog-pill:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .catalog-pill.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+    .catalog-card:hover { border-color: var(--color-primary) !important; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(90,122,94,0.12); }
+    .catalog-card.hidden { display: none; }
+
+    /* Search toggle */
+    .search-toggle { background: none; border: none; cursor: pointer; color: var(--color-text-body); padding: 4px; transition: color 0.15s; position: relative; }
+    .search-toggle:hover { color: var(--color-primary); }
+    .search-toggle svg { width: 20px; height: 20px; }
+
+    /* Why Nutrava responsive */
+    @media (max-width: 768px) {
+      .why-nutrava-grid { grid-template-columns: 1fr !important; }
+      .why-nutrava-visual { display: none; }
+    }
+
+    /* Stacks responsive */
+    @media (max-width: 768px) {
+      .catalog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 480px) {
+      .catalog-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ===== Account Page ===== */
+    .account-hero { padding: 48px 0 0; }
+    .account-profile { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+    .account-profile__info h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 2rem); color: var(--color-text); margin-bottom: 4px; }
+    .account-profile__info p { font-size: 14px; color: var(--color-text-muted); }
+
+    .account-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+    .account-stat { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 20px; text-align: center; transition: border-color 0.2s; }
+    .account-stat:hover { border-color: var(--color-primary); }
+    .account-stat__icon { width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: var(--color-primary); }
+    .account-stat__icon svg { width: 20px; height: 20px; }
+    .account-stat__number { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-text); display: block; }
+    .account-stat__label { font-size: 13px; color: var(--color-text-muted); }
+
+    .account-section { margin-bottom: 48px; }
+    .account-section__title { font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-text); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .account-section__title svg { width: 20px; height: 20px; color: var(--color-primary); }
+
+    .account-card { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 12px; }
+    .account-card__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .account-card__title { font-size: 15px; font-weight: 600; color: var(--color-text); }
+    .account-card__meta { font-size: 13px; color: var(--color-text-muted); margin-bottom: 12px; }
+    .account-card__actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+    .account-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+    .account-badge--delivered { background: #e6f4ea; color: #1e7e34; }
+    .account-badge--transit { background: #e8f0fe; color: #1a73e8; }
+    .account-badge--active { background: var(--color-mint-mist); color: var(--color-primary); }
+
+    .account-progress { height: 6px; background: var(--color-border); border-radius: 3px; overflow: hidden; margin: 12px 0; }
+    .account-progress__bar { height: 100%; background: var(--color-primary); border-radius: 3px; transition: width 0.6s ease; }
+
+    .account-savings { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--color-primary); background: var(--color-mint-mist); padding: 3px 10px; border-radius: var(--radius-pill); }
+
+    .account-settings__row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--color-border); }
+    .account-settings__row:last-child { border-bottom: none; }
+    .account-settings__label { font-size: 13px; color: var(--color-text-muted); margin-bottom: 2px; }
+    .account-settings__value { font-size: 15px; color: var(--color-text); font-weight: 500; }
+    .account-settings__action { font-size: 13px; font-weight: 600; color: var(--color-primary); cursor: pointer; background: none; border: none; }
+    .account-settings__action:hover { text-decoration: underline; }
+    .account-settings__danger { font-size: 13px; color: #d32f2f; cursor: pointer; background: none; border: none; margin-top: 16px; }
+    .account-settings__danger:hover { text-decoration: underline; }
+
+    .btn--sm-outline { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--color-border); border-radius: var(--radius-pill); color: var(--color-text-body); background: none; cursor: pointer; transition: all 0.2s; }
+    .btn--sm-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+    @media (max-width: 768px) {
+      .account-stats { grid-template-columns: 1fr; }
+      .account-profile { flex-direction: column; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar" data-announcement-bar>
+  <div class="announcement-bar__inner">
+    <div class="announcement-bar__messages" data-announcement-messages>
+      <div class="announcement-bar__message is-active">Free UK shipping on orders over £50</div>
+      <div class="announcement-bar__message"><a href="#" onclick="showPage('quiz')">Take our 60-second quiz &rarr; find your stack</a></div>
+      <div class="announcement-bar__message">30-day money-back guarantee on all products</div>
+    </div>
+    <button class="announcement-bar__close" data-announcement-close aria-label="Close announcement">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header__inner">
+    <a href="#" onclick="showPage('home')" class="header__logo">Nutrava</a>
+    <div class="header__links">
+      <a href="#" onclick="showPage('quiz')" class="header__link">Take the Quiz</a>
+      <a href="#" onclick="showPage('shop')" class="header__link">Shop</a>
+      <a href="#" onclick="showPage('stacks')" class="header__link">Stacks</a>
+      <a href="#" onclick="showPage('about')" class="header__link">How It Works</a>
+      <button class="search-toggle" data-search-toggle aria-label="Search">
+        <i data-lucide="search"></i>
+      </button>
+      <button class="cart-toggle" data-cart-toggle aria-label="Open cart">
+        <i data-lucide="shopping-bag"></i>
+        <span class="cart-badge" data-cart-badge>0</span>
+      </button>
+      <button class="search-toggle" onclick="showPage('account')" aria-label="Account">
+        <i data-lucide="user"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== HOME ==================== -->
+<div class="preview-page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero-v2">
+    <div class="hero-v2__grid">
+      <div class="hero-v2__content">
+        <span class="hero-v2__label">Personalised Supplement Stacks</span>
+        <h1 class="hero-v2__heading">Your Supplements,<br><span class="text-accent">Personalised</span> to You</h1>
+        <p class="hero-v2__sub">Take a quick quiz about your goals, lifestyle, and health. We'll build a science-backed supplement stack made just for you.</p>
+        <div class="hero-v2__actions">
+          <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
+          <a href="#" onclick="showPage('shop')" class="btn btn--outline btn--lg">Browse Supplements</a>
+        </div>
+        <div class="hero-v2__trust">
+          <div class="hero-v2__trust-item">
+            <span class="hero-v2__trust-icon"><i data-lucide="flask-conical"></i></span>
+            <span>Science-backed<br>formulas</span>
+          </div>
+          <div class="hero-v2__trust-item">
+            <span class="hero-v2__trust-icon"><i data-lucide="leaf"></i></span>
+            <span>Clean, natural<br>ingredients</span>
+          </div>
+          <div class="hero-v2__trust-item">
+            <span class="hero-v2__trust-icon"><i data-lucide="package"></i></span>
+            <span>Delivered to<br>your door</span>
+          </div>
+          <div class="hero-v2__trust-item">
+            <span class="hero-v2__trust-icon"><i data-lucide="sparkles"></i></span>
+            <span>Personalised<br>for your goals</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-v2__image">
+        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Wellness supplements and natural ingredients" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works - 3 Steps -->
+  <section class="steps-v2">
+    <div class="container">
+      <div class="section-head">
+        <h2>How Nutrava Works</h2>
+        <p>Three simple steps to your personalised supplement plan</p>
+      </div>
+      <div class="steps-v2__grid">
+        <div class="steps-v2__step">
+          <div class="steps-v2__num">1</div>
+          <h3 class="steps-v2__title">Take the Quiz</h3>
+          <p class="steps-v2__text">Answer questions about your goals, lifestyle, sleep, diet, and activity level. It adapts to your answers.</p>
+        </div>
+        <div class="steps-v2__step">
+          <div class="steps-v2__num">2</div>
+          <h3 class="steps-v2__title">Get Your Stack</h3>
+          <p class="steps-v2__text">Our system builds a personalised supplement stack based on your unique profile, backed by science.</p>
+        </div>
+        <div class="steps-v2__step">
+          <div class="steps-v2__num">3</div>
+          <h3 class="steps-v2__title">Feel the Difference</h3>
+          <p class="steps-v2__text">Your supplements are delivered to your door. Most people feel a difference within the first two weeks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore Goals -->
+  <section class="goals-v2">
+    <div class="container">
+      <div class="section-head">
+        <h2>What's Your Goal?</h2>
+        <p>Each quiz path is tailored to your specific wellness goal</p>
+      </div>
+      <div class="goals-v2__grid">
+        <div class="goals-v2__card" onclick="showPage('quiz')">
+          <span class="goals-v2__icon"><i data-lucide="brain"></i></span>
+          <div class="goals-v2__name">Focus & Study</div>
+          <div class="goals-v2__desc">Mental clarity & concentration</div>
+        </div>
+        <div class="goals-v2__card" onclick="showPage('quiz')">
+          <span class="goals-v2__icon"><i data-lucide="dumbbell"></i></span>
+          <div class="goals-v2__name">Gym & Performance</div>
+          <div class="goals-v2__desc">Strength, recovery & gains</div>
+        </div>
+        <div class="goals-v2__card" onclick="showPage('quiz')">
+          <span class="goals-v2__icon"><i data-lucide="moon"></i></span>
+          <div class="goals-v2__name">Sleep & Recovery</div>
+          <div class="goals-v2__desc">Deep, restful sleep</div>
+        </div>
+        <div class="goals-v2__card" onclick="showPage('quiz')">
+          <span class="goals-v2__icon"><i data-lucide="zap"></i></span>
+          <div class="goals-v2__name">Energy & Stress</div>
+          <div class="goals-v2__desc">All-day energy, less burnout</div>
+        </div>
+        <div class="goals-v2__card" onclick="showPage('quiz')">
+          <span class="goals-v2__icon"><i data-lucide="leaf"></i></span>
+          <div class="goals-v2__name">Daily Wellness</div>
+          <div class="goals-v2__desc">Immunity & overall health</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Nutrava -->
+  <section style="padding: 80px 0; background: #fff;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1000px; margin: 0 auto;">
+        <div>
+          <span class="hero-v2__label" style="margin-bottom: 12px;">The Nutrava Difference</span>
+          <h2 style="font-family: var(--font-heading); font-size: clamp(1.5rem, 3.5vw, 2rem); color: var(--color-text); margin-bottom: 32px;">Why Nutrava?</h2>
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="display: flex; gap: 16px; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="user"></i></div>
+              <div>
+                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">Personalised to You</strong>
+                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Not one-size-fits-all. Your stack is built around your goals.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="flask-conical"></i></div>
+              <div>
+                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">Clinically Dosed</strong>
+                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Every ingredient at its researched dose. No under-dosing.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="shield-check"></i></div>
+              <div>
+                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">No Junk</strong>
+                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">No fillers, binders, or proprietary blends. Ever.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="eye"></i></div>
+              <div>
+                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">Transparent Labels</strong>
+                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">You see exactly what's inside and how much.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-nutrava-visual" style="border-radius: 16px; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1505576399279-0d754687a2d8?w=500&q=80" alt="Wellness lifestyle and natural health" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar (Dark Section) -->
+  <section style="padding: 48px 0; background: var(--color-dark-section);">
+    <div class="container">
+      <div style="display: flex; justify-content: center; gap: 64px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="fingerprint"></i></div>
+          <div>
+            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">10,000+</span>
+            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">Stacks built</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="flask-conical"></i></div>
+          <div>
+            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">100%</span>
+            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">Science-backed</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="leaf"></i></div>
+          <div>
+            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">Zero</span>
+            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">Fillers or binders</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="truck"></i></div>
+          <div>
+            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">Free</span>
+            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">UK delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Goes In Matters -->
+  <section style="padding: 80px 0; background: #fff;">
+    <div class="container">
+      <div class="section-head">
+        <h2>What Goes In Matters</h2>
+        <p>Every ingredient is selected based on clinical research</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 900px; margin: 0 auto;">
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="flask-conical"></i></div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Clinically Dosed</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Every ingredient at its researched effective dose — no pixie dusting.</p>
+        </div>
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="shield-check"></i></div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Third-Party Lab Tested</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Independent verification for purity and potency you can trust.</p>
+        </div>
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="eye"></i></div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">No Proprietary Blends</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Full transparency — you see exactly what you're taking and how much.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- As Seen In Press Bar -->
+  <section style="padding: 40px 0; background: #fff; border-top: 1px solid var(--color-border);">
+    <div class="container" style="text-align: center;">
+      <p style="font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 20px; opacity: 0.6;">As Seen In</p>
+      <div style="display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap; opacity: 0.4;">
+        <span style="font-family: Georgia,serif; font-size: 20px; font-weight: 700; color: var(--color-text-muted);">Men's Health</span>
+        <span style="font-family: Georgia,serif; font-size: 20px; font-style: italic; color: var(--color-text-muted);">Vogue</span>
+        <span style="font-family: var(--font-body); font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-text-muted);">GQ</span>
+        <span style="font-family: Georgia,serif; font-size: 18px; color: var(--color-text-muted);">The Telegraph</span>
+        <span style="font-family: var(--font-body); font-size: 17px; font-weight: 600; color: var(--color-text-muted);">Healthline</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials (Dark Section) -->
+  <section class="social-proof testimonials-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>What People Are Saying</h2>
+        <p>Real results from real people</p>
+      </div>
+      <div class="social-proof__wrapper">
+        <button class="testimonial-nav testimonial-nav--prev" data-testimonial-prev aria-label="Previous testimonial"><i data-lucide="chevron-left" style="width:20px;height:20px;"></i></button>
+        <div class="social-proof__grid">
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">James T.</div>
+                <div class="testimonial__meta">Focus Stack — 3 months</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting the Sleep & Recovery Stack."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Sophie M.</div>
+                <div class="testimonial__meta">Sleep Stack — 6 weeks</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. The Gym Stack has noticeably improved my recovery between training sessions."</p>
+            <div class="testimonial__footer">
+              <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
+              <div class="testimonial__info">
+                <div class="testimonial__author">Daniel K.</div>
+                <div class="testimonial__meta">Gym Performance Stack — 2 months</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="testimonial-nav testimonial-nav--next" data-testimonial-next aria-label="Next testimonial"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big CTA -->
+  <section class="big-cta">
+    <div class="container">
+      <h2 class="big-cta__heading">Ready to find your stack?</h2>
+      <p class="big-cta__sub">Take our personalised quiz and discover the supplements your body actually needs. It takes less than 60 seconds.</p>
+      <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==================== QUIZ ==================== -->
+<div class="preview-page" id="page-quiz">
+  <div class="quiz-container" data-quiz-container></div>
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div class="preview-page" id="page-about">
+  <!-- About Hero with Image -->
+  <div style="position: relative;">
+    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80" alt="Clean lab and natural ingredients" loading="lazy" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(44,58,46,0.4) 0%, rgba(44,58,46,0.7) 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px;">
+      <div>
+        <span class="hero-v2__label" style="color: var(--color-accent);">Our Approach</span>
+        <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.8rem); color: #fff; margin-bottom: 16px;">Wellness That Actually Works</h1>
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 600px; margin: 0 auto;">We combine science-backed ingredients with personalised recommendations. No guessing, no generic multivitamins.</p>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding: 80px 0; background: #fff;">
+    <div class="container" style="max-width: 900px;">
+      <div class="section-head">
+        <h2>How Stacks Work</h2>
+        <p>Each stack is more than the sum of its parts</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary); border: 2px solid var(--color-fern);"><i data-lucide="flask-conical"></i></div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 8px;">Science-First</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Every supplement is selected based on clinical research and evidence-based dosing.</p>
+        </div>
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary); border: 2px solid var(--color-fern);"><i data-lucide="puzzle"></i></div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 8px;">Synergistic</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Supplements are chosen to complement each other — together they work better than alone.</p>
+        </div>
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary); border: 2px solid var(--color-fern);"><i data-lucide="target"></i></div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 8px;">Goal-Specific</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Each stack targets a specific outcome so every ingredient serves your goal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story Image -->
+  <section style="padding: 0;">
+    <div class="container" style="max-width: 900px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-radius: 16px; overflow: hidden;">
+        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Natural supplement ingredients" loading="lazy" style="width:100%; height:280px; object-fit:cover; border-radius: 12px;">
+        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&q=80" alt="Wellness and health lifestyle" loading="lazy" style="width:100%; height:280px; object-fit:cover; border-radius: 12px;">
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 700px;">
+      <div class="section-head">
+        <h2>Our Promise</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; gap: 16px; align-items: flex-start; background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 2px 12px rgba(61,50,41,0.05);">
+          <span class="trust-badge__icon" style="flex-shrink: 0;">✓</span>
+          <div>
+            <h4 style="font-weight: 600; margin-bottom: 4px; color: var(--color-text);">Clean Ingredients</h4>
+            <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">No fillers, artificial colours, or unnecessary additives. Just what matters.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start; background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 2px 12px rgba(61,50,41,0.05);">
+          <span class="trust-badge__icon" style="flex-shrink: 0;">✓</span>
+          <div>
+            <h4 style="font-weight: 600; margin-bottom: 4px; color: var(--color-text);">Evidence-Based Dosing</h4>
+            <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Clinically studied doses, not pixie dust. You get what actually works.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: flex-start; background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 2px 12px rgba(61,50,41,0.05);">
+          <span class="trust-badge__icon" style="flex-shrink: 0;">✓</span>
+          <div>
+            <h4 style="font-weight: 600; margin-bottom: 4px; color: var(--color-text);">Transparent Labels</h4>
+            <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Full ingredient lists with exact amounts. No proprietary blends.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 80px 0; background: #fff;">
+    <div class="container" style="max-width: 700px;">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <details style="background: var(--color-bg); border-radius: 12px;">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">How does the personalised quiz work?</summary>
+          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Our adaptive quiz asks about your goals, lifestyle, sleep, and diet. It branches based on your answers — getting more specific as it learns about you — until it can confidently recommend a stack.</p>
+        </details>
+        <details style="background: var(--color-bg); border-radius: 12px;">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">How long until I see results?</summary>
+          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Most people notice initial effects within 1-2 weeks, with full benefits building over 4-8 weeks of consistent use.</p>
+        </details>
+        <details style="background: var(--color-bg); border-radius: 12px;">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">Can I change my stack later?</summary>
+          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Absolutely. You can retake the quiz anytime as your goals evolve, and we'll build a new stack recommendation.</p>
+        </details>
+        <details style="background: var(--color-bg); border-radius: 12px;">
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">What's your shipping and returns policy?</summary>
+          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Free UK shipping on orders over £50. Delivered in 2-4 business days. 30-day satisfaction guarantee on all products.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="big-cta">
+    <div class="container">
+      <h2 class="big-cta__heading">Find your personalised stack</h2>
+      <p class="big-cta__sub">It takes less than 60 seconds</p>
+      <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== SHOP ==================== -->
+<div class="preview-page" id="page-shop">
+  <section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
+    <div class="container container--narrow">
+      <span class="hero-v2__label">Browse</span>
+      <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Shop All Supplements</h1>
+      <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Science-backed supplements for every goal. Filter by category to find what you need.</p>
+    </div>
+  </section>
+  <section style="padding: 48px 0;">
+    <div class="container">
+      <!-- Filter Pills -->
+      <div class="catalog-filters" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;">
+        <button class="catalog-pill active" data-filter="all">All</button>
+        <button class="catalog-pill" data-filter="focus">Focus & Study</button>
+        <button class="catalog-pill" data-filter="gym">Gym & Performance</button>
+        <button class="catalog-pill" data-filter="sleep">Sleep & Recovery</button>
+        <button class="catalog-pill" data-filter="energy">Energy & Stress</button>
+        <button class="catalog-pill" data-filter="wellness">Daily Wellness</button>
+      </div>
+      <p class="catalog-count" style="text-align: center; font-size: 13px; color: var(--color-text-muted); margin-bottom: 32px;">Showing <span data-product-count>12</span> products</p>
+      <!-- Product Grid -->
+      <div class="catalog-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto;">
+        <!-- Focus products -->
+        <div class="catalog-card" data-category="focus" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer; position: relative;">
+          <span style="position:absolute; top:12px; left:12px; background:var(--color-accent); color:#fff; font-size:11px; font-weight:700; padding:4px 10px; border-radius:var(--radius-pill); letter-spacing:0.5px; text-transform:uppercase; z-index:2;">Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80" alt="Lion's Mane Extract supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Focus</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Lion's Mane Extract</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Supports cognitive function and mental clarity.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£24.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(127)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1001,handle:'lions-mane',title:'Lion\'s Mane Extract',price:2499,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-card" data-category="focus" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400&q=80" alt="Alpha-GPC supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Focus</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Alpha-GPC</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Boosts acetylcholine for sharper focus.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£19.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(64)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1002,handle:'alpha-gpc',title:'Alpha-GPC',price:1999,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Gym products -->
+        <div class="catalog-card" data-category="gym" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&q=80" alt="Creatine Monohydrate supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Gym</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Creatine Monohydrate</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">The most researched performance supplement.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£14.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(156)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1003,handle:'creatine',title:'Creatine Monohydrate',price:1499,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-card" data-category="gym" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer; position: relative;">
+          <span style="position:absolute; top:12px; left:12px; background:var(--color-accent); color:#fff; font-size:11px; font-weight:700; padding:4px 10px; border-radius:var(--radius-pill); letter-spacing:0.5px; text-transform:uppercase; z-index:2;">Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80" alt="Ashwagandha KSM-66 supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Gym</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Ashwagandha KSM-66</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Reduces cortisol and supports recovery.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£22.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(203)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1004,handle:'ashwagandha',title:'Ashwagandha KSM-66',price:2299,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Sleep products -->
+        <div class="catalog-card" data-category="sleep" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80" alt="Magnesium Glycinate supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Sleep</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Magnesium Glycinate</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Promotes relaxation and deeper sleep.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£16.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★☆</span><span style="font-size:12px; color:var(--color-text-muted);">(89)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1005,handle:'magnesium',title:'Magnesium Glycinate',price:1699,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-card" data-category="sleep" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&q=80" alt="L-Theanine supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Sleep</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">L-Theanine</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Calms the mind without drowsiness.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£18.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(78)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1006,handle:'l-theanine',title:'L-Theanine',price:1899,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Energy products -->
+        <div class="catalog-card" data-category="energy" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80" alt="Rhodiola Rosea supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Energy</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Rhodiola Rosea</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Fights fatigue and boosts mental stamina.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£21.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(43)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1007,handle:'rhodiola',title:'Rhodiola Rosea',price:2199,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-card" data-category="energy" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1577401239170-897c5ba98a77?w=400&q=80" alt="B-Complex supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Energy</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">B-Complex</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Essential vitamins for energy metabolism.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£12.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★☆</span><span style="font-size:12px; color:var(--color-text-muted);">(92)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1008,handle:'b-complex',title:'B-Complex',price:1299,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Wellness products -->
+        <div class="catalog-card" data-category="wellness" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=400&q=80" alt="Vitamin D3 + K2 supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Wellness</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Vitamin D3 + K2</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Supports immunity and bone health.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£14.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(112)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1009,handle:'vitamin-d3-k2',title:'Vitamin D3 + K2',price:1499,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-card" data-category="wellness" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=400&q=80" alt="Omega-3 Fish Oil supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Wellness</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Omega-3 Fish Oil</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">High-potency EPA & DHA for overall health.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£19.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(55)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1010,handle:'omega-3',title:'Omega-3 Fish Oil',price:1999,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Multi-category products -->
+        <div class="catalog-card" data-category="focus energy" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&q=80" alt="Bacopa Monnieri supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Focus / Energy</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Bacopa Monnieri</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Enhances memory and reduces anxiety.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£17.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★★</span><span style="font-size:12px; color:var(--color-text-muted);">(31)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1011,handle:'bacopa',title:'Bacopa Monnieri',price:1799,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-card" data-category="gym wellness" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;">
+          <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=400&q=80" alt="Zinc and Magnesium supplement" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 20px;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">Gym / Wellness</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 4px 0 8px;">Zinc & Magnesium</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px;">Supports testosterone and muscle recovery.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary); display: block;">£15.99</span>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:4px;"><span style="color:#c8965d; font-size:13px;">★★★★☆</span><span style="font-size:12px; color:var(--color-text-muted);">(47)</span></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="NutravaCart.addItem({id:1012,handle:'zinc-magnesium',title:'Zinc & Magnesium',price:1599,quantity:1})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== STACKS ==================== -->
+<div class="preview-page" id="page-stacks">
+  <section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
+    <div class="container container--narrow">
+      <span class="hero-v2__label">Explore</span>
+      <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Browse Our Stacks</h1>
+      <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Find the perfect supplement stack for your goals. Each stack is a curated combination of supplements designed to work together.</p>
+    </div>
+  </section>
+  <section style="padding: 64px 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto;">
+        <!-- Focus Stack -->
+        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80" alt="Person studying at desk with focus supplements" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 28px; text-align: center;">
+            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="brain" style="width: 22px; height: 22px;"></i></div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Focus & Study</h3>
+            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Sharpen concentration and mental clarity for work and study.</p>
+            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
+            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
+          </div>
+        </div>
+        <!-- Gym Stack -->
+        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80" alt="Person training at the gym" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 28px; text-align: center;">
+            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="dumbbell" style="width: 22px; height: 22px;"></i></div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Gym & Performance</h3>
+            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Build strength, boost endurance, and recover faster.</p>
+            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
+            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
+          </div>
+        </div>
+        <!-- Sleep Stack -->
+        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=80" alt="Peaceful bedroom for restful sleep" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 28px; text-align: center;">
+            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="moon" style="width: 22px; height: 22px;"></i></div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Sleep & Recovery</h3>
+            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Fall asleep faster and wake up feeling refreshed.</p>
+            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
+            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
+          </div>
+        </div>
+        <!-- Energy Stack -->
+        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
+          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=400&q=80" alt="Active person outdoors with energy" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 28px; text-align: center;">
+            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="zap" style="width: 22px; height: 22px;"></i></div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Energy & Stress</h3>
+            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Sustained energy without the crash or jitters.</p>
+            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
+            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
+          </div>
+        </div>
+        <!-- Wellness Stack -->
+        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&q=80" alt="Nature and wellness lifestyle" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+          <div style="padding: 28px; text-align: center;">
+            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="leaf" style="width: 22px; height: 22px;"></i></div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Daily Wellness</h3>
+            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Support your overall health and immunity daily.</p>
+            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
+            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom CTA -->
+      <div style="text-align: center; margin-top: 48px; padding: 40px; background: var(--color-mint-mist); border-radius: 16px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-text); margin-bottom: 8px;">Not sure which stack?</h3>
+        <p style="font-size: 15px; color: var(--color-text-body); margin-bottom: 20px;">Take our personalised quiz and we'll match you with the perfect stack in 60 seconds.</p>
+        <a href="#" onclick="showPage('quiz')" class="btn btn--primary">Take the Quiz</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== ACCOUNT ==================== -->
+<div class="preview-page" id="page-account">
+
+  <!-- Account Hero -->
+  <section class="account-hero" style="padding: 48px 0;">
+    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 24px;">
+
+      <!-- Profile Header -->
+      <div class="account-profile">
+        <div class="account-profile__info">
+          <h1>Welcome back, James</h1>
+          <p>james@example.com</p>
+        </div>
+        <button class="btn--sm-outline" onclick="alert('Signed out (preview mode)')">
+          <i data-lucide="log-out" style="width:14px; height:14px;"></i>
+          Sign Out
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="account-stats">
+        <div class="account-stat">
+          <div class="account-stat__icon"><i data-lucide="package"></i></div>
+          <span class="account-stat__number">3</span>
+          <span class="account-stat__label">Orders</span>
+        </div>
+        <div class="account-stat">
+          <div class="account-stat__icon"><i data-lucide="refresh-cw"></i></div>
+          <span class="account-stat__number">1</span>
+          <span class="account-stat__label">Active Subscription</span>
+        </div>
+        <div class="account-stat">
+          <div class="account-stat__icon"><i data-lucide="truck"></i></div>
+          <span class="account-stat__number">1</span>
+          <span class="account-stat__label">In Transit</span>
+        </div>
+      </div>
+
+      <!-- In Transit -->
+      <div class="account-section">
+        <h2 class="account-section__title"><i data-lucide="truck"></i> In Transit</h2>
+        <div class="account-card">
+          <div class="account-card__header">
+            <div>
+              <div class="account-card__title">Focus Stack</div>
+              <div class="account-card__meta">3 items &middot; £44.97</div>
+            </div>
+            <span class="account-badge account-badge--transit">In Transit</span>
+          </div>
+          <div class="account-progress">
+            <div class="account-progress__bar" style="width: 65%;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 13px; color: var(--color-text-muted);">Shipped Mar 10 &middot; Arriving <strong style="color: var(--color-text);">Mar 14</strong></span>
+            <button class="btn--sm-outline" onclick="alert('Tracking page opens (preview mode)')">
+              <i data-lucide="external-link" style="width: 12px; height: 12px;"></i>
+              Track Order
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Subscriptions -->
+      <div class="account-section">
+        <h2 class="account-section__title"><i data-lucide="refresh-cw"></i> Active Subscriptions</h2>
+        <div class="account-card">
+          <div class="account-card__header">
+            <div>
+              <div class="account-card__title">Focus Stack</div>
+              <div class="account-card__meta">3 items &middot; Next delivery: <strong style="color: var(--color-text);">Apr 2</strong></div>
+            </div>
+            <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary);">£38.22<span style="font-size: 13px; font-family: var(--font-body); color: var(--color-text-muted);">/mo</span></span>
+          </div>
+          <div class="account-card__actions">
+            <span class="account-savings"><i data-lucide="tag" style="width: 12px; height: 12px;"></i> 15% saved</span>
+            <span style="font-size: 12px; color: var(--color-text-muted);">Includes: Lion's Mane, L-Theanine + Caffeine, Omega-3</span>
+          </div>
+          <div style="margin-top: 16px; display: flex; gap: 12px;">
+            <button class="btn--sm-outline" onclick="alert('Manage subscription (preview mode)')">Manage</button>
+            <button class="btn--sm-outline" style="color: #d32f2f; border-color: #f5c6cb;" onclick="alert('Cancel subscription (preview mode)')">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order History -->
+      <div class="account-section">
+        <h2 class="account-section__title"><i data-lucide="clock"></i> Order History</h2>
+
+        <div class="account-card">
+          <div class="account-card__header">
+            <div>
+              <div class="account-card__title">#NTV-1042 &middot; Focus Stack</div>
+              <div class="account-card__meta">Feb 12, 2026 &middot; 3 items</div>
+            </div>
+            <div style="text-align: right;">
+              <span class="account-badge account-badge--delivered">Delivered</span>
+              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">£44.97</div>
+            </div>
+          </div>
+          <div class="account-card__actions">
+            <button class="btn--sm-outline" onclick="alert('Order details (preview mode)')">View Details</button>
+            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'lions-mane',title:'Lion\'s Mane Complex',price:2499},{handle:'l-theanine',title:'L-Theanine + Caffeine',price:1499},{handle:'omega-3',title:'Omega-3 DHA',price:999}])">
+              <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i>
+              Reorder
+            </button>
+          </div>
+        </div>
+
+        <div class="account-card">
+          <div class="account-card__header">
+            <div>
+              <div class="account-card__title">#NTV-1031 &middot; Sleep Stack</div>
+              <div class="account-card__meta">Jan 15, 2026 &middot; 2 items</div>
+            </div>
+            <div style="text-align: right;">
+              <span class="account-badge account-badge--delivered">Delivered</span>
+              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">£27.98</div>
+            </div>
+          </div>
+          <div class="account-card__actions">
+            <button class="btn--sm-outline" onclick="alert('Order details (preview mode)')">View Details</button>
+            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'magnesium',title:'Magnesium Glycinate',price:1499},{handle:'ashwagandha',title:'Ashwagandha KSM-66',price:1299}])">
+              <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i>
+              Reorder
+            </button>
+          </div>
+        </div>
+
+        <div class="account-card">
+          <div class="account-card__header">
+            <div>
+              <div class="account-card__title">#NTV-1018 &middot; Energy Stack</div>
+              <div class="account-card__meta">Dec 20, 2025 &middot; 4 items</div>
+            </div>
+            <div style="text-align: right;">
+              <span class="account-badge account-badge--delivered">Delivered</span>
+              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">£59.96</div>
+            </div>
+          </div>
+          <div class="account-card__actions">
+            <button class="btn--sm-outline" onclick="alert('Order details (preview mode)')">View Details</button>
+            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'b-complex',title:'B-Complex',price:1299},{handle:'coq10',title:'CoQ10',price:1799},{handle:'rhodiola',title:'Rhodiola Rosea',price:1499},{handle:'iron',title:'Iron Bisglycinate',price:1399}])">
+              <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i>
+              Reorder
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Settings -->
+      <div class="account-section">
+        <h2 class="account-section__title"><i data-lucide="settings"></i> Account Settings</h2>
+        <div class="account-card">
+          <div class="account-settings__row">
+            <div>
+              <div class="account-settings__label">Full Name</div>
+              <div class="account-settings__value">James Thompson</div>
+            </div>
+            <button class="account-settings__action" onclick="alert('Edit name (preview mode)')">Edit</button>
+          </div>
+          <div class="account-settings__row">
+            <div>
+              <div class="account-settings__label">Email</div>
+              <div class="account-settings__value">james@example.com</div>
+            </div>
+            <button class="account-settings__action" onclick="alert('Edit email (preview mode)')">Edit</button>
+          </div>
+          <div class="account-settings__row">
+            <div>
+              <div class="account-settings__label">Password</div>
+              <div class="account-settings__value">••••••••</div>
+            </div>
+            <button class="account-settings__action" onclick="alert('Change password (preview mode)')">Change</button>
+          </div>
+          <button class="account-settings__danger" onclick="alert('Delete account (preview mode)')">Delete Account</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay" data-search-overlay style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(61,50,41,0.5); z-index:200; backdrop-filter:blur(4px);"></div>
+<div class="search-modal" data-search-modal style="display:none; position:fixed; top:0; left:0; right:0; z-index:201; padding:80px 24px 24px;">
+  <div style="max-width: 600px; margin: 0 auto;">
+    <div style="position: relative;">
+      <i data-lucide="search" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:20px; height:20px; color:var(--color-text-muted);"></i>
+      <input type="text" data-search-input placeholder="Search supplements..." style="width:100%; padding:16px 48px 16px 48px; font-size:16px; font-family:var(--font-body); border:2px solid var(--color-border); border-radius:var(--radius-pill); background:#fff; color:var(--color-text); outline:none; box-shadow:0 8px 40px rgba(0,0,0,0.15);" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'">
+      <button data-search-close style="position:absolute; right:16px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--color-text-muted); padding:4px;" aria-label="Close search">
+        <i data-lucide="x" style="width:20px; height:20px;"></i>
+      </button>
+    </div>
+    <div data-search-results style="margin-top:12px; background:#fff; border-radius:var(--radius-md); box-shadow:0 4px 20px rgba(0,0,0,0.1); overflow:hidden; display:none;"></div>
+  </div>
+</div>
+
+<!-- Cart Overlay -->
+<div class="cart-overlay" data-cart-overlay></div>
+
+<!-- Cart Drawer -->
+<aside class="cart-drawer" data-cart-drawer aria-label="Shopping cart">
+  <div class="cart-drawer__header">
+    <h2 class="cart-drawer__title">Your Cart</h2>
+    <span class="cart-drawer__count" data-cart-count>0 items</span>
+    <button class="cart-drawer__close" data-cart-close aria-label="Close cart">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+  <div class="cart-drawer__empty" data-cart-empty>
+    <div class="cart-drawer__empty-icon">
+      <i data-lucide="shopping-bag"></i>
+    </div>
+    <p class="cart-drawer__empty-title">Your cart is empty</p>
+    <p class="cart-drawer__empty-text">Take the quiz to find your personalised stack.</p>
+    <a href="#" onclick="showPage('quiz')" class="btn btn--primary">Take the Quiz</a>
+  </div>
+  <div class="cart-drawer__filled" data-cart-filled style="display: none;">
+    <div class="cart-drawer__items" data-cart-items></div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span data-cart-subtotal>£0.00</span>
+      </div>
+      <p class="cart-drawer__shipping">Shipping calculated at checkout</p>
+      <p style="font-size: 12px; color: var(--color-text-muted); text-align: center; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;"><i data-lucide="shield-check" style="width: 14px; height: 14px; color: var(--color-primary);"></i> 30-day money-back guarantee</p>
+      <button class="btn btn--primary cart-drawer__checkout" data-cart-checkout>Checkout</button>
+    </div>
+  </div>
+</aside>
+
+<!-- Checkout Auth Overlay -->
+<div class="auth-overlay" data-auth-overlay>
+  <div class="auth-card" data-auth-card>
+    <button class="auth-card__close" data-auth-close aria-label="Close">
+      <i data-lucide="x"></i>
+    </button>
+
+    <div class="auth-card__header">
+      <div class="auth-card__icon">
+        <i data-lucide="lock"></i>
+      </div>
+      <h2>Secure Checkout</h2>
+      <p>Sign in to complete your order</p>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="auth-card__social">
+      <button type="button" class="auth-social-btn auth-social-btn--google" data-auth-google>
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Continue with Google
+      </button>
+      <button type="button" class="auth-social-btn auth-social-btn--apple" data-auth-apple>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        Continue with Apple
+      </button>
+    </div>
+
+    <div class="auth-card__divider"><span>or</span></div>
+
+    <!-- Sign In Form -->
+    <form class="auth-form" data-auth-signin>
+      <div class="auth-field">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" required>
+      </div>
+      <div class="auth-field">
+        <label for="auth-password">Password</label>
+        <input type="password" id="auth-password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn--primary auth-form__submit">Sign In & Pay</button>
+      <p class="auth-form__switch">New here? <a href="#" data-auth-toggle="signup">Create account</a></p>
+    </form>
+
+    <!-- Create Account Form -->
+    <form class="auth-form" data-auth-signup style="display: none;">
+      <div class="auth-field">
+        <label for="auth-name">Full Name</label>
+        <input type="text" id="auth-name" placeholder="Your name" required>
+      </div>
+      <div class="auth-field">
+        <label for="auth-signup-email">Email</label>
+        <input type="email" id="auth-signup-email" placeholder="you@example.com" required>
+      </div>
+      <div class="auth-field">
+        <label for="auth-signup-password">Password</label>
+        <input type="password" id="auth-signup-password" placeholder="Create a password" required>
+      </div>
+      <button type="submit" class="btn btn--primary auth-form__submit">Create Account</button>
+      <p class="auth-form__switch">Already have an account? <a href="#" data-auth-toggle="signin">Sign in</a></p>
+    </form>
+
+    <!-- Guest Checkout -->
+    <div class="auth-card__guest">
+      <a href="#" data-auth-guest>Continue as Guest <span>→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter -->
+<section style="padding:80px 0; background:var(--color-dark-section); text-align:center;">
+  <div style="max-width:600px; margin:0 auto; padding:0 24px;">
+    <h2 style="font-family:var(--font-heading); font-size:1.75rem; color:var(--color-dark-text); margin-bottom:8px;">Stay in the loop</h2>
+    <p style="font-size:15px; color:var(--color-dark-text); opacity:0.8; margin-bottom:24px;">Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers.</p>
+    <form style="display:flex; gap:8px; max-width:440px; margin:0 auto;" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='var(--color-primary)'; setTimeout(()=>{this.querySelector('button').textContent='Subscribe'; this.querySelector('button').style.background='var(--color-accent)';}, 2000);">
+      <input type="email" placeholder="Your email address" required style="flex:1; padding:12px 16px; border:1.5px solid rgba(255,255,255,0.2); border-radius:var(--radius-pill); background:rgba(255,255,255,0.1); color:var(--color-dark-text); font-size:14px; font-family:var(--font-body); outline:none;" onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+      <button type="submit" class="btn btn--primary" style="background:var(--color-accent); border-color:var(--color-accent); white-space:nowrap;">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-v2">
+  <div class="footer-v2__grid">
+    <div>
+      <div class="footer-v2__logo">Nutrava</div>
+      <p class="footer-v2__tagline">Personalised wellness, backed by science.</p>
+      <div class="footer-v2__social">
+        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-v2__heading">Quick Links</div>
+      <a href="#" onclick="showPage('quiz')" class="footer-v2__link">Take the Quiz</a>
+      <a href="#" onclick="showPage('shop')" class="footer-v2__link">Shop All</a>
+      <a href="#" onclick="showPage('stacks')" class="footer-v2__link">Browse Stacks</a>
+      <a href="#" onclick="showPage('about')" class="footer-v2__link">How It Works</a>
+    </div>
+    <div>
+      <div class="footer-v2__heading">Support</div>
+      <a href="#" class="footer-v2__link">Shipping & Returns</a>
+      <a href="#" class="footer-v2__link">Privacy Policy</a>
+      <a href="#" class="footer-v2__link">Terms of Service</a>
+      <a href="#" class="footer-v2__link">Contact Us</a>
+    </div>
+    <div>
+      <div class="footer-v2__heading">The Science</div>
+      <a href="#" onclick="showPage('about')" class="footer-v2__link">Our Approach</a>
+      <a href="#" class="footer-v2__link">Ingredients</a>
+      <a href="#" class="footer-v2__link">FAQ</a>
+    </div>
+  </div>
+  <div class="footer-v2__bottom">
+    &copy; 2026 Nutrava. All rights reserved.
+  </div>
+</footer>
+
+<script src="assets/theme.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="assets/cart.js"></script>
+<script src="assets/quiz.js"></script>
+<script>
+/* Initialize Lucide icons on the homepage */
+if (typeof lucide !== 'undefined') lucide.createIcons();
+
+function showPage(page, pushState) {
+  // Prevent href="#" from interfering with history
+  if (window.event && window.event.preventDefault) window.event.preventDefault();
+  document.querySelectorAll('.preview-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  window.scrollTo(0, 0);
+  // Push to browser history so Back button works
+  if (pushState !== false) {
+    history.pushState({ page: page }, '', '#' + page);
+  }
+}
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.page) {
+    showPage(e.state.page, false);
+  } else {
+    showPage('home', false);
+  }
+});
+
+// Set initial history state
+history.replaceState({ page: 'home' }, '', '#home');
+
+/* ---------- Announcement Bar ---------- */
+(function() {
+  var bar = document.querySelector('[data-announcement-bar]');
+  if (!bar) return;
+  if (sessionStorage.getItem('nutrava_announcement_dismissed')) {
+    bar.classList.add('is-hidden');
+    return;
+  }
+  var closeBtn = bar.querySelector('[data-announcement-close]');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      bar.classList.add('is-hidden');
+      sessionStorage.setItem('nutrava_announcement_dismissed', '1');
+    });
+  }
+  var messages = bar.querySelectorAll('.announcement-bar__message');
+  if (messages.length > 1) {
+    var current = 0;
+    setInterval(function() {
+      messages[current].classList.remove('is-active');
+      current = (current + 1) % messages.length;
+      messages[current].classList.add('is-active');
+    }, 4000);
+  }
+})();
+
+/* ---------- Catalog Filter ---------- */
+(function() {
+  var pills = document.querySelectorAll('.catalog-pill');
+  var cards = document.querySelectorAll('.catalog-card');
+  var countEl = document.querySelector('[data-product-count]');
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      pills.forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      var filter = pill.dataset.filter;
+      var visible = 0;
+      cards.forEach(function(card) {
+        if (filter === 'all' || card.dataset.category.indexOf(filter) !== -1) {
+          card.classList.remove('hidden');
+          card.style.display = '';
+          visible++;
+        } else {
+          card.classList.add('hidden');
+          card.style.display = 'none';
+        }
+      });
+      if (countEl) countEl.textContent = visible;
+    });
+  });
+})();
+
+/* ---------- Search ---------- */
+(function() {
+  var toggle = document.querySelector('[data-search-toggle]');
+  var overlay = document.querySelector('[data-search-overlay]');
+  var modal = document.querySelector('[data-search-modal]');
+  var input = document.querySelector('[data-search-input]');
+  var closeBtn = document.querySelector('[data-search-close]');
+  var results = document.querySelector('[data-search-results]');
+  if (!toggle || !modal) return;
+
+  // Product data for search
+  var products = [
+    { name: "Lion's Mane Extract", price: '£24.99', cat: 'Focus' },
+    { name: 'Alpha-GPC', price: '£19.99', cat: 'Focus' },
+    { name: 'Creatine Monohydrate', price: '£14.99', cat: 'Gym' },
+    { name: 'Ashwagandha KSM-66', price: '£22.99', cat: 'Gym' },
+    { name: 'Magnesium Glycinate', price: '£16.99', cat: 'Sleep' },
+    { name: 'L-Theanine', price: '£18.99', cat: 'Sleep' },
+    { name: 'Rhodiola Rosea', price: '£21.99', cat: 'Energy' },
+    { name: 'B-Complex', price: '£12.99', cat: 'Energy' },
+    { name: 'Vitamin D3 + K2', price: '£14.99', cat: 'Wellness' },
+    { name: 'Omega-3 Fish Oil', price: '£19.99', cat: 'Wellness' },
+    { name: 'Bacopa Monnieri', price: '£17.99', cat: 'Focus' },
+    { name: 'Zinc & Magnesium', price: '£15.99', cat: 'Gym' }
+  ];
+
+  function openSearch() {
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+    input.value = '';
+    results.style.display = 'none';
+    setTimeout(function() { input.focus(); }, 100);
+  }
+
+  function closeSearch() {
+    overlay.style.display = 'none';
+    modal.style.display = 'none';
+  }
+
+  toggle.addEventListener('click', openSearch);
+  overlay.addEventListener('click', closeSearch);
+  closeBtn.addEventListener('click', closeSearch);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') closeSearch();
+  });
+
+  var debounce;
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    debounce = setTimeout(function() {
+      var q = input.value.trim().toLowerCase();
+      if (!q) { results.style.display = 'none'; return; }
+      var matches = products.filter(function(p) { return p.name.toLowerCase().indexOf(q) !== -1; });
+      if (matches.length === 0) {
+        results.innerHTML = '<div style="padding:20px; text-align:center; font-size:14px; color:var(--color-text-muted);">No products found</div>';
+      } else {
+        results.innerHTML = matches.slice(0, 6).map(function(p) {
+          return '<a href="#" onclick="showPage(\'shop\')" style="display:flex; justify-content:space-between; align-items:center; padding:14px 20px; border-bottom:1px solid var(--color-border); color:var(--color-text); font-size:14px; transition:background 0.15s;" onmouseover="this.style.background=\'var(--color-mint-mist)\'" onmouseout="this.style.background=\'#fff\'">'
+            + '<div><strong>' + p.name + '</strong><span style="font-size:12px; color:var(--color-text-muted); margin-left:8px;">' + p.cat + '</span></div>'
+            + '<span style="font-family:var(--font-heading); color:var(--color-primary);">' + p.price + '</span></a>';
+        }).join('');
+      }
+      results.style.display = 'block';
+    }, 300);
+  });
+})();
+
+/* Testimonial carousel navigation */
+document.querySelectorAll('[data-testimonial-prev]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var grid = btn.closest('.testimonials-section').querySelector('.social-proof__grid');
+    var cardW = grid.querySelector('.testimonial').offsetWidth + 24;
+    grid.scrollBy({ left: -cardW, behavior: 'smooth' });
+  });
+});
+document.querySelectorAll('[data-testimonial-next]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var grid = btn.closest('.testimonials-section').querySelector('.social-proof__grid');
+    var cardW = grid.querySelector('.testimonial').offsetWidth + 24;
+    grid.scrollBy({ left: cardW, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

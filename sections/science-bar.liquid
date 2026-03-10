@@ -1,0 +1,136 @@
+<section class="science-bar section-padding bg-white">
+  <div class="container">
+    <div class="text-center mb-xl">
+      <h2>{{ section.settings.heading | default: 'What Goes In Matters' }}</h2>
+      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'Every ingredient is selected based on clinical research' }}</p>
+    </div>
+    <div class="grid grid--3">
+      {% for block in section.blocks %}
+        <div class="science-card" {{ block.shopify_attributes }}>
+          <div class="science-card__icon">
+            <i data-lucide="{{ block.settings.icon }}"></i>
+          </div>
+          <h3 class="science-card__title">{{ block.settings.title }}</h3>
+          <p class="science-card__text">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .science-card {
+    text-align: center;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .science-card__icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-mint-mist);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+    color: var(--color-primary);
+  }
+
+  .science-card__icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.75;
+  }
+
+  .science-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .science-card__text {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Science & Transparency",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Goes In Matters"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every ingredient is selected based on clinical research"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Science Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Lucide icon name",
+          "default": "flask-conical"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Clinically Dosed"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Every ingredient at its researched effective dose"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science & Transparency",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "flask-conical",
+            "title": "Clinically Dosed",
+            "text": "Every ingredient at its researched effective dose — no pixie dusting."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "shield-check",
+            "title": "Third-Party Lab Tested",
+            "text": "Independent verification for purity and potency you can trust."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "eye",
+            "title": "No Proprietary Blends",
+            "text": "Full transparency — you see exactly what you're taking and how much."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

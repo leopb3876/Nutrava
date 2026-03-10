@@ -1,0 +1,144 @@
+<section class="how-it-works section-padding bg-white" data-fade-in>
+  <div class="container">
+    <h2 class="text-center mb-xl">{{ section.settings.heading }}</h2>
+
+    <div class="how-it-works__steps">
+      {%- for block in section.blocks -%}
+        <div class="how-it-works__step" {{ block.shopify_attributes }}>
+          <div class="how-it-works__number">{{ forloop.index }}</div>
+          <h3 class="how-it-works__title">{{ block.settings.title }}</h3>
+          <p class="how-it-works__text">{{ block.settings.text }}</p>
+        </div>
+
+        {%- unless forloop.last -%}
+          <div class="how-it-works__connector" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works__steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-lg);
+  }
+
+  .how-it-works__step {
+    flex: 1;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .how-it-works__number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-mint-mist);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+    font-weight: 600;
+  }
+
+  .how-it-works__title {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .how-it-works__text {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .how-it-works__connector {
+    display: flex;
+    align-items: center;
+    color: var(--color-fern);
+    flex-shrink: 0;
+    padding-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .how-it-works__steps {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .how-it-works__connector {
+      transform: rotate(90deg);
+      padding-top: 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How It Works"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Take the Quiz",
+            "text": "Answer a few questions about your lifestyle, goals, and wellness needs"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Get Your Stack",
+            "text": "We'll recommend a personalised supplement stack backed by science"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Delivered to You",
+            "text": "Your supplements are shipped directly to your door"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

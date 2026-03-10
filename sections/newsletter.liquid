@@ -1,0 +1,51 @@
+<section class="newsletter-section" style="padding:80px 0; background:var(--color-dark-section, #2c3a2e); text-align:center;">
+  <div style="max-width:600px; margin:0 auto; padding:0 24px;">
+    <h2 style="font-family:var(--font-heading); font-size:1.75rem; color:var(--color-dark-text, #f5f2ec); margin-bottom:8px;">
+      {{ section.settings.heading | default: "Stay in the loop" }}
+    </h2>
+    <p style="font-size:15px; color:var(--color-dark-text, #f5f2ec); opacity:0.8; margin-bottom:24px;">
+      {{ section.settings.subheading | default: "Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers." }}
+    </p>
+    {% form 'customer' %}
+      <div style="display:flex; gap:8px; max-width:440px; margin:0 auto;">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input
+          type="email"
+          name="contact[email]"
+          placeholder="Your email address"
+          required
+          style="flex:1; padding:12px 16px; border:1.5px solid rgba(255,255,255,0.2); border-radius:50px; background:rgba(255,255,255,0.1); color:var(--color-dark-text, #f5f2ec); font-size:14px; font-family:var(--font-body); outline:none;"
+          aria-label="Email address"
+        >
+        <button type="submit" class="btn btn--primary" style="background:var(--color-accent, #c8965d); border-color:var(--color-accent, #c8965d); white-space:nowrap;">
+          Subscribe
+        </button>
+      </div>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay in the loop"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

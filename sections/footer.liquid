@@ -1,0 +1,151 @@
+<footer class="footer bg-mint">
+  <div class="container">
+    <div class="footer__grid">
+      <!-- Brand -->
+      <div class="footer__brand">
+        <a href="/" class="footer__logo">{{ shop.name }}</a>
+        <p class="footer__tagline">Personalised wellness, backed by science.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer__col">
+        <h4 class="footer__heading">{{ 'footer.quick_links' | t }}</h4>
+        <ul class="footer__links">
+          <li><a href="/pages/quiz">{{ 'header.take_quiz' | t }}</a></li>
+          <li><a href="/collections/all">{{ 'header.shop_stacks' | t }}</a></li>
+          <li><a href="/pages/stacks">Browse Stacks</a></li>
+          <li><a href="/pages/about">{{ 'header.learn' | t }}</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="footer__col">
+        <h4 class="footer__heading">{{ 'footer.support' | t }}</h4>
+        <ul class="footer__links">
+          <li><a href="/pages/shipping">Shipping & Returns</a></li>
+          <li><a href="/policies/privacy-policy">{{ 'footer.privacy' | t }}</a></li>
+          <li><a href="/policies/terms-of-service">{{ 'footer.terms' | t }}</a></li>
+          <li><a href="/pages/contact">{{ 'footer.contact' | t }}</a></li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div class="footer__col">
+        <h4 class="footer__heading">Follow Us</h4>
+        <div class="footer__social">
+          {%- if settings.social_instagram != blank -%}
+            <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if settings.social_tiktok != blank -%}
+            <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok" class="footer__social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.92 2.92 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.64 6.33 6.33 0 0 0 9.37 22a6.33 6.33 0 0 0 6.38-6.33V9.19a8.16 8.16 0 0 0 4.84 1.58v-3.4a4.85 4.85 0 0 1-1-.68z"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if settings.social_twitter != blank -%}
+            <a href="{{ settings.social_twitter }}" target="_blank" rel="noopener" aria-label="X / Twitter" class="footer__social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.copyright' | t }}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--space-3xl) 0 var(--space-xl);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .footer__logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__tagline {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  .footer__heading {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer__links li {
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__links a {
+    font-size: 14px;
+    color: var(--color-text-body);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__links a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer__social {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .footer__social-link {
+    color: var(--color-text-body);
+    transition: color var(--transition-fast);
+  }
+
+  .footer__social-link:hover {
+    color: var(--color-primary);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

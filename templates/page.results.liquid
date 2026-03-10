@@ -1,0 +1,14 @@
+{{ 'quiz.css' | asset_url | stylesheet_tag }}
+
+<div class="quiz-container">
+  <div class="quiz-screen">
+    <div class="quiz-screen__inner quiz-results">
+      <div class="quiz-results__header">
+        <div class="quiz-results__icon"><i data-lucide="sparkles"></i></div>
+        <h2 class="quiz-results__title">{{ 'quiz.your_stack' | t }}</h2>
+        <p class="quiz-results__subtitle">Take the quiz to get your personalised recommendation</p>
+      </div>
+      <a href="/pages/quiz" class="btn btn--primary btn--lg">Take the Quiz</a>
+    </div>
+  </div>
+</div>

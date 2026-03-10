@@ -1,0 +1,55 @@
+{%- comment -%}
+  Stack Card snippet
+  Usage: {% render 'stack-card', product: product, tag: 'Focus' %}
+{%- endcomment -%}
+
+<a href="{{ product.url }}" class="card stack-card">
+  <div class="card__image stack-card__image">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 400 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        width="400"
+        height="300"
+        loading="lazy"
+      >
+    {%- else -%}
+      <div class="stack-card__placeholder">
+        <svg width="40" height="56" viewBox="0 0 40 56" fill="none">
+          <rect width="40" height="56" rx="6" fill="rgba(255,255,255,0.6)"/>
+        </svg>
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="card__body">
+    {%- if tag -%}
+      <span class="card__tag">{{ tag }}</span>
+    {%- endif -%}
+    <h3 class="card__title">{{ product.title }}</h3>
+    <span class="card__price">{{ product.price | money }}</span>
+  </div>
+</a>
+
+<style>
+  .stack-card {
+    display: block;
+    text-decoration: none;
+  }
+
+  .stack-card__image {
+    background: linear-gradient(135deg, var(--color-mint-mist), var(--color-fern));
+  }
+
+  .stack-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .stack-card__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+</style>

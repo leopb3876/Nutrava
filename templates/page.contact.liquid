@@ -1,0 +1,53 @@
+<section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
+  <div class="container container--narrow">
+    <span class="label mb-sm" style="display: block;">Get in Touch</span>
+    <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Contact Us</h1>
+    <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Have a question about your order, ingredients, or our quiz? We'd love to hear from you.</p>
+  </div>
+</section>
+
+<section style="padding: 64px 0;">
+  <div class="container" style="max-width: 560px;">
+    <div style="background: var(--color-card-bg); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-card);">
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <div style="text-align: center; padding: 24px;">
+            <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);">
+              <i data-lucide="check-circle"></i>
+            </div>
+            <h3 style="font-family: var(--font-heading); margin-bottom: 8px;">Message Sent</h3>
+            <p style="font-size: 14px; color: var(--color-text-muted);">We'll get back to you within 24 hours.</p>
+          </div>
+        {% else %}
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <label for="contact-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">Name</label>
+              <input type="text" name="contact[name]" id="contact-name" required
+                style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 14px; background: var(--color-bg); color: var(--color-text); transition: border-color 0.15s;"
+                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'"
+              >
+            </div>
+            <div>
+              <label for="contact-email" style="display: block; font-size: 13px; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">Email</label>
+              <input type="email" name="contact[email]" id="contact-email" required
+                style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 14px; background: var(--color-bg); color: var(--color-text); transition: border-color 0.15s;"
+                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'"
+              >
+            </div>
+            <div>
+              <label for="contact-message" style="display: block; font-size: 13px; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">Message</label>
+              <textarea name="contact[body]" id="contact-message" rows="5" required
+                style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 14px; background: var(--color-bg); color: var(--color-text); resize: vertical; transition: border-color 0.15s;"
+                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" style="width: 100%;">Send Message</button>
+          </div>
+          <p style="font-size: 13px; color: var(--color-text-muted); text-align: center; margin-top: 16px;">
+            Check our <a href="/pages/about#faq" style="color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px;">FAQ</a> first — your question might already be answered.
+          </p>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</section>

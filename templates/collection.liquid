@@ -1,0 +1,144 @@
+<section class="collection-hero section-padding bg-mint">
+  <div class="container text-center">
+    <span class="label">{{ collection.metafields.custom.category | default: 'Stack' }}</span>
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p class="collection-hero__desc">{{ collection.description }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="collection-products section-padding">
+  <div class="container">
+    <!-- Filter Pills -->
+    <div class="collection-filters">
+      <a href="{{ collection.url }}" class="collection-filter{% unless current_tags %} collection-filter--active{% endunless %}">All</a>
+      <a href="{{ collection.url }}/focus" class="collection-filter{% if current_tags contains 'focus' %} collection-filter--active{% endif %}">Focus</a>
+      <a href="{{ collection.url }}/gym" class="collection-filter{% if current_tags contains 'gym' %} collection-filter--active{% endif %}">Gym</a>
+      <a href="{{ collection.url }}/sleep" class="collection-filter{% if current_tags contains 'sleep' %} collection-filter--active{% endif %}">Sleep</a>
+      <a href="{{ collection.url }}/energy" class="collection-filter{% if current_tags contains 'energy' %} collection-filter--active{% endif %}">Energy</a>
+      <a href="{{ collection.url }}/wellness" class="collection-filter{% if current_tags contains 'wellness' %} collection-filter--active{% endif %}">Wellness</a>
+    </div>
+    <p class="collection-count">Showing {{ collection.products.size }} products</p>
+
+    {%- if collection.products.size > 0 -%}
+      <div class="collection-products__grid">
+        {%- for product in collection.products -%}
+          <div class="collection-products__item">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="collection-products__empty text-center">
+        <p>Products coming soon. Take the quiz to get a personalised recommendation.</p>
+        <a href="/pages/quiz" class="btn btn--primary mt-lg">Take the Quiz</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<!-- Stack Info Section -->
+<section class="stack-info section-padding bg-white">
+  <div class="container container--narrow">
+    <div class="stack-info__grid">
+      <div class="stack-info__block">
+        <h3>Who is this stack for?</h3>
+        <p>{{ collection.metafields.custom.who_is_it_for | default: 'Anyone looking to optimise their wellness with science-backed supplements tailored to their goals.' }}</p>
+      </div>
+      <div class="stack-info__block">
+        <h3>Why these supplements work together</h3>
+        <p>{{ collection.metafields.custom.why_together | default: 'Each supplement in this stack has been selected to complement the others, creating a synergistic effect that amplifies individual benefits.' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quiz CTA -->
+{% section 'quiz-cta' %}
+
+<style>
+  .collection-hero__desc {
+    font-size: 1.125rem;
+    color: var(--color-text-body);
+    max-width: 600px;
+    margin: var(--space-md) auto 0;
+    line-height: 1.6;
+  }
+
+  .collection-filters {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+  }
+
+  .collection-filter {
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid var(--color-border);
+    background: var(--color-card-bg);
+    color: var(--color-text-body);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .collection-filter:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .collection-filter--active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+
+  .collection-count {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+  }
+
+  .collection-products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .collection-products__empty {
+    padding: var(--space-3xl) 0;
+  }
+
+  .stack-info__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .stack-info__block h3 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .stack-info__block p {
+    font-size: 15px;
+    color: var(--color-text-body);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .collection-products__grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .stack-info__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
