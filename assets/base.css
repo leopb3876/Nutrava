@@ -9,14 +9,14 @@
   --color-oat: #fdf9f3;
   --color-mint-mist: #eef4e8;
   --color-fern: #c2d4b5;
-  --color-forest: #3d6b4f;
+  --color-forest: #3d5f32;
   --color-espresso: #2c241d;
   --color-bark: #5c4f3d;
   --color-walnut: #8b7355;
   --color-sand: #e8dcc8;
   --color-white: #ffffff;
-  --color-accent: #c8965d;
-  --color-dark-section: #2c3a2e;
+  --color-accent: #c7a373;
+  --color-dark-section: #2a3525;
   --color-dark-text: #f5f2ec;
 
   /* Semantic */
@@ -239,8 +239,8 @@ p:last-child {
 }
 
 .btn--primary:hover {
-  background: #4d6b50;
-  border-color: #4d6b50;
+  background: #335228;
+  border-color: #335228;
   box-shadow: var(--shadow-hover);
 }
 
@@ -262,8 +262,8 @@ p:last-child {
 }
 
 .btn--accent:hover {
-  background: #b8864d;
-  border-color: #b8864d;
+  background: #b59363;
+  border-color: #b59363;
   box-shadow: var(--shadow-hover);
 }
 
@@ -838,7 +838,7 @@ p:last-child {
 }
 
 .cart-toast__view:hover {
-  color: #4d6b50;
+  color: #335228;
 }
 
 /* ---------- Auth Overlay ---------- */
