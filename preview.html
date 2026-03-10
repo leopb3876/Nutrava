@@ -257,6 +257,28 @@
       .account-profile { flex-direction: column; align-items: flex-start; }
     }
 
+    /* Cookie Consent Banner */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--color-espresso); color: var(--color-dark-text); padding: 20px 24px; z-index: 500; transform: translateY(100%); transition: transform 0.4s ease; display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); }
+    .cookie-banner.is-visible { transform: translateY(0); }
+    .cookie-banner__text { font-size: 14px; line-height: 1.6; max-width: 600px; }
+    .cookie-banner__text a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+    .cookie-banner__buttons { display: flex; gap: 10px; flex-shrink: 0; }
+    .cookie-banner__btn { padding: 10px 24px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid transparent; transition: all 0.2s; font-family: var(--font-body); }
+    .cookie-banner__btn--accept { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+    .cookie-banner__btn--accept:hover { background: #335228; }
+    .cookie-banner__btn--decline { background: transparent; color: var(--color-dark-text); border-color: rgba(255,255,255,0.2); }
+    .cookie-banner__btn--decline:hover { border-color: rgba(255,255,255,0.5); }
+    @media (max-width: 600px) { .cookie-banner { flex-direction: column; text-align: center; padding: 20px 16px; gap: 16px; } }
+
+    /* Subscribe & Save Toggle */
+    .catalog-card__subscribe { display: flex; align-items: center; gap: 8px; padding: 0 20px 16px; margin-top: -4px; }
+    .subscribe-toggle { position: relative; width: 36px; height: 20px; background: var(--color-sand); border-radius: 10px; cursor: pointer; transition: background 0.2s; border: none; flex-shrink: 0; }
+    .subscribe-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+    .subscribe-toggle.is-active { background: var(--color-primary); }
+    .subscribe-toggle.is-active::after { transform: translateX(16px); }
+    .subscribe-label { font-size: 12px; color: var(--color-text-muted); line-height: 1.3; }
+    .subscribe-label strong { color: var(--color-primary); font-weight: 600; }
+
   </style>
 </head>
 <body>
@@ -282,7 +304,6 @@
     <div class="header__links">
       <a href="#" onclick="showPage('quiz')" class="header__link">Take the Quiz</a>
       <a href="#" onclick="showPage('shop')" class="header__link">Shop</a>
-      <a href="#" onclick="showPage('stacks')" class="header__link">Stacks</a>
       <a href="#" onclick="showPage('about')" class="header__link">How It Works</a>
       <button class="search-toggle" data-search-toggle aria-label="Search">
         <i data-lucide="search"></i>
@@ -636,7 +657,7 @@
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Can I take these supplements together?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan. For example, our Focus Stack pairs Lion's Mane with L-Theanine and Omega-3, which research shows work better together than individually.</div>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan. For example, we might pair Lion's Mane with L-Theanine and Omega-3, which research shows work better together than individually.</div>
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">What's your shipping and returns policy?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
@@ -662,26 +683,26 @@
       <div class="social-proof__ticker" data-testimonial-ticker>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
+          <p class="testimonial__text">"The quiz built me a personalised stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
-            <div class="testimonial__info"><div class="testimonial__author">James T.</div><div class="testimonial__meta">Focus Stack — 3 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">James T.</div><div class="testimonial__meta">Verified buyer — 3 months</div></div>
           </div>
         </div>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting the Sleep & Recovery Stack."</p>
+          <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting my custom stack."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
-            <div class="testimonial__info"><div class="testimonial__author">Sophie M.</div><div class="testimonial__meta">Sleep Stack — 6 weeks</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Sophie M.</div><div class="testimonial__meta">Verified buyer — 6 weeks</div></div>
           </div>
         </div>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. The Gym Stack has noticeably improved my recovery between training sessions."</p>
+          <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. My personalised stack has noticeably improved my recovery between training sessions."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
-            <div class="testimonial__info"><div class="testimonial__author">Daniel K.</div><div class="testimonial__meta">Gym Performance Stack — 2 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Daniel K.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -689,23 +710,23 @@
           <p class="testimonial__text">"Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
-            <div class="testimonial__info"><div class="testimonial__author">Emma R.</div><div class="testimonial__meta">Daily Wellness Stack — 4 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Emma R.</div><div class="testimonial__meta">Verified buyer — 4 months</div></div>
           </div>
         </div>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. The Energy Stack gives me sustained focus all day — no jitters, no afternoon slump."</p>
+          <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. My Nutrava stack gives me sustained focus all day — no jitters, no afternoon slump."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
-            <div class="testimonial__info"><div class="testimonial__author">Michael B.</div><div class="testimonial__meta">Energy Stack — 2 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Michael B.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          <p class="testimonial__text">"Started taking the Sleep Stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed. My Fitbit confirms it too."</p>
+          <p class="testimonial__text">"Started my personalised stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed. My Fitbit confirms it too."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
-            <div class="testimonial__info"><div class="testimonial__author">Lauren W.</div><div class="testimonial__meta">Sleep Stack — 5 weeks</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Lauren W.</div><div class="testimonial__meta">Verified buyer — 5 weeks</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -713,7 +734,7 @@
           <p class="testimonial__text">"As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
-            <div class="testimonial__info"><div class="testimonial__author">Tom H.</div><div class="testimonial__meta">Focus Stack — 6 weeks</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Tom H.</div><div class="testimonial__meta">Verified buyer — 6 weeks</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -721,7 +742,7 @@
           <p class="testimonial__text">"The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
-            <div class="testimonial__info"><div class="testimonial__author">Priya K.</div><div class="testimonial__meta">Gym Performance Stack — 5 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Priya K.</div><div class="testimonial__meta">Subscriber — 5 months</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -729,7 +750,7 @@
           <p class="testimonial__text">"My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
-            <div class="testimonial__info"><div class="testimonial__author">Chris A.</div><div class="testimonial__meta">Gym Performance Stack — 3 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Chris A.</div><div class="testimonial__meta">Verified buyer — 3 months</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -737,7 +758,7 @@
           <p class="testimonial__text">"Nutrava helped me figure out what I actually need. The quiz was spot on — I'm taking fewer supplements now but getting better results than before."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&q=80" alt="Hannah L.">
-            <div class="testimonial__info"><div class="testimonial__author">Hannah L.</div><div class="testimonial__meta">Focus Stack — 2 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Hannah L.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -745,15 +766,15 @@
           <p class="testimonial__text">"Proper doses, clean ingredients, and they actually explain why each supplement is in your stack. First brand I've trusted enough to set up a subscription."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=96&q=80" alt="Alex D.">
-            <div class="testimonial__info"><div class="testimonial__author">Alex D.</div><div class="testimonial__meta">Daily Wellness Stack — 3 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Alex D.</div><div class="testimonial__meta">Subscriber — 3 months</div></div>
           </div>
         </div>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          <p class="testimonial__text">"Got the Energy & Stress stack after burnout from work. Two months in and I feel like a different person. More energy, better mood, sleeping properly again."</p>
+          <p class="testimonial__text">"Got my personalised stack after burnout from work. Two months in and I feel like a different person. More energy, better mood, sleeping properly again."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=96&q=80" alt="Olivia S.">
-            <div class="testimonial__info"><div class="testimonial__author">Olivia S.</div><div class="testimonial__meta">Energy Stack — 2 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Olivia S.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
         <div class="testimonial">
@@ -761,15 +782,15 @@
           <p class="testimonial__text">"I was spending £60/month on random supplements. Nutrava streamlined everything into one stack for less money and I actually feel the difference now."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=96&q=80" alt="Ryan P.">
-            <div class="testimonial__info"><div class="testimonial__author">Ryan P.</div><div class="testimonial__meta">Gym Performance Stack — 4 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Ryan P.</div><div class="testimonial__meta">Subscriber — 4 months</div></div>
           </div>
         </div>
         <div class="testimonial">
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"My mum recommended Nutrava to me. We both take the Daily Wellness stack now. Love that it's UK-based with free shipping and actually arrives quickly."</p>
+          <p class="testimonial__text">"My mum recommended Nutrava to me. We both have our own personalised stacks now. Love that it's UK-based with free shipping and actually arrives quickly."</p>
           <div class="testimonial__footer">
             <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=96&q=80" alt="Natasha G.">
-            <div class="testimonial__info"><div class="testimonial__author">Natasha G.</div><div class="testimonial__meta">Daily Wellness Stack — 6 months</div></div>
+            <div class="testimonial__info"><div class="testimonial__author">Natasha G.</div><div class="testimonial__meta">Subscriber — 6 months</div></div>
           </div>
         </div>
       </div>
@@ -1197,83 +1218,6 @@
   </section>
 </div>
 
-<!-- ==================== STACKS ==================== -->
-<div class="preview-page" id="page-stacks">
-  <section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
-    <div class="container container--narrow">
-      <span class="hero-v2__label">Explore</span>
-      <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Browse Our Stacks</h1>
-      <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Find the perfect supplement stack for your goals. Each stack is a curated combination of supplements designed to work together.</p>
-    </div>
-  </section>
-  <section style="padding: 64px 0;">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto;">
-        <!-- Focus Stack -->
-        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
-          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80" alt="Person studying at desk with focus supplements" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
-          <div style="padding: 28px; text-align: center;">
-            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="brain" style="width: 22px; height: 22px;"></i></div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Focus & Study</h3>
-            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Sharpen concentration and mental clarity for work and study.</p>
-            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
-            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
-          </div>
-        </div>
-        <!-- Gym Stack -->
-        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80" alt="Person training at the gym" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
-          <div style="padding: 28px; text-align: center;">
-            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="dumbbell" style="width: 22px; height: 22px;"></i></div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Gym & Performance</h3>
-            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Build strength, boost endurance, and recover faster.</p>
-            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
-            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
-          </div>
-        </div>
-        <!-- Sleep Stack -->
-        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
-          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=80" alt="Peaceful bedroom for restful sleep" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
-          <div style="padding: 28px; text-align: center;">
-            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="moon" style="width: 22px; height: 22px;"></i></div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Sleep & Recovery</h3>
-            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Fall asleep faster and wake up feeling refreshed.</p>
-            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
-            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
-          </div>
-        </div>
-        <!-- Energy Stack -->
-        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
-          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=400&q=80" alt="Active person outdoors with energy" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
-          <div style="padding: 28px; text-align: center;">
-            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="zap" style="width: 22px; height: 22px;"></i></div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Energy & Stress</h3>
-            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Sustained energy without the crash or jitters.</p>
-            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
-            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
-          </div>
-        </div>
-        <!-- Wellness Stack -->
-        <div class="stack-card" style="background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; overflow: hidden; transition: all 0.25s; cursor: pointer;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(90,122,94,0.12)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='none';this.style.boxShadow='none'">
-          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&q=80" alt="Nature and wellness lifestyle" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
-          <div style="padding: 28px; text-align: center;">
-            <div style="width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="leaf" style="width: 22px; height: 22px;"></i></div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px;">Daily Wellness</h3>
-            <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Support your overall health and immunity daily.</p>
-            <span style="font-size: 12px; color: var(--color-primary); font-weight: 600; display: block; margin-bottom: 20px;">3-5 supplements</span>
-            <a href="#" onclick="showPage('quiz')" class="btn btn--outline btn--sm" style="width: 100%;">View Stack</a>
-          </div>
-        </div>
-      </div>
-      <!-- Bottom CTA -->
-      <div style="text-align: center; margin-top: 48px; padding: 40px; background: var(--color-mint-mist); border-radius: 16px; max-width: 1000px; margin-left: auto; margin-right: auto;">
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-text); margin-bottom: 8px;">Not sure which stack?</h3>
-        <p style="font-size: 15px; color: var(--color-text-body); margin-bottom: 20px;">Take our personalised quiz and we'll match you with the perfect stack in 60 seconds.</p>
-        <a href="#" onclick="showPage('quiz')" class="btn btn--primary">Take the Quiz</a>
-      </div>
-    </div>
-  </section>
-</div>
 
 <!-- ==================== ACCOUNT ==================== -->
 <div class="preview-page" id="page-account">
@@ -1319,7 +1263,7 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">Focus Stack</div>
+              <div class="account-card__title">Your Stack</div>
               <div class="account-card__meta">3 items &middot; £44.97</div>
             </div>
             <span class="account-badge account-badge--transit">In Transit</span>
@@ -1343,7 +1287,7 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">Focus Stack</div>
+              <div class="account-card__title">Your Stack</div>
               <div class="account-card__meta">3 items &middot; Next delivery: <strong style="color: var(--color-text);">Apr 2</strong></div>
             </div>
             <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary);">£38.22<span style="font-size: 13px; font-family: var(--font-body); color: var(--color-text-muted);">/mo</span></span>
@@ -1366,7 +1310,7 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">#NTV-1042 &middot; Focus Stack</div>
+              <div class="account-card__title">#NTV-1042 &middot; Your Stack</div>
               <div class="account-card__meta">Feb 12, 2026 &middot; 3 items</div>
             </div>
             <div style="text-align: right;">
@@ -1386,7 +1330,7 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">#NTV-1031 &middot; Sleep Stack</div>
+              <div class="account-card__title">#NTV-1031 &middot; Your Stack</div>
               <div class="account-card__meta">Jan 15, 2026 &middot; 2 items</div>
             </div>
             <div style="text-align: right;">
@@ -1406,7 +1350,7 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">#NTV-1018 &middot; Energy Stack</div>
+              <div class="account-card__title">#NTV-1018 &middot; Your Stack</div>
               <div class="account-card__meta">Dec 20, 2025 &middot; 4 items</div>
             </div>
             <div style="text-align: right;">
@@ -1578,7 +1522,7 @@
 <section style="padding:80px 0; background:var(--color-dark-section); text-align:center;">
   <div style="max-width:600px; margin:0 auto; padding:0 24px;">
     <h2 style="font-family:var(--font-heading); font-size:1.75rem; color:var(--color-dark-text); margin-bottom:8px;">Stay in the loop</h2>
-    <p style="font-size:15px; color:var(--color-dark-text); opacity:0.8; margin-bottom:24px;">Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers.</p>
+    <p style="font-size:15px; color:var(--color-dark-text); opacity:0.8; margin-bottom:24px;">Join 10,000+ people optimising their wellness. Get tips, new supplements, and exclusive offers.</p>
     <form style="display:flex; gap:8px; max-width:440px; margin:0 auto;" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='var(--color-primary)'; setTimeout(()=>{this.querySelector('button').textContent='Subscribe'; this.querySelector('button').style.background='var(--color-accent)';}, 2000);">
       <input type="email" placeholder="Your email address" required style="flex:1; padding:12px 16px; border:1.5px solid rgba(255,255,255,0.2); border-radius:var(--radius-pill); background:rgba(255,255,255,0.1); color:var(--color-dark-text); font-size:14px; font-family:var(--font-body); outline:none;" onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
       <button type="submit" class="btn btn--primary" style="background:var(--color-accent); border-color:var(--color-accent); white-space:nowrap;">Subscribe</button>
@@ -1601,7 +1545,6 @@
       <div class="footer-v2__heading">Quick Links</div>
       <a href="#" onclick="showPage('quiz')" class="footer-v2__link">Take the Quiz</a>
       <a href="#" onclick="showPage('shop')" class="footer-v2__link">Shop All</a>
-      <a href="#" onclick="showPage('stacks')" class="footer-v2__link">Browse Stacks</a>
       <a href="#" onclick="showPage('about')" class="footer-v2__link">How It Works</a>
     </div>
     <div>
@@ -1818,6 +1761,64 @@ document.querySelectorAll('.catalog-card').forEach(function(card) {
     ticker.appendChild(card.cloneNode(true));
   });
 })();
+
+/* Cookie Consent Banner */
+(function() {
+  var banner = document.querySelector('.cookie-banner');
+  if (!banner) return;
+  if (localStorage.getItem('nutrava_cookies') === 'accepted' || localStorage.getItem('nutrava_cookies') === 'declined') return;
+  setTimeout(function() { banner.classList.add('is-visible'); }, 1500);
+  banner.querySelector('[data-cookie-accept]').addEventListener('click', function() {
+    localStorage.setItem('nutrava_cookies', 'accepted');
+    banner.classList.remove('is-visible');
+  });
+  banner.querySelector('[data-cookie-decline]').addEventListener('click', function() {
+    localStorage.setItem('nutrava_cookies', 'declined');
+    banner.classList.remove('is-visible');
+  });
+})();
+
+/* Subscribe & Save toggle — inject into all catalog cards */
+(function() {
+  document.querySelectorAll('.catalog-card').forEach(function(card) {
+    var priceSpan = card.querySelector('[style*="font-heading"][style*="color: var(--color-primary)"]');
+    if (!priceSpan) return;
+    var priceText = priceSpan.textContent.trim();
+    var priceNum = parseFloat(priceText.replace('£', ''));
+    if (isNaN(priceNum)) return;
+    var subPrice = (priceNum * 0.85).toFixed(2);
+    priceSpan.classList.add('catalog-card__price');
+    priceSpan.dataset.originalPrice = priceText;
+    priceSpan.dataset.subPrice = '£' + subPrice;
+    /* Add toggle after the card body (before expand panel) */
+    var expandPanel = card.querySelector('.product-expand');
+    if (!expandPanel) return;
+    var toggleDiv = document.createElement('div');
+    toggleDiv.className = 'catalog-card__subscribe';
+    toggleDiv.innerHTML = '<button class="subscribe-toggle" onclick="event.stopPropagation()"></button><span class="subscribe-label">Subscribe & Save <strong>15%</strong></span>';
+    expandPanel.parentNode.insertBefore(toggleDiv, expandPanel);
+    /* Wire up toggle */
+    toggleDiv.querySelector('.subscribe-toggle').addEventListener('click', function(e) {
+      e.stopPropagation();
+      this.classList.toggle('is-active');
+      if (this.classList.contains('is-active')) {
+        priceSpan.innerHTML = '<span style="text-decoration:line-through; color:var(--color-text-muted); font-size:13px;">' + priceText + '</span> £' + subPrice;
+      } else {
+        priceSpan.textContent = priceText;
+      }
+    });
+  });
+})();
 </script>
+
+<!-- Cookie Consent Banner -->
+<div class="cookie-banner">
+  <p class="cookie-banner__text">We use cookies to personalise your experience and analyse site traffic. Read our <a href="#">Privacy Policy</a>.</p>
+  <div class="cookie-banner__buttons">
+    <button class="cookie-banner__btn cookie-banner__btn--decline" data-cookie-decline>Decline</button>
+    <button class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept All</button>
+  </div>
+</div>
+
 </body>
 </html>
