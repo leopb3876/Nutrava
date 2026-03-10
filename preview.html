@@ -29,16 +29,21 @@
     .header__link:hover { color: var(--color-primary); }
 
     /* Announcement Bar */
-    .announcement-bar { background: var(--color-primary); color: #fff; position: relative; z-index: 101; overflow: hidden; }
+    .announcement-bar { background: linear-gradient(135deg, var(--color-espresso) 0%, #3a3026 50%, var(--color-espresso) 100%); color: #fff; position: relative; z-index: 101; overflow: hidden; border-bottom: 1px solid rgba(199,163,115,0.2); }
+    .announcement-bar::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(199,163,115,0.06) 50%, transparent 100%); pointer-events: none; }
     .announcement-bar.is-hidden { display: none; }
-    .announcement-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px 10px 24px; display: flex; align-items: center; justify-content: center; position: relative; min-height: 40px; }
+    .announcement-bar__inner { max-width: 1200px; margin: 0 auto; padding: 10px 48px 10px 24px; display: flex; align-items: center; justify-content: center; position: relative; min-height: 38px; }
     .announcement-bar__messages { position: relative; text-align: center; width: 100%; }
-    .announcement-bar__message { font-size: 13px; font-weight: 600; letter-spacing: 0.3px; opacity: 0; position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); transition: opacity 0.4s ease; pointer-events: none; }
+    .announcement-bar__message { font-size: 12.5px; font-weight: 500; letter-spacing: 0.6px; opacity: 0; position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); transition: opacity 0.5s ease; pointer-events: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .announcement-bar__message.is-active { opacity: 1; position: relative; pointer-events: auto; }
-    .announcement-bar__message a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
-    .announcement-bar__close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7); padding: 4px; cursor: pointer; background: none; border: none; }
-    .announcement-bar__close:hover { color: #fff; }
-    .announcement-bar__close svg { width: 16px; height: 16px; }
+    .announcement-bar__message a { color: var(--color-accent); text-decoration: none; font-weight: 600; transition: color 0.15s; }
+    .announcement-bar__message a:hover { color: #dbb98a; text-decoration: underline; text-underline-offset: 3px; }
+    .announcement-bar__icon { display: inline-flex; width: 18px; height: 18px; flex-shrink: 0; opacity: 0.7; }
+    .announcement-bar__icon svg { width: 100%; height: 100%; }
+    .announcement-bar__sep { width: 3px; height: 3px; border-radius: 50%; background: rgba(199,163,115,0.4); flex-shrink: 0; }
+    .announcement-bar__close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); padding: 4px; cursor: pointer; background: none; border: none; transition: color 0.15s; }
+    .announcement-bar__close:hover { color: rgba(255,255,255,0.8); }
+    .announcement-bar__close svg { width: 14px; height: 14px; }
 
     /* Hero - Split layout: text left, lifestyle photo right */
     .hero-v2 { padding: 80px 0 60px; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); }
@@ -287,9 +292,9 @@
 <div class="announcement-bar" data-announcement-bar>
   <div class="announcement-bar__inner">
     <div class="announcement-bar__messages" data-announcement-messages>
-      <div class="announcement-bar__message is-active">Free UK shipping on orders over £50</div>
-      <div class="announcement-bar__message"><a href="#" onclick="showPage('quiz')">Take our 60-second quiz &rarr; find your stack</a></div>
-      <div class="announcement-bar__message">30-day money-back guarantee on all products</div>
+      <div class="announcement-bar__message is-active"><span class="announcement-bar__icon"><i data-lucide="truck"></i></span> Free UK shipping on orders over £50</div>
+      <div class="announcement-bar__message"><span class="announcement-bar__icon"><i data-lucide="sparkles"></i></span> <a href="#" onclick="showPage('quiz')">Take our 60-second quiz</a> <span class="announcement-bar__sep"></span> find your personalised stack</div>
+      <div class="announcement-bar__message"><span class="announcement-bar__icon"><i data-lucide="shield-check"></i></span> 30-day money-back guarantee on all products</div>
     </div>
     <button class="announcement-bar__close" data-announcement-close aria-label="Close announcement">
       <i data-lucide="x"></i>
