@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1001,
+    "handle": "lions-mane",
+    "title": "Lion's Mane Extract",
+    "price": 2499,
+    "category": "focus",
+    "categoryLabel": "Focus",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80",
+    "alt": "Lion's Mane Extract supplement",
+    "description": "Supports cognitive function and mental clarity.",
+    "bestSeller": true,
+    "expand": {
+      "about": "Extracted from organic Lion's Mane mushroom (Hericium erinaceus), standardised to 30% beta-glucans. Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory, and long-term brain health.",
+      "benefits": ["Enhances focus and mental clarity", "Supports memory and learning", "Promotes nerve regeneration", "May reduce mild anxiety"],
+      "facts": [["Serving Size", "2 capsules"], ["Lion's Mane Extract (30% beta-glucans)", "500mg"], ["Servings Per Container", "30"]],
+      "pairsWith": ["Alpha-GPC", "L-Theanine", "Omega-3"]
+    }
+  },
+  {
+    "id": 1002,
+    "handle": "alpha-gpc",
+    "title": "Alpha-GPC",
+    "price": 1999,
+    "category": "focus",
+    "categoryLabel": "Focus",
+    "image": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400&q=80",
+    "alt": "Alpha-GPC supplement",
+    "description": "Boosts acetylcholine for sharper focus.",
+    "bestSeller": false,
+    "expand": {
+      "about": "Alpha-GPC (L-Alpha Glycerylphosphorylcholine) is the most bioavailable form of choline. It crosses the blood-brain barrier efficiently, directly boosting acetylcholine levels — the neurotransmitter essential for learning, memory, and focus.",
+      "benefits": ["Rapidly boosts acetylcholine levels", "Sharpens focus and reaction time", "Supports memory consolidation", "May enhance power output during exercise"],
+      "facts": [["Serving Size", "1 capsule"], ["Alpha-GPC 50%", "300mg"], ["Servings Per Container", "60"]],
+      "pairsWith": ["Lion's Mane", "Bacopa Monnieri"]
+    }
+  },
+  {
+    "id": 1003,
+    "handle": "creatine",
+    "title": "Creatine Monohydrate",
+    "price": 1499,
+    "category": "gym",
+    "categoryLabel": "Gym",
+    "image": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&q=80",
+    "alt": "Creatine Monohydrate supplement",
+    "description": "The most researched performance supplement.",
+    "bestSeller": false,
+    "expand": {
+      "about": "Pure creatine monohydrate — the gold standard backed by over 500 peer-reviewed studies. Increases phosphocreatine stores in muscles, providing more ATP energy during high-intensity exercise.",
+      "benefits": ["Increases strength and power output", "Supports lean muscle growth", "Enhances high-intensity exercise performance", "May support cognitive function under stress"],
+      "facts": [["Serving Size", "1 scoop (5g)"], ["Creatine Monohydrate", "5,000mg"], ["Servings Per Container", "60"]],
+      "pairsWith": ["Ashwagandha", "Zinc & Mag"]
+    }
+  },
+  {
+    "id": 1004,
+    "handle": "ashwagandha",
+    "title": "Ashwagandha KSM-66",
+    "price": 2299,
+    "category": "gym",
+    "categoryLabel": "Gym",
+    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+    "alt": "Ashwagandha KSM-66 supplement",
+    "description": "Reduces cortisol and supports recovery.",
+    "bestSeller": true,
+    "expand": {
+      "about": "KSM-66 is the most clinically studied ashwagandha extract, produced through a unique extraction process using only the root. Clinically shown to reduce cortisol by up to 30% and improve stress resilience, testosterone, and endurance.",
+      "benefits": ["Reduces cortisol and stress levels", "Supports testosterone in men", "Improves endurance and recovery", "Promotes restful sleep"],
+      "facts": [["Serving Size", "1 capsule"], ["Ashwagandha Root Extract (KSM-66)", "600mg"], ["Withanolides (5%)", "30mg"], ["Servings Per Container", "60"]],
+      "pairsWith": ["Creatine", "Rhodiola", "Magnesium"]
+    }
+  },
+  {
+    "id": 1005,
+    "handle": "magnesium",
+    "title": "Magnesium Glycinate",
+    "price": 1699,
+    "category": "sleep",
+    "categoryLabel": "Sleep",
+    "image": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80",
+    "alt": "Magnesium Glycinate supplement",
+    "description": "Promotes relaxation and deeper sleep.",
+    "bestSeller": false,
+    "expand": {
+      "about": "Magnesium chelated with glycine for maximum bioavailability and gentle absorption. Most people are magnesium deficient — this form is the easiest on the stomach and most effective for relaxation and sleep quality.",
+      "benefits": ["Promotes deep, restful sleep", "Reduces muscle tension and cramps", "Supports nervous system relaxation", "Gentle on the stomach"],
+      "facts": [["Serving Size", "2 capsules"], ["Magnesium (as Glycinate)", "400mg"], ["Servings Per Container", "30"]],
+      "pairsWith": ["L-Theanine", "Ashwagandha"]
+    }
+  },
+  {
+    "id": 1006,
+    "handle": "l-theanine",
+    "title": "L-Theanine",
+    "price": 1899,
+    "category": "sleep",
+    "categoryLabel": "Sleep",
+    "image": "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&q=80",
+    "alt": "L-Theanine supplement",
+    "description": "Calms the mind without drowsiness.",
+    "bestSeller": false,
+    "expand": {
+      "about": "An amino acid naturally found in green tea. L-Theanine promotes alpha brain wave activity, creating a state of calm, relaxed focus without sedation. Works synergistically with caffeine to smooth out jitters.",
+      "benefits": ["Promotes calm without drowsiness", "Increases alpha brain waves", "Reduces stress and anxiety", "Improves sleep quality when taken at night"],
+      "facts": [["Serving Size", "1 capsule"], ["L-Theanine", "200mg"], ["Servings Per Container", "60"]],
+      "pairsWith": ["Lion's Mane", "Magnesium"]
+    }
+  },
+  {
+    "id": 1007,
+    "handle": "rhodiola",
+    "title": "Rhodiola Rosea",
+    "price": 2199,
+    "category": "energy",
+    "categoryLabel": "Energy",
+    "image": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80",
+    "alt": "Rhodiola Rosea supplement",
+    "description": "Fights fatigue and boosts mental stamina.",
+    "bestSeller": false,
+    "expand": {
+      "about": "An adaptogenic herb used for centuries in Scandinavian and Russian traditional medicine. Rhodiola helps the body adapt to physical and mental stress, fighting fatigue at the cellular level.",
+      "benefits": ["Fights mental and physical fatigue", "Improves endurance and stamina", "Enhances mood and motivation", "Supports stress resilience"],
+      "facts": [["Serving Size", "1 capsule"], ["Rhodiola Rosea Extract (3% rosavins, 1% salidroside)", "500mg"], ["Servings Per Container", "60"]],
+      "pairsWith": ["Ashwagandha", "B-Complex"]
+    }
+  },
+  {
+    "id": 1008,
+    "handle": "b-complex",
+    "title": "B-Complex",
+    "price": 1299,
+    "category": "energy",
+    "categoryLabel": "Energy",
+    "image": "https://images.unsplash.com/photo-1577401239170-897c5ba98a77?w=400&q=80",
+    "alt": "B-Complex supplement",
+    "description": "Essential vitamins for energy metabolism.",
+    "bestSeller": false,
+    "expand": {
+      "about": "A complete complex of all 8 essential B vitamins in their most bioavailable forms (methylated where applicable). B vitamins are co-factors in hundreds of metabolic reactions, especially energy production.",
+      "benefits": ["Converts food into cellular energy", "Supports nervous system function", "Reduces tiredness and fatigue", "Supports healthy red blood cell formation"],
+      "facts": [["Serving Size", "1 capsule"], ["Vitamin B1 (Thiamine)", "25mg"], ["Vitamin B6 (P-5-P)", "25mg"], ["Vitamin B12 (Methylcobalamin)", "1,000mcg"], ["Folate (5-MTHF)", "400mcg"]],
+      "pairsWith": ["Rhodiola", "Vitamin D3"]
+    }
+  },
+  {
+    "id": 1009,
+    "handle": "vitamin-d3-k2",
+    "title": "Vitamin D3 + K2",
+    "price": 1499,
+    "category": "wellness",
+    "categoryLabel": "Wellness",
+    "image": "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=400&q=80",
+    "alt": "Vitamin D3 + K2 supplement",
+    "description": "Supports immunity and bone health.",
+    "bestSeller": false,
+    "expand": {
+      "about": "Vitamin D3 (cholecalciferol) paired with Vitamin K2 (MK-7) for optimal calcium absorption and distribution. Most people in the UK are deficient in Vitamin D, especially during autumn and winter months.",
+      "benefits": ["Supports immune system function", "Strengthens bones and teeth", "K2 directs calcium to bones (not arteries)", "Supports mood and mental health"],
+      "facts": [["Serving Size", "1 softgel"], ["Vitamin D3", "4,000 IU (100mcg)"], ["Vitamin K2 (MK-7)", "100mcg"], ["Servings Per Container", "90"]],
+      "pairsWith": ["Omega-3", "Magnesium"]
+    }
+  },
+  {
+    "id": 1010,
+    "handle": "omega-3",
+    "title": "Omega-3 Fish Oil",
+    "price": 1999,
+    "category": "wellness",
+    "categoryLabel": "Wellness",
+    "image": "https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=400&q=80",
+    "alt": "Omega-3 Fish Oil supplement",
+    "description": "High-potency EPA & DHA for overall health.",
+    "bestSeller": false,
+    "expand": {
+      "about": "Wild-caught, molecularly distilled fish oil with high concentrations of EPA and DHA. Triglyceride form for 70% better absorption than ethyl ester alternatives. Third-party tested for purity and heavy metals.",
+      "benefits": ["Supports heart and cardiovascular health", "Reduces inflammation throughout the body", "Supports brain function and mood", "Promotes joint flexibility"],
+      "facts": [["Serving Size", "2 softgels"], ["EPA (Eicosapentaenoic Acid)", "600mg"], ["DHA (Docosahexaenoic Acid)", "400mg"], ["Servings Per Container", "30"]],
+      "pairsWith": ["Vitamin D3", "Lion's Mane"]
+    }
+  },
+  {
+    "id": 1011,
+    "handle": "bacopa",
+    "title": "Bacopa Monnieri",
+    "price": 1799,
+    "category": "focus energy",
+    "categoryLabel": "Focus / Energy",
+    "image": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&q=80",
+    "alt": "Bacopa Monnieri supplement",
+    "description": "Enhances memory and reduces anxiety.",
+    "bestSeller": false,
+    "expand": {
+      "about": "An Ayurvedic herb used for over 3,000 years to enhance cognitive function. Standardised to 50% bacosides, the active compounds that support memory, learning speed, and information retention.",
+      "benefits": ["Enhances memory and recall", "Improves learning speed", "Reduces anxiety naturally", "Antioxidant protection for the brain"],
+      "facts": [["Serving Size", "1 capsule"], ["Bacopa Monnieri Extract (50% bacosides)", "300mg"], ["Servings Per Container", "60"]],
+      "pairsWith": ["Alpha-GPC", "Lion's Mane"]
+    }
+  },
+  {
+    "id": 1012,
+    "handle": "zinc-magnesium",
+    "title": "Zinc & Magnesium",
+    "price": 1599,
+    "category": "gym wellness",
+    "categoryLabel": "Gym / Wellness",
+    "image": "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=400&q=80",
+    "alt": "Zinc and Magnesium supplement",
+    "description": "Supports testosterone and muscle recovery.",
+    "bestSeller": false,
+    "expand": {
+      "about": "A synergistic combination of Zinc Bisglycinate and Magnesium Glycinate — two minerals critical for hormone production, muscle recovery, and immune function. Chelated forms for superior absorption.",
+      "benefits": ["Supports healthy testosterone levels", "Aids muscle recovery post-workout", "Strengthens immune function", "Improves sleep quality"],
+      "facts": [["Serving Size", "2 capsules"], ["Zinc (as Bisglycinate)", "30mg"], ["Magnesium (as Glycinate)", "300mg"], ["Vitamin B6 (P-5-P)", "10mg"]],
+      "pairsWith": ["Creatine", "Ashwagandha"]
+    }
+  }
+]

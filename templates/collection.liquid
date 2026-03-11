@@ -22,11 +22,9 @@
     <p class="collection-count">Showing {{ collection.products.size }} products</p>
 
     {%- if collection.products.size > 0 -%}
-      <div class="collection-products__grid">
+      <div class="catalog-grid">
         {%- for product in collection.products -%}
-          <div class="collection-products__item">
-            {% render 'product-card', product: product %}
-          </div>
+          {% render 'product-card', product: product %}
         {%- endfor -%}
       </div>
     {%- else -%}
@@ -104,7 +102,7 @@
     margin-bottom: var(--space-xl);
   }
 
-  .collection-products__grid {
+  .catalog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
@@ -131,7 +129,7 @@
   }
 
   @media (max-width: 768px) {
-    .collection-products__grid {
+    .catalog-grid {
       grid-template-columns: 1fr;
       max-width: 400px;
       margin: 0 auto;
