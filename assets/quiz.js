@@ -1270,8 +1270,88 @@
     }, 2000);
 
     setTimeout(function() {
-      self.showResults();
+      self.showEmailGate();
     }, 3200);
+  };
+
+  /* ---------- Email Gate (before results) ---------- */
+  QuizEngine.prototype.showEmailGate = function() {
+    var self = this;
+
+    // Skip if already submitted this session
+    if (sessionStorage.getItem('nutrava_quiz_email')) {
+      this.showResults();
+      return;
+    }
+
+    // Blur the quiz container background
+    this.container.classList.add('quiz--blurred');
+
+    // Create overlay
+    var overlay = document.createElement('div');
+    overlay.className = 'quiz-email-overlay';
+    overlay.innerHTML =
+      '<div class="quiz-email-modal">' +
+        '<div class="quiz-email-modal__icon"><i data-lucide="lock"></i></div>' +
+        '<h2 class="quiz-email-modal__title">Your results are ready!</h2>' +
+        '<p class="quiz-email-modal__text">Enter your email to unlock your personalised supplement plan.</p>' +
+        '<form class="quiz-email-modal__form" data-email-form>' +
+          '<input type="email" class="quiz-email-modal__input" placeholder="your@email.com" required autocomplete="email" data-email-input />' +
+          '<button type="submit" class="btn btn--primary btn--lg quiz-email-modal__btn">See My Results</button>' +
+        '</form>' +
+        '<p class="quiz-email-modal__disclaimer">We\u2019ll send you a copy of your results. No spam, unsubscribe anytime.</p>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    // Focus the input
+    var input = overlay.querySelector('[data-email-input]');
+    if (input) setTimeout(function() { input.focus(); }, 100);
+
+    // Handle form submit
+    var form = overlay.querySelector('[data-email-form]');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = input ? input.value.trim() : '';
+        if (!email) return;
+
+        // Store email
+        sessionStorage.setItem('nutrava_quiz_email', email);
+
+        // Send to Shopify customer API (creates or tags customer)
+        self.submitQuizEmail(email);
+
+        // Analytics
+        if (typeof gtag === 'function') gtag('event', 'quiz_email_submit', { method: 'email_gate' });
+        if (typeof fbq === 'function') fbq('trackCustom', 'QuizEmailCapture');
+
+        // Remove overlay and show results
+        self.container.classList.remove('quiz--blurred');
+        overlay.classList.add('quiz-email-overlay--closing');
+        setTimeout(function() {
+          if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+          self.showResults();
+        }, 300);
+      });
+    }
+  };
+
+  /* ---------- Submit email to Shopify ---------- */
+  QuizEngine.prototype.submitQuizEmail = function(email) {
+    var topTwo = this.getTopTwo();
+    var topCategory = topTwo[0][0];
+
+    // Post to Shopify newsletter / customer creation endpoint
+    fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'form_type=customer&utf8=\u2713&customer[email]=' + encodeURIComponent(email) +
+            '&customer[tags]=quiz,' + encodeURIComponent(topCategory) +
+            '&customer[note]=' + encodeURIComponent('Quiz result: ' + topCategory + ' | Scores: ' + JSON.stringify(this.scores))
+    }).catch(function() { /* silent fail */ });
   };
 
   /* ---------- Question Renderer ---------- */
