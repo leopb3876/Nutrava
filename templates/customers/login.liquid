@@ -1,0 +1,185 @@
+<section class="account-hero section-padding">
+  <div class="container container--narrow">
+
+    <div class="auth-page">
+      <div class="auth-page__icon">
+        <i data-lucide="user" style="width:24px; height:24px;"></i>
+      </div>
+      <h1 class="auth-page__title">Welcome Back</h1>
+      <p class="auth-page__subtitle">Sign in to your Nutrava account</p>
+
+      {%- if form.errors -%}
+        <div class="auth-page__errors">
+          <i data-lucide="alert-circle" style="width:16px; height:16px;"></i>
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <!-- Login Form -->
+      <div id="login-form">
+        {% form 'customer_login' %}
+          <div class="auth-field">
+            <label for="customer-email">Email</label>
+            <input type="email" id="customer-email" name="customer[email]" autocomplete="email" autocapitalize="off" placeholder="you@example.com" required>
+          </div>
+          <div class="auth-field">
+            <label for="customer-password">Password</label>
+            <input type="password" id="customer-password" name="customer[password]" autocomplete="current-password" placeholder="Enter your password" required>
+          </div>
+          <div class="auth-page__forgot">
+            <a href="#" id="forgot-password-link">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn btn--primary auth-form__submit">Sign In</button>
+        {% endform %}
+
+        <div class="auth-form__switch">
+          Don't have an account? <a href="/account/register">Create account</a>
+        </div>
+      </div>
+
+      <!-- Recovery Form -->
+      <div id="recover-form" style="display: none;">
+        {% form 'recover_customer_password' %}
+          <p class="auth-page__recover-text">We'll send you a link to reset your password.</p>
+
+          {%- if form.posted_successfully? -%}
+            <div class="auth-page__success">
+              <i data-lucide="check-circle" style="width:16px; height:16px;"></i>
+              We've sent you an email with a link to reset your password.
+            </div>
+          {%- endif -%}
+
+          <div class="auth-field">
+            <label for="recover-email">Email</label>
+            <input type="email" id="recover-email" name="email" autocomplete="email" autocapitalize="off" placeholder="you@example.com" required>
+          </div>
+          <button type="submit" class="btn btn--primary auth-form__submit">Reset Password</button>
+        {% endform %}
+
+        <div class="auth-form__switch">
+          <a href="#" id="back-to-login-link">
+            <i data-lucide="arrow-left" style="width:14px; height:14px; vertical-align:middle;"></i>
+            Back to login
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .auth-page {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .auth-page__icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-mint-mist);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: var(--color-primary);
+  }
+
+  .auth-page__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .auth-page__subtitle {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+  }
+
+  .auth-page__errors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: #fef2f2;
+    color: #c0392b;
+    font-size: 14px;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .auth-page__success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: #e6f4ea;
+    color: #1e7e34;
+    font-size: 14px;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .auth-page__forgot {
+    text-align: right;
+    margin-bottom: var(--space-md);
+  }
+
+  .auth-page__forgot a {
+    font-size: 13px;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .auth-page__forgot a:hover {
+    text-decoration: underline;
+  }
+
+  .auth-page__recover-text {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .auth-page .auth-field {
+    text-align: left;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var loginForm = document.getElementById('login-form');
+    var recoverForm = document.getElementById('recover-form');
+    var forgotLink = document.getElementById('forgot-password-link');
+    var backLink = document.getElementById('back-to-login-link');
+
+    if (forgotLink) {
+      forgotLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        recoverForm.style.display = 'block';
+      });
+    }
+
+    if (backLink) {
+      backLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        recoverForm.style.display = 'none';
+        loginForm.style.display = 'block';
+      });
+    }
+
+    // Show recover form if hash is #recover
+    if (window.location.hash === '#recover') {
+      loginForm.style.display = 'none';
+      recoverForm.style.display = 'block';
+    }
+  });
+</script>

@@ -1,0 +1,384 @@
+<div class="article-page">
+  <!-- Article Header -->
+  <section class="article-header section-padding">
+    <div class="container container--narrow">
+      <a href="{{ blog.url }}" class="article-back">
+        <i data-lucide="arrow-left"></i>
+        Back to {{ blog.title }}
+      </a>
+
+      <h1 class="article-header__title">{{ article.title }}</h1>
+
+      <div class="article-header__meta">
+        <span class="article-header__author">
+          <i data-lucide="user"></i>
+          {{ article.author }}
+        </span>
+        <span class="article-header__date">
+          <i data-lucide="calendar"></i>
+          {{ article.published_at | date: '%B %d, %Y' }}
+        </span>
+      </div>
+
+      {% if article.tags.size > 0 %}
+        <div class="article-header__tags">
+          {% for tag in article.tags %}
+            <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="article-tag">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Article Image -->
+  {% if article.image %}
+    <div class="article-image">
+      <div class="container container--narrow">
+        <img src="{{ article.image | image_url: width: 900 }}" alt="{{ article.image.alt | default: article.title | escape }}" class="article-image__img">
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Article Content -->
+  <section class="article-content section-padding">
+    <div class="container container--narrow">
+      <div class="article-content__body rte">
+        {{ article.content }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comments Section -->
+  {% if blog.comments_enabled? %}
+    <section class="article-comments section-padding bg-mint">
+      <div class="container container--narrow">
+        <h2 class="article-section__heading">
+          <i data-lucide="message-square" style="width:20px;height:20px;color:var(--color-primary);"></i>
+          Comments ({{ article.comments_count }})
+        </h2>
+
+        {% if article.comments.size > 0 %}
+          <div class="article-comments__list">
+            {% for comment in article.comments %}
+              <div class="article-comment">
+                <div class="article-comment__header">
+                  <strong class="article-comment__author">{{ comment.author }}</strong>
+                  <span class="article-comment__date">{{ comment.created_at | date: '%B %d, %Y' }}</span>
+                </div>
+                <div class="article-comment__body">{{ comment.content }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Comment Form -->
+        {% form 'new_comment', article %}
+          <div class="article-comment-form">
+            <h3 class="article-comment-form__title">Leave a comment</h3>
+
+            {{ form.errors | default_errors }}
+
+            <div class="article-comment-form__fields">
+              <div class="article-comment-form__field">
+                <label for="comment-author">Name</label>
+                <input type="text" id="comment-author" name="comment[author]" value="{{ form.author }}" required>
+              </div>
+              <div class="article-comment-form__field">
+                <label for="comment-email">Email</label>
+                <input type="email" id="comment-email" name="comment[email]" value="{{ form.email }}" required>
+              </div>
+            </div>
+            <div class="article-comment-form__field">
+              <label for="comment-body">Message</label>
+              <textarea id="comment-body" name="comment[body]" rows="5" required>{{ form.body }}</textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Post Comment</button>
+          </div>
+        {% endform %}
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- Related Articles -->
+  {% assign related_articles = blog.articles %}
+  {% assign has_related = false %}
+  {% for related in related_articles limit: 4 %}
+    {% unless related.id == article.id %}
+      {% unless has_related %}
+        {% assign has_related = true %}
+      {% endunless %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if has_related %}
+    <section class="article-related section-padding">
+      <div class="container">
+        <h2 class="article-section__heading text-center">More from {{ blog.title }}</h2>
+        <div class="article-related__grid">
+          {% assign related_count = 0 %}
+          {% for related in blog.articles limit: 4 %}
+            {% unless related.id == article.id %}
+              {% if related_count < 3 %}
+                <a href="{{ related.url }}" class="blog-card">
+                  {% if related.image %}
+                    <img src="{{ related.image | image_url: width: 400 }}" alt="{{ related.image.alt | default: related.title | escape }}" class="blog-card__image" width="400" loading="lazy">
+                  {% else %}
+                    <div class="blog-card__placeholder">
+                      <i data-lucide="file-text"></i>
+                    </div>
+                  {% endif %}
+                  <div class="blog-card__body">
+                    <span class="blog-card__date">{{ related.published_at | date: '%B %d, %Y' }}</span>
+                    <h3 class="blog-card__title">{{ related.title }}</h3>
+                    <p class="blog-card__excerpt">{{ related.excerpt_or_content | strip_html | truncate: 120 }}</p>
+                  </div>
+                </a>
+                {% assign related_count = related_count | plus: 1 %}
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+</div>
+
+<style>
+  /* Back Link */
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: 24px;
+  }
+  .article-back:hover { color: var(--color-primary); }
+  .article-back i { width: 16px; height: 16px; }
+
+  /* Header */
+  .article-header__title {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    color: var(--color-text);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .article-header__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .article-header__author,
+  .article-header__date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+  .article-header__author i,
+  .article-header__date i { width: 16px; height: 16px; }
+  .article-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .article-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    border: 1.5px solid var(--color-primary);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .article-tag:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  /* Article Image */
+  .article-image { padding-bottom: 0; }
+  .article-image__img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+  }
+
+  /* Article Content */
+  .article-content__body {
+    color: var(--color-text-body);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+  .article-content__body h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin: 36px 0 16px;
+  }
+  .article-content__body h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 28px 0 12px;
+  }
+  .article-content__body p { margin-bottom: 18px; }
+  .article-content__body ul,
+  .article-content__body ol { margin: 0 0 18px 24px; }
+  .article-content__body li { margin-bottom: 8px; }
+  .article-content__body a { color: var(--color-primary); text-decoration: underline; }
+  .article-content__body a:hover { text-decoration: none; }
+  .article-content__body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 24px 0;
+  }
+  .article-content__body blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding: 16px 24px;
+    margin: 24px 0;
+    background: var(--color-card-bg, #f5f0eb);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+  }
+
+  /* Section Heading (matches product page) */
+  .article-section__heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .article-section__heading.text-center { justify-content: center; }
+
+  /* Comments */
+  .article-comments__list { margin-bottom: 32px; }
+  .article-comment {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .article-comment:first-child { border-top: 1px solid var(--color-border); }
+  .article-comment__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .article-comment__author { color: var(--color-text); font-size: 14px; }
+  .article-comment__date { font-size: 13px; color: var(--color-text-muted); }
+  .article-comment__body { font-size: 14px; color: var(--color-text-body); line-height: 1.6; }
+
+  /* Comment Form */
+  .article-comment-form { margin-top: 32px; }
+  .article-comment-form__title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--color-text);
+    margin-bottom: 16px;
+  }
+  .article-comment-form__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .article-comment-form__field { margin-bottom: 16px; }
+  .article-comment-form__field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 6px;
+  }
+  .article-comment-form__field input,
+  .article-comment-form__field textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text);
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    background: #fff;
+    transition: border-color 0.2s;
+  }
+  .article-comment-form__field input:focus,
+  .article-comment-form__field textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  /* Related Articles */
+  .article-related__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  /* Reuse blog-card styles from blog.liquid — inline here for standalone use */
+  .blog-card {
+    background: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .blog-card__image { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .blog-card__placeholder {
+    width: 100%;
+    height: 200px;
+    background: var(--color-card-bg, #f5f0eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .blog-card__placeholder i { width: 40px; height: 40px; color: var(--color-primary); }
+  .blog-card__body { padding: 20px; flex: 1; }
+  .blog-card__date {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .blog-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .blog-card__excerpt {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .article-header__title { font-size: 1.75rem; }
+    .article-comment-form__fields { grid-template-columns: 1fr; }
+  }
+</style>

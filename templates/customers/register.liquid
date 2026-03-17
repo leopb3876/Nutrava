@@ -1,0 +1,102 @@
+<section class="account-hero section-padding">
+  <div class="container container--narrow">
+
+    <div class="auth-page">
+      <div class="auth-page__icon">
+        <i data-lucide="user-plus" style="width:24px; height:24px;"></i>
+      </div>
+      <h1 class="auth-page__title">Create Account</h1>
+      <p class="auth-page__subtitle">Join Nutrava and start your wellness journey</p>
+
+      {%- if form.errors -%}
+        <div class="auth-page__errors">
+          <i data-lucide="alert-circle" style="width:16px; height:16px;"></i>
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      {% form 'create_customer' %}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+          <div class="auth-field">
+            <label for="customer-first-name">First Name</label>
+            <input type="text" id="customer-first-name" name="customer[first_name]" autocomplete="given-name" placeholder="First name" required>
+          </div>
+          <div class="auth-field">
+            <label for="customer-last-name">Last Name</label>
+            <input type="text" id="customer-last-name" name="customer[last_name]" autocomplete="family-name" placeholder="Last name" required>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label for="customer-email">Email</label>
+          <input type="email" id="customer-email" name="customer[email]" autocomplete="email" autocapitalize="off" placeholder="you@example.com" required>
+        </div>
+        <div class="auth-field">
+          <label for="customer-password">Password</label>
+          <input type="password" id="customer-password" name="customer[password]" autocomplete="new-password" placeholder="Create a password" required>
+        </div>
+        <button type="submit" class="btn btn--primary auth-form__submit">Create Account</button>
+      {% endform %}
+
+      <div class="auth-form__switch">
+        Already have an account? <a href="/account/login">Sign in</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .auth-page {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .auth-page__icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-mint-mist);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: var(--color-primary);
+  }
+
+  .auth-page__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .auth-page__subtitle {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+  }
+
+  .auth-page__errors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: #fef2f2;
+    color: #c0392b;
+    font-size: 14px;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .auth-page .auth-field {
+    text-align: left;
+  }
+
+  @media (max-width: 480px) {
+    .auth-page div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

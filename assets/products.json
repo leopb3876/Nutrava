@@ -1,218 +1,1707 @@
-[
-  {
-    "id": 1001,
-    "handle": "lions-mane",
-    "title": "Lion's Mane Extract",
-    "price": 2499,
-    "category": "focus",
-    "categoryLabel": "Focus",
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80",
-    "alt": "Lion's Mane Extract supplement",
-    "description": "Supports cognitive function and mental clarity.",
-    "bestSeller": true,
-    "expand": {
-      "about": "Extracted from organic Lion's Mane mushroom (Hericium erinaceus), standardised to 30% beta-glucans. Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory, and long-term brain health.",
-      "benefits": ["Enhances focus and mental clarity", "Supports memory and learning", "Promotes nerve regeneration", "May reduce mild anxiety"],
-      "facts": [["Serving Size", "2 capsules"], ["Lion's Mane Extract (30% beta-glucans)", "500mg"], ["Servings Per Container", "30"]],
-      "pairsWith": ["Alpha-GPC", "L-Theanine", "Omega-3"]
+{
+  "categories": [
+    {
+      "key": "focus",
+      "label": "Focus & Study",
+      "shortLabel": "Focus"
+    },
+    {
+      "key": "gym",
+      "label": "Gym & Performance",
+      "shortLabel": "Gym"
+    },
+    {
+      "key": "sleep",
+      "label": "Sleep & Recovery",
+      "shortLabel": "Sleep"
+    },
+    {
+      "key": "energy",
+      "label": "Energy & Stress",
+      "shortLabel": "Energy"
+    },
+    {
+      "key": "wellness",
+      "label": "Daily Wellness",
+      "shortLabel": "Wellness"
     }
-  },
-  {
-    "id": 1002,
-    "handle": "alpha-gpc",
-    "title": "Alpha-GPC",
-    "price": 1999,
-    "category": "focus",
-    "categoryLabel": "Focus",
-    "image": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400&q=80",
-    "alt": "Alpha-GPC supplement",
-    "description": "Boosts acetylcholine for sharper focus.",
-    "bestSeller": false,
-    "expand": {
-      "about": "Alpha-GPC (L-Alpha Glycerylphosphorylcholine) is the most bioavailable form of choline. It crosses the blood-brain barrier efficiently, directly boosting acetylcholine levels — the neurotransmitter essential for learning, memory, and focus.",
-      "benefits": ["Rapidly boosts acetylcholine levels", "Sharpens focus and reaction time", "Supports memory consolidation", "May enhance power output during exercise"],
-      "facts": [["Serving Size", "1 capsule"], ["Alpha-GPC 50%", "300mg"], ["Servings Per Container", "60"]],
-      "pairsWith": ["Lion's Mane", "Bacopa Monnieri"]
+  ],
+  "products": [
+    {
+      "id": 2001,
+      "handle": "lions-mane-mushroom",
+      "title": "Lion's Mane Mushroom",
+      "price": 3390,
+      "category": "focus",
+      "categoryLabel": "Focus",
+      "image": "https://images.unsplash.com/photo-1625286535466-68a6d71e4568?w=400&q=80",
+      "alt": "Lion's Mane Mushroom — white fluffy fungus",
+      "description": "Supports cognitive function, memory, and nerve growth factor production.",
+      "bestSeller": true,
+      "expand": {
+        "about": "Organic Lion's Mane mushroom extract standardised for active compounds. Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory, and long-term brain health.",
+        "benefits": [
+          "Enhances focus and mental clarity",
+          "Supports memory and learning",
+          "Promotes nerve regeneration",
+          "May reduce mild anxiety"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Lion's Mane Extract",
+            "500mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Brain & Focus Formula",
+          "Mushroom Focus Strips"
+        ]
+      }
+    },
+    {
+      "id": 2002,
+      "handle": "brain-focus-formula",
+      "title": "Brain & Focus Formula",
+      "price": 3990,
+      "category": "focus",
+      "categoryLabel": "Focus",
+      "image": "https://images.unsplash.com/photo-1559087316-6b27308e53f6?w=400&q=80",
+      "alt": "Brain and focus nootropic supplement capsules",
+      "description": "Comprehensive nootropic blend for sharper cognitive performance.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A multi-ingredient cognitive formula combining proven nootropics to support focus, mental clarity, and processing speed. Designed for students, professionals, and anyone who needs sustained brainpower.",
+        "benefits": [
+          "Sharpens focus and concentration",
+          "Supports mental processing speed",
+          "Enhances memory recall",
+          "Reduces mental fatigue"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Proprietary Brain Blend",
+            "800mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Lion's Mane Mushroom",
+          "Focus Powder"
+        ]
+      }
+    },
+    {
+      "id": 2003,
+      "handle": "mushroom-focus-strips",
+      "title": "Mushroom Focus Strips",
+      "price": 3900,
+      "category": "focus",
+      "categoryLabel": "Focus",
+      "image": "https://images.unsplash.com/photo-1634194405074-e1f9f172543a?w=400&q=80",
+      "alt": "Functional mushroom supplement",
+      "description": "Fast-dissolving strips with mushroom extracts for on-the-go focus.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Convenient oral strips infused with functional mushroom extracts. Dissolves on the tongue for fast absorption — perfect for pre-study sessions or before important meetings.",
+        "benefits": [
+          "Quick-dissolving convenience",
+          "Mushroom-powered cognitive support",
+          "No water needed",
+          "Great chocolate flavour"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 strip"
+          ],
+          [
+            "Mushroom Blend",
+            "250mg"
+          ],
+          [
+            "Strips Per Pack",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Lion's Mane Mushroom",
+          "Brain & Focus Formula"
+        ]
+      }
+    },
+    {
+      "id": 2004,
+      "handle": "cognitive-relax-strips",
+      "title": "Cognitive Relax Strips",
+      "price": 3290,
+      "category": "focus",
+      "categoryLabel": "Focus",
+      "image": "https://images.unsplash.com/photo-1724494050986-0aaba56b0975?w=400&q=80",
+      "alt": "Calm relaxation and focus concept",
+      "description": "Calm focus strips that sharpen the mind without overstimulation.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A unique combination of calming and cognitive-enhancing ingredients in a fast-dissolving strip. Promotes a state of relaxed alertness — perfect for focus without the jitters.",
+        "benefits": [
+          "Promotes calm, clear focus",
+          "Reduces mental tension",
+          "No caffeine jitters",
+          "Fast-absorbing strip format"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 strip"
+          ],
+          [
+            "Cognitive Blend",
+            "200mg"
+          ],
+          [
+            "Strips Per Pack",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Brain & Focus Formula",
+          "Lion's Mane Mushroom"
+        ]
+      }
+    },
+    {
+      "id": 2005,
+      "handle": "focus-powder",
+      "title": "Focus Powder",
+      "price": 3990,
+      "category": "focus",
+      "categoryLabel": "Focus",
+      "image": "https://images.unsplash.com/photo-1708573106044-2bbefb3d9fc3?w=400&q=80",
+      "alt": "Focus powder supplement scoop",
+      "description": "Sour grape flavoured powder for sustained mental performance.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A flavoured nootropic powder designed for pre-study or pre-work sessions. Mix with water for a delicious sour grape drink that primes your brain for deep work.",
+        "benefits": [
+          "Sustained mental focus",
+          "Great tasting sour grape flavour",
+          "Easy to mix with water",
+          "No crash formula"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (8g)"
+          ],
+          [
+            "Focus Blend",
+            "3,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Lion's Mane Mushroom",
+          "Brain & Focus Formula"
+        ]
+      }
+    },
+    {
+      "id": 2006,
+      "handle": "creatine-monohydrate",
+      "title": "Creatine Monohydrate",
+      "price": 4200,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&q=80",
+      "alt": "Creatine powder scoop for gym performance",
+      "description": "The most researched supplement for strength and power output.",
+      "bestSeller": true,
+      "expand": {
+        "about": "Pure creatine monohydrate — the gold standard backed by over 500 peer-reviewed studies. Increases phosphocreatine stores in muscles, providing more ATP energy during high-intensity exercise.",
+        "benefits": [
+          "Increases strength and power output",
+          "Supports lean muscle growth",
+          "Enhances high-intensity performance",
+          "May support cognitive function"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (5g)"
+          ],
+          [
+            "Creatine Monohydrate",
+            "5,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Ashwagandha",
+          "Creatine Hydration Powder"
+        ]
+      }
+    },
+    {
+      "id": 2007,
+      "handle": "ashwagandha",
+      "title": "Ashwagandha",
+      "price": 3499,
+      "category": "gym sleep",
+      "categoryLabel": "Gym / Sleep",
+      "image": "https://images.unsplash.com/photo-1569936906148-06de87cb0681?w=400&q=80",
+      "alt": "Ashwagandha root adaptogenic herb",
+      "description": "Reduces cortisol, supports recovery, and improves sleep quality.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A powerful adaptogenic herb clinically shown to reduce cortisol levels by up to 30%. Supports stress resilience, muscle recovery, and restful sleep — making it a must-have for active lifestyles.",
+        "benefits": [
+          "Reduces cortisol and stress",
+          "Supports muscle recovery",
+          "Improves sleep quality",
+          "Boosts endurance"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 capsule"
+          ],
+          [
+            "Ashwagandha Root Extract",
+            "600mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "Magnesium Glycinate"
+        ]
+      }
+    },
+    {
+      "id": 2008,
+      "handle": "l-citrulline-l-arginine",
+      "title": "L-Citrulline & L-Arginine Stack",
+      "price": 3999,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1734607402896-73dc3ed1f2c9?w=400&q=80",
+      "alt": "Amino acid supplement capsules",
+      "description": "Boosts blood flow for better pumps and workout performance.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A synergistic stack of L-Citrulline and L-Arginine — two amino acids that boost nitric oxide production. Improves blood flow, nutrient delivery to muscles, and workout endurance.",
+        "benefits": [
+          "Enhances muscle pumps",
+          "Improves blood flow and circulation",
+          "Supports endurance",
+          "Faster nutrient delivery to muscles"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "L-Citrulline",
+            "1,000mg"
+          ],
+          [
+            "L-Arginine",
+            "500mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "Nitric Shock Pre-Workout"
+        ]
+      }
+    },
+    {
+      "id": 2009,
+      "handle": "creatine-hydration-powder",
+      "title": "Creatine Hydration Powder",
+      "price": 4200,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1741520504652-27c2a6c0015e?w=400&q=80",
+      "alt": "Electrolyte hydration drink for fitness",
+      "description": "Creatine combined with electrolytes for performance and hydration.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Combines creatine monohydrate with essential electrolytes for dual-action performance support. Stay hydrated while fuelling your muscles during intense training sessions.",
+        "benefits": [
+          "Creatine + electrolyte combo",
+          "Supports hydration during training",
+          "Enhances muscle performance",
+          "Convenient powder format"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (12g)"
+          ],
+          [
+            "Creatine Monohydrate",
+            "5,000mg"
+          ],
+          [
+            "Electrolyte Blend",
+            "500mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "L-Citrulline & L-Arginine Stack",
+          "Ashwagandha"
+        ]
+      }
+    },
+    {
+      "id": 2010,
+      "handle": "nitric-shock-pre-workout",
+      "title": "Nitric Shock Pre-Workout",
+      "price": 3890,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1704650311162-153bbf7f17b0?w=400&q=80",
+      "alt": "Pre-workout powder scoop",
+      "description": "Full-spectrum pre-workout for explosive energy and pump.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A comprehensive pre-workout formula with nitric oxide boosters, energy compounds, and focus enhancers. Fruit punch flavour designed to fuel your most intense training sessions.",
+        "benefits": [
+          "Explosive energy and focus",
+          "Enhanced muscle pumps",
+          "Improved endurance",
+          "Great fruit punch taste"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (15g)"
+          ],
+          [
+            "Pre-Workout Blend",
+            "8,000mg"
+          ],
+          [
+            "Caffeine",
+            "200mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "L-Citrulline & L-Arginine Stack"
+        ]
+      }
+    },
+    {
+      "id": 2011,
+      "handle": "colostrum-powder",
+      "title": "Colostrum Powder",
+      "price": 3995,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1631824681694-60908ffbbff6?w=400&q=80",
+      "alt": "Colostrum powder supplement",
+      "description": "Supports recovery, gut health, and immune function for athletes.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Bovine colostrum is nature's first superfood — rich in immunoglobulins, growth factors, and bioactive compounds. Supports gut health, immune function, and athletic recovery.",
+        "benefits": [
+          "Accelerates post-workout recovery",
+          "Supports gut lining integrity",
+          "Boosts immune function",
+          "Rich in growth factors"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (10g)"
+          ],
+          [
+            "Bovine Colostrum",
+            "10,000mg"
+          ],
+          [
+            "IgG Content",
+            "30%"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "Whey Protein Isolate"
+        ]
+      }
+    },
+    {
+      "id": 2012,
+      "handle": "whey-protein-isolate",
+      "title": "Whey Protein Isolate",
+      "price": 4990,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1675897275724-202ce4be4f23?w=400&q=80",
+      "alt": "Whey protein chocolate powder",
+      "description": "Premium chocolate whey isolate for lean muscle growth.",
+      "bestSeller": false,
+      "expand": {
+        "about": "100% whey protein isolate with minimal fat and lactose. 25g of protein per serving with a complete amino acid profile to support muscle protein synthesis and recovery.",
+        "benefits": [
+          "25g protein per serving",
+          "Low fat and lactose",
+          "Supports muscle growth",
+          "Rich chocolate flavour"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (32g)"
+          ],
+          [
+            "Protein",
+            "25g"
+          ],
+          [
+            "Fat",
+            "1g"
+          ],
+          [
+            "Carbs",
+            "2g"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "Colostrum Powder"
+        ]
+      }
+    },
+    {
+      "id": 2013,
+      "handle": "magnesium-glycinate",
+      "title": "Magnesium Glycinate",
+      "price": 2690,
+      "category": "sleep",
+      "categoryLabel": "Sleep",
+      "image": "https://images.unsplash.com/photo-1729708273852-b63222c8b35d?w=400&q=80",
+      "alt": "Magnesium mineral supplement",
+      "description": "Promotes deep relaxation and restful sleep.",
+      "bestSeller": true,
+      "expand": {
+        "about": "Magnesium chelated with glycine for maximum bioavailability and gentle absorption. Most people are deficient — this form is the easiest on the stomach and most effective for relaxation and sleep quality.",
+        "benefits": [
+          "Promotes deep, restful sleep",
+          "Reduces muscle tension and cramps",
+          "Supports nervous system relaxation",
+          "Gentle on the stomach"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Magnesium (as Glycinate)",
+            "400mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Sleep Formula",
+          "Ashwagandha"
+        ]
+      }
+    },
+    {
+      "id": 2014,
+      "handle": "sleep-formula",
+      "title": "Sleep Formula",
+      "price": 2990,
+      "category": "sleep",
+      "categoryLabel": "Sleep",
+      "image": "https://images.unsplash.com/photo-1650195396825-cbb20b29082f?w=400&q=80",
+      "alt": "Night sky moon — sleep and calm",
+      "description": "A dedicated sleep blend for falling asleep faster and staying asleep.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A comprehensive sleep support formula combining clinically studied ingredients that promote relaxation, reduce time to fall asleep, and improve overall sleep quality without next-day grogginess.",
+        "benefits": [
+          "Faster sleep onset",
+          "Deeper sleep cycles",
+          "Wake feeling refreshed",
+          "No next-day drowsiness"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Sleep Blend",
+            "600mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Magnesium Glycinate",
+          "Ashwagandha"
+        ]
+      }
+    },
+    {
+      "id": 2015,
+      "handle": "ashwagandha-plus",
+      "title": "Ashwagandha Plus",
+      "price": 2950,
+      "category": "sleep",
+      "categoryLabel": "Sleep",
+      "image": "https://images.unsplash.com/photo-1618038754693-ded6426550dd?w=400&q=80",
+      "alt": "Ashwagandha plant leaves",
+      "description": "Enhanced ashwagandha formula for stress relief and better sleep.",
+      "bestSeller": false,
+      "expand": {
+        "about": "An enhanced ashwagandha formula with additional calming compounds. Targets the stress-sleep connection by lowering cortisol levels, promoting relaxation, and improving sleep onset.",
+        "benefits": [
+          "Lowers cortisol for better sleep",
+          "Reduces stress and anxiety",
+          "Promotes relaxation",
+          "Enhanced absorption formula"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 capsule"
+          ],
+          [
+            "Ashwagandha Extract",
+            "600mg"
+          ],
+          [
+            "Calming Blend",
+            "200mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Magnesium Glycinate",
+          "Sleep Formula"
+        ]
+      }
+    },
+    {
+      "id": 2016,
+      "handle": "energy-strips",
+      "title": "Energy Strips",
+      "price": 3650,
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "image": "https://images.unsplash.com/photo-1614858819016-2d5e6006f29a?w=400&q=80",
+      "alt": "Energy supplement strips",
+      "description": "Fast-dissolving energy strips for on-the-go mental and physical energy.",
+      "bestSeller": true,
+      "expand": {
+        "about": "Convenient oral strips that dissolve on the tongue for rapid energy delivery. Combines natural caffeine with B vitamins and adaptogens for clean, sustained energy without the crash.",
+        "benefits": [
+          "Instant energy boost",
+          "No water needed",
+          "Clean energy, no crash",
+          "Pocket-sized convenience"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 strip"
+          ],
+          [
+            "Energy Blend",
+            "150mg"
+          ],
+          [
+            "Natural Caffeine",
+            "75mg"
+          ],
+          [
+            "Strips Per Pack",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Energy Powder",
+          "Mushroom Complex 10X"
+        ]
+      }
+    },
+    {
+      "id": 2017,
+      "handle": "energy-powder",
+      "title": "Energy Powder",
+      "price": 3499,
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "image": "https://images.unsplash.com/photo-1768161680813-615df885ff82?w=400&q=80",
+      "alt": "Energy powder supplement scoop",
+      "description": "Guava berry pre-workout energy powder for sustained performance.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A clean energy powder designed for pre-workout or anytime sustained energy. Guava berry flavour with natural caffeine, B vitamins, and amino acids for a smooth energy boost.",
+        "benefits": [
+          "Sustained energy without crash",
+          "Natural caffeine source",
+          "Great guava berry taste",
+          "Supports endurance"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (10g)"
+          ],
+          [
+            "Energy Blend",
+            "3,000mg"
+          ],
+          [
+            "Natural Caffeine",
+            "150mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Energy Strips",
+          "Beetroot"
+        ]
+      }
+    },
+    {
+      "id": 2018,
+      "handle": "beetroot",
+      "title": "Beetroot",
+      "price": 2090,
+      "category": "energy gym",
+      "categoryLabel": "Energy / Gym",
+      "image": "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?w=400&q=80",
+      "alt": "Fresh beetroot sliced",
+      "description": "Natural nitric oxide booster for stamina and blood flow.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Concentrated beetroot extract rich in dietary nitrates, which convert to nitric oxide in the body. Improves blood flow, oxygen delivery, and exercise endurance naturally.",
+        "benefits": [
+          "Boosts natural nitric oxide",
+          "Improves stamina and endurance",
+          "Enhances blood flow",
+          "Supports cardiovascular health"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Beetroot Extract",
+            "1,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Energy Powder",
+          "Creatine Monohydrate"
+        ]
+      }
+    },
+    {
+      "id": 2019,
+      "handle": "beetroot-powder",
+      "title": "Beetroot Powder",
+      "price": 3590,
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "image": "https://images.unsplash.com/photo-1503623758111-863eb2abd7a9?w=400&q=80",
+      "alt": "Fresh beetroots — natural nitric oxide",
+      "description": "Pure beetroot powder for endurance and natural energy.",
+      "bestSeller": false,
+      "expand": {
+        "about": "100% organic beetroot powder — a concentrated source of dietary nitrates. Mix into smoothies, water, or juice for a natural pre-workout that boosts endurance and oxygen efficiency.",
+        "benefits": [
+          "Pure organic beetroot",
+          "Mix into any drink",
+          "Natural pre-workout",
+          "Rich in nitrates and antioxidants"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (5g)"
+          ],
+          [
+            "Organic Beetroot Powder",
+            "5,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Energy Powder",
+          "Mushroom Complex 10X"
+        ]
+      }
+    },
+    {
+      "id": 2020,
+      "handle": "mushroom-complex-10x",
+      "title": "Mushroom Complex 10X",
+      "price": 3590,
+      "category": "energy wellness",
+      "categoryLabel": "Energy / Wellness",
+      "image": "https://images.unsplash.com/photo-1552078115-61dc22459bff?w=400&q=80",
+      "alt": "Variety of functional mushrooms",
+      "description": "10 functional mushrooms for energy, immunity, and adaptogenic support.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A comprehensive blend of 10 functional mushrooms including Lion's Mane, Reishi, Cordyceps, Chaga, and more. Provides broad-spectrum adaptogenic support for energy, immunity, and overall vitality.",
+        "benefits": [
+          "10 mushroom blend",
+          "Adaptogenic energy support",
+          "Immune system boost",
+          "Cognitive and mood support"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "10-Mushroom Blend",
+            "1,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Energy Strips",
+          "Sea Moss"
+        ]
+      }
+    },
+    {
+      "id": 2021,
+      "handle": "complete-multivitamin",
+      "title": "Complete Multivitamin",
+      "price": 3290,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1730388843790-f753ecf9ba94?w=400&q=80",
+      "alt": "Multivitamin supplement capsules",
+      "description": "Full-spectrum daily multivitamin covering all essential nutrients.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A comprehensive daily multivitamin with all essential vitamins and minerals in bioavailable forms. Fills nutritional gaps from modern diets and supports overall health and vitality.",
+        "benefits": [
+          "Covers all essential vitamins & minerals",
+          "Fills nutritional gaps",
+          "Supports energy and immunity",
+          "Bioavailable forms"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Vitamin A",
+            "900mcg"
+          ],
+          [
+            "Vitamin C",
+            "90mg"
+          ],
+          [
+            "Vitamin D3",
+            "2,000 IU"
+          ],
+          [
+            "Zinc",
+            "15mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Vitamin D3",
+          "Gut Health"
+        ]
+      }
+    },
+    {
+      "id": 2022,
+      "handle": "vitamin-d3",
+      "title": "Vitamin D3 2,000 IU",
+      "price": 1990,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1562957429-ff708ca20e95?w=400&q=80",
+      "alt": "Sunshine and vitamin D concept",
+      "description": "Essential sunshine vitamin for immunity, bones, and mood.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Vitamin D3 (cholecalciferol) — the most bioavailable form of vitamin D. Most people are deficient, especially during autumn and winter. Supports immune function, bone health, and mood regulation.",
+        "benefits": [
+          "Supports immune system",
+          "Strengthens bones and teeth",
+          "Supports mood and mental health",
+          "Essential for indoor lifestyles"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 softgel"
+          ],
+          [
+            "Vitamin D3",
+            "2,000 IU (50mcg)"
+          ],
+          [
+            "Servings Per Container",
+            "90"
+          ]
+        ],
+        "pairsWith": [
+          "Complete Multivitamin",
+          "Magnesium Glycinate"
+        ]
+      }
+    },
+    {
+      "id": 2023,
+      "handle": "gut-health",
+      "title": "Gut Health",
+      "price": 2999,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1649073586751-695a1f9f76de?w=400&q=80",
+      "alt": "Gut health and digestive wellness",
+      "description": "Comprehensive gut support for digestion and microbiome balance.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A multi-action gut health formula that supports digestive function, microbiome diversity, and gut lining integrity. A healthy gut is the foundation of overall wellness, immunity, and even mood.",
+        "benefits": [
+          "Supports healthy digestion",
+          "Promotes microbiome balance",
+          "Strengthens gut lining",
+          "Reduces bloating"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Gut Health Blend",
+            "800mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Probiotic 40 Billion",
+          "Sea Moss"
+        ]
+      }
+    },
+    {
+      "id": 2024,
+      "handle": "probiotic-40-billion",
+      "title": "Probiotic 40 Billion",
+      "price": 3090,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1567011345445-fd175f248019?w=400&q=80",
+      "alt": "Probiotic supplement capsules",
+      "description": "High-strength probiotic with prebiotics for gut and immune health.",
+      "bestSeller": false,
+      "expand": {
+        "about": "40 billion CFU multi-strain probiotic with added prebiotics for maximum effectiveness. Supports digestive health, immune function, and nutrient absorption with clinically studied strains.",
+        "benefits": [
+          "40 billion CFU per serving",
+          "Multi-strain formula",
+          "Includes prebiotic fibre",
+          "Supports immune function"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 capsule"
+          ],
+          [
+            "Probiotic Blend",
+            "40 Billion CFU"
+          ],
+          [
+            "Prebiotic Fibre",
+            "100mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Gut Health",
+          "Complete Multivitamin"
+        ]
+      }
+    },
+    {
+      "id": 2025,
+      "handle": "sea-moss",
+      "title": "Sea Moss",
+      "price": 2590,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1583915221213-4106c49411d3?w=400&q=80",
+      "alt": "Sea moss golden seaweed",
+      "description": "Nutrient-dense superfood with 92 essential minerals.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Irish sea moss (Chondrus crispus) contains 92 of the 102 minerals the body needs. A trending superfood that supports thyroid function, digestion, and immune health with a dense mineral profile.",
+        "benefits": [
+          "92 essential minerals",
+          "Supports thyroid function",
+          "Boosts immune health",
+          "Promotes healthy skin"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Sea Moss Extract",
+            "1,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Complete Multivitamin",
+          "Mushroom Complex 10X"
+        ]
+      }
+    },
+    {
+      "id": 2026,
+      "handle": "platinum-turmeric",
+      "title": "Platinum Turmeric",
+      "price": 2590,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1768729341217-0e11cb959252?w=400&q=80",
+      "alt": "Turmeric root golden spice",
+      "description": "High-potency turmeric with enhanced bioavailability for inflammation.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Premium turmeric extract with enhanced bioavailability for maximum anti-inflammatory effects. Curcumin, the active compound, supports joint health, recovery, and overall wellness.",
+        "benefits": [
+          "Powerful anti-inflammatory",
+          "Supports joint health",
+          "Enhanced absorption formula",
+          "Antioxidant protection"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 capsule"
+          ],
+          [
+            "Turmeric Extract (95% curcuminoids)",
+            "500mg"
+          ],
+          [
+            "BioPerine",
+            "5mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Collagen Peptides",
+          "Gut Health"
+        ]
+      }
+    },
+    {
+      "id": 2027,
+      "handle": "collagen-peptides",
+      "title": "Collagen Peptides",
+      "price": 3390,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1647004692483-c5d942fe1137?w=400&q=80",
+      "alt": "Collagen peptides for skin health",
+      "description": "Grass-fed hydrolyzed collagen for skin, joints, and gut health.",
+      "bestSeller": false,
+      "expand": {
+        "about": "100% grass-fed, hydrolyzed collagen peptides for maximum absorption. Supports skin elasticity, joint flexibility, and gut lining integrity. Type I and III collagen — the most abundant types in the human body.",
+        "benefits": [
+          "Improves skin elasticity",
+          "Supports joint flexibility",
+          "Strengthens gut lining",
+          "Promotes healthy hair and nails"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (10g)"
+          ],
+          [
+            "Hydrolyzed Collagen Peptides",
+            "10,000mg"
+          ],
+          [
+            "Type I & III Collagen",
+            "10,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Platinum Turmeric",
+          "Vitamin D3"
+        ]
+      }
+    },
+    {
+      "id": 2028,
+      "handle": "ginkgo-biloba-ginseng",
+      "title": "Ginkgo Biloba + Ginseng",
+      "price": 2990,
+      "category": "focus",
+      "categoryLabel": "Focus",
+      "image": "https://images.unsplash.com/photo-1630250109419-ce82a25477d7?w=400&q=80",
+      "alt": "Ginkgo biloba green leaves",
+      "description": "Traditional nootropic duo for mental sharpness and cerebral blood flow.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A time-tested combination of Ginkgo Biloba and Panax Ginseng. Ginkgo improves cerebral blood flow and oxygen delivery to the brain, while Ginseng enhances mental performance and reduces fatigue.",
+        "benefits": [
+          "Improves cerebral blood flow",
+          "Enhances mental sharpness",
+          "Reduces mental fatigue",
+          "Supports memory and recall"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Ginkgo Biloba Extract",
+            "120mg"
+          ],
+          [
+            "Panax Ginseng Extract",
+            "200mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Lion's Mane Mushroom",
+          "Brain & Focus Formula"
+        ]
+      }
+    },
+    {
+      "id": 2029,
+      "handle": "hydration-powder-lemonade",
+      "title": "Hydration Powder",
+      "price": 3499,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1741520504652-27c2a6c0015e?w=400&q=80",
+      "alt": "Lemonade electrolyte hydration drink",
+      "description": "Lemonade-flavoured electrolyte powder for optimal hydration during training.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A refreshing lemonade-flavoured electrolyte powder formulated for athletes. Replenishes sodium, potassium, magnesium, and other minerals lost through sweat during intense training sessions.",
+        "benefits": [
+          "Replenishes key electrolytes",
+          "Prevents dehydration",
+          "Supports endurance",
+          "Refreshing lemonade flavour"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (10g)"
+          ],
+          [
+            "Sodium",
+            "500mg"
+          ],
+          [
+            "Potassium",
+            "200mg"
+          ],
+          [
+            "Magnesium",
+            "60mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "Whey Protein Isolate"
+        ]
+      }
+    },
+    {
+      "id": 2030,
+      "handle": "plant-protein-vanilla",
+      "title": "Plant Protein",
+      "price": 4490,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1773051428154-e542f2656136?w=400&q=80",
+      "alt": "Plant protein shake vanilla",
+      "description": "Vanilla plant-based protein blend for vegan athletes and muscle recovery.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A smooth vanilla plant-based protein powder combining pea, rice, and hemp proteins for a complete amino acid profile. Ideal for vegan athletes or anyone who prefers plant-based nutrition.",
+        "benefits": [
+          "Complete amino acid profile",
+          "Vegan-friendly protein source",
+          "Easy to digest",
+          "Smooth vanilla flavour"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (35g)"
+          ],
+          [
+            "Protein",
+            "22g"
+          ],
+          [
+            "Fat",
+            "2g"
+          ],
+          [
+            "Carbs",
+            "4g"
+          ],
+          [
+            "Servings Per Container",
+            "28"
+          ]
+        ],
+        "pairsWith": [
+          "Creatine Monohydrate",
+          "L-Citrulline & L-Arginine Stack"
+        ]
+      }
+    },
+    {
+      "id": 2031,
+      "handle": "l-glutamine-powder",
+      "title": "L-Glutamine Powder",
+      "price": 2690,
+      "category": "gym",
+      "categoryLabel": "Gym",
+      "image": "https://images.unsplash.com/photo-1616526629705-981c263b68bc?w=400&q=80",
+      "alt": "L-Glutamine amino acid powder",
+      "description": "Supports muscle recovery, gut health, and immune function after training.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Pure L-Glutamine — the most abundant amino acid in muscle tissue. Intense training depletes glutamine stores, slowing recovery and weakening immune function. Replenishing it accelerates muscle repair and supports gut barrier integrity.",
+        "benefits": [
+          "Accelerates muscle recovery",
+          "Supports immune function post-training",
+          "Strengthens gut barrier",
+          "Reduces post-workout soreness"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (5g)"
+          ],
+          [
+            "L-Glutamine",
+            "5,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Whey Protein Isolate",
+          "Creatine Monohydrate"
+        ]
+      }
+    },
+    {
+      "id": 2032,
+      "handle": "joint-support",
+      "title": "Joint Support",
+      "price": 2990,
+      "category": "gym wellness",
+      "categoryLabel": "Gym / Wellness",
+      "image": "https://images.unsplash.com/photo-1571385778997-1ae4643264e6?w=400&q=80",
+      "alt": "Joint health and mobility exercise",
+      "description": "Comprehensive joint formula for mobility, flexibility, and pain relief.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A comprehensive joint health formula combining glucosamine, chondroitin, MSM, and anti-inflammatory botanicals. Supports cartilage repair, reduces stiffness, and keeps joints flexible for active lifestyles.",
+        "benefits": [
+          "Supports cartilage health",
+          "Reduces joint stiffness",
+          "Improves mobility and flexibility",
+          "Anti-inflammatory support"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Glucosamine HCl",
+            "750mg"
+          ],
+          [
+            "Chondroitin Sulfate",
+            "300mg"
+          ],
+          [
+            "MSM",
+            "250mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Collagen Peptides",
+          "Platinum Turmeric"
+        ]
+      }
+    },
+    {
+      "id": 2033,
+      "handle": "chaga-mushroom",
+      "title": "Chaga Mushroom",
+      "price": 2990,
+      "category": "sleep wellness",
+      "categoryLabel": "Sleep / Wellness",
+      "image": "https://images.unsplash.com/photo-1695426585038-6f76e8310591?w=400&q=80",
+      "alt": "Chaga mushroom on birch tree",
+      "description": "Calming adaptogenic mushroom for relaxation and immune support.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Wild-harvested Chaga mushroom extract — one of nature's most potent adaptogens. Supports immune function, reduces oxidative stress, and promotes a calm, balanced state that helps prepare the body for restful sleep.",
+        "benefits": [
+          "Powerful adaptogenic support",
+          "Promotes calm and relaxation",
+          "Rich in antioxidants",
+          "Supports immune health"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Chaga Mushroom Extract",
+            "500mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Magnesium Glycinate",
+          "Mushroom Complex 10X"
+        ]
+      }
+    },
+    {
+      "id": 2034,
+      "handle": "moringa-pure",
+      "title": "Moringa Pure",
+      "price": 2690,
+      "category": "energy wellness",
+      "categoryLabel": "Energy / Wellness",
+      "image": "https://images.unsplash.com/photo-1667928729816-0ed8c59cd3c9?w=400&q=80",
+      "alt": "Moringa green leaves superfood",
+      "description": "Nutrient-dense superfood leaf for natural energy and vitality.",
+      "bestSeller": false,
+      "expand": {
+        "about": "100% pure Moringa oleifera leaf — packed with vitamins, minerals, and antioxidants. Known as the 'miracle tree,' Moringa provides natural, sustained energy from its rich nutrient density rather than stimulants.",
+        "benefits": [
+          "Natural energy from nutrients",
+          "Rich in iron and B vitamins",
+          "Powerful antioxidant protection",
+          "Supports overall vitality"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Moringa Leaf Powder",
+            "1,000mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Complete Multivitamin",
+          "Energy Strips"
+        ]
+      }
+    },
+    {
+      "id": 2035,
+      "handle": "energy-powder-lychee",
+      "title": "Energy Powder (Lychee)",
+      "price": 3499,
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "image": "https://images.unsplash.com/photo-1597975371270-cf80e4f54921?w=400&q=80",
+      "alt": "Fresh lychee fruit",
+      "description": "Lychee-flavoured clean energy powder for all-day performance.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A refreshing lychee-flavoured energy powder with natural caffeine, B vitamins, and amino acids. Provides clean, sustained energy without the crash — perfect as a pre-workout or afternoon pick-me-up.",
+        "benefits": [
+          "Clean sustained energy",
+          "Natural caffeine source",
+          "Refreshing lychee flavour",
+          "No crash formula"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 scoop (10g)"
+          ],
+          [
+            "Energy Blend",
+            "3,000mg"
+          ],
+          [
+            "Natural Caffeine",
+            "150mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Energy Strips",
+          "Beetroot"
+        ]
+      }
+    },
+    {
+      "id": 2036,
+      "handle": "berberine",
+      "title": "Berberine",
+      "price": 3990,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1607721098274-e54cbfab475d?w=400&q=80",
+      "alt": "Natural herb supplement — Berberine",
+      "description": "Supports healthy blood sugar, metabolism, and cardiovascular health.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Berberine is a bioactive compound found in several plants. Clinically studied for its ability to support healthy blood sugar levels, improve insulin sensitivity, and support cardiovascular health. Often called 'nature's metformin.'",
+        "benefits": [
+          "Supports healthy blood sugar",
+          "Improves insulin sensitivity",
+          "Supports heart health",
+          "Promotes healthy metabolism"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 capsule"
+          ],
+          [
+            "Berberine HCl",
+            "500mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Complete Multivitamin",
+          "Platinum Turmeric"
+        ]
+      }
+    },
+    {
+      "id": 2037,
+      "handle": "resveratrol-600",
+      "title": "Resveratrol 50% 600mg",
+      "price": 2590,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1663687552745-f76a59fd7bcc?w=400&q=80",
+      "alt": "Red grapes — source of resveratrol",
+      "description": "Potent antioxidant for anti-aging, heart health, and cellular protection.",
+      "bestSeller": false,
+      "expand": {
+        "about": "High-potency Resveratrol standardised to 50% trans-resveratrol. A powerful polyphenol found in red grapes, studied for its anti-aging, cardiovascular, and neuroprotective properties. Activates sirtuins — the longevity genes.",
+        "benefits": [
+          "Powerful anti-aging antioxidant",
+          "Supports cardiovascular health",
+          "Activates longevity pathways",
+          "Neuroprotective properties"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 capsule"
+          ],
+          [
+            "Resveratrol (50% trans-resveratrol)",
+            "600mg"
+          ],
+          [
+            "Servings Per Container",
+            "60"
+          ]
+        ],
+        "pairsWith": [
+          "Berberine",
+          "Collagen Peptides"
+        ]
+      }
+    },
+    {
+      "id": 2038,
+      "handle": "liver-support",
+      "title": "Liver Support",
+      "price": 2990,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1688845608224-89dcf2fed871?w=400&q=80",
+      "alt": "Milk thistle flower — liver support",
+      "description": "Supports liver detoxification and healthy liver function.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A comprehensive liver health formula with milk thistle, NAC, and artichoke extract. Supports your body's natural detoxification pathways, protects liver cells from oxidative damage, and promotes healthy bile production.",
+        "benefits": [
+          "Supports natural detoxification",
+          "Protects liver cells",
+          "Promotes healthy bile flow",
+          "Antioxidant liver protection"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Milk Thistle Extract",
+            "250mg"
+          ],
+          [
+            "N-Acetyl Cysteine",
+            "200mg"
+          ],
+          [
+            "Artichoke Extract",
+            "150mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Gut Health",
+          "Complete Multivitamin"
+        ]
+      }
+    },
+    {
+      "id": 2039,
+      "handle": "digestive-gut-health-strips",
+      "title": "Digestive + Gut Health Strips",
+      "price": 3590,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1634463278803-f9f71890e67d?w=400&q=80",
+      "alt": "Digestive health supplement strips",
+      "description": "Fast-dissolving strips with probiotics and digestive enzymes.",
+      "bestSeller": false,
+      "expand": {
+        "about": "Convenient oral strips that combine probiotics with digestive enzymes for on-the-go gut support. Dissolve on the tongue after meals to aid digestion, reduce bloating, and support microbiome balance.",
+        "benefits": [
+          "Probiotics + digestive enzymes",
+          "Reduces bloating after meals",
+          "Convenient strip format",
+          "No water needed"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "1 strip"
+          ],
+          [
+            "Probiotic Blend",
+            "5 Billion CFU"
+          ],
+          [
+            "Digestive Enzyme Blend",
+            "100mg"
+          ],
+          [
+            "Strips Per Pack",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Gut Health",
+          "Probiotic 40 Billion"
+        ]
+      }
+    },
+    {
+      "id": 2040,
+      "handle": "hair-skin-nails-essentials",
+      "title": "Hair, Skin & Nails Essentials",
+      "price": 3290,
+      "category": "wellness",
+      "categoryLabel": "Wellness",
+      "image": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=400&q=80",
+      "alt": "Healthy hair and glowing skin",
+      "description": "Biotin, keratin, and vitamins for healthy hair, glowing skin, and strong nails.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A targeted beauty-from-within formula with biotin, keratin, vitamin E, and zinc. Supports healthy hair growth, skin elasticity, and nail strength from the inside out.",
+        "benefits": [
+          "Supports healthy hair growth",
+          "Promotes skin elasticity",
+          "Strengthens brittle nails",
+          "Beauty from within"
+        ],
+        "facts": [
+          [
+            "Serving Size",
+            "2 capsules"
+          ],
+          [
+            "Biotin",
+            "5,000mcg"
+          ],
+          [
+            "Keratin",
+            "100mg"
+          ],
+          [
+            "Vitamin E",
+            "15mg"
+          ],
+          [
+            "Zinc",
+            "10mg"
+          ],
+          [
+            "Servings Per Container",
+            "30"
+          ]
+        ],
+        "pairsWith": [
+          "Collagen Peptides",
+          "Complete Multivitamin"
+        ]
+      }
     }
-  },
-  {
-    "id": 1003,
-    "handle": "creatine",
-    "title": "Creatine Monohydrate",
-    "price": 1499,
-    "category": "gym",
-    "categoryLabel": "Gym",
-    "image": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&q=80",
-    "alt": "Creatine Monohydrate supplement",
-    "description": "The most researched performance supplement.",
-    "bestSeller": false,
-    "expand": {
-      "about": "Pure creatine monohydrate — the gold standard backed by over 500 peer-reviewed studies. Increases phosphocreatine stores in muscles, providing more ATP energy during high-intensity exercise.",
-      "benefits": ["Increases strength and power output", "Supports lean muscle growth", "Enhances high-intensity exercise performance", "May support cognitive function under stress"],
-      "facts": [["Serving Size", "1 scoop (5g)"], ["Creatine Monohydrate", "5,000mg"], ["Servings Per Container", "60"]],
-      "pairsWith": ["Ashwagandha", "Zinc & Mag"]
-    }
-  },
-  {
-    "id": 1004,
-    "handle": "ashwagandha",
-    "title": "Ashwagandha KSM-66",
-    "price": 2299,
-    "category": "gym",
-    "categoryLabel": "Gym",
-    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
-    "alt": "Ashwagandha KSM-66 supplement",
-    "description": "Reduces cortisol and supports recovery.",
-    "bestSeller": true,
-    "expand": {
-      "about": "KSM-66 is the most clinically studied ashwagandha extract, produced through a unique extraction process using only the root. Clinically shown to reduce cortisol by up to 30% and improve stress resilience, testosterone, and endurance.",
-      "benefits": ["Reduces cortisol and stress levels", "Supports testosterone in men", "Improves endurance and recovery", "Promotes restful sleep"],
-      "facts": [["Serving Size", "1 capsule"], ["Ashwagandha Root Extract (KSM-66)", "600mg"], ["Withanolides (5%)", "30mg"], ["Servings Per Container", "60"]],
-      "pairsWith": ["Creatine", "Rhodiola", "Magnesium"]
-    }
-  },
-  {
-    "id": 1005,
-    "handle": "magnesium",
-    "title": "Magnesium Glycinate",
-    "price": 1699,
-    "category": "sleep",
-    "categoryLabel": "Sleep",
-    "image": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80",
-    "alt": "Magnesium Glycinate supplement",
-    "description": "Promotes relaxation and deeper sleep.",
-    "bestSeller": false,
-    "expand": {
-      "about": "Magnesium chelated with glycine for maximum bioavailability and gentle absorption. Most people are magnesium deficient — this form is the easiest on the stomach and most effective for relaxation and sleep quality.",
-      "benefits": ["Promotes deep, restful sleep", "Reduces muscle tension and cramps", "Supports nervous system relaxation", "Gentle on the stomach"],
-      "facts": [["Serving Size", "2 capsules"], ["Magnesium (as Glycinate)", "400mg"], ["Servings Per Container", "30"]],
-      "pairsWith": ["L-Theanine", "Ashwagandha"]
-    }
-  },
-  {
-    "id": 1006,
-    "handle": "l-theanine",
-    "title": "L-Theanine",
-    "price": 1899,
-    "category": "sleep",
-    "categoryLabel": "Sleep",
-    "image": "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&q=80",
-    "alt": "L-Theanine supplement",
-    "description": "Calms the mind without drowsiness.",
-    "bestSeller": false,
-    "expand": {
-      "about": "An amino acid naturally found in green tea. L-Theanine promotes alpha brain wave activity, creating a state of calm, relaxed focus without sedation. Works synergistically with caffeine to smooth out jitters.",
-      "benefits": ["Promotes calm without drowsiness", "Increases alpha brain waves", "Reduces stress and anxiety", "Improves sleep quality when taken at night"],
-      "facts": [["Serving Size", "1 capsule"], ["L-Theanine", "200mg"], ["Servings Per Container", "60"]],
-      "pairsWith": ["Lion's Mane", "Magnesium"]
-    }
-  },
-  {
-    "id": 1007,
-    "handle": "rhodiola",
-    "title": "Rhodiola Rosea",
-    "price": 2199,
-    "category": "energy",
-    "categoryLabel": "Energy",
-    "image": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80",
-    "alt": "Rhodiola Rosea supplement",
-    "description": "Fights fatigue and boosts mental stamina.",
-    "bestSeller": false,
-    "expand": {
-      "about": "An adaptogenic herb used for centuries in Scandinavian and Russian traditional medicine. Rhodiola helps the body adapt to physical and mental stress, fighting fatigue at the cellular level.",
-      "benefits": ["Fights mental and physical fatigue", "Improves endurance and stamina", "Enhances mood and motivation", "Supports stress resilience"],
-      "facts": [["Serving Size", "1 capsule"], ["Rhodiola Rosea Extract (3% rosavins, 1% salidroside)", "500mg"], ["Servings Per Container", "60"]],
-      "pairsWith": ["Ashwagandha", "B-Complex"]
-    }
-  },
-  {
-    "id": 1008,
-    "handle": "b-complex",
-    "title": "B-Complex",
-    "price": 1299,
-    "category": "energy",
-    "categoryLabel": "Energy",
-    "image": "https://images.unsplash.com/photo-1577401239170-897c5ba98a77?w=400&q=80",
-    "alt": "B-Complex supplement",
-    "description": "Essential vitamins for energy metabolism.",
-    "bestSeller": false,
-    "expand": {
-      "about": "A complete complex of all 8 essential B vitamins in their most bioavailable forms (methylated where applicable). B vitamins are co-factors in hundreds of metabolic reactions, especially energy production.",
-      "benefits": ["Converts food into cellular energy", "Supports nervous system function", "Reduces tiredness and fatigue", "Supports healthy red blood cell formation"],
-      "facts": [["Serving Size", "1 capsule"], ["Vitamin B1 (Thiamine)", "25mg"], ["Vitamin B6 (P-5-P)", "25mg"], ["Vitamin B12 (Methylcobalamin)", "1,000mcg"], ["Folate (5-MTHF)", "400mcg"]],
-      "pairsWith": ["Rhodiola", "Vitamin D3"]
-    }
-  },
-  {
-    "id": 1009,
-    "handle": "vitamin-d3-k2",
-    "title": "Vitamin D3 + K2",
-    "price": 1499,
-    "category": "wellness",
-    "categoryLabel": "Wellness",
-    "image": "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=400&q=80",
-    "alt": "Vitamin D3 + K2 supplement",
-    "description": "Supports immunity and bone health.",
-    "bestSeller": false,
-    "expand": {
-      "about": "Vitamin D3 (cholecalciferol) paired with Vitamin K2 (MK-7) for optimal calcium absorption and distribution. Most people in the UK are deficient in Vitamin D, especially during autumn and winter months.",
-      "benefits": ["Supports immune system function", "Strengthens bones and teeth", "K2 directs calcium to bones (not arteries)", "Supports mood and mental health"],
-      "facts": [["Serving Size", "1 softgel"], ["Vitamin D3", "4,000 IU (100mcg)"], ["Vitamin K2 (MK-7)", "100mcg"], ["Servings Per Container", "90"]],
-      "pairsWith": ["Omega-3", "Magnesium"]
-    }
-  },
-  {
-    "id": 1010,
-    "handle": "omega-3",
-    "title": "Omega-3 Fish Oil",
-    "price": 1999,
-    "category": "wellness",
-    "categoryLabel": "Wellness",
-    "image": "https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=400&q=80",
-    "alt": "Omega-3 Fish Oil supplement",
-    "description": "High-potency EPA & DHA for overall health.",
-    "bestSeller": false,
-    "expand": {
-      "about": "Wild-caught, molecularly distilled fish oil with high concentrations of EPA and DHA. Triglyceride form for 70% better absorption than ethyl ester alternatives. Third-party tested for purity and heavy metals.",
-      "benefits": ["Supports heart and cardiovascular health", "Reduces inflammation throughout the body", "Supports brain function and mood", "Promotes joint flexibility"],
-      "facts": [["Serving Size", "2 softgels"], ["EPA (Eicosapentaenoic Acid)", "600mg"], ["DHA (Docosahexaenoic Acid)", "400mg"], ["Servings Per Container", "30"]],
-      "pairsWith": ["Vitamin D3", "Lion's Mane"]
-    }
-  },
-  {
-    "id": 1011,
-    "handle": "bacopa",
-    "title": "Bacopa Monnieri",
-    "price": 1799,
-    "category": "focus energy",
-    "categoryLabel": "Focus / Energy",
-    "image": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&q=80",
-    "alt": "Bacopa Monnieri supplement",
-    "description": "Enhances memory and reduces anxiety.",
-    "bestSeller": false,
-    "expand": {
-      "about": "An Ayurvedic herb used for over 3,000 years to enhance cognitive function. Standardised to 50% bacosides, the active compounds that support memory, learning speed, and information retention.",
-      "benefits": ["Enhances memory and recall", "Improves learning speed", "Reduces anxiety naturally", "Antioxidant protection for the brain"],
-      "facts": [["Serving Size", "1 capsule"], ["Bacopa Monnieri Extract (50% bacosides)", "300mg"], ["Servings Per Container", "60"]],
-      "pairsWith": ["Alpha-GPC", "Lion's Mane"]
-    }
-  },
-  {
-    "id": 1012,
-    "handle": "zinc-magnesium",
-    "title": "Zinc & Magnesium",
-    "price": 1599,
-    "category": "gym wellness",
-    "categoryLabel": "Gym / Wellness",
-    "image": "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=400&q=80",
-    "alt": "Zinc and Magnesium supplement",
-    "description": "Supports testosterone and muscle recovery.",
-    "bestSeller": false,
-    "expand": {
-      "about": "A synergistic combination of Zinc Bisglycinate and Magnesium Glycinate — two minerals critical for hormone production, muscle recovery, and immune function. Chelated forms for superior absorption.",
-      "benefits": ["Supports healthy testosterone levels", "Aids muscle recovery post-workout", "Strengthens immune function", "Improves sleep quality"],
-      "facts": [["Serving Size", "2 capsules"], ["Zinc (as Bisglycinate)", "30mg"], ["Magnesium (as Glycinate)", "300mg"], ["Vitamin B6 (P-5-P)", "10mg"]],
-      "pairsWith": ["Creatine", "Ashwagandha"]
-    }
-  }
-]
+  ]
+}

@@ -1,0 +1,364 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gift Card — {{ shop.name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'lucide.min.js' | asset_url }}" defer onload="lucide.createIcons()"></script>
+  {{ content_for_header }}
+  <style>
+    body {
+      background: var(--color-bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gift-card-page {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl);
+    }
+
+    .gift-card-content {
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .gift-card-logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--color-text);
+      letter-spacing: 0.27em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2xl);
+      display: block;
+      text-decoration: none;
+    }
+
+    .gift-card-visual {
+      background: linear-gradient(135deg, var(--color-primary), #1E3219);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl) var(--space-xl);
+      margin-bottom: var(--space-xl);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gift-card-visual::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+    }
+
+    .gift-card-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -20%;
+      width: 250px;
+      height: 250px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+    }
+
+    .gift-card-visual__label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gift-card-visual__amount {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gift-card-visual__initial {
+      font-size: 14px;
+      opacity: 0.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gift-card-visual__brand {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.27em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-top: var(--space-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gift-card-code-box {
+      background: var(--color-card-bg);
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .gift-card-code-box__label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .gift-card-code {
+      font-family: 'Courier New', monospace;
+      font-size: clamp(1.125rem, 3vw, 1.5rem);
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 2px;
+      word-break: break-all;
+      margin-bottom: var(--space-md);
+    }
+
+    .gift-card-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1.5px solid var(--color-primary);
+      border-radius: var(--radius-pill);
+      color: var(--color-primary);
+      background: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .gift-card-copy-btn:hover {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    .gift-card-copy-btn.is-copied {
+      background: #e6f4ea;
+      border-color: #1e7e34;
+      color: #1e7e34;
+    }
+
+    .gift-card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .gift-card-meta__item {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+
+    .gift-card-meta__item svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .gift-card-qr {
+      margin-bottom: var(--space-lg);
+    }
+
+    .gift-card-qr img {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+      border-radius: var(--radius-sm);
+    }
+
+    .gift-card-wallet {
+      margin-bottom: var(--space-lg);
+    }
+
+    .gift-card-wallet a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 28px;
+      background: #000;
+      color: #fff;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background var(--transition-fast);
+    }
+
+    .gift-card-wallet a:hover {
+      background: #1a1a1a;
+    }
+
+    .gift-card-shop-link {
+      margin-top: var(--space-lg);
+    }
+
+    .gift-card-footer {
+      padding: var(--space-xl);
+      text-align: center;
+      font-size: 13px;
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 480px) {
+      .gift-card-visual {
+        padding: var(--space-xl) var(--space-lg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gift-card-page">
+    <div class="gift-card-content">
+      <a href="/" class="gift-card-logo">NUTRAVA</a>
+
+      <!-- Gift Card Visual -->
+      <div class="gift-card-visual">
+        <div class="gift-card-visual__label">Gift Card</div>
+        <div class="gift-card-visual__amount">{{ gift_card.balance | money }}</div>
+        {%- if gift_card.balance != gift_card.initial_value -%}
+          <div class="gift-card-visual__initial">Initial value: {{ gift_card.initial_value | money }}</div>
+        {%- endif -%}
+        <div class="gift-card-visual__brand">NUTRAVA</div>
+      </div>
+
+      <!-- Code Box -->
+      <div class="gift-card-code-box">
+        <div class="gift-card-code-box__label">Your Gift Card Code</div>
+        <div class="gift-card-code" id="gift-card-code">{{ gift_card.code | format_code }}</div>
+        <button class="gift-card-copy-btn" id="copy-btn" data-code="{{ gift_card.code }}">
+          <i data-lucide="copy" style="width:16px; height:16px;"></i>
+          <span>Copy Code</span>
+        </button>
+      </div>
+
+      <!-- Meta Info -->
+      <div class="gift-card-meta">
+        {%- if gift_card.balance != gift_card.initial_value -%}
+          <div class="gift-card-meta__item">
+            <i data-lucide="wallet"></i>
+            Initial value: {{ gift_card.initial_value | money }}
+          </div>
+        {%- endif -%}
+
+        {%- if gift_card.expires_on -%}
+          <div class="gift-card-meta__item">
+            <i data-lucide="calendar"></i>
+            Expires {{ gift_card.expires_on | date: "%B %d, %Y" }}
+          </div>
+        {%- endif -%}
+
+        {%- if gift_card.enabled == false -%}
+          <div class="gift-card-meta__item" style="color: #c0392b;">
+            <i data-lucide="alert-circle"></i>
+            This gift card has been disabled
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- QR Code -->
+      <div class="gift-card-qr">
+        <img src="{{ gift_card.qr_identifier | qr_url }}" alt="Gift card QR code">
+      </div>
+
+      <!-- Apple Wallet -->
+      {%- if gift_card.pass_url -%}
+        <div class="gift-card-wallet">
+          <a href="{{ gift_card.pass_url }}">
+            <i data-lucide="smartphone" style="width:18px; height:18px;"></i>
+            Add to Apple Wallet
+          </a>
+        </div>
+      {%- endif -%}
+
+      <!-- Shop Link -->
+      <div class="gift-card-shop-link">
+        <a href="/" class="btn btn--primary">
+          <i data-lucide="shopping-bag" style="width:16px; height:16px;"></i>
+          Start Shopping
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="gift-card-footer">
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var copyBtn = document.getElementById('copy-btn');
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+          var code = this.getAttribute('data-code');
+          var btn = this;
+
+          navigator.clipboard.writeText(code).then(function() {
+            btn.classList.add('is-copied');
+            btn.querySelector('span').textContent = 'Copied!';
+
+            setTimeout(function() {
+              btn.classList.remove('is-copied');
+              btn.querySelector('span').textContent = 'Copy Code';
+            }, 2000);
+          }).catch(function() {
+            // Fallback for older browsers
+            var textArea = document.createElement('textarea');
+            textArea.value = code;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            btn.classList.add('is-copied');
+            btn.querySelector('span').textContent = 'Copied!';
+
+            setTimeout(function() {
+              btn.classList.remove('is-copied');
+              btn.querySelector('span').textContent = 'Copy Code';
+            }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

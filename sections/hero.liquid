@@ -1,5 +1,5 @@
-<section class="hero" data-fade-in>
-  <div class="container">
+<section class="hero">
+  <div class="hero__grid container">
     <div class="hero__content">
       <span class="label">{{ section.settings.label }}</span>
       <h1 class="hero__heading">{{ section.settings.heading }}</h1>
@@ -8,20 +8,47 @@
         <a href="/pages/quiz" class="btn btn--primary btn--lg">{{ section.settings.cta_quiz }}</a>
         <a href="/collections/all" class="btn btn--outline btn--lg">{{ section.settings.cta_shop }}</a>
       </div>
+      {% if section.settings.promo_text != blank %}
+        <div class="hero__promo">
+          <i data-lucide="tag"></i>
+          <span>{{ section.settings.promo_text }}</span>
+        </div>
+      {% endif %}
     </div>
+    {% if section.settings.image != blank %}
+      <div class="hero__image">
+        <img
+          srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                  {{ section.settings.image | image_url: width: 600 }} 600w,
+                  {{ section.settings.image | image_url: width: 800 }} 800w"
+          sizes="(max-width: 768px) 100vw, 45vw"
+          src="{{ section.settings.image | image_url: width: 800 }}"
+          alt="{{ section.settings.image.alt | default: section.settings.heading }}"
+          loading="eager"
+          fetchpriority="high"
+          width="800"
+          height="600"
+        >
+      </div>
+    {% endif %}
   </div>
 </section>
 
 <style>
   .hero {
-    background: linear-gradient(135deg, var(--color-mint-mist) 0%, var(--color-sand) 100%);
-    padding: var(--space-4xl) 0;
-    text-align: center;
+    background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%);
+    padding: 48px 0;
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: 48px;
+    align-items: center;
   }
 
   .hero__content {
-    max-width: 600px;
-    margin: 0 auto;
+    text-align: left;
   }
 
   .hero .label {
@@ -44,16 +71,51 @@
   .hero__actions {
     display: flex;
     gap: var(--space-md);
-    justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero__promo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(199,163,115,0.15) 0%, rgba(199,163,115,0.08) 100%);
+    border: 1px solid rgba(199,163,115,0.3);
+    border-radius: 9999px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--color-text-body);
+  }
+
+  .hero__promo svg { width: 16px; height: 16px; color: var(--color-accent); }
+
+  .hero__image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .hero__image img {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
   }
 
   @media (max-width: 768px) {
-    .hero {
-      padding: var(--space-3xl) 0;
+    .hero { padding: 32px 0; }
+
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
     }
 
+    .hero__content { text-align: center; }
+
     .hero__actions {
+      justify-content: center;
       flex-direction: column;
       align-items: center;
     }
@@ -62,6 +124,8 @@
       width: 100%;
       max-width: 300px;
     }
+
+    .hero__image img { min-height: 280px; }
   }
 </style>
 
@@ -73,31 +137,42 @@
       "type": "text",
       "id": "label",
       "label": "Label",
-      "default": "Personalised Wellness"
+      "default": "Personalised Supplement Stacks"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Your Wellness, Personalised"
+      "default": "Your Supplements, Personalised to You"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Take our 60-second quiz and discover your science-backed supplement stack"
+      "default": "Take a quick quiz about your goals, lifestyle, and health. We'll build a science-backed supplement stack made just for you."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
     },
     {
       "type": "text",
       "id": "cta_quiz",
       "label": "Quiz button text",
-      "default": "Take the Quiz"
+      "default": "Take the Free Quiz"
     },
     {
       "type": "text",
       "id": "cta_shop",
       "label": "Shop button text",
-      "default": "Shop Stacks"
+      "default": "Browse Supplements"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo banner text (leave blank to hide)",
+      "default": "Use code FIRST15 for 15% off your first order"
     }
   ],
   "presets": [

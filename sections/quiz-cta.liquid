@@ -1,6 +1,6 @@
 <section class="quiz-cta section-padding" data-fade-in>
   <div class="container">
-    <div class="quiz-cta__card">
+    <div class="quiz-cta__card" {% if section.settings.background_image != blank %}style="background-image: linear-gradient(135deg, rgba(226,237,218,0.9) 0%, rgba(181,202,165,0.9) 100%), url('{{ section.settings.background_image | image_url: width: 1200 }}'); background-size: cover; background-position: center;"{% endif %}>
       <h2 class="quiz-cta__heading">{{ section.settings.heading }}</h2>
       <p class="quiz-cta__text">{{ section.settings.text }}</p>
       <a href="/pages/quiz" class="btn btn--primary btn--lg">{{ section.settings.cta_text }}</a>
@@ -50,6 +50,11 @@
       "id": "cta_text",
       "label": "Button text",
       "default": "Take the Quiz"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (optional)"
     }
   ],
   "presets": [

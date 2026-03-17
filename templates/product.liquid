@@ -1,5 +1,9 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
 
+{% render 'json-ld-product', product: product %}
+{% render 'json-ld-faq' %}
+{% render 'json-ld-breadcrumbs' %}
+
 <div class="product-page">
   <!-- Product Hero -->
   <section class="product-hero">
@@ -8,7 +12,7 @@
         <!-- Product Image -->
         <div class="product-hero__image">
           {% if product.featured_image %}
-            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}">
+            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="600">
           {% else %}
             <div class="product-hero__placeholder">
               <i data-lucide="pill"></i>
@@ -57,23 +61,6 @@
               {% endif %}
             </button>
           {% endform %}
-
-          <!-- Subscribe & Save Toggle -->
-          <div class="product-subscribe" data-subscribe-toggle>
-            <div class="product-subscribe__options">
-              <label class="product-subscribe__option product-subscribe__option--active" data-purchase-type="onetime">
-                <input type="radio" name="purchase_type" value="onetime" checked>
-                <span class="product-subscribe__radio"></span>
-                <span>One-time purchase</span>
-              </label>
-              <label class="product-subscribe__option" data-purchase-type="subscribe">
-                <input type="radio" name="purchase_type" value="subscribe">
-                <span class="product-subscribe__radio"></span>
-                <span>Subscribe & save — <strong>15% off</strong></span>
-              </label>
-            </div>
-            <p class="product-subscribe__note" data-subscribe-note style="display: none;">Delivered every 30 days. Cancel anytime.</p>
-          </div>
 
           <!-- Guarantee Badge -->
           <div class="product-guarantee">
@@ -218,54 +205,70 @@
     </div>
   </section>
 
+  <!-- Reviews Data -->
+  <script type="application/json" id="product-reviews-data">
+  {
+    "rating": 4.8,
+    "count": 127,
+    "distribution": [80, 15, 3, 1, 1],
+    "source": "hardcoded",
+    "reviews": [
+      { "author": "Sarah L.", "date": "Jan 28, 2026", "rating": 5, "verified": true, "text": "Noticed a real difference in focus after about 2 weeks. I can concentrate for longer stretches without my mind wandering. Highly recommend." },
+      { "author": "Mark T.", "date": "Feb 3, 2026", "rating": 5, "verified": true, "text": "Clean ingredients and I can actually feel it working. No jitters or crash like with caffeine pills. The subscribe option saves a decent amount too." },
+      { "author": "Emma R.", "date": "Dec 15, 2025", "rating": 4, "verified": true, "text": "Good quality supplement, takes a few weeks to kick in but worth the wait. Only giving 4 stars because I wish the capsules were a bit smaller." },
+      { "author": "David P.", "date": "Feb 18, 2026", "rating": 5, "verified": true, "text": "Best nootropic stack I\u2019ve tried. The combination works better than anything I\u2019ve used before. Will be subscribing." }
+    ]
+  }
+  </script>
+
   <!-- Reviews -->
   <section class="product-reviews section-padding bg-mint">
     <div class="container container--narrow">
       <h2 class="product-section__heading"><i data-lucide="message-square" style="width:20px;height:20px;color:var(--color-primary);"></i> Customer Reviews</h2>
-      <div class="product-reviews__summary">
-        <div class="product-reviews__score">
-          <span class="product-reviews__number">4.8</span>
-          <span class="product-reviews__stars-big">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="product-reviews__total">Based on 127 reviews</span>
-        </div>
-        <div class="product-reviews__bars">
-          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">5 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:80%"></div></div><span class="product-reviews__bar-pct">80%</span></div>
-          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">4 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:15%"></div></div><span class="product-reviews__bar-pct">15%</span></div>
-          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">3 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:3%"></div></div><span class="product-reviews__bar-pct">3%</span></div>
-          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">2 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:1%"></div></div><span class="product-reviews__bar-pct">1%</span></div>
-          <div class="product-reviews__bar-row"><span class="product-reviews__bar-label">1 &#9733;</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:1%"></div></div><span class="product-reviews__bar-pct">1%</span></div>
-        </div>
-      </div>
-
-      <div class="product-review">
-        <div class="product-review__header"><span class="product-review__author">Sarah L.</span><span class="product-review__date">Jan 28, 2026</span></div>
-        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="product-review__verified">Verified Purchase</span>
-        <p class="product-review__text">Noticed a real difference in focus after about 2 weeks. I can concentrate for longer stretches without my mind wandering. Highly recommend.</p>
-      </div>
-      <div class="product-review">
-        <div class="product-review__header"><span class="product-review__author">Mark T.</span><span class="product-review__date">Feb 3, 2026</span></div>
-        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="product-review__verified">Verified Purchase</span>
-        <p class="product-review__text">Clean ingredients and I can actually feel it working. No jitters or crash like with caffeine pills. The subscribe option saves a decent amount too.</p>
-      </div>
-      <div class="product-review">
-        <div class="product-review__header"><span class="product-review__author">Emma R.</span><span class="product-review__date">Dec 15, 2025</span></div>
-        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-        <span class="product-review__verified">Verified Purchase</span>
-        <p class="product-review__text">Good quality supplement, takes a few weeks to kick in but worth the wait. Only giving 4 stars because I wish the capsules were a bit smaller.</p>
-      </div>
-      <div class="product-review">
-        <div class="product-review__header"><span class="product-review__author">David P.</span><span class="product-review__date">Feb 18, 2026</span></div>
-        <span class="product-review__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="product-review__verified">Verified Purchase</span>
-        <p class="product-review__text">Best nootropic stack I've tried. The combination works better than anything I've used before. Will be subscribing.</p>
-      </div>
+      <div data-reviews-container data-review-source="hardcoded"></div>
       <div style="text-align:center; margin-top:24px;">
         <button class="btn btn--outline" onclick="alert('Review form (preview mode)')">Write a Review</button>
       </div>
     </div>
   </section>
+
+  <script>
+  (function() {
+    var dataEl = document.getElementById('product-reviews-data');
+    if (!dataEl) return;
+    var data = JSON.parse(dataEl.textContent);
+    var container = document.querySelector('[data-reviews-container]');
+    if (!container) return;
+
+    var stars = function(n) { var s = ''; for (var i = 0; i < 5; i++) s += i < n ? '\u2605' : '\u2606'; return s; };
+
+    var html = '<div class="product-reviews__summary">' +
+      '<div class="product-reviews__score">' +
+        '<span class="product-reviews__number">' + data.rating + '</span>' +
+        '<span class="product-reviews__stars-big">' + stars(Math.round(data.rating)) + '</span>' +
+        '<span class="product-reviews__total">Based on ' + data.count + ' reviews</span>' +
+      '</div>' +
+      '<div class="product-reviews__bars">';
+
+    for (var i = 0; i < 5; i++) {
+      var label = (5 - i) + ' \u2605';
+      var pct = data.distribution[i] + '%';
+      html += '<div class="product-reviews__bar-row"><span class="product-reviews__bar-label">' + label + '</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:' + pct + '"></div></div><span class="product-reviews__bar-pct">' + pct + '</span></div>';
+    }
+    html += '</div></div>';
+
+    data.reviews.forEach(function(r) {
+      html += '<div class="product-review">' +
+        '<div class="product-review__header"><span class="product-review__author">' + r.author + '</span><span class="product-review__date">' + r.date + '</span></div>' +
+        '<span class="product-review__stars">' + stars(r.rating) + '</span>' +
+        (r.verified ? '<span class="product-review__verified">Verified Purchase</span>' : '') +
+        '<p class="product-review__text">' + r.text + '</p>' +
+      '</div>';
+    });
+
+    container.innerHTML = html;
+  })();
+  </script>
 
   <!-- Sticky Add to Cart Bar -->
   <div class="sticky-atc" data-sticky-atc>
@@ -307,6 +310,10 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    /* ---------- Analytics: view_item ---------- */
+    if (typeof gtag === 'function') gtag('event', 'view_item', { currency: 'GBP', items: [{ item_name: '{{ product.title | escape }}', item_id: '{{ product.handle }}', price: {{ product.price | divided_by: 100.0 }} }] });
+    if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: '{{ product.title | escape }}', content_ids: ['{{ product.handle }}'], content_type: 'product', value: {{ product.price | divided_by: 100.0 }}, currency: 'GBP' });
+
     /* ---------- AJAX Add to Cart ---------- */
     var mainBtn = document.querySelector('[data-add-to-cart]');
     if (mainBtn) {
@@ -371,41 +378,5 @@
       });
     });
 
-    /* ---------- Subscribe & Save Toggle ---------- */
-    var subscribeToggle = document.querySelector('[data-subscribe-toggle]');
-    if (subscribeToggle) {
-      var radios = subscribeToggle.querySelectorAll('input[name="purchase_type"]');
-      var options = subscribeToggle.querySelectorAll('.product-subscribe__option');
-      var note = subscribeToggle.querySelector('[data-subscribe-note]');
-      var priceEl = document.querySelector('.product-hero__price');
-      var stickyPrice = document.querySelector('[data-sticky-price]');
-      var originalPrice = {{ product.price }};
-      var discountedPrice = Math.round(originalPrice * 0.85);
-
-      radios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-          options.forEach(function(o) { o.classList.remove('product-subscribe__option--active'); });
-          this.closest('.product-subscribe__option').classList.add('product-subscribe__option--active');
-
-          if (this.value === 'subscribe') {
-            if (priceEl) priceEl.innerHTML = '<span class="product-hero__price-original">' + formatMoney(originalPrice) + '</span> ' + formatMoney(discountedPrice);
-            if (stickyPrice) stickyPrice.innerHTML = formatMoney(discountedPrice);
-            if (note) note.style.display = 'block';
-            if (mainBtn) mainBtn.innerHTML = '<i data-lucide="shopping-bag"></i> Subscribe & Add to Cart';
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-          } else {
-            if (priceEl) priceEl.textContent = formatMoney(originalPrice);
-            if (stickyPrice) stickyPrice.textContent = formatMoney(originalPrice);
-            if (note) note.style.display = 'none';
-            if (mainBtn) mainBtn.innerHTML = '<i data-lucide="shopping-bag"></i> Add to Cart';
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-          }
-        });
-      });
-
-      function formatMoney(pence) {
-        return '\u00A3' + (pence / 100).toFixed(2);
-      }
-    }
   });
 </script>

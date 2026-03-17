@@ -1,0 +1,111 @@
+{% render 'json-ld-breadcrumbs' %}
+
+<style>
+  .collections-page {
+    padding: 3rem 0;
+  }
+
+  .collections-page__heading {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--color-text, #1a1a1a);
+  }
+
+  .collections-page__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .collection-card {
+    background: var(--color-bg, #fff);
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .collection-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+  }
+
+  .collection-card__image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .collection-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .collection-card__image--placeholder {
+    background: linear-gradient(135deg, var(--color-primary, #2d6a4f), var(--color-primary-dark, #1b4332));
+    width: 100%;
+    height: 100%;
+  }
+
+  .collection-card__body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .collection-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text, #1a1a1a);
+  }
+
+  .collection-card__count {
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #6b7280);
+    margin: 0;
+  }
+</style>
+
+<section class="collections-page section-padding">
+  <div class="container">
+    <h1 class="collections-page__heading">Our Collections</h1>
+
+    <div class="collections-page__grid">
+      {% for collection in collections %}
+        {% if collection.handle == 'frontpage' %}
+          {% continue %}
+        {% endif %}
+
+        <a href="{{ collection.url }}" class="collection-card">
+          <div class="collection-card__image">
+            {% if collection.image %}
+              <img
+                src="{{ collection.image | image_url: width: 600 }}"
+                alt="{{ collection.title | escape }}"
+                loading="lazy"
+                width="600"
+                height="450"
+              >
+            {% else %}
+              <div class="collection-card__image--placeholder"></div>
+            {% endif %}
+          </div>
+          <div class="collection-card__body">
+            <h2 class="collection-card__title">{{ collection.title }}</h2>
+            <p class="collection-card__count">{{ collection.products_count }} products</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

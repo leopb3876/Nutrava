@@ -1,11 +1,23 @@
 <section class="how-it-works section-padding bg-white" data-fade-in>
   <div class="container">
-    <h2 class="text-center mb-xl">{{ section.settings.heading }}</h2>
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
 
     <div class="how-it-works__steps">
       {%- for block in section.blocks -%}
         <div class="how-it-works__step" {{ block.shopify_attributes }}>
-          <div class="how-it-works__number">{{ forloop.index }}</div>
+          {% if block.settings.image != blank %}
+            <div class="how-it-works__photo">
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.image.alt | default: block.settings.title }}" loading="lazy" width="400">
+              <span class="how-it-works__num-overlay">{{ forloop.index }}</span>
+            </div>
+          {% else %}
+            <div class="how-it-works__number">{{ forloop.index }}</div>
+          {% endif %}
           <h3 class="how-it-works__title">{{ block.settings.title }}</h3>
           <p class="how-it-works__text">{{ block.settings.text }}</p>
         </div>
@@ -13,7 +25,7 @@
         {%- unless forloop.last -%}
           <div class="how-it-works__connector" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+              <path d="M9 18l6-6-6-6"/>
             </svg>
           </div>
         {%- endunless -%}
@@ -51,6 +63,39 @@
     font-weight: 600;
   }
 
+  .how-it-works__photo {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-fern);
+  }
+
+  .how-it-works__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .how-it-works__num-overlay {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
   .how-it-works__title {
     font-size: 1.125rem;
     margin-bottom: var(--space-sm);
@@ -66,8 +111,9 @@
     display: flex;
     align-items: center;
     color: var(--color-fern);
+    opacity: 0.5;
     flex-shrink: 0;
-    padding-top: 12px;
+    padding-top: 80px;
   }
 
   @media (max-width: 768px) {
@@ -80,6 +126,11 @@
       transform: rotate(90deg);
       padding-top: 0;
     }
+
+    .how-it-works__photo {
+      width: 140px;
+      height: 140px;
+    }
   }
 </style>
 
@@ -91,7 +142,13 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "How It Works"
+      "default": "How Nutrava Works"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Three simple steps to your personalised supplement plan"
     }
   ],
   "blocks": [
@@ -99,6 +156,11 @@
       "type": "step",
       "name": "Step",
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step image (shown as circle photo)"
+        },
         {
           "type": "text",
           "id": "title",
@@ -120,21 +182,21 @@
           "type": "step",
           "settings": {
             "title": "Take the Quiz",
-            "text": "Answer a few questions about your lifestyle, goals, and wellness needs"
+            "text": "Answer questions about your goals, lifestyle, sleep, diet, and activity level. Takes under 60 seconds."
           }
         },
         {
           "type": "step",
           "settings": {
             "title": "Get Your Stack",
-            "text": "We'll recommend a personalised supplement stack backed by science"
+            "text": "We build a personalised supplement stack based on your unique profile, backed by science."
           }
         },
         {
           "type": "step",
           "settings": {
-            "title": "Delivered to You",
-            "text": "Your supplements are shipped directly to your door"
+            "title": "Feel the Difference",
+            "text": "Most people feel a difference within the first two weeks of consistent daily use."
           }
         }
       ]

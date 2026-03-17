@@ -1,0 +1,17 @@
+# Development tools
+.claude/
+.superpowers/
+preview.html
+start.bat
+docs/
+
+# HTML design explorations in assets
+assets/color-schemes.html
+assets/hero-ideas-v2.html
+assets/hero-spacer-options.html
+assets/nutrava-logo.html
+assets/photo-strip-options.html
+
+# OS files
+.DS_Store
+Thumbs.db

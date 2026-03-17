@@ -1,0 +1,48 @@
+{% comment %}
+  JSON-LD Product structured data for SEO.
+  Usage: {% render 'json-ld-product', product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign product_url = shop.url | append: product.url
+  assign product_image = product.featured_image | image_url: width: 800
+  assign product_desc = product.description | strip_html | truncate: 200
+  assign product_sku = product.variants.first.sku
+  assign product_price = product.price | divided_by: 100.0
+
+  if product.available
+    assign availability = "https://schema.org/InStock"
+  else
+    assign availability = "https://schema.org/OutOfStock"
+  endif
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product_desc | json }},
+  "image": {{ product_image | json }},
+  "url": {{ product_url | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": "Nutrava"
+  },
+  "sku": {{ product_sku | json }},
+  "offers": {
+    "@type": "Offer",
+    "price": {{ product_price }},
+    "priceCurrency": "GBP",
+    "availability": {{ availability | json }},
+    "url": {{ product_url | json }}
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>

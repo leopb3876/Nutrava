@@ -4,9 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nutrava — Personalised Wellness</title>
+  <meta name="description" content="Personalised supplement stacks based on your goals. Take our 60-second quiz to get science-backed recommendations tailored to you.">
+  <meta property="og:title" content="Nutrava — Personalised Wellness">
+  <meta property="og:description" content="Science-backed supplements personalised to your goals. Clean ingredients, effective doses, delivered to your door.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1582237054380-b6362d21256e?w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nutrava — Personalised Wellness">
+  <meta name="twitter:description" content="Science-backed supplements personalised to your goals.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/quiz.css">
   <style>
@@ -22,8 +30,8 @@
 
     /* Header */
     .header { position: sticky; top: 0; z-index: 100; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
-    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
-    .header__logo { font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-text); letter-spacing: -0.5px; }
+    .header__inner { max-width: 100%; margin: 0 auto; padding: 0 48px 0 240px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .header__logo { font-family: 'Josefin Sans', sans-serif; font-size: 1.4rem; font-weight: 400; color: #2C1E14; letter-spacing: 0.27em; text-transform: uppercase; }
     .header__links { display: flex; align-items: center; gap: 32px; }
     .header__link { font-size: 14px; color: var(--color-text-body); font-weight: 500; transition: color 0.15s; }
     .header__link:hover { color: var(--color-primary); }
@@ -46,7 +54,7 @@
     .announcement-bar__close svg { width: 14px; height: 14px; }
 
     /* Hero - Split layout: text left, lifestyle photo right */
-    .hero-v2 { padding: 80px 0 60px; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); }
+    .hero-v2 { padding: 48px 0 48px; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); }
     .hero-v2__grid { display: grid; grid-template-columns: 55% 45%; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     .hero-v2__content { text-align: left; }
     .hero-v2__label { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 20px; display: block; }
@@ -59,27 +67,42 @@
     .hero-v2__trust-icon { width: 36px; height: 36px; background: var(--color-primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .hero-v2__trust-icon svg { width: 18px; height: 18px; stroke-width: 1.75; }
     .hero-v2__image { border-radius: 20px; overflow: hidden; position: relative; }
-    .hero-v2__image img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; display: block; border-radius: 20px; }
+    .hero-v2__image img { width: 100%; height: 100%; min-height: 520px; object-fit: cover; display: block; border-radius: 20px; }
     .hero-v2__image::after { content: ''; position: absolute; inset: 0; border-radius: 20px; background: linear-gradient(135deg, rgba(61,107,79,0.08) 0%, transparent 60%); pointer-events: none; }
+    .hero-v2__promo { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(199,163,115,0.15) 0%, rgba(199,163,115,0.08) 100%); border: 1px solid rgba(199,163,115,0.3); border-radius: var(--radius-pill); padding: 10px 20px; font-size: 14px; color: var(--color-text-body); margin-bottom: 32px; }
+    .hero-v2__promo i, .hero-v2__promo svg { width: 16px; height: 16px; color: var(--color-accent); }
+    .hero-v2__promo strong { color: var(--color-accent); font-weight: 700; }
+    /* Why Cards */
+    .why-card { background: #fff; border: 1.5px solid var(--color-border); border-radius: 16px; padding: 32px 28px; text-align: center; transition: all 0.25s; }
+    .why-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(90,122,94,0.1); }
+    .why-card__icon { width: 48px; height: 48px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: var(--color-primary); }
+    .why-card__icon svg { width: 24px; height: 24px; }
+    .why-card__stat { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-primary); margin-bottom: 4px; line-height: 1.2; }
+    .why-card__title { font-size: 15px; font-weight: 700; color: var(--color-text); margin-bottom: 8px; }
+    .why-card__text { font-size: 14px; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
 
-    /* 3-Step Section - Persona inspired */
-    .steps-v2 { padding: 80px 0; background: #fff; }
-    .steps-v2__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; max-width: 900px; margin: 0 auto; }
+    /* 3-Step Section */
+    .steps-v2 { padding: 64px 0; background: #fff; }
+    .steps-v2__grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 24px; max-width: 1000px; margin: 0 auto; align-items: flex-start; }
     .steps-v2__step { text-align: center; }
-    .steps-v2__num { width: 64px; height: 64px; border-radius: 50%; background: var(--color-mint-mist); color: var(--color-primary); font-family: var(--font-heading); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 2px solid var(--color-fern); }
+    .steps-v2__photo { position: relative; width: 180px; height: 180px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 3px solid var(--color-fern); }
+    .steps-v2__photo img { width: 100%; height: 100%; object-fit: cover; }
+    .steps-v2__num-overlay { position: absolute; bottom: 8px; right: 8px; width: 36px; height: 36px; background: var(--color-primary); color: #fff; border-radius: 50%; font-family: var(--font-heading); font-size: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
     .steps-v2__title { font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-text); margin-bottom: 8px; }
     .steps-v2__text { font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 260px; margin: 0 auto; }
-    .steps-v2__connector { display: none; }
+    .steps-v2__connector { display: flex; align-items: center; justify-content: center; padding-top: 80px; color: var(--color-fern); opacity: 0.5; }
+    .steps-v2__connector svg { width: 24px; height: 24px; }
 
     /* Goals Grid */
-    .goals-v2 { padding: 80px 0; background: var(--color-mint-mist); }
-    .goals-v2__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
-    .goals-v2__card { background: #fff; border: 1.5px solid var(--color-fern); border-radius: 16px; padding: 28px 16px; text-align: center; cursor: pointer; transition: all 0.25s; }
+    .goals-v2 { padding: 64px 0; background: #fff; }
+    .goals-v2__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    .goals-v2__card { background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; cursor: pointer; transition: all 0.25s; display: flex; flex-direction: column; align-items: center; }
     .goals-v2__card:hover { border-color: var(--color-primary); background: var(--color-mint-mist); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(90,122,94,0.12); }
-    .goals-v2__icon { margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: var(--color-primary); }
-    .goals-v2__icon svg { width: 36px; height: 36px; stroke-width: 1.5; }
-    .goals-v2__name { font-weight: 600; font-size: 14px; color: var(--color-text); margin-bottom: 4px; }
-    .goals-v2__desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.4; }
+    .goals-v2__icon { width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; color: var(--color-primary); }
+    .goals-v2__icon svg { width: 28px; height: 28px; stroke-width: 1.5; }
+    .goals-v2__name { font-weight: 700; font-size: 16px; color: var(--color-text); margin-bottom: 8px; }
+    .goals-v2__desc { font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 12px; }
+    .goals-v2__cta { font-size: 13px; font-weight: 600; color: var(--color-primary); margin-top: auto; }
 
     /* Social Proof / Testimonials (Dark Section) — infinite ticker */
     .social-proof { padding: 80px 0; background: var(--color-dark-section); overflow: hidden; }
@@ -102,12 +125,18 @@
     .testimonial__author { font-size: 14px; font-weight: 600; color: var(--color-dark-text); }
     .testimonial__meta { font-size: 12px; color: var(--color-accent); }
 
-    /* Science Section */
-    .science { padding: 80px 0; background: #fff; }
-    .science__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .science__stat { text-align: center; padding: 24px; }
-    .science__number { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-primary); margin-bottom: 8px; }
-    .science__label { font-size: 13px; color: var(--color-text-muted); line-height: 1.5; }
+    /* Stats Bar */
+    .stats-bar { padding: 64px 0; background: var(--color-dark-section); }
+    .stats-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .stats-bar__icon { width: 52px; height: 52px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent); margin: 0 auto 12px; }
+    .stats-bar__number { display: block; font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-accent); line-height: 1.1; margin-bottom: 4px; }
+    .stats-bar__label { font-size: 14px; color: var(--color-dark-text); opacity: 0.7; }
+
+    /* Bestseller Card */
+    .bestseller-card { display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border); transition: all 0.25s; }
+    .bestseller-card:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+    .bestseller-card__icon { width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .bestseller-card__icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
 
     /* Big CTA */
     .big-cta { padding: 100px 0; background: linear-gradient(135deg, var(--color-mint-mist) 0%, var(--color-fern) 50%, var(--color-mint-mist) 100%); text-align: center; }
@@ -117,7 +146,7 @@
     /* Footer */
     .footer-v2 { background: var(--color-espresso); color: var(--color-sand); padding: 64px 0 32px; }
     .footer-v2__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 0 24px; margin-bottom: 48px; }
-    .footer-v2__logo { font-family: var(--font-heading); font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+    .footer-v2__logo { font-family: 'Josefin Sans', sans-serif; font-size: 1.4rem; font-weight: 400; color: #fff; letter-spacing: 0.27em; text-transform: uppercase; margin-bottom: 8px; }
     .footer-v2__tagline { font-size: 14px; color: rgba(255,255,255,0.6); }
     .footer-v2__heading { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
     .footer-v2__link { display: block; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px; transition: color 0.15s; }
@@ -139,14 +168,24 @@
       .hero-v2__content { text-align: center; }
       .hero-v2__sub { margin-left: auto; margin-right: auto; }
       .hero-v2__actions { justify-content: center; }
+      .hero-v2__actions .btn--lg { padding: 14px 28px; font-size: 14px; }
       .hero-v2__trust { gap: 20px; justify-content: center; }
       .hero-v2__image img { min-height: 280px; }
-      .steps-v2__grid { grid-template-columns: 1fr; gap: 32px; }
+      .steps-v2__grid { grid-template-columns: 1fr !important; gap: 32px; }
+      .steps-v2__connector { display: none !important; }
+      .steps-v2__photo { width: 140px; height: 140px; }
       .goals-v2__grid { grid-template-columns: repeat(2, 1fr); }
       .social-proof__grid { grid-template-columns: 1fr; }
-      .science__grid { grid-template-columns: repeat(2, 1fr); }
       .footer-v2__grid { grid-template-columns: 1fr 1fr; }
       .header__links { display: none; }
+      .header__inner { padding: 0 16px; }
+      .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stats-bar { padding: 32px 0; }
+      .big-cta { padding: 48px 0; }
+      .announcement-bar__inner { padding: 10px 32px 10px 16px; }
+      .footer-v2__grid { gap: 24px; }
+      .newsletter-section { padding: 48px 0 !important; }
+      .testimonial { width: 280px; }
     }
 
     /* Catalog */
@@ -198,9 +237,24 @@
     @media (max-width: 900px) {
       .home-bestsellers-grid { grid-template-columns: repeat(2, 1fr) !important; }
       .home-ingredients-grid { grid-template-columns: 1fr !important; }
+      .ingredient-grid { grid-template-columns: 1fr 1fr !important; }
     }
     @media (max-width: 480px) {
       .home-bestsellers-grid { grid-template-columns: 1fr !important; }
+      .why-nutrava-grid { grid-template-columns: 1fr !important; }
+      .ingredient-grid { grid-template-columns: 1fr !important; }
+      .announcement-bar__inner { padding: 8px 28px 8px 12px; }
+      .stats-bar__grid { grid-template-columns: 1fr; gap: 16px; }
+      .footer-v2__grid { grid-template-columns: 1fr; gap: 16px; }
+      .goals-v2__grid { grid-template-columns: 1fr; }
+      .section-head--flex { flex-direction: column; align-items: flex-start !important; gap: 8px; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form input,
+      .newsletter-form .btn { width: 100%; }
+      .comparison-wrap { position: relative; }
+      .comparison-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; right: 0; width: 30px; background: linear-gradient(to left, rgba(255,255,255,0.9), transparent); pointer-events: none; z-index: 1; }
+      .comparison-wrap table { min-width: 420px; }
+      .mobile-pad-reduce { padding-top: 40px !important; padding-bottom: 40px !important; }
     }
 
     /* Stacks responsive */
@@ -270,19 +324,78 @@
     .cookie-banner__buttons { display: flex; gap: 10px; flex-shrink: 0; }
     .cookie-banner__btn { padding: 10px 24px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid transparent; transition: all 0.2s; font-family: var(--font-body); }
     .cookie-banner__btn--accept { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
-    .cookie-banner__btn--accept:hover { background: #335228; }
+    .cookie-banner__btn--accept:hover { background: #1F4A1B; }
     .cookie-banner__btn--decline { background: transparent; color: var(--color-dark-text); border-color: rgba(255,255,255,0.2); }
     .cookie-banner__btn--decline:hover { border-color: rgba(255,255,255,0.5); }
     @media (max-width: 600px) { .cookie-banner { flex-direction: column; text-align: center; padding: 20px 16px; gap: 16px; } }
 
-    /* Subscribe & Save Toggle */
-    .catalog-card__subscribe { display: flex; align-items: center; gap: 8px; padding: 0 20px 16px; margin-top: -4px; }
-    .subscribe-toggle { position: relative; width: 36px; height: 20px; background: var(--color-sand); border-radius: 10px; cursor: pointer; transition: background 0.2s; border: none; flex-shrink: 0; }
-    .subscribe-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
-    .subscribe-toggle.is-active { background: var(--color-primary); }
-    .subscribe-toggle.is-active::after { transform: translateX(16px); }
-    .subscribe-label { font-size: 12px; color: var(--color-text-muted); line-height: 1.3; }
-    .subscribe-label strong { color: var(--color-primary); font-weight: 600; }
+    /* Cart Cross-Sells */
+    .cart-cross-sells { padding: 16px 20px; border-top: 1px solid var(--color-border); }
+    .cart-cross-sells__title { font-size: 13px; font-weight: 700; color: var(--color-text); margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .cart-cross-sells__grid { display: flex; flex-direction: column; gap: 10px; }
+    .cart-cross-sell { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: var(--color-bg); border-radius: 10px; transition: box-shadow 0.2s; }
+    .cart-cross-sell:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .cart-cross-sell__img { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: var(--color-sand); }
+    .cart-cross-sell__img--placeholder { display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); }
+    .cart-cross-sell__img--placeholder svg { width: 20px; height: 20px; }
+    .cart-cross-sell__info { flex: 1; min-width: 0; }
+    .cart-cross-sell__name { display: block; font-size: 13px; font-weight: 600; color: var(--color-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cart-cross-sell__price { display: block; font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+    .cart-cross-sell__add { flex-shrink: 0; font-size: 12px; padding: 6px 12px; border-radius: var(--radius-pill); white-space: nowrap; }
+
+    /* Cart Subscribe & Save */
+    .cart-subscribe { padding: 16px 20px; border-top: 1px solid var(--color-border); }
+    .cart-subscribe__options { display: flex; flex-direction: column; gap: 10px; }
+    .cart-subscribe__option { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1.5px solid var(--color-border); border-radius: 10px; cursor: pointer; transition: all 0.2s; background: #fff; }
+    .cart-subscribe__option:hover { border-color: var(--color-primary); }
+    .cart-subscribe__option.is-active { border-color: var(--color-primary); background: var(--color-bg); }
+    .cart-subscribe__radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--color-sand); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+    .cart-subscribe__option.is-active .cart-subscribe__radio { border-color: var(--color-primary); }
+    .cart-subscribe__option.is-active .cart-subscribe__radio::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--color-primary); }
+    .cart-subscribe__text { flex: 1; }
+    .cart-subscribe__label { font-size: 14px; font-weight: 600; color: var(--color-text); display: block; }
+    .cart-subscribe__desc { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; display: block; }
+    .cart-subscribe__badge { background: var(--color-primary); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: var(--radius-pill); letter-spacing: 0.3px; white-space: nowrap; }
+    .cart-subscribe__frequency { margin-top: 12px; display: none; }
+    .cart-subscribe__frequency.is-visible { display: block; }
+    .cart-subscribe__frequency select { width: 100%; padding: 8px 12px; border: 1.5px solid var(--color-border); border-radius: 8px; font-size: 13px; color: var(--color-text); background: #fff; cursor: pointer; }
+    .cart-footer__savings { font-size: 13px; color: var(--color-primary); font-weight: 600; text-align: right; margin-bottom: 4px; }
+
+    /* Auth Subscription Summary */
+    .auth-sub-summary { background: var(--color-bg); border: 1.5px solid var(--color-primary); border-radius: 12px; padding: 16px; margin-bottom: 20px; text-align: center; }
+    .auth-sub-summary__icon { color: var(--color-primary); margin-bottom: 8px; }
+    .auth-sub-summary__icon svg { width: 24px; height: 24px; }
+    .auth-sub-summary__title { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--color-text); margin-bottom: 8px; }
+    .auth-sub-summary__details { font-size: 13px; color: var(--color-text-muted); line-height: 1.6; }
+    .auth-sub-summary__details strong { color: var(--color-primary); }
+    .auth-sub-summary__cancel { font-size: 12px; color: var(--color-text-muted); margin-top: 8px; font-style: italic; }
+
+    /* ===== Micro-Interaction Animations ===== */
+
+    /* 1. Nav link animated underline */
+    .header__link { position: relative; }
+    .header__link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--color-primary); transition: width 0.25s ease; }
+    .header__link:hover::after { width: 100%; }
+
+    /* 2. Button hover scale + lift */
+    .btn--primary:hover { transform: scale(1.03); box-shadow: 0 4px 16px rgba(45,90,39,0.2); }
+    .btn--primary { transition: all 0.2s ease; }
+
+    /* 3. Product image hover zoom */
+    .catalog-card img { transition: transform 0.4s ease; }
+    .catalog-card:hover img { transform: scale(1.05); }
+
+    /* 4. Add to Cart bounce */
+    @keyframes btnBounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(0.93); }
+      60% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+    .btn--bounce { animation: btnBounce 0.35s ease; }
+
+    /* 5. Stats count-up — handled in JS, just ensure numbers are styled */
+    [data-count] { font-variant-numeric: tabular-nums; }
 
   </style>
 </head>
@@ -306,7 +419,7 @@
 <header class="header">
   <div class="header__inner">
     <a href="#" onclick="showPage('home')" class="header__logo">Nutrava</a>
-    <div class="header__links">
+    <nav class="header__links" aria-label="Main navigation">
       <a href="#" onclick="showPage('quiz')" class="header__link">Take the Quiz</a>
       <a href="#" onclick="showPage('shop')" class="header__link">Shop</a>
       <a href="#" onclick="showPage('about')" class="header__link">How It Works</a>
@@ -320,10 +433,11 @@
       <button class="search-toggle" onclick="showPage('account')" aria-label="Account">
         <i data-lucide="user"></i>
       </button>
-    </div>
+    </nav>
   </div>
 </header>
 
+<main>
 <!-- ==================== HOME ==================== -->
 <div class="preview-page active" id="page-home">
 
@@ -331,12 +445,15 @@
   <section class="hero-v2">
     <div class="hero-v2__grid">
       <div class="hero-v2__content">
-        <span class="hero-v2__label">Personalised Supplement Stacks</span>
         <h1 class="hero-v2__heading">Your Supplements,<br><span class="text-accent">Personalised</span> to You</h1>
         <p class="hero-v2__sub">Take a quick quiz about your goals, lifestyle, and health. We'll build a science-backed supplement stack made just for you.</p>
         <div class="hero-v2__actions">
           <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
           <a href="#" onclick="showPage('shop')" class="btn btn--outline btn--lg">Browse Supplements</a>
+        </div>
+        <div class="hero-v2__promo">
+          <i data-lucide="tag"></i>
+          <span>Use code <strong>FIRST15</strong> for 15% off your first order</span>
         </div>
         <div class="hero-v2__trust">
           <div class="hero-v2__trust-item">
@@ -358,13 +475,14 @@
         </div>
       </div>
       <div class="hero-v2__image">
-        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Wellness supplements and natural ingredients" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1628829706300-d1ed475bfc9e?w=600&q=80" alt="Premium supplement bottles arranged naturally" loading="lazy">
       </div>
     </div>
   </section>
 
+  <!-- As Seen In -->
   <!-- How It Works - 3 Steps -->
-  <section class="steps-v2">
+  <section class="steps-v2" style="padding: 64px 0;">
     <div class="container">
       <div class="section-head">
         <h2>How Nutrava Works</h2>
@@ -372,26 +490,53 @@
       </div>
       <div class="steps-v2__grid">
         <div class="steps-v2__step">
-          <div class="steps-v2__num">1</div>
+          <div class="steps-v2__photo">
+            <img src="https://images.unsplash.com/photo-1498582750569-89914abe05e4?w=300&q=80" alt="Person taking quiz on phone" loading="lazy">
+            <span class="steps-v2__num-overlay">1</span>
+          </div>
           <h3 class="steps-v2__title">Take the Quiz</h3>
-          <p class="steps-v2__text">Answer questions about your goals, lifestyle, sleep, diet, and activity level. It adapts to your answers.</p>
+          <p class="steps-v2__text">Answer questions about your goals, lifestyle, sleep, diet, and activity level. Takes under 60 seconds.</p>
         </div>
+        <div class="steps-v2__connector"><i data-lucide="chevron-right"></i></div>
         <div class="steps-v2__step">
-          <div class="steps-v2__num">2</div>
+          <div class="steps-v2__photo">
+            <img src="https://images.unsplash.com/photo-1608571424266-edeb9bbefdec?w=300&q=80" alt="Supplement bottles and packets" loading="lazy">
+            <span class="steps-v2__num-overlay">2</span>
+          </div>
           <h3 class="steps-v2__title">Get Your Stack</h3>
-          <p class="steps-v2__text">Our system builds a personalised supplement stack based on your unique profile, backed by science.</p>
+          <p class="steps-v2__text">We build a personalised supplement stack based on your unique profile, backed by science.</p>
         </div>
+        <div class="steps-v2__connector"><i data-lucide="chevron-right"></i></div>
         <div class="steps-v2__step">
-          <div class="steps-v2__num">3</div>
+          <div class="steps-v2__photo">
+            <img src="https://images.unsplash.com/photo-1571385778997-1ae4643264e6?w=300&q=80" alt="Person exercising feeling great" loading="lazy">
+            <span class="steps-v2__num-overlay">3</span>
+          </div>
           <h3 class="steps-v2__title">Feel the Difference</h3>
-          <p class="steps-v2__text">Your supplements are delivered to your door. Most people feel a difference within the first two weeks.</p>
+          <p class="steps-v2__text">Most people feel a difference within the first two weeks of consistent daily use.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Best Sellers -->
+  <section class="bestsellers mobile-pad-reduce" style="padding: 64px 0; background: var(--color-mint-mist);">
+    <div class="container">
+      <div class="section-head section-head--flex" style="display: flex; justify-content: space-between; align-items: flex-end; text-align: left; margin-bottom: 32px;">
+        <div>
+          <h2 style="margin-bottom: 4px;">Best Sellers</h2>
+          <p style="margin: 0;">Our most popular science-backed supplements</p>
+        </div>
+        <a href="#" onclick="showPage('shop')" style="font-size: 14px; font-weight: 600; color: var(--color-primary); white-space: nowrap;">Shop All <span style="font-size: 16px;">→</span></a>
+      </div>
+      <div class="home-bestsellers-grid" id="home-bestsellers" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <!-- Populated by JS from products.json -->
+      </div>
+    </div>
+  </section>
+
   <!-- Explore Goals -->
-  <section class="goals-v2">
+  <section class="goals-v2" style="padding: 64px 0;">
     <div class="container">
       <div class="section-head">
         <h2>What's Your Goal?</h2>
@@ -401,121 +546,109 @@
         <div class="goals-v2__card" onclick="showPage('quiz')">
           <span class="goals-v2__icon"><i data-lucide="brain"></i></span>
           <div class="goals-v2__name">Focus & Study</div>
-          <div class="goals-v2__desc">Mental clarity & concentration</div>
+          <div class="goals-v2__desc">Sharpen concentration, memory, and mental clarity for work or study</div>
+          <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
           <span class="goals-v2__icon"><i data-lucide="dumbbell"></i></span>
           <div class="goals-v2__name">Gym & Performance</div>
-          <div class="goals-v2__desc">Strength, recovery & gains</div>
+          <div class="goals-v2__desc">Build strength, speed recovery, and optimise training performance</div>
+          <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
           <span class="goals-v2__icon"><i data-lucide="moon"></i></span>
           <div class="goals-v2__name">Sleep & Recovery</div>
-          <div class="goals-v2__desc">Deep, restful sleep</div>
+          <div class="goals-v2__desc">Fall asleep faster, sleep deeper, and wake up feeling refreshed</div>
+          <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
           <span class="goals-v2__icon"><i data-lucide="zap"></i></span>
           <div class="goals-v2__name">Energy & Stress</div>
-          <div class="goals-v2__desc">All-day energy, less burnout</div>
+          <div class="goals-v2__desc">Sustained all-day energy without crashes, less burnout and fatigue</div>
+          <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
           <span class="goals-v2__icon"><i data-lucide="leaf"></i></span>
           <div class="goals-v2__name">Daily Wellness</div>
-          <div class="goals-v2__desc">Immunity & overall health</div>
+          <div class="goals-v2__desc">Support immunity, gut health, and long-term overall wellbeing</div>
+          <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Why Nutrava -->
-  <section style="padding: 80px 0; background: #fff;">
+  <!-- Why Nutrava — 2x2 Feature Cards -->
+  <section class="mobile-pad-reduce" style="padding: 64px 0; background: var(--color-mint-mist);">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1000px; margin: 0 auto;">
-        <div>
-          <span class="hero-v2__label" style="margin-bottom: 12px;">The Nutrava Difference</span>
-          <h2 style="font-family: var(--font-heading); font-size: clamp(1.5rem, 3.5vw, 2rem); color: var(--color-text); margin-bottom: 32px;">Why Nutrava?</h2>
-          <div style="display: flex; flex-direction: column; gap: 24px;">
-            <div style="display: flex; gap: 16px; align-items: flex-start;">
-              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="user"></i></div>
-              <div>
-                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">Personalised to You</strong>
-                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Not one-size-fits-all. Your stack is built around your goals.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 16px; align-items: flex-start;">
-              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="flask-conical"></i></div>
-              <div>
-                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">Clinically Dosed</strong>
-                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Every ingredient at its researched dose. No under-dosing.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 16px; align-items: flex-start;">
-              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="shield-check"></i></div>
-              <div>
-                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">No Junk</strong>
-                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">No fillers, binders, or proprietary blends. Ever.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 16px; align-items: flex-start;">
-              <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0;"><i data-lucide="eye"></i></div>
-              <div>
-                <strong style="font-size: 15px; color: var(--color-text); display: block; margin-bottom: 4px;">Transparent Labels</strong>
-                <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">You see exactly what's inside and how much.</p>
-              </div>
-            </div>
-          </div>
+      <div class="section-head">
+        <h2>The Nutrava Difference</h2>
+        <p>What sets us apart from generic supplement brands</p>
+      </div>
+      <div class="why-nutrava-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto;">
+        <div class="why-card">
+          <div class="why-card__icon"><i data-lucide="user"></i></div>
+          <div class="why-card__stat">Unique</div>
+          <h3 class="why-card__title">Personalised to You</h3>
+          <p class="why-card__text">No one-size-fits-all. Every stack is tailored to your unique goals, lifestyle, and health profile.</p>
         </div>
-        <div class="why-nutrava-visual" style="border-radius: 16px; overflow: hidden;">
-          <img src="https://images.unsplash.com/photo-1505576399279-0d754687a2d8?w=500&q=80" alt="Wellness lifestyle and natural health" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block;">
+        <div class="why-card">
+          <div class="why-card__icon"><i data-lucide="flask-conical"></i></div>
+          <div class="why-card__stat">100%</div>
+          <h3 class="why-card__title">Clinically Dosed</h3>
+          <p class="why-card__text">Every ingredient at its researched effective dose. No pixie dusting, no under-dosing, no shortcuts.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><i data-lucide="shield-check"></i></div>
+          <div class="why-card__stat">Zero</div>
+          <h3 class="why-card__title">Fillers or Binders</h3>
+          <p class="why-card__text">No proprietary blends, no artificial fillers, no hidden ingredients. Clean supplements, always.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><i data-lucide="eye"></i></div>
+          <div class="why-card__stat">100%</div>
+          <h3 class="why-card__title">Transparent Labels</h3>
+          <p class="why-card__text">You see exactly what's inside and how much. Third-party lab tested for purity and potency.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Stats Bar (Dark Section) -->
-  <section style="padding: 48px 0; background: var(--color-dark-section);">
+  <section class="stats-bar">
     <div class="container">
-      <div style="display: flex; justify-content: center; gap: 64px; flex-wrap: wrap;">
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="fingerprint"></i></div>
-          <div>
-            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">10,000+</span>
-            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">Stacks built</span>
-          </div>
+      <div class="stats-bar__grid">
+        <div>
+          <div class="stats-bar__icon"><i data-lucide="flask-conical"></i></div>
+          <span class="stats-bar__number" data-count-up="40+">0</span>
+          <span class="stats-bar__label">Science-backed supplements</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="flask-conical"></i></div>
-          <div>
-            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">100%</span>
-            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">Science-backed</span>
-          </div>
+        <div>
+          <div class="stats-bar__icon"><i data-lucide="leaf"></i></div>
+          <span class="stats-bar__number" data-count-up="100%">0</span>
+          <span class="stats-bar__label">Clean, no fillers or binders</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="leaf"></i></div>
-          <div>
-            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">Zero</span>
-            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">Fillers or binders</span>
-          </div>
+        <div>
+          <div class="stats-bar__icon"><i data-lucide="shield-check"></i></div>
+          <span class="stats-bar__number" data-count-up="30">0</span>
+          <span class="stats-bar__label">Day money-back guarantee</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-accent);"><i data-lucide="truck"></i></div>
-          <div>
-            <span style="display: block; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); line-height: 1.2;">Free</span>
-            <span style="font-size: 13px; color: var(--color-dark-text); opacity: 0.8;">UK delivery</span>
-          </div>
+        <div>
+          <div class="stats-bar__icon"><i data-lucide="truck"></i></div>
+          <span class="stats-bar__number">Free</span>
+          <span class="stats-bar__label">UK shipping over £50</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- What Goes In Matters -->
-  <section style="padding: 80px 0; background: var(--color-mint-mist);">
+  <section class="mobile-pad-reduce" style="padding: 64px 0; background: var(--color-mint-mist);">
     <div class="container">
       <div class="section-head">
         <h2>What Goes In Matters</h2>
         <p>Every ingredient is selected based on clinical research</p>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 900px; margin: 0 auto;">
+      <div class="ingredient-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 900px; margin: 0 auto;">
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="flask-conical"></i></div>
           <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Clinically Dosed</h3>
@@ -536,51 +669,54 @@
   </section>
 
   <!-- Nutrava vs Generic Comparison -->
-  <section style="padding: 80px 0; background: #fff;">
+  <section class="mobile-pad-reduce" style="padding: 64px 0; background: #fff;">
     <div class="container">
       <div class="section-head">
         <h2>Nutrava vs. Generic Supplements</h2>
         <p>Not all supplements are created equal</p>
       </div>
-      <div style="max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--color-border); background: #fff;">
-        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <div class="comparison-wrap" style="max-width: 700px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--color-border); background: #fff; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px;">
           <thead>
             <tr style="background: var(--color-dark-section);">
               <th style="padding: 16px 20px; text-align: left; color: var(--color-dark-text); font-weight: 600; width: 40%;"></th>
-              <th style="padding: 16px 20px; text-align: center; color: var(--color-accent); font-family: var(--font-heading); font-size: 1.1rem; width: 30%;">Nutrava</th>
+              <th style="padding: 16px 20px; text-align: center; width: 30%; position: relative;">
+                <span style="display: inline-block; background: var(--color-accent); color: var(--color-dark-section); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 4px;">Recommended</span>
+                <br><span style="color: var(--color-accent); font-family: var(--font-heading); font-size: 1.1rem;">Nutrava</span>
+              </th>
               <th style="padding: 16px 20px; text-align: center; color: rgba(245,242,236,0.5); font-weight: 500; width: 30%;">Generic Brands</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border);">
               <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Personalised to your goals</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
               <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Clinically effective doses</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border);">
               <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">No proprietary blends</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
               <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Third-party lab tested</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 14px;">Rarely</td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
+              <td style="padding: 14px 20px; text-align: center; font-size: 13px; color: var(--color-text-muted);">Rarely</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border);">
               <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Free from fillers & binders</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 18px;">✗</td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr>
               <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Transparent ingredient labels</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-primary); font-weight: 700; font-size: 18px;">✓</td>
-              <td style="padding: 14px 20px; text-align: center; color: var(--color-text-muted); font-size: 14px;">Sometimes</td>
+              <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
+              <td style="padding: 14px 20px; text-align: center; font-size: 13px; color: var(--color-text-muted);">Sometimes</td>
             </tr>
           </tbody>
         </table>
@@ -589,51 +725,55 @@
   </section>
 
   <!-- Ingredient Spotlight -->
-  <section style="padding: 80px 0; background: var(--color-bg);">
+  <section class="mobile-pad-reduce" style="padding: 64px 0; background: var(--color-bg);">
     <div class="container">
       <div class="section-head">
         <h2>Ingredient Spotlight</h2>
         <p>A closer look at what goes into our best-selling supplements</p>
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; margin: 0 auto;">
-        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
-          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=128&q=80" alt="Lion's Mane" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+      <div class="home-ingredients-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; margin: 0 auto;">
+        <div class="bestseller-card">
+          <div class="bestseller-card__icon">
+            <img src="https://images.unsplash.com/photo-1625286535466-68a6d71e4568?w=128&q=80" alt="Lion's Mane Mushroom" loading="lazy">
           </div>
           <div>
             <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Lion's Mane Mushroom</h4>
             <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">500mg per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health. Used for centuries in traditional medicine.</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health.</p>
+            <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
-        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
-          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=128&q=80" alt="Ashwagandha" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+        <div class="bestseller-card">
+          <div class="bestseller-card__icon">
+            <img src="https://images.unsplash.com/photo-1569936906148-06de87cb0681?w=128&q=80" alt="Ashwagandha root" loading="lazy">
           </div>
           <div>
             <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Ashwagandha KSM-66</h4>
             <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">600mg per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels in men. The most studied ashwagandha extract.</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels.</p>
+            <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
-        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
-          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=128&q=80" alt="Magnesium" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+        <div class="bestseller-card">
+          <div class="bestseller-card__icon">
+            <img src="https://images.unsplash.com/photo-1729708273852-b63222c8b35d?w=128&q=80" alt="Magnesium supplement" loading="lazy">
           </div>
           <div>
             <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Magnesium Glycinate</h4>
             <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">400mg per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">The most bioavailable form of magnesium, chelated with glycine for maximum absorption. Supports relaxation, sleep quality, and muscle recovery.</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">The most bioavailable form of magnesium. Supports relaxation, sleep quality, and muscle recovery.</p>
+            <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
-        <div style="display: flex; gap: 20px; padding: 28px; background: var(--color-bg); border-radius: 16px; border: 1px solid var(--color-border);">
-          <div style="width: 64px; height: 64px; background: var(--color-mint-mist); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=128&q=80" alt="Creatine" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+        <div class="bestseller-card">
+          <div class="bestseller-card__icon">
+            <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=128&q=80" alt="Creatine powder" loading="lazy">
           </div>
           <div>
             <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Creatine Monohydrate</h4>
             <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">5g per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Backed by over 500 peer-reviewed studies. Increases strength, power output, and lean muscle mass. Also shown to support cognitive function under stress.</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Backed by 500+ peer-reviewed studies. Increases strength, power output, and supports cognitive function.</p>
+            <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
       </div>
@@ -641,7 +781,7 @@
   </section>
 
   <!-- Homepage FAQ -->
-  <section style="padding: 80px 0; background: #fff;">
+  <section class="mobile-pad-reduce" style="padding: 64px 0; background: #fff;">
     <div class="container" style="max-width: 750px;">
       <div class="section-head">
         <h2>Frequently Asked Questions</h2>
@@ -690,7 +830,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"The quiz built me a personalised stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
             <div class="testimonial__info"><div class="testimonial__author">James T.</div><div class="testimonial__meta">Verified buyer — 3 months</div></div>
           </div>
         </div>
@@ -698,7 +838,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting my custom stack."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
             <div class="testimonial__info"><div class="testimonial__author">Sophie M.</div><div class="testimonial__meta">Verified buyer — 6 weeks</div></div>
           </div>
         </div>
@@ -706,7 +846,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. My personalised stack has noticeably improved my recovery between training sessions."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
             <div class="testimonial__info"><div class="testimonial__author">Daniel K.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
@@ -714,7 +854,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
             <div class="testimonial__info"><div class="testimonial__author">Emma R.</div><div class="testimonial__meta">Verified buyer — 4 months</div></div>
           </div>
         </div>
@@ -722,7 +862,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. My Nutrava stack gives me sustained focus all day — no jitters, no afternoon slump."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
             <div class="testimonial__info"><div class="testimonial__author">Michael B.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
@@ -730,7 +870,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
           <p class="testimonial__text">"Started my personalised stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed. My Fitbit confirms it too."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
             <div class="testimonial__info"><div class="testimonial__author">Lauren W.</div><div class="testimonial__meta">Verified buyer — 5 weeks</div></div>
           </div>
         </div>
@@ -738,7 +878,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
             <div class="testimonial__info"><div class="testimonial__author">Tom H.</div><div class="testimonial__meta">Verified buyer — 6 weeks</div></div>
           </div>
         </div>
@@ -746,7 +886,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
             <div class="testimonial__info"><div class="testimonial__author">Priya K.</div><div class="testimonial__meta">Subscriber — 5 months</div></div>
           </div>
         </div>
@@ -754,7 +894,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
             <div class="testimonial__info"><div class="testimonial__author">Chris A.</div><div class="testimonial__meta">Verified buyer — 3 months</div></div>
           </div>
         </div>
@@ -762,7 +902,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"Nutrava helped me figure out what I actually need. The quiz was spot on — I'm taking fewer supplements now but getting better results than before."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&q=80" alt="Hannah L.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&q=80" alt="Hannah L.">
             <div class="testimonial__info"><div class="testimonial__author">Hannah L.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
@@ -770,7 +910,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"Proper doses, clean ingredients, and they actually explain why each supplement is in your stack. First brand I've trusted enough to set up a subscription."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=96&q=80" alt="Alex D.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=96&q=80" alt="Alex D.">
             <div class="testimonial__info"><div class="testimonial__author">Alex D.</div><div class="testimonial__meta">Subscriber — 3 months</div></div>
           </div>
         </div>
@@ -778,7 +918,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
           <p class="testimonial__text">"Got my personalised stack after burnout from work. Two months in and I feel like a different person. More energy, better mood, sleeping properly again."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=96&q=80" alt="Olivia S.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=96&q=80" alt="Olivia S.">
             <div class="testimonial__info"><div class="testimonial__author">Olivia S.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
           </div>
         </div>
@@ -786,7 +926,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"I was spending £60/month on random supplements. Nutrava streamlined everything into one stack for less money and I actually feel the difference now."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=96&q=80" alt="Ryan P.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=96&q=80" alt="Ryan P.">
             <div class="testimonial__info"><div class="testimonial__author">Ryan P.</div><div class="testimonial__meta">Subscriber — 4 months</div></div>
           </div>
         </div>
@@ -794,7 +934,7 @@
           <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p class="testimonial__text">"My mum recommended Nutrava to me. We both have our own personalised stacks now. Love that it's UK-based with free shipping and actually arrives quickly."</p>
           <div class="testimonial__footer">
-            <img class="testimonial__avatar" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=96&q=80" alt="Natasha G.">
+            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=96&q=80" alt="Natasha G.">
             <div class="testimonial__info"><div class="testimonial__author">Natasha G.</div><div class="testimonial__meta">Subscriber — 6 months</div></div>
           </div>
         </div>
@@ -862,8 +1002,8 @@
   <section style="padding: 0;">
     <div class="container" style="max-width: 900px;">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-radius: 16px; overflow: hidden;">
-        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Natural supplement ingredients" loading="lazy" style="width:100%; height:280px; object-fit:cover; border-radius: 12px;">
-        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&q=80" alt="Wellness and health lifestyle" loading="lazy" style="width:100%; height:280px; object-fit:cover; border-radius: 12px;">
+        <img src="https://images.unsplash.com/photo-1607721098274-e54cbfab475d?w=600&q=80" alt="Natural herbs and ingredients" loading="lazy" style="width:100%; height:280px; object-fit:cover; border-radius: 12px;">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Wellness and healthy lifestyle" loading="lazy" style="width:100%; height:280px; object-fit:cover; border-radius: 12px;">
       </div>
     </div>
   </section>
@@ -947,13 +1087,7 @@
   <section style="padding: 48px 0;">
     <div class="container">
       <!-- Filter Pills -->
-      <div class="catalog-filters" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;">
-        <button class="catalog-pill active" data-filter="all">All</button>
-        <button class="catalog-pill" data-filter="focus">Focus & Study</button>
-        <button class="catalog-pill" data-filter="gym">Gym & Performance</button>
-        <button class="catalog-pill" data-filter="sleep">Sleep & Recovery</button>
-        <button class="catalog-pill" data-filter="energy">Energy & Stress</button>
-        <button class="catalog-pill" data-filter="wellness">Daily Wellness</button>
+      <div class="catalog-filters" id="catalog-filters" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;">
       </div>
       <p class="catalog-count" style="text-align: center; font-size: 13px; color: var(--color-text-muted); margin-bottom: 32px;">Showing <span data-product-count>12</span> products</p>
       <!-- Product Grid — rendered dynamically from assets/products.json -->
@@ -1146,6 +1280,7 @@
   </section>
 </div>
 
+
 <!-- Search Modal -->
 <div class="search-overlay" data-search-overlay style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(61,50,41,0.5); z-index:200; backdrop-filter:blur(4px);"></div>
 <div class="search-modal" data-search-modal style="display:none; position:fixed; top:0; left:0; right:0; z-index:201; padding:80px 24px 24px;">
@@ -1183,14 +1318,61 @@
   </div>
   <div class="cart-drawer__filled" data-cart-filled style="display: none;">
     <div class="cart-drawer__items" data-cart-items></div>
-    <div class="cart-drawer__footer">
-      <div class="cart-drawer__subtotal">
-        <span>Subtotal</span>
-        <span data-cart-subtotal>£0.00</span>
+    <div class="cart-drawer__bottom">
+      <!-- Cross-Sells -->
+      <div class="cart-cross-sells" data-cart-cross-sells style="display: none;">
+        <p class="cart-cross-sells__title">Pairs well with your stack</p>
+        <div class="cart-cross-sells__grid" data-cross-sell-items></div>
       </div>
-      <p class="cart-drawer__shipping">Shipping calculated at checkout</p>
-      <p style="font-size: 12px; color: var(--color-text-muted); text-align: center; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;"><i data-lucide="shield-check" style="width: 14px; height: 14px; color: var(--color-primary);"></i> 30-day money-back guarantee</p>
-      <button class="btn btn--primary cart-drawer__checkout" data-cart-checkout>Checkout</button>
+      <!-- Subscribe & Save -->
+      <div class="cart-subscribe" data-cart-subscribe>
+        <div class="cart-subscribe__options">
+          <div class="cart-subscribe__option is-active" data-purchase-type="onetime">
+            <span class="cart-subscribe__radio"></span>
+            <span class="cart-subscribe__text">
+              <span class="cart-subscribe__label">One-time purchase</span>
+            </span>
+          </div>
+          <div class="cart-subscribe__option" data-purchase-type="subscribe">
+            <span class="cart-subscribe__radio"></span>
+            <span class="cart-subscribe__text">
+              <span class="cart-subscribe__label">Subscribe & Save</span>
+              <span class="cart-subscribe__desc">Delivered on your schedule. Cancel anytime.</span>
+            </span>
+            <span class="cart-subscribe__badge">15% off</span>
+          </div>
+        </div>
+        <div class="cart-subscribe__frequency" data-subscribe-frequency>
+          <select data-frequency-select>
+            <option value="30">Every 30 days</option>
+            <option value="60">Every 60 days</option>
+            <option value="90">Every 90 days</option>
+          </select>
+        </div>
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="cart-footer__savings" data-cart-savings style="display: none;"></div>
+        <div class="cart-drawer__subtotal">
+          <span>Subtotal</span>
+          <span data-cart-subtotal>£0.00</span>
+        </div>
+        <p class="cart-drawer__shipping">Free UK shipping on orders over £50</p>
+        <p style="font-size: 12px; color: var(--color-text-muted); text-align: center; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;"><i data-lucide="shield-check" style="width: 14px; height: 14px; color: var(--color-primary);"></i> 30-day money-back guarantee</p>
+        <div class="cart-discount" data-cart-discount>
+          <a href="#" class="cart-discount__toggle" data-discount-toggle>Have a promo code?</a>
+          <div class="cart-discount__form" data-discount-form style="display: none;">
+            <div class="cart-discount__input-wrap">
+              <input type="text" class="cart-discount__input" data-discount-input placeholder="Enter code" autocomplete="off">
+              <button type="button" class="cart-discount__apply" data-discount-apply>Apply</button>
+            </div>
+          </div>
+          <div class="cart-discount__applied" data-discount-applied style="display: none;">
+            <span class="cart-discount__code" data-discount-code></span>
+            <button type="button" class="cart-discount__remove" data-discount-remove>Remove</button>
+          </div>
+        </div>
+        <button class="btn btn--primary cart-drawer__checkout" data-cart-checkout>Checkout</button>
+      </div>
     </div>
   </div>
 </aside>
@@ -1208,6 +1390,14 @@
       </div>
       <h2>Secure Checkout</h2>
       <p>Sign in to complete your order</p>
+    </div>
+
+    <!-- Subscription Summary (shown when Subscribe & Save is active) -->
+    <div class="auth-sub-summary" data-auth-sub-summary style="display: none;">
+      <div class="auth-sub-summary__icon"><i data-lucide="repeat"></i></div>
+      <div class="auth-sub-summary__title">Your Monthly Subscription</div>
+      <div class="auth-sub-summary__details" data-auth-sub-details></div>
+      <div class="auth-sub-summary__cancel">Cancel or modify anytime</div>
     </div>
 
     <!-- Social Buttons -->
@@ -1264,16 +1454,18 @@
 </div>
 
 <!-- Newsletter -->
-<section style="padding:80px 0; background:var(--color-dark-section); text-align:center;">
+<section class="newsletter-section" style="padding:80px 0; background:var(--color-dark-section); text-align:center;">
   <div style="max-width:600px; margin:0 auto; padding:0 24px;">
     <h2 style="font-family:var(--font-heading); font-size:1.75rem; color:var(--color-dark-text); margin-bottom:8px;">Stay in the loop</h2>
     <p style="font-size:15px; color:var(--color-dark-text); opacity:0.8; margin-bottom:24px;">Join 10,000+ people optimising their wellness. Get tips, new supplements, and exclusive offers.</p>
-    <form style="display:flex; gap:8px; max-width:440px; margin:0 auto;" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='var(--color-primary)'; setTimeout(()=>{this.querySelector('button').textContent='Subscribe'; this.querySelector('button').style.background='var(--color-accent)';}, 2000);">
+    <form class="newsletter-form" style="display:flex; gap:8px; max-width:440px; margin:0 auto;" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='var(--color-primary)'; setTimeout(()=>{this.querySelector('button').textContent='Subscribe'; this.querySelector('button').style.background='var(--color-accent)';}, 2000);">
       <input type="email" placeholder="Your email address" required style="flex:1; padding:12px 16px; border:1.5px solid rgba(255,255,255,0.2); border-radius:var(--radius-pill); background:rgba(255,255,255,0.1); color:var(--color-dark-text); font-size:14px; font-family:var(--font-body); outline:none;" onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
       <button type="submit" class="btn btn--primary" style="background:var(--color-accent); border-color:var(--color-accent); white-space:nowrap;">Subscribe</button>
     </form>
   </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer class="footer-v2">
@@ -1312,9 +1504,9 @@
 </footer>
 
 <script src="assets/theme.js"></script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="assets/lucide.min.js"></script>
 <script src="assets/cart.js"></script>
-<script src="assets/quiz.js"></script>
+<script src="assets/quiz.js" defer></script>
 <script>
 /* Initialize Lucide icons on the homepage */
 if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -1379,7 +1571,6 @@ var NutravaProducts = [];
 
   function renderCard(p) {
     var priceStr = formatPrice(p.price);
-    var subPrice = formatPrice(Math.round(p.price * 0.85));
     var badge = p.bestSeller ? '<span style="position:absolute; top:12px; left:12px; background:var(--color-accent); color:#fff; font-size:11px; font-weight:700; padding:4px 10px; border-radius:var(--radius-pill); letter-spacing:0.5px; text-transform:uppercase; z-index:2;">Best Seller</span>' : '';
     var factsRows = p.expand.facts.map(function(r) { return '<tr><td>' + escHtml(r[0]) + '</td><td>' + escHtml(r[1]) + '</td></tr>'; }).join('');
     var benefitsLi = p.expand.benefits.map(function(b) { return '<li>' + escHtml(b) + '</li>'; }).join('');
@@ -1393,13 +1584,9 @@ var NutravaProducts = [];
         + '<h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--color-text); margin:4px 0 8px;">' + escHtml(p.title) + '</h3>'
         + '<p style="font-size:13px; color:var(--color-text-muted); line-height:1.5; margin-bottom:12px;">' + escHtml(p.description) + '</p>'
         + '<div style="display:flex; justify-content:space-between; align-items:center;">'
-          + '<div><span class="catalog-card__price" style="font-family:var(--font-heading); font-size:1.1rem; color:var(--color-primary); display:block;" data-original-price="' + priceStr + '" data-sub-price="' + subPrice + '">' + priceStr + '</span></div>'
+          + '<div><span style="font-family:var(--font-heading); font-size:1.1rem; color:var(--color-primary); display:block;">' + priceStr + '</span></div>'
           + '<button class="btn btn--primary btn--sm" onclick="event.stopPropagation(); NutravaCart.addItem({id:' + p.id + ',handle:\'' + escHtml(p.handle) + '\',title:\'' + escHtml(p.title).replace(/'/g, "\\'") + '\',price:' + p.price + ',quantity:1})">Add to Cart</button>'
         + '</div>'
-      + '</div>'
-      + '<div class="catalog-card__subscribe">'
-        + '<button class="subscribe-toggle" onclick="event.stopPropagation()"></button>'
-        + '<span class="subscribe-label">Subscribe & Save <strong>15%</strong></span>'
       + '</div>'
       + '<div class="product-expand"><div class="product-expand__inner">'
         + '<div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">' + escHtml(p.expand.about) + '</p></div>'
@@ -1417,24 +1604,7 @@ var NutravaProducts = [];
     grid.innerHTML = products.map(renderCard).join('');
     var countEl = document.querySelector('[data-product-count]');
     if (countEl) countEl.textContent = products.length;
-    wireSubscribeToggles();
     if (typeof lucide !== 'undefined') lucide.createIcons();
-  }
-
-  function wireSubscribeToggles() {
-    document.querySelectorAll('.catalog-card__subscribe .subscribe-toggle').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var card = this.closest('.catalog-card');
-        var priceSpan = card.querySelector('.catalog-card__price');
-        this.classList.toggle('is-active');
-        if (this.classList.contains('is-active')) {
-          priceSpan.innerHTML = '<span style="text-decoration:line-through; color:var(--color-text-muted); font-size:13px;">' + priceSpan.dataset.originalPrice + '</span> ' + priceSpan.dataset.subPrice;
-        } else {
-          priceSpan.textContent = priceSpan.dataset.originalPrice;
-        }
-      });
-    });
   }
 
   function wireFilters() {
@@ -1459,12 +1629,49 @@ var NutravaProducts = [];
   }
 
   /* Load products and render */
+  function renderCatalogFilters(categories) {
+    var container = document.getElementById('catalog-filters');
+    if (!container) return;
+    var html = '<button class="catalog-pill active" data-filter="all">All</button>';
+    categories.forEach(function(cat) {
+      html += '<button class="catalog-pill" data-filter="' + cat.key + '">' + cat.label + '</button>';
+    });
+    container.innerHTML = html;
+  }
+
+  /* ---------- Home Best Sellers ---------- */
+  function renderBestsellers(products) {
+    var container = document.getElementById('home-bestsellers');
+    if (!container) return;
+    var best = products.filter(function(p) { return p.bestSeller; }).slice(0, 4);
+    if (best.length === 0) best = products.slice(0, 4);
+    container.innerHTML = best.map(function(p) {
+      var price = '£' + (p.price / 100).toFixed(2);
+      var img = p.image || 'https://images.unsplash.com/photo-1730388843790-f753ecf9ba94?w=300&q=80';
+      return '<div style="background:#fff; border:1.5px solid var(--color-border); border-radius:16px; overflow:hidden; transition:all 0.25s; cursor:pointer;" onmouseover="this.style.borderColor=\'var(--color-primary)\';this.style.transform=\'translateY(-4px)\';this.style.boxShadow=\'0 8px 30px rgba(90,122,94,0.12)\'" onmouseout="this.style.borderColor=\'var(--color-border)\';this.style.transform=\'none\';this.style.boxShadow=\'none\'">' +
+        '<div style="aspect-ratio:1; overflow:hidden; background:var(--color-bg);">' +
+          '<img src="' + img + '" alt="' + p.title + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">' +
+        '</div>' +
+        '<div style="padding:16px 16px 20px;">' +
+          '<span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--color-primary); display:block; margin-bottom:4px;">' + (p.category || '') + '</span>' +
+          '<h3 style="font-family:var(--font-heading); font-size:1rem; color:var(--color-text); margin:0 0 8px;">' + p.title + '</h3>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between;">' +
+            '<span style="font-size:16px; font-weight:700; color:var(--color-text);">' + price + '</span>' +
+            '<button class="btn btn--primary" style="padding:8px 16px; font-size:12px;" onclick="event.stopPropagation(); NutravaCart.addItem({id:Date.now(),handle:\'' + p.handle + '\',title:\'' + p.title.replace(/'/g, "\\'") + '\',price:' + p.price + ',quantity:1})">Add to Cart</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
   fetch('assets/products.json')
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      NutravaProducts = data;
-      renderCatalog(data);
+      NutravaProducts = data.products;
+      renderCatalogFilters(data.categories);
+      renderCatalog(data.products);
       wireFilters();
+      renderBestsellers(data.products);
     })
     .catch(function(err) { console.error('Failed to load products:', err); });
 })();
@@ -1507,7 +1714,17 @@ var NutravaProducts = [];
     debounce = setTimeout(function() {
       var q = input.value.trim().toLowerCase();
       if (!q) { results.style.display = 'none'; return; }
-      var matches = NutravaProducts.filter(function(p) { return p.title.toLowerCase().indexOf(q) !== -1; });
+      var matches = NutravaProducts.filter(function(p) {
+        if (p.title.toLowerCase().indexOf(q) !== -1) return true;
+        if (p.categoryLabel && p.categoryLabel.toLowerCase().indexOf(q) !== -1) return true;
+        if (p.description && p.description.toLowerCase().indexOf(q) !== -1) return true;
+        if (p.expand && p.expand.benefits) {
+          for (var i = 0; i < p.expand.benefits.length; i++) {
+            if (p.expand.benefits[i].toLowerCase().indexOf(q) !== -1) return true;
+          }
+        }
+        return false;
+      });
       if (matches.length === 0) {
         results.innerHTML = '<div style="padding:20px; text-align:center; font-size:14px; color:var(--color-text-muted);">No products found</div>';
       } else {
@@ -1555,6 +1772,85 @@ document.querySelectorAll('.catalog-card').forEach(function(card) {
     if (toggleBtn) toggleProductExpand(toggleBtn);
   });
 });
+
+/* ---------- Add to Cart Bounce Feedback ---------- */
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.btn--primary');
+  if (!btn || btn.textContent.trim().indexOf('Add to Cart') === -1) return;
+  btn.classList.remove('btn--bounce');
+  void btn.offsetWidth; // force reflow
+  btn.classList.add('btn--bounce');
+  btn.addEventListener('animationend', function() { btn.classList.remove('btn--bounce'); }, { once: true });
+});
+
+/* ---------- Cart Subscribe & Save ---------- */
+(function() {
+  var container = document.querySelector('[data-cart-subscribe]');
+  if (!container) return;
+  var options = container.querySelectorAll('.cart-subscribe__option');
+  var frequencyWrap = container.querySelector('[data-subscribe-frequency]');
+  var frequencySelect = container.querySelector('[data-frequency-select]');
+  var savingsEl = document.querySelector('[data-cart-savings]');
+  var subtotalEl = document.querySelector('[data-cart-subtotal]');
+  var checkoutBtn = document.querySelector('[data-cart-checkout]');
+
+  /* Restore persisted state */
+  function syncUI() {
+    var sub = NutravaCart.getSubscription();
+    var isSubscribe = sub.purchase_type === 'subscribe';
+
+    options.forEach(function(o) {
+      o.classList.toggle('is-active', o.dataset.purchaseType === sub.purchase_type);
+    });
+    if (frequencyWrap) frequencyWrap.classList.toggle('is-visible', isSubscribe);
+    if (frequencySelect) frequencySelect.value = String(sub.frequency);
+    updateSubscribePrice(isSubscribe);
+  }
+
+  /* Option click */
+  options.forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      NutravaCart.setPurchaseType(opt.dataset.purchaseType);
+    });
+  });
+
+  /* Frequency change */
+  if (frequencySelect) {
+    frequencySelect.addEventListener('change', function() {
+      NutravaCart.setFrequency(this.value);
+    });
+  }
+
+  function updateSubscribePrice(isSubscribe) {
+    if (!subtotalEl) return;
+    var raw = subtotalEl.dataset.rawTotal || subtotalEl.textContent;
+    var num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    if (isSubscribe) {
+      var discounted = (num * 0.85).toFixed(2);
+      var saved = (num - parseFloat(discounted)).toFixed(2);
+      subtotalEl.innerHTML = '<span style="text-decoration:line-through; color:var(--color-text-muted); font-size:13px;">£' + num.toFixed(2) + '</span> £' + discounted;
+      if (savingsEl) { savingsEl.textContent = 'You save £' + saved + ' with Subscribe & Save'; savingsEl.style.display = 'block'; }
+      if (checkoutBtn) checkoutBtn.textContent = 'Subscribe & Checkout';
+    } else {
+      subtotalEl.textContent = '£' + num.toFixed(2);
+      if (savingsEl) savingsEl.style.display = 'none';
+      if (checkoutBtn) checkoutBtn.textContent = 'Checkout';
+    }
+  }
+
+  /* Re-sync UI when cart updates */
+  window.addEventListener('cart:updated', function(e) {
+    if (e.detail && e.detail.cart) {
+      var total = (e.detail.cart.total_price / 100).toFixed(2);
+      if (subtotalEl) subtotalEl.dataset.rawTotal = '£' + total;
+    }
+    syncUI();
+  });
+
+  /* Initial sync */
+  syncUI();
+})();
 
 /* Testimonial infinite ticker — duplicate cards for seamless loop */
 (function() {

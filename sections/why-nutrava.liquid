@@ -19,7 +19,11 @@
         </div>
       </div>
       <div class="why-nutrava__visual">
-        <i data-lucide="heart-pulse"></i>
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 600 }}" alt="{{ section.settings.image.alt | default: 'Why Nutrava' }}" loading="lazy" width="600">
+        {% else %}
+          <i data-lucide="heart-pulse"></i>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -95,6 +99,13 @@
     color: var(--color-primary);
   }
 
+  .why-nutrava__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
   .why-nutrava__visual svg {
     width: 80px;
     height: 80px;
@@ -127,6 +138,11 @@
       "id": "heading",
       "label": "Heading",
       "default": "Why Nutrava?"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Visual image (replaces placeholder icon)"
     }
   ],
   "blocks": [

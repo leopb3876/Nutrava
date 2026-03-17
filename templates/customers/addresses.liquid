@@ -1,0 +1,334 @@
+<section class="account-hero section-padding">
+  <div class="container container--narrow">
+
+    <div class="account-profile" style="margin-bottom: var(--space-xl);">
+      <div>
+        <a href="/account" class="order-back-link">
+          <i data-lucide="arrow-left" style="width:16px; height:16px;"></i>
+          Back to Account
+        </a>
+        <h1 style="margin-top: var(--space-sm);">Your Addresses</h1>
+      </div>
+      <button class="btn btn--primary btn--sm" id="add-address-toggle">
+        <i data-lucide="plus" style="width:16px; height:16px;"></i>
+        Add New Address
+      </button>
+    </div>
+
+    <!-- Add New Address Form -->
+    <div id="add-address-form" class="account-card address-form-card" style="display: none; margin-bottom: var(--space-xl);">
+      <h2 class="account-section__title" style="margin-bottom: var(--space-lg);">
+        <i data-lucide="map-pin"></i> New Address
+      </h2>
+
+      {% form 'customer_address', customer.new_address %}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+          <div class="auth-field">
+            <label for="address-first-name-new">First Name</label>
+            <input type="text" id="address-first-name-new" name="address[first_name]" autocomplete="given-name" placeholder="First name">
+          </div>
+          <div class="auth-field">
+            <label for="address-last-name-new">Last Name</label>
+            <input type="text" id="address-last-name-new" name="address[last_name]" autocomplete="family-name" placeholder="Last name">
+          </div>
+        </div>
+        <div class="auth-field">
+          <label for="address-company-new">Company (optional)</label>
+          <input type="text" id="address-company-new" name="address[company]" autocomplete="organization" placeholder="Company name">
+        </div>
+        <div class="auth-field">
+          <label for="address-address1-new">Address</label>
+          <input type="text" id="address-address1-new" name="address[address1]" autocomplete="address-line1" placeholder="Street address" required>
+        </div>
+        <div class="auth-field">
+          <label for="address-address2-new">Apartment, suite, etc. (optional)</label>
+          <input type="text" id="address-address2-new" name="address[address2]" autocomplete="address-line2" placeholder="Apt, suite, unit">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+          <div class="auth-field">
+            <label for="address-city-new">City</label>
+            <input type="text" id="address-city-new" name="address[city]" autocomplete="address-level2" placeholder="City" required>
+          </div>
+          <div class="auth-field">
+            <label for="address-country-new">Country</label>
+            <select id="address-country-new" name="address[country]" data-default="{{ form.country }}" autocomplete="country">
+              {{ all_country_option_tags }}
+            </select>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+          <div class="auth-field">
+            <label for="address-province-new">State / Province</label>
+            <select id="address-province-new" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1">
+            </select>
+          </div>
+          <div class="auth-field">
+            <label for="address-zip-new">Postal / ZIP Code</label>
+            <input type="text" id="address-zip-new" name="address[zip]" autocomplete="postal-code" placeholder="Postal code" required>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label for="address-phone-new">Phone (optional)</label>
+          <input type="tel" id="address-phone-new" name="address[phone]" autocomplete="tel" placeholder="Phone number">
+        </div>
+        <div class="auth-field" style="display: flex; align-items: center; gap: var(--space-sm);">
+          {{ form.set_as_default_checkbox }}
+          <label for="address_default_address_new" style="margin-bottom: 0; cursor: pointer;">Set as default address</label>
+        </div>
+        <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-md);">
+          <button type="submit" class="btn btn--primary btn--sm">Save Address</button>
+          <button type="button" class="btn--sm-outline" onclick="document.getElementById('add-address-form').style.display='none';">Cancel</button>
+        </div>
+      {% endform %}
+    </div>
+
+    <!-- Existing Addresses -->
+    <div class="account-section">
+      {%- if customer.addresses.size > 0 -%}
+        {%- for address in customer.addresses -%}
+          <div class="account-card address-card" style="margin-bottom: var(--space-md);">
+            <!-- View Mode -->
+            <div class="address-card__view" id="address-view-{{ address.id }}">
+              <div class="account-card__header">
+                <div>
+                  {%- if address == customer.default_address -%}
+                    <span class="account-badge account-badge--delivered" style="margin-bottom: var(--space-sm); display: inline-block;">Default</span>
+                  {%- endif -%}
+                  <div class="account-settings__value">
+                    {{ address | format_address }}
+                  </div>
+                </div>
+                <div class="account-card__actions">
+                  <button class="btn--sm-outline" onclick="toggleEditAddress('{{ address.id }}')">
+                    <i data-lucide="pencil" style="width:14px; height:14px;"></i>
+                    Edit
+                  </button>
+                  {% form 'customer_address', address %}
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn--sm-outline address-delete-btn" onclick="return confirm('Are you sure you want to delete this address?');">
+                      <i data-lucide="trash-2" style="width:14px; height:14px;"></i>
+                      Delete
+                    </button>
+                  {% endform %}
+                </div>
+              </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <div class="address-card__edit" id="address-edit-{{ address.id }}" style="display: none;">
+              <h3 class="account-section__title" style="margin-bottom: var(--space-lg);">
+                <i data-lucide="pencil"></i> Edit Address
+              </h3>
+
+              {% form 'customer_address', address %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                  <div class="auth-field">
+                    <label for="address-first-name-{{ address.id }}">First Name</label>
+                    <input type="text" id="address-first-name-{{ address.id }}" name="address[first_name]" value="{{ address.first_name }}" autocomplete="given-name">
+                  </div>
+                  <div class="auth-field">
+                    <label for="address-last-name-{{ address.id }}">Last Name</label>
+                    <input type="text" id="address-last-name-{{ address.id }}" name="address[last_name]" value="{{ address.last_name }}" autocomplete="family-name">
+                  </div>
+                </div>
+                <div class="auth-field">
+                  <label for="address-company-{{ address.id }}">Company (optional)</label>
+                  <input type="text" id="address-company-{{ address.id }}" name="address[company]" value="{{ address.company }}" autocomplete="organization">
+                </div>
+                <div class="auth-field">
+                  <label for="address-address1-{{ address.id }}">Address</label>
+                  <input type="text" id="address-address1-{{ address.id }}" name="address[address1]" value="{{ address.address1 }}" autocomplete="address-line1" required>
+                </div>
+                <div class="auth-field">
+                  <label for="address-address2-{{ address.id }}">Apartment, suite, etc. (optional)</label>
+                  <input type="text" id="address-address2-{{ address.id }}" name="address[address2]" value="{{ address.address2 }}" autocomplete="address-line2">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                  <div class="auth-field">
+                    <label for="address-city-{{ address.id }}">City</label>
+                    <input type="text" id="address-city-{{ address.id }}" name="address[city]" value="{{ address.city }}" autocomplete="address-level2" required>
+                  </div>
+                  <div class="auth-field">
+                    <label for="address-country-{{ address.id }}">Country</label>
+                    <select id="address-country-{{ address.id }}" name="address[country]" data-default="{{ address.country }}" autocomplete="country">
+                      {{ all_country_option_tags }}
+                    </select>
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                  <div class="auth-field">
+                    <label for="address-province-{{ address.id }}">State / Province</label>
+                    <select id="address-province-{{ address.id }}" name="address[province]" data-default="{{ address.province }}" autocomplete="address-level1">
+                    </select>
+                  </div>
+                  <div class="auth-field">
+                    <label for="address-zip-{{ address.id }}">Postal / ZIP Code</label>
+                    <input type="text" id="address-zip-{{ address.id }}" name="address[zip]" value="{{ address.zip }}" autocomplete="postal-code" required>
+                  </div>
+                </div>
+                <div class="auth-field">
+                  <label for="address-phone-{{ address.id }}">Phone (optional)</label>
+                  <input type="tel" id="address-phone-{{ address.id }}" name="address[phone]" value="{{ address.phone }}" autocomplete="tel">
+                </div>
+                <div class="auth-field" style="display: flex; align-items: center; gap: var(--space-sm);">
+                  {{ form.set_as_default_checkbox }}
+                  <label for="address_default_address_{{ address.id }}" style="margin-bottom: 0; cursor: pointer;">Set as default address</label>
+                </div>
+                <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-md);">
+                  <button type="submit" class="btn btn--primary btn--sm">Save</button>
+                  <button type="button" class="btn--sm-outline" onclick="toggleEditAddress('{{ address.id }}')">Cancel</button>
+                </div>
+              {% endform %}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="account-card" style="text-align: center; padding: 40px;">
+          <div style="width:48px; height:48px; background:var(--color-mint-mist); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto var(--space-md); color:var(--color-primary);">
+            <i data-lucide="map-pin" style="width:22px; height:22px;"></i>
+          </div>
+          <p style="color: var(--color-text-muted); margin-bottom: var(--space-md);">No addresses saved yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="document.getElementById('add-address-form').style.display='block'; window.scrollTo({top: 0, behavior: 'smooth'});">
+            Add Your First Address
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .order-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: gap var(--transition-fast);
+  }
+
+  .order-back-link:hover {
+    gap: 8px;
+    text-decoration: underline;
+  }
+
+  .address-form-card .auth-field select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-card-bg);
+    transition: border-color var(--transition-fast);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236d5b45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .address-form-card .auth-field select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(90, 122, 94, 0.1);
+  }
+
+  .address-card .auth-field select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-card-bg);
+    transition: border-color var(--transition-fast);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236d5b45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .address-card .auth-field select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(90, 122, 94, 0.1);
+  }
+
+  .address-delete-btn {
+    color: var(--color-text-muted);
+  }
+
+  .address-delete-btn:hover {
+    border-color: #c0392b !important;
+    color: #c0392b !important;
+  }
+
+  @media (max-width: 600px) {
+    .account-profile {
+      flex-direction: column;
+      align-items: flex-start !important;
+    }
+
+    .account-card__header {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Toggle add address form
+    var addToggle = document.getElementById('add-address-toggle');
+    var addForm = document.getElementById('add-address-form');
+
+    if (addToggle && addForm) {
+      addToggle.addEventListener('click', function() {
+        var isVisible = addForm.style.display !== 'none';
+        addForm.style.display = isVisible ? 'none' : 'block';
+        if (!isVisible) {
+          addForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    // Initialize country/province selectors using Shopify's built-in JS
+    if (typeof Shopify !== 'undefined' && Shopify.CountryProvinceSelector) {
+      new Shopify.CountryProvinceSelector('address-country-new', 'address-province-new', {
+        hideElement: 'address-province-new-wrap'
+      });
+
+      {% for address in customer.addresses %}
+        new Shopify.CountryProvinceSelector(
+          'address-country-{{ address.id }}',
+          'address-province-{{ address.id }}',
+          { hideElement: 'address-province-{{ address.id }}-wrap' }
+        );
+      {% endfor %}
+    }
+  });
+
+  function toggleEditAddress(id) {
+    var viewEl = document.getElementById('address-view-' + id);
+    var editEl = document.getElementById('address-edit-' + id);
+    if (viewEl && editEl) {
+      var isEditing = editEl.style.display !== 'none';
+      viewEl.style.display = isEditing ? 'block' : 'none';
+      editEl.style.display = isEditing ? 'none' : 'block';
+    }
+  }
+</script>
+
+{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+{{ 'customer_area.js' | shopify_asset_url | script_tag }}

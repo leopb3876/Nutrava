@@ -1,0 +1,52 @@
+{% comment %}
+  JSON-LD Organization structured data for SEO.
+  Usage: {% render 'json-ld-organization' %} in layout/theme.liquid
+{% endcomment %}
+
+{%- liquid
+  assign social_links = ""
+  assign has_social = false
+
+  if settings.social_instagram != blank
+    assign has_social = true
+  endif
+  if settings.social_tiktok != blank
+    assign has_social = true
+  endif
+  if settings.social_twitter != blank
+    assign has_social = true
+  endif
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "logo": "{{ 'logo.png' | asset_url }}"
+  {%- comment -%} NOTE: Upload logo.png via Shopify Admin → Settings → Files {%- endcomment -%}
+  {%- if has_social -%}
+  ,
+  "sameAs": [
+    {%- liquid
+      assign social_items = ""
+      if settings.social_instagram != blank
+        assign social_items = social_items | append: settings.social_instagram | append: "|||"
+      endif
+      if settings.social_tiktok != blank
+        assign social_items = social_items | append: settings.social_tiktok | append: "|||"
+      endif
+      if settings.social_twitter != blank
+        assign social_items = social_items | append: settings.social_twitter | append: "|||"
+      endif
+      assign social_items = social_items | remove_last: "|||"
+      assign social_array = social_items | split: "|||"
+    -%}
+    {%- for link in social_array -%}
+      {{ link | json }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+  {%- endif -%}
+}
+</script>

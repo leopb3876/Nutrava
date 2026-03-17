@@ -1,0 +1,34 @@
+{% comment %}
+  OpenGraph and Twitter Card meta tags for SEO and social sharing.
+  Usage: {% render 'social-meta' %} inside <head> in layout/theme.liquid
+{% endcomment %}
+
+{%- liquid
+  if template.name == 'product'
+    assign og_type = "product"
+    assign og_title = product.title
+    assign og_description = product.description | strip_html | truncate: 200
+    assign og_image = product.featured_image | image_url: width: 1200
+  else
+    assign og_type = "website"
+    assign og_title = page_title
+    assign og_description = page_description
+    assign og_image = settings.share_image | image_url: width: 1200 | default: ""
+  endif
+-%}
+
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+{%- if og_image != blank %}
+<meta property="og:image" content="{{ og_image }}">
+{%- endif %}
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ og_description | escape }}">
+{%- if og_image != blank %}
+<meta name="twitter:image" content="{{ og_image }}">
+{%- endif %}

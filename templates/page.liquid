@@ -1,0 +1,66 @@
+<div class="page-template">
+  <section class="section-padding">
+    <div class="container container--narrow">
+      <h1 class="page-template__title">{{ page.title }}</h1>
+      <div class="page-template__content rte">
+        {{ page.content }}
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .page-template__title {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    color: var(--color-text);
+    margin-bottom: 32px;
+  }
+
+  .page-template__content {
+    color: var(--color-text-body);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* Rich text defaults */
+  .page-template__content h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin: 32px 0 16px;
+  }
+  .page-template__content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 24px 0 12px;
+  }
+  .page-template__content p { margin-bottom: 16px; }
+  .page-template__content ul,
+  .page-template__content ol {
+    margin: 0 0 16px 24px;
+  }
+  .page-template__content li { margin-bottom: 8px; }
+  .page-template__content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .page-template__content a:hover { text-decoration: none; }
+  .page-template__content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 24px 0;
+  }
+  .page-template__content blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding: 16px 24px;
+    margin: 24px 0;
+    background: var(--color-card-bg, #f5f0eb);
+    border-radius: 0 12px 12px 0;
+    color: var(--color-text-body);
+    font-style: italic;
+  }
+</style>

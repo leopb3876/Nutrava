@@ -1,0 +1,252 @@
+<div class="search-page">
+  <section class="section-padding">
+    <div class="container">
+
+      <h1 class="search-page__heading">Search</h1>
+
+      <!-- Search Form -->
+      <form action="{{ routes.search_url }}" method="get" class="search-page__form" role="search">
+        <div class="search-page__input-wrap">
+          <i data-lucide="search"></i>
+          <input
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="Search supplements, ingredients, goals..."
+            class="search-page__input"
+            aria-label="Search"
+            autocomplete="off"
+          >
+          <button type="submit" class="btn btn--primary btn--sm">Search</button>
+        </div>
+      </form>
+
+      {% if search.performed %}
+        {% if search.results_count > 0 %}
+          <p class="search-page__count">
+            {{ search.results_count }} result{{ search.results_count | pluralize: '', 's' }} for "<strong>{{ search.terms }}</strong>"
+          </p>
+
+          {% paginate search.results by 12 %}
+            <div class="search-results__grid">
+              {% for item in search.results %}
+                {% if item.object_type == 'product' %}
+                  {% render 'product-card', product: item %}
+                {% else %}
+                  <a href="{{ item.url }}" class="search-result-card">
+                    {% if item.image %}
+                      <img src="{{ item.image | image_url: width: 400 }}" alt="{{ item.title | escape }}" class="search-result-card__image" loading="lazy">
+                    {% endif %}
+                    <div class="search-result-card__body">
+                      <span class="search-result-card__type">{{ item.object_type | capitalize }}</span>
+                      <h3 class="search-result-card__title">{{ item.title }}</h3>
+                      {% if item.content != blank %}
+                        <p class="search-result-card__excerpt">{{ item.content | strip_html | truncate: 150 }}</p>
+                      {% endif %}
+                    </div>
+                  </a>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            {% if paginate.pages > 1 %}
+              <nav class="pagination" aria-label="Search results pagination">
+                {% if paginate.previous %}
+                  <a href="{{ paginate.previous.url }}" class="pagination__link pagination__prev">
+                    <i data-lucide="chevron-left"></i> Previous
+                  </a>
+                {% endif %}
+
+                {% for part in paginate.parts %}
+                  {% if part.is_link %}
+                    <a href="{{ part.url }}" class="pagination__link">{{ part.title }}</a>
+                  {% else %}
+                    {% if part.title == paginate.current_page %}
+                      <span class="pagination__link pagination__current">{{ part.title }}</span>
+                    {% else %}
+                      <span class="pagination__link pagination__gap">{{ part.title }}</span>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if paginate.next %}
+                  <a href="{{ paginate.next.url }}" class="pagination__link pagination__next">
+                    Next <i data-lucide="chevron-right"></i>
+                  </a>
+                {% endif %}
+              </nav>
+            {% endif %}
+          {% endpaginate %}
+
+        {% else %}
+          <!-- No Results -->
+          <div class="search-empty">
+            <div class="search-empty__icon">
+              <i data-lucide="search-x"></i>
+            </div>
+            <h2 class="search-empty__title">No results found</h2>
+            <p class="search-empty__text">We couldn't find anything for "<strong>{{ search.terms }}</strong>". Try a different search or take our quiz to find the right supplements.</p>
+            <div class="search-empty__actions">
+              <a href="/pages/quiz" class="btn btn--primary">Take the Quiz</a>
+              <a href="/collections/all" class="btn btn--outline">Browse All Products</a>
+            </div>
+          </div>
+        {% endif %}
+
+      {% else %}
+        <!-- Pre-search state -->
+        <div class="search-empty">
+          <div class="search-empty__icon">
+            <i data-lucide="search"></i>
+          </div>
+          <p class="search-empty__text">Search for supplements by name, ingredient, or health goal.</p>
+        </div>
+      {% endif %}
+
+    </div>
+  </section>
+</div>
+
+<style>
+  .search-page__heading {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-text);
+    margin-bottom: 24px;
+  }
+
+  /* Search Form */
+  .search-page__form { margin-bottom: 32px; }
+  .search-page__input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 12px;
+    padding: 8px 12px;
+    transition: border-color 0.2s;
+  }
+  .search-page__input-wrap:focus-within { border-color: var(--color-primary); }
+  .search-page__input-wrap > i { width: 20px; height: 20px; color: var(--color-text-muted); flex-shrink: 0; }
+  .search-page__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: transparent;
+  }
+  .search-page__input::placeholder { color: var(--color-text-muted); }
+
+  /* Results count */
+  .search-page__count {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  /* Results Grid */
+  .search-results__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  /* Non-product result card */
+  .search-result-card {
+    background: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .search-result-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .search-result-card__image { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .search-result-card__body { padding: 20px; }
+  .search-result-card__type {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+  .search-result-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin: 4px 0 8px;
+  }
+  .search-result-card__excerpt {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  /* Empty / No Results */
+  .search-empty {
+    text-align: center;
+    padding: 48px 0;
+  }
+  .search-empty__icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background: var(--color-card-bg, #f5f0eb);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-empty__icon i { width: 36px; height: 36px; color: var(--color-primary); }
+  .search-empty__title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+  .search-empty__text {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .search-empty__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 0;
+  }
+  .pagination__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    font-size: 14px;
+    color: var(--color-text);
+    text-decoration: none;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .pagination__link:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .pagination__current {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+  .pagination__gap { border-color: transparent; }
+  .pagination__link i { width: 16px; height: 16px; }
+</style>

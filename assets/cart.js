@@ -7,8 +7,41 @@
 (function () {
   'use strict';
 
+  /* ---------- Analytics Helpers ---------- */
+  function trackEvent(eventName, params) {
+    // GA4
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, params || {});
+    }
+    // Meta Pixel
+    if (typeof fbq === 'function') {
+      var fbMap = {
+        'add_to_cart': 'AddToCart',
+        'begin_checkout': 'InitiateCheckout'
+      };
+      var fbEvent = fbMap[eventName];
+      if (fbEvent) fbq('track', fbEvent, params || {});
+    }
+  }
+
   /* ---------- Shopify Detection ---------- */
   const isShopify = typeof Shopify !== 'undefined' || window.location.hostname.includes('myshopify.com');
+
+  /* ---------- Subscription Preferences (persisted separately) ---------- */
+  const subscriptionStore = {
+    _key: 'nutrava_subscription',
+
+    read() {
+      try {
+        const data = JSON.parse(localStorage.getItem(this._key));
+        return { purchase_type: data?.purchase_type || 'onetime', frequency: data?.frequency || 30 };
+      } catch { return { purchase_type: 'onetime', frequency: 30 }; }
+    },
+
+    write(prefs) {
+      localStorage.setItem(this._key, JSON.stringify(prefs));
+    }
+  };
 
   /* ---------- Local Cart (preview mode) ---------- */
   const localCart = {
@@ -69,14 +102,24 @@
   };
 
   /* ---------- Shopify Cart API ---------- */
+  async function shopifyFetch(url, options) {
+    try {
+      const res = await fetch(url, options);
+      if (!res.ok) throw new Error(res.statusText || 'Request failed');
+      return res.json();
+    } catch (err) {
+      showToast('Something went wrong. Please try again.');
+      throw err;
+    }
+  }
+
   const shopifyCart = {
     async get() {
-      const res = await fetch('/cart.js');
-      return res.json();
+      return shopifyFetch('/cart.js');
     },
 
     async add(item) {
-      await fetch('/cart/add.js', {
+      await shopifyFetch('/cart/add.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: [{ id: item.id, quantity: item.quantity || 1 }] })
@@ -85,7 +128,7 @@
     },
 
     async change(key, quantity) {
-      await fetch('/cart/change.js', {
+      await shopifyFetch('/cart/change.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: key, quantity })
@@ -94,14 +137,19 @@
     },
 
     async clear() {
-      await fetch('/cart/clear.js', { method: 'POST' });
+      await shopifyFetch('/cart/clear.js', { method: 'POST' });
       return this.get();
     }
   };
 
   const api = isShopify ? shopifyCart : localCart;
 
-  /* ---------- Format Price ---------- */
+  /* ---------- Helpers ---------- */
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
   function formatPrice(pence) {
     return '£' + (pence / 100).toFixed(2);
   }
@@ -142,13 +190,13 @@
           <div class="cart-item" data-cart-item-key="${item.key}">
             <div class="cart-item__image">
               ${item.image
-                ? `<img src="${item.image}" alt="${item.title}">`
+                ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}">`
                 : `<div class="cart-item__placeholder"><i data-lucide="pill"></i></div>`
               }
             </div>
             <div class="cart-item__details">
-              <div class="cart-item__title">${item.title}</div>
-              ${item.variant_title ? `<div class="cart-item__variant">${item.variant_title}</div>` : ''}
+              <div class="cart-item__title">${escapeHtml(item.title)}</div>
+              ${item.variant_title ? `<div class="cart-item__variant">${escapeHtml(item.variant_title)}</div>` : ''}
               <div class="cart-item__price">${formatPrice(price)}</div>
               <div class="cart-item__controls">
                 <button class="cart-item__qty-btn" data-cart-decrease="${item.key}" aria-label="Decrease quantity">
@@ -215,6 +263,107 @@
     if (countEl) {
       countEl.textContent = `${cart.item_count} item${cart.item_count !== 1 ? 's' : ''}`;
     }
+
+    // Render cross-sell suggestions
+    renderCrossSells(cart);
+  }
+
+  /* ---------- Cross-Sells ---------- */
+  var crossSellProducts = [];
+
+  // Load cross-sell product data:
+  // 1. On Shopify: read from server-rendered JSON in cart-drawer.liquid
+  // 2. In preview: fall back to fetching products.json
+  (function loadCrossSellProducts() {
+    var domData = document.getElementById('nutrava-product-data');
+    if (domData) {
+      try {
+        var parsed = JSON.parse(domData.textContent);
+        if (parsed && parsed.length) {
+          crossSellProducts = parsed;
+          return;
+        }
+      } catch(e) { /* fall through to fetch */ }
+    }
+    // Fallback: fetch products.json (preview/dev mode)
+    var script = document.querySelector('script[src*="cart.js"]');
+    var base = script ? script.src.replace(/assets\/cart\.js.*/, '') : '';
+    fetch(base + 'assets/products.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) { crossSellProducts = data.products || data; })
+      .catch(function() { /* products.json not available */ });
+  })();
+
+  function renderCrossSells(cart) {
+    var container = document.querySelector('[data-cart-cross-sells]');
+    var grid = document.querySelector('[data-cross-sell-items]');
+    if (!container || !grid || !crossSellProducts.length) return;
+
+    var cartHandles = cart.items.map(function(item) { return item.handle || item.key; });
+    if (!cartHandles.length) { container.style.display = 'none'; return; }
+
+    // Collect all pairsWith suggestions from cart items
+    var suggestions = {};
+    cartHandles.forEach(function(handle) {
+      var product = crossSellProducts.find(function(p) { return p.handle === handle; });
+      var pairs = product && (product.pairsWith || (product.expand && product.expand.pairsWith));
+      if (pairs) {
+        pairs.forEach(function(pairTitle) {
+          var pairLower = pairTitle.toLowerCase();
+          var paired = crossSellProducts.find(function(p) {
+            return p.title.toLowerCase() === pairLower || p.title.toLowerCase().indexOf(pairLower) === 0;
+          });
+          if (paired && cartHandles.indexOf(paired.handle) === -1) {
+            if (!suggestions[paired.handle]) {
+              suggestions[paired.handle] = { product: paired, count: 0 };
+            }
+            suggestions[paired.handle].count++;
+          }
+        });
+      }
+    });
+
+    // Sort by frequency (most suggested first), take top 3
+    var sorted = Object.values(suggestions).sort(function(a, b) { return b.count - a.count; });
+    var top = sorted.slice(0, 3);
+
+    if (!top.length) { container.style.display = 'none'; return; }
+
+    container.style.display = 'block';
+    grid.innerHTML = top.map(function(s) {
+      var p = s.product;
+      var imgHTML = p.image
+        ? '<img src="' + p.image + '" alt="' + p.title + '" class="cart-cross-sell__img">'
+        : '<div class="cart-cross-sell__img cart-cross-sell__img--placeholder"><i data-lucide="pill"></i></div>';
+      return '<div class="cart-cross-sell">' +
+        imgHTML +
+        '<div class="cart-cross-sell__info">' +
+          '<span class="cart-cross-sell__name">' + p.title + '</span>' +
+          '<span class="cart-cross-sell__price">' + formatPrice(p.price) + '</span>' +
+        '</div>' +
+        '<button class="btn btn--sm btn--outline cart-cross-sell__add" data-cross-sell-add="' + p.handle + '">+ Add</button>' +
+      '</div>';
+    }).join('');
+
+    if (typeof lucide !== 'undefined') lucide.createIcons({ nameAttr: 'data-lucide' });
+
+    // Wire up add buttons
+    grid.querySelectorAll('[data-cross-sell-add]').forEach(function(btn) {
+      btn.addEventListener('click', async function() {
+        var handle = btn.dataset.crossSellAdd;
+        var product = crossSellProducts.find(function(p) { return p.handle === handle; });
+        if (product && typeof NutravaCart !== 'undefined') {
+          NutravaCart.addItem({
+            handle: product.handle,
+            title: product.title,
+            price: product.price,
+            id: product.id,
+            image: product.image,
+            quantity: 1
+          });
+        }
+      });
+    });
   }
 
   /* ---------- Badge ---------- */
@@ -232,28 +381,25 @@
   /* ---------- Open / Close ---------- */
   function openDrawer() {
     const drawer = document.querySelector('[data-cart-drawer]');
-    const overlay = document.querySelector('[data-cart-overlay]');
     if (drawer) {
       drawer.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
     }
-    if (overlay) overlay.classList.add('is-open');
   }
 
   function closeDrawer() {
     const drawer = document.querySelector('[data-cart-drawer]');
-    const overlay = document.querySelector('[data-cart-overlay]');
     if (drawer) {
       drawer.classList.remove('is-open');
-      document.body.style.overflow = '';
     }
-    if (overlay) overlay.classList.remove('is-open');
   }
 
   /* ---------- Auth Overlay ---------- */
   function openAuthOverlay() {
     const overlay = document.querySelector('[data-auth-overlay]');
     if (overlay) {
+      // Show/hide subscription summary
+      updateAuthSubSummary();
+
       overlay.classList.add('is-open');
       document.body.style.overflow = 'hidden';
       // Focus first input after animation
@@ -262,6 +408,36 @@
         if (input) input.focus();
       }, 300);
     }
+  }
+
+  function updateAuthSubSummary() {
+    const summary = document.querySelector('[data-auth-sub-summary]');
+    if (!summary) return;
+
+    const sub = subscriptionStore.read();
+    if (sub.purchase_type !== 'subscribe') {
+      summary.style.display = 'none';
+      return;
+    }
+
+    // Get cart data to populate summary
+    api.get().then(cart => {
+      const count = cart.item_count || 0;
+      const total = cart.total_price || 0;
+      const discounted = (total * 0.85);
+      const saved = total - discounted;
+
+      const details = summary.querySelector('[data-auth-sub-details]');
+      if (details) {
+        details.innerHTML =
+          `${count} item${count !== 1 ? 's' : ''} &middot; <strong>${formatPrice(Math.round(discounted))}/month</strong><br>` +
+          `Delivered every ${sub.frequency} days<br>` +
+          `You save <strong>${formatPrice(Math.round(saved))}</strong> (15%)`;
+      }
+
+      summary.style.display = 'block';
+      if (typeof lucide !== 'undefined') lucide.createIcons({ nameAttr: 'data-lucide' });
+    });
   }
 
   function closeAuthOverlay() {
@@ -274,11 +450,12 @@
 
   function proceedToCheckout() {
     closeAuthOverlay();
+    trackEvent('begin_checkout', { currency: 'GBP' });
+    var discount = localStorage.getItem('nutrava_discount') || '';
     if (isShopify) {
-      window.location.href = '/checkout';
+      window.location.href = discount ? '/checkout?discount=' + encodeURIComponent(discount) : '/checkout';
     } else {
-      // Preview mode: show success feedback
-      showToast('Redirecting to checkout...');
+      showToast(discount ? 'Checkout with code: ' + discount : 'Redirecting to checkout...');
     }
   }
 
@@ -388,6 +565,51 @@
     });
   }
 
+  /* ---------- Discount Code ---------- */
+  function initDiscount() {
+    var toggle = document.querySelector('[data-discount-toggle]');
+    var form = document.querySelector('[data-discount-form]');
+    var input = document.querySelector('[data-discount-input]');
+    var applyBtn = document.querySelector('[data-discount-apply]');
+    var applied = document.querySelector('[data-discount-applied]');
+    var codeDisplay = document.querySelector('[data-discount-code]');
+    var removeBtn = document.querySelector('[data-discount-remove]');
+
+    if (!toggle) return;
+
+    // Restore saved discount
+    var saved = localStorage.getItem('nutrava_discount');
+    if (saved) {
+      toggle.style.display = 'none';
+      form.style.display = 'none';
+      applied.style.display = 'flex';
+      codeDisplay.textContent = saved;
+    }
+
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggle.style.display = 'none';
+      form.style.display = 'block';
+      input.focus();
+    });
+
+    applyBtn.addEventListener('click', function() {
+      var code = input.value.trim().toUpperCase();
+      if (!code) return;
+      localStorage.setItem('nutrava_discount', code);
+      form.style.display = 'none';
+      applied.style.display = 'flex';
+      codeDisplay.textContent = code;
+    });
+
+    removeBtn.addEventListener('click', function() {
+      localStorage.removeItem('nutrava_discount');
+      applied.style.display = 'none';
+      input.value = '';
+      toggle.style.display = '';
+    });
+  }
+
   /* ---------- Toast Notification ---------- */
   function showToast(message) {
     // Remove any existing toast
@@ -444,6 +666,7 @@
       openDrawer();
       showToast(`${item.title} added to cart`);
       window.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart, addedItem: item } }));
+      trackEvent('add_to_cart', { currency: 'GBP', value: (item.price / 100).toFixed(2), items: [{ item_name: item.title, price: (item.price / 100).toFixed(2) }] });
     },
 
     /**
@@ -470,6 +693,29 @@
       const cart = await api.get();
       renderDrawer(cart);
       updateBadge(cart.item_count);
+    },
+
+    /* ---------- Subscription Methods ---------- */
+    setPurchaseType(type) {
+      const prefs = subscriptionStore.read();
+      prefs.purchase_type = (type === 'subscribe') ? 'subscribe' : 'onetime';
+      subscriptionStore.write(prefs);
+      api.get().then(cart => {
+        window.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart, subscription: prefs } }));
+      });
+    },
+
+    setFrequency(days) {
+      const prefs = subscriptionStore.read();
+      prefs.frequency = parseInt(days) || 30;
+      subscriptionStore.write(prefs);
+      api.get().then(cart => {
+        window.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart, subscription: prefs } }));
+      });
+    },
+
+    getSubscription() {
+      return subscriptionStore.read();
     },
 
     open: openDrawer,
@@ -520,6 +766,7 @@
 
     // Init auth overlay
     initAuth();
+    initDiscount();
 
     // Initial badge update
     api.get().then(cart => updateBadge(cart.item_count));

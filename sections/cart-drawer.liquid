@@ -27,19 +27,68 @@
       <!-- Cart items rendered by cart.js -->
     </div>
 
-    <div class="cart-drawer__footer">
+    <div class="cart-drawer__bottom">
+      <!-- Cross-Sells -->
+      <div class="cart-cross-sells" data-cart-cross-sells style="display: none;">
+        <p class="cart-cross-sells__title">Pairs well with your stack</p>
+        <div class="cart-cross-sells__grid" data-cross-sell-items></div>
+      </div>
+
+      <!-- Subscribe & Save -->
+      <div class="cart-subscribe" data-cart-subscribe>
+        <div class="cart-subscribe__options">
+          <div class="cart-subscribe__option is-active" data-purchase-type="onetime">
+            <span class="cart-subscribe__radio"></span>
+            <span class="cart-subscribe__text">
+              <span class="cart-subscribe__label">One-time purchase</span>
+            </span>
+          </div>
+          <div class="cart-subscribe__option" data-purchase-type="subscribe">
+            <span class="cart-subscribe__radio"></span>
+            <span class="cart-subscribe__text">
+              <span class="cart-subscribe__label">Subscribe & Save</span>
+              <span class="cart-subscribe__desc">Delivered on your schedule. Cancel anytime.</span>
+            </span>
+            <span class="cart-subscribe__badge">15% off</span>
+          </div>
+        </div>
+        <div class="cart-subscribe__frequency" data-subscribe-frequency>
+          <select data-frequency-select>
+            <option value="30">Every 30 days</option>
+            <option value="60">Every 60 days</option>
+            <option value="90">Every 90 days</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cart-drawer__footer">
+      <div class="cart-footer__savings" data-cart-savings style="display: none;"></div>
       <div class="cart-drawer__subtotal">
         <span>Subtotal</span>
         <span data-cart-subtotal>£0.00</span>
       </div>
-      <p class="cart-drawer__shipping">Shipping calculated at checkout</p>
+      <p class="cart-drawer__shipping">Free UK shipping on orders over £50</p>
       <p class="cart-drawer__guarantee">
         <i data-lucide="shield-check"></i>
         30-day money-back guarantee
       </p>
+      <div class="cart-discount" data-cart-discount>
+        <a href="#" class="cart-discount__toggle" data-discount-toggle>Have a promo code?</a>
+        <div class="cart-discount__form" data-discount-form style="display: none;">
+          <div class="cart-discount__input-wrap">
+            <input type="text" class="cart-discount__input" data-discount-input placeholder="Enter code" autocomplete="off">
+            <button type="button" class="cart-discount__apply" data-discount-apply>Apply</button>
+          </div>
+        </div>
+        <div class="cart-discount__applied" data-discount-applied style="display: none;">
+          <span class="cart-discount__code" data-discount-code></span>
+          <button type="button" class="cart-discount__remove" data-discount-remove>Remove</button>
+        </div>
+      </div>
       <button class="btn btn--primary cart-drawer__checkout" data-cart-checkout>
         Checkout
       </button>
+    </div>
     </div>
   </div>
 </aside>
@@ -57,6 +106,14 @@
       </div>
       <h2>Secure Checkout</h2>
       <p>Sign in to complete your order</p>
+    </div>
+
+    <!-- Subscription Summary (shown when Subscribe & Save is active) -->
+    <div class="auth-sub-summary" data-auth-sub-summary style="display: none;">
+      <div class="auth-sub-summary__icon"><i data-lucide="repeat"></i></div>
+      <div class="auth-sub-summary__title">Your Monthly Subscription</div>
+      <div class="auth-sub-summary__details" data-auth-sub-details></div>
+      <div class="auth-sub-summary__cancel">Cancel or modify anytime</div>
     </div>
 
     <!-- Social Buttons -->
@@ -111,6 +168,21 @@
     </div>
   </div>
 </div>
+
+<!-- Product data for cross-sells (used by cart.js on Shopify, ignored in preview) -->
+<script type="application/json" id="nutrava-product-data">
+  [
+    {%- for p in collections.all.products -%}
+      {
+        "handle": {{ p.handle | json }},
+        "title": {{ p.title | json }},
+        "price": {{ p.price }},
+        "image": {{ p.featured_image | image_url: width: 200 | json }},
+        "pairsWith": {{ p.metafields.custom.pairs_with.value | json | default: '[]' }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+</script>
 
 {% schema %}
 {

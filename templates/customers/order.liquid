@@ -1,0 +1,275 @@
+<section class="account-hero section-padding">
+  <div class="container container--narrow">
+
+    <div class="account-profile" style="margin-bottom: var(--space-xl);">
+      <div>
+        <a href="/account" class="order-back-link">
+          <i data-lucide="arrow-left" style="width:16px; height:16px;"></i>
+          Back to Account
+        </a>
+        <h1 style="margin-top: var(--space-sm);">{{ order.name }}</h1>
+        <p style="font-size: 14px; color: var(--color-text-muted);">
+          Placed on {{ order.created_at | date: "%B %d, %Y at %I:%M %p" }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Order Status -->
+    <div class="account-card" style="margin-bottom: var(--space-lg);">
+      <div style="display: flex; gap: var(--space-lg); flex-wrap: wrap;">
+        <div>
+          <div class="account-settings__label">Payment Status</div>
+          <span class="account-badge account-badge--{{ order.financial_status }}">
+            {{ order.financial_status_label }}
+          </span>
+        </div>
+        <div>
+          <div class="account-settings__label">Fulfillment Status</div>
+          {%- if order.fulfillment_status == 'fulfilled' -%}
+            <span class="account-badge account-badge--delivered">Delivered</span>
+          {%- elsif order.fulfillment_status == 'partial' -%}
+            <span class="account-badge account-badge--transit">Partially Shipped</span>
+          {%- elsif order.fulfillment_status == nil -%}
+            <span class="account-badge account-badge--transit">Processing</span>
+          {%- else -%}
+            <span class="account-badge account-badge--transit">{{ order.fulfillment_status_label }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <!-- Line Items -->
+    <div class="account-section">
+      <h2 class="account-section__title">
+        <i data-lucide="package"></i> Items
+      </h2>
+
+      <div class="account-card">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th class="order-table__product-col">Product</th>
+              <th>Qty</th>
+              <th style="text-align: right;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for line_item in order.line_items -%}
+              <tr>
+                <td class="order-table__product">
+                  <div class="order-item__image">
+                    {%- if line_item.image -%}
+                      <img src="{{ line_item.image | image_url: width: 120 }}" alt="{{ line_item.title | escape }}" loading="lazy">
+                    {%- else -%}
+                      <div class="order-item__placeholder">
+                        <i data-lucide="leaf" style="width:20px; height:20px;"></i>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <div>
+                    <div class="order-item__title">{{ line_item.title }}</div>
+                    {%- if line_item.variant.title != 'Default Title' -%}
+                      <div class="order-item__variant">{{ line_item.variant.title }}</div>
+                    {%- endif -%}
+                    {%- if line_item.sku != blank -%}
+                      <div class="order-item__sku">SKU: {{ line_item.sku }}</div>
+                    {%- endif -%}
+                  </div>
+                </td>
+                <td class="order-table__qty">{{ line_item.quantity }}</td>
+                <td style="text-align: right; font-weight: 600;">{{ line_item.final_line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Order Totals -->
+    <div class="account-section">
+      <div class="account-card">
+        <div class="order-totals">
+          <div class="order-totals__row">
+            <span>Subtotal</span>
+            <span>{{ order.line_items_subtotal_price | money }}</span>
+          </div>
+          {%- for shipping_method in order.shipping_methods -%}
+            <div class="order-totals__row">
+              <span>Shipping ({{ shipping_method.title }})</span>
+              <span>{{ shipping_method.price | money }}</span>
+            </div>
+          {%- endfor -%}
+          {%- for tax_line in order.tax_lines -%}
+            <div class="order-totals__row">
+              <span>Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
+              <span>{{ tax_line.price | money }}</span>
+            </div>
+          {%- endfor -%}
+          {%- if order.total_discounts > 0 -%}
+            <div class="order-totals__row order-totals__row--discount">
+              <span>Discounts</span>
+              <span>-{{ order.total_discounts | money }}</span>
+            </div>
+          {%- endif -%}
+          <div class="order-totals__row order-totals__row--total">
+            <span>Total</span>
+            <span>{{ order.total_price | money }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shipping Address -->
+    {%- if order.shipping_address -%}
+      <div class="account-section">
+        <h2 class="account-section__title">
+          <i data-lucide="map-pin"></i> Shipping Address
+        </h2>
+        <div class="account-card">
+          <div class="account-settings__value">
+            {{ order.shipping_address | format_address }}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Billing Address -->
+    {%- if order.billing_address -%}
+      <div class="account-section">
+        <h2 class="account-section__title">
+          <i data-lucide="credit-card"></i> Billing Address
+        </h2>
+        <div class="account-card">
+          <div class="account-settings__value">
+            {{ order.billing_address | format_address }}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .order-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: gap var(--transition-fast);
+  }
+
+  .order-back-link:hover {
+    gap: 8px;
+    text-decoration: underline;
+  }
+
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .order-table th {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .order-table td {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+    font-size: 14px;
+    color: var(--color-text);
+  }
+
+  .order-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .order-table__product {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .order-item__image {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .order-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .order-item__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-mint-mist), var(--color-fern));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+
+  .order-item__title {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 2px;
+  }
+
+  .order-item__variant,
+  .order-item__sku {
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .order-table__qty {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .order-totals__row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+    font-size: 14px;
+    color: var(--color-text-body);
+  }
+
+  .order-totals__row--discount {
+    color: #1e7e34;
+  }
+
+  .order-totals__row--total {
+    border-top: 2px solid var(--color-border);
+    margin-top: var(--space-sm);
+    padding-top: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .account-badge--paid { background: #e6f4ea; color: #1e7e34; }
+  .account-badge--pending { background: #fef3cd; color: #856404; }
+  .account-badge--refunded { background: #e8f0fe; color: #1a73e8; }
+
+  @media (max-width: 600px) {
+    .order-table__product-col { width: 60%; }
+    .order-item__image { width: 48px; height: 48px; }
+  }
+</style>

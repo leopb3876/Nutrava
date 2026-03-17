@@ -21,8 +21,48 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   {{ 'base.css' | asset_url | stylesheet_tag }}
+
+  {%- comment -%} Inline critical above-fold styles to avoid render-blocking {%- endcomment -%}
+  <style>
+    .header{position:sticky;top:0;z-index:100;background:var(--color-bg);height:var(--header-height);display:flex;align-items:center;border-bottom:1px solid var(--color-border)}
+    .header__logo{font-family:'Josefin Sans',sans-serif;font-size:1.4rem;font-weight:400;color:#2C1E14;text-decoration:none;letter-spacing:.27em;text-transform:uppercase}
+    .hero{background:linear-gradient(180deg,var(--color-mint-mist) 0%,var(--color-bg) 100%);padding:48px 0}
+    .hero__grid{display:grid;grid-template-columns:55% 45%;gap:48px;align-items:center}
+    .hero__heading{margin-bottom:var(--space-md);line-height:1.2}
+    .hero__image img{width:100%;height:auto;min-height:400px;object-fit:cover;display:block;border-radius:20px}
+    @media(max-width:768px){.hero__grid{grid-template-columns:1fr;gap:32px}}
+  </style>
+
+  {% render 'social-meta' %}
+  {% render 'json-ld-organization' %}
+
+  {%- comment -%} Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID {%- endcomment -%}
+  {%- assign ga4_id = 'G-XXXXXXXXXX' -%}
+  {%- unless ga4_id == 'G-XXXXXXXXXX' -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ ga4_id }}');
+    </script>
+  {%- endunless -%}
+
+  {%- comment -%} Meta Pixel — Replace XXXXXXXXXXXXXXXXX with your Pixel ID {%- endcomment -%}
+  {%- assign meta_pixel_id = 'XXXXXXXXXXXXXXXXX' -%}
+  {%- unless meta_pixel_id == 'XXXXXXXXXXXXXXXXX' -%}
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '{{ meta_pixel_id }}');
+      fbq('track', 'PageView');
+    </script>
+  {%- endunless -%}
 
   {{ content_for_header }}
 </head>
@@ -40,65 +80,8 @@
   {% section 'cart-drawer' %}
   {% render 'search-modal' %}
 
-  {{ 'theme.js' | asset_url | script_tag }}
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  {{ 'cart.js' | asset_url | script_tag }}
-  <script>if (typeof lucide !== 'undefined') lucide.createIcons();</script>
-
-  <script>
-    /* Search Modal */
-    (function() {
-      var toggles = document.querySelectorAll('[data-search-toggle]');
-      var overlay = document.querySelector('.search-overlay');
-      var modal = document.querySelector('.search-modal');
-      var input = document.querySelector('[data-search-input]');
-      var closeBtn = document.querySelector('[data-search-close]');
-      var results = document.querySelector('[data-search-results]');
-      if (!toggles.length || !modal) return;
-
-      function openSearch() {
-        overlay.classList.add('is-open');
-        modal.classList.add('is-open');
-        if (input) { input.value = ''; setTimeout(function(){ input.focus(); }, 100); }
-        if (results) results.classList.remove('has-results');
-      }
-      function closeSearch() {
-        overlay.classList.remove('is-open');
-        modal.classList.remove('is-open');
-      }
-
-      toggles.forEach(function(t) { t.addEventListener('click', openSearch); });
-      if (overlay) overlay.addEventListener('click', closeSearch);
-      if (closeBtn) closeBtn.addEventListener('click', closeSearch);
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeSearch();
-      });
-
-      /* Predictive search */
-      if (input && results) {
-        var debounce;
-        input.addEventListener('input', function() {
-          clearTimeout(debounce);
-          debounce = setTimeout(function() {
-            var q = input.value.trim();
-            if (!q) { results.classList.remove('has-results'); return; }
-            fetch('/search/suggest.json?q=' + encodeURIComponent(q) + '&resources[type]=product&resources[limit]=6')
-              .then(function(r) { return r.json(); })
-              .then(function(data) {
-                var products = data.resources && data.resources.results && data.resources.results.products || [];
-                if (products.length === 0) {
-                  results.innerHTML = '<div class="search-result__empty">No products found</div>';
-                } else {
-                  results.innerHTML = products.map(function(p) {
-                    return '<a href="' + p.url + '" class="search-result"><strong>' + p.title + '</strong><span class="search-result__price">' + (p.price / 100).toFixed(2) + '</span></a>';
-                  }).join('');
-                }
-                results.classList.add('has-results');
-              });
-          }, 300);
-        });
-      }
-    })();
-  </script>
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  <script src="{{ 'lucide.min.js' | asset_url }}" defer onload="lucide.createIcons()"></script>
+  <script src="{{ 'cart.js' | asset_url }}" defer></script>
 </body>
 </html>
