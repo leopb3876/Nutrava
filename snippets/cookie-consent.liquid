@@ -1,0 +1,143 @@
+{% comment %}
+  GDPR Cookie Consent Banner
+  Shows on first visit, stores preference in localStorage.
+  Blocks analytics scripts until consent is given.
+{% endcomment %}
+
+<div id="cookie-consent" class="cookie-consent" role="dialog" aria-label="Cookie consent" style="display:none;">
+  <div class="cookie-consent__inner">
+    <div class="cookie-consent__text">
+      <p>We use cookies to improve your experience and analyse site traffic. By clicking "Accept", you consent to our use of cookies.</p>
+      <a href="/policies/privacy-policy" class="cookie-consent__link">Privacy Policy</a>
+    </div>
+    <div class="cookie-consent__actions">
+      <button class="cookie-consent__btn cookie-consent__btn--decline" data-cookie-decline>Decline</button>
+      <button class="cookie-consent__btn cookie-consent__btn--accept" data-cookie-accept>Accept</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+    padding: 16px 0;
+    animation: cookieSlideUp 0.4s ease;
+  }
+
+  @keyframes cookieSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .cookie-consent__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .cookie-consent__text {
+    flex: 1;
+  }
+
+  .cookie-consent__text p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text, #1a1a2e);
+    line-height: 1.5;
+  }
+
+  .cookie-consent__link {
+    font-size: 0.85rem;
+    color: var(--color-primary, #2e7d32);
+    text-decoration: underline;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .cookie-consent__btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: opacity 0.2s;
+  }
+
+  .cookie-consent__btn:hover { opacity: 0.85; }
+
+  .cookie-consent__btn--accept {
+    background: var(--color-primary, #2e7d32);
+    color: #fff;
+  }
+
+  .cookie-consent__btn--decline {
+    background: transparent;
+    color: var(--color-text-muted, #6b7280);
+    border: 1px solid #e5e7eb;
+  }
+
+  @media (max-width: 600px) {
+    .cookie-consent__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .cookie-consent__actions {
+      width: 100%;
+    }
+    .cookie-consent__btn {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var consent = localStorage.getItem('nutrava_cookie_consent');
+
+    // If already answered, don't show banner
+    if (consent) return;
+
+    // Show banner
+    var banner = document.getElementById('cookie-consent');
+    if (banner) banner.style.display = 'block';
+
+    // Accept
+    var acceptBtn = document.querySelector('[data-cookie-accept]');
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', function() {
+        localStorage.setItem('nutrava_cookie_consent', 'accepted');
+        banner.style.display = 'none';
+        // Enable analytics if configured
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      });
+    }
+
+    // Decline
+    var declineBtn = document.querySelector('[data-cookie-decline]');
+    if (declineBtn) {
+      declineBtn.addEventListener('click', function() {
+        localStorage.setItem('nutrava_cookie_consent', 'declined');
+        banner.style.display = 'none';
+      });
+    }
+  })();
+</script>
