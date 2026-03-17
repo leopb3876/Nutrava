@@ -13,8 +13,37 @@
     {%- endif -%}
   </title>
 
-  {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
+  {%- liquid
+    assign seo_desc = page_description
+    unless seo_desc
+      case template.name
+        when 'index'
+          assign seo_desc = 'Personalised supplement stacks backed by science. Take our free 60-second quiz to get a custom wellness plan tailored to your goals, lifestyle, and health.'
+        when 'collection'
+          assign seo_desc = collection.title | append: ' — science-backed supplements from Nutrava. Free UK shipping on orders over £50.'
+        when 'product'
+          assign seo_desc = product.title | append: ' — ' | append: product.description | strip_html | truncate: 140
+        when 'page'
+          if template.suffix == 'quiz'
+            assign seo_desc = 'Take the free Nutrava quiz in 60 seconds. Get a personalised supplement stack based on your goals, sleep, energy, and lifestyle.'
+          elsif template.suffix == 'about'
+            assign seo_desc = 'Nutrava creates personalised, science-backed supplement stacks. Clean ingredients, no fillers, delivered to your door.'
+          elsif template.suffix == 'contact'
+            assign seo_desc = 'Get in touch with the Nutrava team. We are here to help with orders, quiz results, or any questions about your supplements.'
+          elsif template.suffix == 'shipping'
+            assign seo_desc = 'Free UK shipping on orders over £50. Learn about Nutrava delivery times, returns, and our 30-day money-back guarantee.'
+          endif
+        when 'cart'
+          assign seo_desc = 'Your Nutrava cart — review your personalised supplement stack before checkout. Free UK shipping over £50.'
+        when 'blog'
+          assign seo_desc = 'Wellness insights and supplement science from Nutrava. Evidence-based articles on focus, sleep, energy, and performance.'
+        when 'search'
+          assign seo_desc = 'Search the Nutrava store for supplements, stacks, and wellness products personalised to your goals.'
+      endcase
+    endunless
+  -%}
+  {%- if seo_desc -%}
+    <meta name="description" content="{{ seo_desc | escape }}">
   {%- endif -%}
 
   <link rel="canonical" href="{{ canonical_url }}">
@@ -38,31 +67,34 @@
   {% render 'social-meta' %}
   {% render 'json-ld-organization' %}
 
-  {%- comment -%} Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID {%- endcomment -%}
-  {%- assign ga4_id = 'G-XXXXXXXXXX' -%}
-  {%- unless ga4_id == 'G-XXXXXXXXXX' -%}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_id }}"></script>
+  {%- comment -%} Google Analytics 4 — set Measurement ID in Theme Settings → Analytics {%- endcomment -%}
+  {%- if settings.ga4_measurement_id != blank -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.ga4_measurement_id }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '{{ ga4_id }}');
+      gtag('config', '{{ settings.ga4_measurement_id }}');
     </script>
-  {%- endunless -%}
+  {%- endif -%}
 
-  {%- comment -%} Meta Pixel — Replace XXXXXXXXXXXXXXXXX with your Pixel ID {%- endcomment -%}
-  {%- assign meta_pixel_id = 'XXXXXXXXXXXXXXXXX' -%}
-  {%- unless meta_pixel_id == 'XXXXXXXXXXXXXXXXX' -%}
+  {%- comment -%} Meta Pixel — set Pixel ID in Theme Settings → Analytics {%- endcomment -%}
+  {%- if settings.meta_pixel_id != blank -%}
     <script>
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
       document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '{{ meta_pixel_id }}');
+      fbq('init', '{{ settings.meta_pixel_id }}');
       fbq('track', 'PageView');
     </script>
-  {%- endunless -%}
+  {%- endif -%}
+
+  {%- comment -%} Klaviyo — set Public API Key in Theme Settings → Analytics {%- endcomment -%}
+  {%- if settings.klaviyo_public_key != blank -%}
+    <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_public_key }}"></script>
+  {%- endif -%}
 
   {{ content_for_header }}
 </head>

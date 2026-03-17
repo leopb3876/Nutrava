@@ -1328,6 +1328,16 @@
         if (typeof gtag === 'function') gtag('event', 'quiz_email_submit', { method: 'email_gate' });
         if (typeof fbq === 'function') fbq('trackCustom', 'QuizEmailCapture');
 
+        // Klaviyo: identify + track quiz event
+        if (typeof klaviyo !== 'undefined') {
+          klaviyo.push(['identify', { '$email': email }]);
+          klaviyo.push(['track', 'Quiz Completed', {
+            category: self.getTopTwo()[0][0],
+            scores: self.scores,
+            questions_answered: self.questionsAnswered
+          }]);
+        }
+
         // Remove overlay and show results
         self.container.classList.remove('quiz--blurred');
         overlay.classList.add('quiz-email-overlay--closing');

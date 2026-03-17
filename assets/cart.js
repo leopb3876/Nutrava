@@ -667,6 +667,15 @@
       showToast(`${item.title} added to cart`);
       window.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart, addedItem: item } }));
       trackEvent('add_to_cart', { currency: 'GBP', value: (item.price / 100).toFixed(2), items: [{ item_name: item.title, price: (item.price / 100).toFixed(2) }] });
+      // Klaviyo: track add to cart
+      if (typeof klaviyo !== 'undefined') {
+        klaviyo.push(['track', 'Added to Cart', {
+          ProductName: item.title,
+          ProductID: item.handle,
+          Price: (item.price / 100).toFixed(2),
+          Quantity: item.quantity
+        }]);
+      }
     },
 
     /**
