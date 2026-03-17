@@ -1,0 +1,28 @@
+{% comment %}
+  Locale-aware variables for currency and shipping text.
+  Adapts based on Shopify Markets / customer country.
+  Usage: {% render 'locale-vars' %} then use the variables.
+{% endcomment %}
+
+{%- liquid
+  assign currency_symbol = cart.currency.symbol | default: '$'
+  assign currency_code = cart.currency.iso_code | default: 'USD'
+  assign country = localization.country.iso_code | default: 'US'
+
+  if country == 'GB'
+    assign shipping_region = 'UK'
+    assign free_shipping_threshold = 50
+    assign free_shipping_text = 'Free UK shipping on orders over £50'
+    assign free_shipping_short = 'Free UK shipping'
+  elsif country == 'US'
+    assign shipping_region = 'US'
+    assign free_shipping_threshold = 50
+    assign free_shipping_text = 'Free US shipping on orders over $50'
+    assign free_shipping_short = 'Free US shipping'
+  else
+    assign shipping_region = 'international'
+    assign free_shipping_threshold = 75
+    assign free_shipping_text = 'Free shipping on orders over ' | append: currency_symbol | append: '75'
+    assign free_shipping_short = 'Free shipping'
+  endif
+-%}

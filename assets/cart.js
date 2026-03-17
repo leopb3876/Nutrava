@@ -150,12 +150,22 @@
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
+  // Get currency symbol from Shopify's meta tag or default to $
+  const currencySymbol = (function() {
+    try {
+      const meta = document.querySelector('meta[name="shopify-currency"]');
+      if (meta) return meta.content === 'GBP' ? '£' : '$';
+      if (window.Shopify && window.Shopify.currency) return window.Shopify.currency.active === 'GBP' ? '£' : '$';
+    } catch(e) {}
+    return '$';
+  })();
+
   function formatPrice(pence) {
-    return '£' + (pence / 100).toFixed(2);
+    return currencySymbol + (pence / 100).toFixed(2);
   }
 
   function parsePriceString(str) {
-    // Convert "£14.99" to pence: 1499
+    // Convert "$14.99" or "£14.99" to pence: 1499
     const num = parseFloat(str.replace(/[^0-9.]/g, ''));
     return Math.round(num * 100);
   }

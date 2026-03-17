@@ -35,9 +35,17 @@
     return p ? p.image : null;
   }
 
+  // Detect currency symbol from Shopify or default to $
+  var quizCurrencySymbol = (function() {
+    try {
+      if (window.Shopify && window.Shopify.currency) return window.Shopify.currency.active === 'GBP' ? '\u00A3' : '$';
+    } catch(e) {}
+    return '$';
+  })();
+
   function getProductPrice(handle, fallback) {
     var p = productDB[handle];
-    if (p) return '\u00A3' + (p.price / 100).toFixed(2);
+    if (p) return quizCurrencySymbol + (p.price / 100).toFixed(2);
     return fallback;
   }
 
@@ -1699,7 +1707,7 @@
           '<div class="quiz-results__trust">' +
             '<span class="quiz-results__trust-item"><i data-lucide="shield-check"></i> 30-day money-back guarantee</span>' +
             '<span class="quiz-results__trust-item"><i data-lucide="leaf"></i> No fillers or additives</span>' +
-            '<span class="quiz-results__trust-item"><i data-lucide="truck"></i> Free UK shipping</span>' +
+            '<span class="quiz-results__trust-item"><i data-lucide="truck"></i> Free shipping</span>' +
           '</div>' +
         '</div>' +
 

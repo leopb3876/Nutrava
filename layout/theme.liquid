@@ -20,7 +20,7 @@
         when 'index'
           assign seo_desc = 'Personalised supplement stacks backed by science. Take our free 60-second quiz to get a custom wellness plan tailored to your goals, lifestyle, and health.'
         when 'collection'
-          assign seo_desc = collection.title | append: ' — science-backed supplements from Nutrava. Free UK shipping on orders over £50.'
+          assign seo_desc = collection.title | append: ' — science-backed supplements from Nutrava. Free shipping on orders over $50.'
         when 'product'
           assign seo_desc = product.title | append: ' — ' | append: product.description | strip_html | truncate: 140
         when 'page'
@@ -31,10 +31,10 @@
           elsif template.suffix == 'contact'
             assign seo_desc = 'Get in touch with the Nutrava team. We are here to help with orders, quiz results, or any questions about your supplements.'
           elsif template.suffix == 'shipping'
-            assign seo_desc = 'Free UK shipping on orders over £50. Learn about Nutrava delivery times, returns, and our 30-day money-back guarantee.'
+            assign seo_desc = 'Free shipping on orders over $50. Learn about Nutrava delivery times, returns, and our 30-day money-back guarantee.'
           endif
         when 'cart'
-          assign seo_desc = 'Your Nutrava cart — review your personalised supplement stack before checkout. Free UK shipping over £50.'
+          assign seo_desc = 'Your Nutrava cart — review your personalised supplement stack before checkout. Free shipping over $50.'
         when 'blog'
           assign seo_desc = 'Wellness insights and supplement science from Nutrava. Evidence-based articles on focus, sleep, energy, and performance.'
         when 'search'
