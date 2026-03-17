@@ -1,1 +1,48 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Nutrava",
+    "theme_version": "1.0.0",
+    "theme_author": "Nutrava",
+    "theme_documentation_url": "https://nutrava.net",
+    "theme_support_url": "https://nutrava.net"
+  },
+  {
+    "name": "Analytics",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google Analytics 4"
+      },
+      {
+        "type": "text",
+        "id": "ga4_measurement_id",
+        "label": "GA4 Measurement ID",
+        "info": "Starts with G- (e.g. G-XXXXXXXXXX). Find it in Google Analytics → Admin → Data Streams.",
+        "placeholder": "G-XXXXXXXXXX"
+      },
+      {
+        "type": "header",
+        "content": "Meta (Facebook) Pixel"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta Pixel ID",
+        "info": "Find it in Meta Events Manager → Data Sources → Your Pixel.",
+        "placeholder": "XXXXXXXXXXXXXXXX"
+      },
+      {
+        "type": "header",
+        "content": "Klaviyo"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_public_key",
+        "label": "Klaviyo Public API Key",
+        "info": "Find it in Klaviyo → Settings → API Keys. Starts with a letter (e.g. AbCdEf).",
+        "placeholder": "YourPublicKey"
+      }
+    ]
+  }
+]
