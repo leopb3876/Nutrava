@@ -3,83 +3,89 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "label": "Personalised Wellness",
-        "heading": "Your Wellness, Personalised",
-        "subheading": "Take our 60-second quiz and discover your science-backed supplement stack",
-        "cta_quiz": "Take the Quiz",
-        "cta_shop": "Shop Stacks"
-      }
-    },
-    "featured-stacks": {
-      "type": "featured-stacks",
-      "settings": {
-        "heading": "Popular Stacks",
-        "view_all_link": "/collections/all"
+        "label": "Personalised Supplement Stacks",
+        "heading": "Your Supplements, Personalised to You",
+        "subheading": "Take a quick quiz about your goals, lifestyle, and health. We'll build a science-backed supplement stack made just for you.",
+        "cta_quiz": "Take the Free Quiz",
+        "cta_shop": "Browse Supplements",
+        "promo_text": "Use code FIRST15 for 15% off your first order"
       }
     },
     "how-it-works": {
       "type": "how-it-works",
       "settings": {
-        "heading": "How It Works"
+        "heading": "How Nutrava Works",
+        "subheading": "Three simple steps to your personalised supplement plan"
       },
       "blocks": {
         "step-1": {
           "type": "step",
           "settings": {
             "title": "Take the Quiz",
-            "text": "Answer a few questions about your lifestyle, goals, and wellness needs"
+            "text": "Answer questions about your goals, lifestyle, sleep, diet, and activity level. Takes under 60 seconds."
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
             "title": "Get Your Stack",
-            "text": "We'll recommend a personalised supplement stack backed by science"
+            "text": "We build a personalised supplement stack based on your unique profile, backed by science."
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
-            "title": "Delivered to You",
-            "text": "Your supplements are shipped directly to your door"
+            "title": "Feel the Difference",
+            "text": "Most people feel a difference within the first two weeks of consistent daily use."
           }
         }
       },
       "block_order": ["step-1", "step-2", "step-3"]
     },
+    "best-sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "heading": "Best Sellers",
+        "subheading": "Our most popular supplements",
+        "view_all_link": "/collections/all"
+      }
+    },
     "goals": {
       "type": "goal-categories",
       "settings": {
-        "heading": "Explore Your Goals"
+        "heading": "What's Your Goal?"
       },
       "blocks": {
-        "focus": { "type": "goal", "settings": { "icon": "brain", "title": "Focus & Study", "description": "Sharpen concentration and mental clarity" } },
-        "gym": { "type": "goal", "settings": { "icon": "dumbbell", "title": "Gym & Performance", "description": "Build strength and recover faster" } },
-        "sleep": { "type": "goal", "settings": { "icon": "moon", "title": "Sleep & Recovery", "description": "Fall asleep faster, wake refreshed" } },
-        "energy": { "type": "goal", "settings": { "icon": "zap", "title": "Energy & Stress", "description": "Sustained energy without the crash" } },
-        "wellness": { "type": "goal", "settings": { "icon": "leaf", "title": "Daily Wellness", "description": "Support your overall health daily" } }
+        "focus": { "type": "goal", "settings": { "icon": "brain", "title": "Focus & Study", "description": "Sharpen concentration, memory, and mental clarity for work or study" } },
+        "gym": { "type": "goal", "settings": { "icon": "dumbbell", "title": "Gym & Performance", "description": "Build strength, improve endurance, and recover faster" } },
+        "sleep": { "type": "goal", "settings": { "icon": "moon", "title": "Sleep & Recovery", "description": "Fall asleep faster, sleep deeper, and wake up feeling refreshed" } },
+        "energy": { "type": "goal", "settings": { "icon": "zap", "title": "Energy & Stress", "description": "Sustained all-day energy without crashes, less burnout and fatigue" } },
+        "wellness": { "type": "goal", "settings": { "icon": "leaf", "title": "Daily Wellness", "description": "Support immunity, gut health, and long-term overall wellbeing" } }
       },
       "block_order": ["focus", "gym", "sleep", "energy", "wellness"]
     },
-    "trust-bar": {
-      "type": "trust-bar",
-      "settings": {},
-      "blocks": {
-        "badge-1": { "type": "badge", "settings": { "text": "Science-backed" } },
-        "badge-2": { "type": "badge", "settings": { "text": "Clean ingredients" } },
-        "badge-3": { "type": "badge", "settings": { "text": "Free UK shipping" } },
-        "badge-4": { "type": "badge", "settings": { "text": "30-day guarantee" } }
+    "why-nutrava": {
+      "type": "why-nutrava",
+      "settings": {
+        "heading": "The Nutrava Difference",
+        "subheading": "What sets us apart from generic supplement brands"
       },
-      "block_order": ["badge-1", "badge-2", "badge-3", "badge-4"]
+      "blocks": {
+        "point-1": { "type": "point", "settings": { "icon": "user", "stat": "Unique", "title": "Personalised to You", "text": "No one-size-fits-all. Every stack is tailored to your unique goals, lifestyle, and health profile." } },
+        "point-2": { "type": "point", "settings": { "icon": "flask-conical", "stat": "100%", "title": "Clinically Dosed", "text": "Every ingredient at its researched effective dose. No pixie dusting, no under-dosing, no shortcuts." } },
+        "point-3": { "type": "point", "settings": { "icon": "shield-check", "stat": "Zero", "title": "Fillers or Binders", "text": "No proprietary blends, no artificial fillers, no hidden ingredients. Clean supplements, always." } },
+        "point-4": { "type": "point", "settings": { "icon": "eye", "stat": "100%", "title": "Transparent Labels", "text": "You see exactly what's inside and how much. Third-party lab tested for purity and potency." } }
+      },
+      "block_order": ["point-1", "point-2", "point-3", "point-4"]
     },
     "stats-bar": {
       "type": "stats-bar",
       "settings": {},
       "blocks": {
-        "stat-1": { "type": "stat", "settings": { "icon": "fingerprint", "number": "Unique", "label": "Stacks built for you" } },
-        "stat-2": { "type": "stat", "settings": { "icon": "flask-conical", "number": "100%", "label": "Science-backed" } },
-        "stat-3": { "type": "stat", "settings": { "icon": "leaf", "number": "Zero", "label": "Fillers or binders" } },
-        "stat-4": { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "UK delivery" } }
+        "stat-1": { "type": "stat", "settings": { "icon": "flask-conical", "number": "40+", "label": "Science-backed supplements" } },
+        "stat-2": { "type": "stat", "settings": { "icon": "leaf", "number": "100%", "label": "Clean, no fillers or binders" } },
+        "stat-3": { "type": "stat", "settings": { "icon": "shield-check", "number": "30", "label": "Day money-back guarantee" } },
+        "stat-4": { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "UK shipping over £50" } }
       },
       "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
     },
@@ -96,6 +102,52 @@
       },
       "block_order": ["card-1", "card-2", "card-3"]
     },
+    "comparison": {
+      "type": "comparison-table",
+      "settings": {
+        "heading": "Nutrava vs. Generic Supplements",
+        "subheading": "Not all supplements are created equal"
+      },
+      "blocks": {
+        "row-1": { "type": "row", "settings": { "feature": "Personalised to your goals", "nutrava": true, "generic": false } },
+        "row-2": { "type": "row", "settings": { "feature": "Clinically effective doses", "nutrava": true, "generic": false } },
+        "row-3": { "type": "row", "settings": { "feature": "No proprietary blends", "nutrava": true, "generic": false } },
+        "row-4": { "type": "row", "settings": { "feature": "Third-party lab tested", "nutrava": true, "generic": false } },
+        "row-5": { "type": "row", "settings": { "feature": "Free from fillers & binders", "nutrava": true, "generic": false } },
+        "row-6": { "type": "row", "settings": { "feature": "Transparent ingredient labels", "nutrava": true, "generic": false } }
+      },
+      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6"]
+    },
+    "spotlight": {
+      "type": "ingredient-spotlight",
+      "settings": {
+        "heading": "Ingredient Spotlight",
+        "subheading": "A closer look at what goes into our best-selling supplements"
+      },
+      "blocks": {
+        "ing-1": { "type": "ingredient", "settings": { "name": "Lion's Mane Mushroom", "dose": "500mg per serving", "description": "Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health." } },
+        "ing-2": { "type": "ingredient", "settings": { "name": "Ashwagandha KSM-66", "dose": "600mg per serving", "description": "Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels." } },
+        "ing-3": { "type": "ingredient", "settings": { "name": "Magnesium Glycinate", "dose": "400mg per serving", "description": "The most bioavailable form of magnesium. Supports relaxation, sleep quality, and muscle recovery." } },
+        "ing-4": { "type": "ingredient", "settings": { "name": "Creatine Monohydrate", "dose": "5g per serving", "description": "Backed by 500+ peer-reviewed studies. Increases strength, power output, and supports cognitive function." } }
+      },
+      "block_order": ["ing-1", "ing-2", "ing-3", "ing-4"]
+    },
+    "faq": {
+      "type": "home-faq",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Everything you need to know before getting started"
+      },
+      "blocks": {
+        "faq-1": { "type": "faq", "settings": { "question": "What makes Nutrava different from other supplement brands?", "answer": "Unlike generic supplement brands, Nutrava personalises your stack based on your unique goals, lifestyle, and health profile. Every ingredient is clinically dosed (no pixie dusting), third-party lab tested, and completely transparent — no proprietary blends, no fillers, no hidden ingredients." } },
+        "faq-2": { "type": "faq", "settings": { "question": "How does the personalised quiz work?", "answer": "Our adaptive quiz takes about 60 seconds and asks about your wellness goals, sleep habits, diet, activity level, and lifestyle. It branches based on your answers, getting more specific until it can confidently recommend the right supplement stack. No two recommendations are exactly alike." } },
+        "faq-3": { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "Most people notice initial effects within 1-2 weeks, particularly with supplements like magnesium (better sleep) and creatine (strength gains). Full benefits typically build over 4-8 weeks of consistent daily use. Adaptogens like ashwagandha tend to show their best results around the 6-8 week mark." } },
+        "faq-4": { "type": "faq", "settings": { "question": "Can I take these supplements together?", "answer": "Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan." } },
+        "faq-5": { "type": "faq", "settings": { "question": "What's your shipping and returns policy?", "answer": "We offer free UK shipping on all orders over £50, delivered within 2-4 business days. Every product comes with our 30-day satisfaction guarantee — if you're not happy, we'll refund you in full, no questions asked." } },
+        "faq-6": { "type": "faq", "settings": { "question": "Are your supplements vegan and gluten-free?", "answer": "The majority of our supplements are vegan and gluten-free. A few products (like Omega-3 Fish Oil) are sourced from fish, but we always offer plant-based alternatives. Every product page clearly lists all ingredients, allergens, and dietary information." } }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6"]
+    },
     "testimonials": {
       "type": "testimonials",
       "settings": {
@@ -103,25 +155,26 @@
         "subheading": "Real results from real people"
       },
       "blocks": {
-        "t-1": { "type": "testimonial", "settings": { "quote": "The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon.", "author": "James T.", "meta": "Focus Stack — 3 months" } },
-        "t-2": { "type": "testimonial", "settings": { "quote": "I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively.", "author": "Sophie M.", "meta": "Sleep Stack — 6 weeks" } },
-        "t-3": { "type": "testimonial", "settings": { "quote": "Love that everything is science-backed and the ingredients are clean. Recovery between training sessions is noticeably better.", "author": "Daniel K.", "meta": "Gym Performance Stack — 2 months" } }
+        "t-1": { "type": "testimonial", "settings": { "quote": "The quiz built me a personalised stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee.", "author": "James T.", "meta": "Verified buyer — 3 months", "five_stars": true } },
+        "t-2": { "type": "testimonial", "settings": { "quote": "I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting my custom stack.", "author": "Sophie M.", "meta": "Verified buyer — 6 weeks", "five_stars": true } },
+        "t-3": { "type": "testimonial", "settings": { "quote": "Love that everything is science-backed and the ingredients are clean. My personalised stack has noticeably improved my recovery between training sessions.", "author": "Daniel K.", "meta": "Verified buyer — 2 months", "five_stars": true } },
+        "t-4": { "type": "testimonial", "settings": { "quote": "Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over.", "author": "Emma R.", "meta": "Verified buyer — 4 months", "five_stars": true } },
+        "t-5": { "type": "testimonial", "settings": { "quote": "I've tried so many energy supplements that give you a crash. My Nutrava stack gives me sustained focus all day — no jitters, no afternoon slump.", "author": "Michael B.", "meta": "Verified buyer — 2 months", "five_stars": true } },
+        "t-6": { "type": "testimonial", "settings": { "quote": "Started my personalised stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed.", "author": "Lauren W.", "meta": "Verified buyer — 5 weeks", "five_stars": false } },
+        "t-7": { "type": "testimonial", "settings": { "quote": "As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine.", "author": "Tom H.", "meta": "Verified buyer — 6 weeks", "five_stars": true } },
+        "t-8": { "type": "testimonial", "settings": { "quote": "The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too.", "author": "Priya K.", "meta": "Subscriber — 5 months", "five_stars": true } },
+        "t-9": { "type": "testimonial", "settings": { "quote": "My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery.", "author": "Chris A.", "meta": "Verified buyer — 3 months", "five_stars": true } },
+        "t-10": { "type": "testimonial", "settings": { "quote": "Nutrava helped me figure out what I actually need. The quiz was spot on — I'm taking fewer supplements now but getting better results than before.", "author": "Hannah L.", "meta": "Verified buyer — 2 months", "five_stars": true } }
       },
-      "block_order": ["t-1", "t-2", "t-3"]
+      "block_order": ["t-1", "t-2", "t-3", "t-4", "t-5", "t-6", "t-7", "t-8", "t-9", "t-10"]
     },
-    "why-nutrava": {
-      "type": "why-nutrava",
+    "quiz-cta": {
+      "type": "quiz-cta",
       "settings": {
-        "label": "The Nutrava Difference",
-        "heading": "Why Nutrava?"
-      },
-      "blocks": {
-        "point-1": { "type": "point", "settings": { "icon": "user", "title": "Personalised to You", "text": "Not one-size-fits-all. Your stack is built around your goals." } },
-        "point-2": { "type": "point", "settings": { "icon": "flask-conical", "title": "Clinically Dosed", "text": "Every ingredient at its researched dose. No under-dosing." } },
-        "point-3": { "type": "point", "settings": { "icon": "shield-check", "title": "No Junk", "text": "No fillers, binders, or proprietary blends. Ever." } },
-        "point-4": { "type": "point", "settings": { "icon": "eye", "title": "Transparent Labels", "text": "You see exactly what's inside and how much." } }
-      },
-      "block_order": ["point-1", "point-2", "point-3", "point-4"]
+        "heading": "Ready to find your stack?",
+        "text": "Take our personalised quiz and discover the supplements your body actually needs. It takes less than 60 seconds.",
+        "cta_text": "Take the Quiz"
+      }
     },
     "newsletter": {
       "type": "newsletter",
@@ -129,27 +182,21 @@
         "heading": "Stay in the loop",
         "subheading": "Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers."
       }
-    },
-    "quiz-cta": {
-      "type": "quiz-cta",
-      "settings": {
-        "heading": "Not sure where to start?",
-        "text": "Take our personalised quiz and we'll match you with the perfect supplement stack in 60 seconds",
-        "cta_text": "Take the Quiz"
-      }
     }
   },
   "order": [
     "hero",
-    "stats-bar",
-    "featured-stacks",
     "how-it-works",
+    "best-sellers",
     "goals",
     "why-nutrava",
-    "trust-bar",
+    "stats-bar",
     "science-bar",
+    "comparison",
+    "spotlight",
+    "faq",
     "testimonials",
-    "newsletter",
-    "quiz-cta"
+    "quiz-cta",
+    "newsletter"
   ]
 }

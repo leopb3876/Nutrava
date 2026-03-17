@@ -1,100 +1,173 @@
-<section class="testimonials section-padding bg-mint">
+<section class="social-proof" data-fade-in>
   <div class="container">
-    <div class="text-center mb-xl">
-      <h2>{{ section.settings.heading | default: 'What People Are Saying' }}</h2>
-      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'Real results from real people' }}</p>
+    <div class="section-head text-center mb-xl">
+      <h2 style="color: var(--color-dark-text);">{{ section.settings.heading | default: 'What People Are Saying' }}</h2>
+      <p style="color: rgba(245,242,236,0.7);" class="mt-sm">{{ section.settings.subheading | default: 'Real results from real people' }}</p>
     </div>
-    <div class="testimonials__grid">
-      {% for block in section.blocks %}
-        <div class="testimonial-card" {{ block.shopify_attributes }}>
-          <div class="testimonial-card__stars">
-            {% for i in (1..5) %}
-              <i data-lucide="star"></i>
-            {% endfor %}
-          </div>
-          <p class="testimonial-card__text">"{{ block.settings.quote }}"</p>
-          <div class="testimonial-card__footer">
+  </div>
+  <div class="social-proof__ticker-wrap">
+    <div class="social-proof__ticker" data-testimonial-ticker>
+      {%- for block in section.blocks -%}
+        <div class="testimonial" {{ block.shopify_attributes }}>
+          <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;{% if block.settings.five_stars %}&#9733;{% else %}&#9734;{% endif %}</span>
+          <p class="testimonial__text">"{{ block.settings.quote }}"</p>
+          <div class="testimonial__footer">
             {% if block.settings.avatar != blank %}
-              <img class="testimonial-card__avatar" src="{{ block.settings.avatar | image_url: width: 96 }}" alt="{{ block.settings.author }}" width="48" height="48" loading="lazy">
+              <img class="testimonial__avatar" src="{{ block.settings.avatar | image_url: width: 96 }}" alt="{{ block.settings.author }}" width="48" height="48" loading="lazy">
+            {% else %}
+              <div class="testimonial__avatar-placeholder">{{ block.settings.author | slice: 0 }}</div>
             {% endif %}
-            <div>
-              <div class="testimonial-card__author">{{ block.settings.author }}</div>
-              <div class="testimonial-card__meta">{{ block.settings.meta }}</div>
+            <div class="testimonial__info">
+              <div class="testimonial__author">{{ block.settings.author }}</div>
+              <div class="testimonial__meta">{{ block.settings.meta }}</div>
             </div>
           </div>
         </div>
-      {% endfor %}
+      {%- endfor -%}
+      {%- comment -%} Duplicate for seamless infinite scroll {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        <div class="testimonial" aria-hidden="true">
+          <span class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;{% if block.settings.five_stars %}&#9733;{% else %}&#9734;{% endif %}</span>
+          <p class="testimonial__text">"{{ block.settings.quote }}"</p>
+          <div class="testimonial__footer">
+            {% if block.settings.avatar != blank %}
+              <img class="testimonial__avatar" src="{{ block.settings.avatar | image_url: width: 96 }}" alt="{{ block.settings.author }}" width="48" height="48" loading="lazy">
+            {% else %}
+              <div class="testimonial__avatar-placeholder">{{ block.settings.author | slice: 0 }}</div>
+            {% endif %}
+            <div class="testimonial__info">
+              <div class="testimonial__author">{{ block.settings.author }}</div>
+              <div class="testimonial__meta">{{ block.settings.meta }}</div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
 <style>
-  .testimonials__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-    max-width: 1000px;
-    margin: 0 auto;
+  .social-proof {
+    padding: 80px 0;
+    background: var(--color-dark-section);
+    overflow: hidden;
   }
 
-  .testimonial-card {
-    background: var(--color-card-bg);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    box-shadow: var(--shadow-card);
+  .social-proof__ticker-wrap {
+    overflow: hidden;
+    position: relative;
   }
 
-  .testimonial-card__stars {
+  .social-proof__ticker-wrap::before,
+  .social-proof__ticker-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .social-proof__ticker-wrap::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--color-dark-section) 0%, transparent 100%);
+  }
+
+  .social-proof__ticker-wrap::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--color-dark-section) 0%, transparent 100%);
+  }
+
+  .social-proof__ticker {
     display: flex;
-    gap: 2px;
-    margin-bottom: var(--space-md);
-    color: #e8b931;
+    gap: 24px;
+    width: max-content;
+    animation: ticker-scroll 60s linear infinite;
   }
 
-  .testimonial-card__stars svg {
-    width: 16px;
-    height: 16px;
-    fill: #e8b931;
-    stroke: #e8b931;
+  .social-proof__ticker:hover {
+    animation-play-state: paused;
   }
 
-  .testimonial-card__text {
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .testimonial {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px;
+    width: 340px;
+    flex-shrink: 0;
+  }
+
+  .testimonial__stars {
+    color: var(--color-accent);
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .testimonial__text {
     font-size: 15px;
-    color: var(--color-text-body);
+    color: var(--color-dark-text);
+    opacity: 0.9;
     line-height: 1.7;
-    margin-bottom: var(--space-md);
+    margin-bottom: 16px;
     font-style: italic;
   }
 
-  .testimonial-card__footer {
+  .testimonial__footer {
     display: flex;
     align-items: center;
     gap: 12px;
   }
 
-  .testimonial-card__avatar {
+  .testimonial__avatar {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--color-border);
+    border: 2px solid rgba(255,255,255,0.15);
   }
 
-  .testimonial-card__author {
+  .testimonial__avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .testimonial__author {
     font-size: 14px;
     font-weight: 600;
-    color: var(--color-text);
+    color: var(--color-dark-text);
   }
 
-  .testimonial-card__meta {
+  .testimonial__meta {
     font-size: 12px;
-    color: var(--color-text-muted);
-    margin-top: 2px;
+    color: var(--color-accent);
   }
 
   @media (max-width: 768px) {
-    .testimonials__grid {
-      grid-template-columns: 1fr;
+    .social-proof {
+      padding: 48px 0;
+    }
+
+    .testimonial {
+      width: 280px;
     }
   }
 </style>
@@ -142,7 +215,13 @@
           "type": "text",
           "id": "meta",
           "label": "Meta (stack, duration)",
-          "default": "Focus Stack — 3 months"
+          "default": "Verified buyer \u2014 3 months"
+        },
+        {
+          "type": "checkbox",
+          "id": "five_stars",
+          "label": "5 stars (uncheck for 4 stars)",
+          "default": true
         }
       ]
     }
@@ -151,30 +230,16 @@
     {
       "name": "Testimonials",
       "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The quiz recommended a Focus Stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee.",
-            "author": "James T.",
-            "meta": "Focus Stack — 3 months"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting the Sleep & Recovery Stack.",
-            "author": "Sophie M.",
-            "meta": "Sleep Stack — 6 weeks"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Love that everything is science-backed and the ingredients are clean. The Gym Stack has noticeably improved my recovery between training sessions.",
-            "author": "Daniel K.",
-            "meta": "Gym Performance Stack — 2 months"
-          }
-        }
+        { "type": "testimonial", "settings": { "quote": "The quiz built me a personalised stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee.", "author": "James T.", "meta": "Verified buyer \u2014 3 months", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting my custom stack.", "author": "Sophie M.", "meta": "Verified buyer \u2014 6 weeks", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "Love that everything is science-backed and the ingredients are clean. My personalised stack has noticeably improved my recovery between training sessions.", "author": "Daniel K.", "meta": "Verified buyer \u2014 2 months", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "Finally a supplement company that doesn\u2019t hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over.", "author": "Emma R.", "meta": "Verified buyer \u2014 4 months", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "I\u2019ve tried so many energy supplements that give you a crash. My Nutrava stack gives me sustained focus all day \u2014 no jitters, no afternoon slump.", "author": "Michael B.", "meta": "Verified buyer \u2014 2 months", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "Started my personalised stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed. My Fitbit confirms it too.", "author": "Lauren W.", "meta": "Verified buyer \u2014 5 weeks", "five_stars": false } },
+        { "type": "testimonial", "settings": { "quote": "As a uni student I needed something for exam season. Lion\u2019s Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine.", "author": "Tom H.", "meta": "Verified buyer \u2014 6 weeks", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too.", "author": "Priya K.", "meta": "Subscriber \u2014 5 months", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "My PT recommended Nutrava and I\u2019m glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery.", "author": "Chris A.", "meta": "Verified buyer \u2014 3 months", "five_stars": true } },
+        { "type": "testimonial", "settings": { "quote": "Nutrava helped me figure out what I actually need. The quiz was spot on \u2014 I\u2019m taking fewer supplements now but getting better results than before.", "author": "Hannah L.", "meta": "Verified buyer \u2014 2 months", "five_stars": true } }
       ]
     }
   ]

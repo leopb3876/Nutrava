@@ -1,0 +1,121 @@
+<section class="home-faq-section section-padding bg-white" data-fade-in>
+  <div class="container" style="max-width: 750px;">
+    <div class="section-head text-center mb-xl">
+      <h2>{{ section.settings.heading | default: 'Frequently Asked Questions' }}</h2>
+      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'Everything you need to know before getting started' }}</p>
+    </div>
+    <div class="home-faq__list">
+      {% for block in section.blocks %}
+        <details class="home-faq__item" {{ block.shopify_attributes }}>
+          <summary class="home-faq__question">
+            {{ block.settings.question }}
+            <span class="home-faq__toggle">+</span>
+          </summary>
+          <div class="home-faq__answer">{{ block.settings.answer }}</div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .home-faq__item {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+  }
+
+  .home-faq__question {
+    padding: 20px 24px;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .home-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .home-faq__toggle {
+    color: var(--color-primary);
+    font-size: 20px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .home-faq__item[open] .home-faq__toggle {
+    transform: rotate(45deg);
+  }
+
+  .home-faq__answer {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--color-text-body);
+    line-height: 1.7;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Homepage FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Everything you need to know before getting started"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What makes Nutrava different?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Nutrava personalises your supplement stack based on your unique goals and health profile."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "What makes Nutrava different from other supplement brands?", "answer": "Unlike generic supplement brands, Nutrava personalises your stack based on your unique goals, lifestyle, and health profile. Every ingredient is clinically dosed (no pixie dusting), third-party lab tested, and completely transparent \u2014 no proprietary blends, no fillers, no hidden ingredients." } },
+        { "type": "faq", "settings": { "question": "How does the personalised quiz work?", "answer": "Our adaptive quiz takes about 60 seconds and asks about your wellness goals, sleep habits, diet, activity level, and lifestyle. It branches based on your answers, getting more specific until it can confidently recommend the right supplement stack. No two recommendations are exactly alike." } },
+        { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "Most people notice initial effects within 1-2 weeks, particularly with supplements like magnesium (better sleep) and creatine (strength gains). Full benefits typically build over 4-8 weeks of consistent daily use. Adaptogens like ashwagandha tend to show their best results around the 6-8 week mark." } },
+        { "type": "faq", "settings": { "question": "Can I take these supplements together?", "answer": "Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan. For example, we might pair Lion\u2019s Mane with L-Theanine and Omega-3, which research shows work better together than individually." } },
+        { "type": "faq", "settings": { "question": "What\u2019s your shipping and returns policy?", "answer": "We offer free UK shipping on all orders over \u00a350, delivered within 2-4 business days. Every product comes with our 30-day satisfaction guarantee \u2014 if you\u2019re not happy, we\u2019ll refund you in full, no questions asked. Subscriptions can be paused, modified, or cancelled anytime." } },
+        { "type": "faq", "settings": { "question": "Are your supplements vegan and gluten-free?", "answer": "The majority of our supplements are vegan and gluten-free. A few products (like Omega-3 Fish Oil) are sourced from fish, but we always offer plant-based alternatives. Every product page clearly lists all ingredients, allergens, and dietary information so you know exactly what you\u2019re taking." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

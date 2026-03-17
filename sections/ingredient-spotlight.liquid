@@ -1,0 +1,184 @@
+<section class="spotlight section-padding" data-fade-in>
+  <div class="container">
+    <div class="section-head text-center mb-xl">
+      <h2>{{ section.settings.heading | default: 'Ingredient Spotlight' }}</h2>
+      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'A closer look at what goes into our best-selling supplements' }}</p>
+    </div>
+    <div class="spotlight__grid">
+      {% for block in section.blocks %}
+        <div class="spotlight__card" {{ block.shopify_attributes }}>
+          <div class="spotlight__img">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 128 }}" alt="{{ block.settings.name }}" width="64" height="64" loading="lazy">
+            {% else %}
+              <i data-lucide="leaf"></i>
+            {% endif %}
+          </div>
+          <div class="spotlight__info">
+            <h4 class="spotlight__name">{{ block.settings.name }}</h4>
+            <p class="spotlight__dose">{{ block.settings.dose }}</p>
+            <p class="spotlight__desc">{{ block.settings.description }}</p>
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="spotlight__link">Learn More &rarr;</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .spotlight__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .spotlight__card {
+    display: flex;
+    gap: 20px;
+    padding: 28px;
+    background: var(--color-bg);
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    transition: all 0.25s;
+  }
+
+  .spotlight__card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 20px rgba(90,122,94,0.08);
+  }
+
+  .spotlight__img {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--color-mint-mist);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+
+  .spotlight__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .spotlight__img svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .spotlight__name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .spotlight__dose {
+    font-size: 13px;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .spotlight__desc {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 8px;
+  }
+
+  .spotlight__link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .spotlight__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 768px) {
+    .spotlight__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ingredient Spotlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ingredient Spotlight"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "A closer look at what goes into our best-selling supplements"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ingredient image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Lion's Mane Mushroom"
+        },
+        {
+          "type": "text",
+          "id": "dose",
+          "label": "Dose per serving",
+          "default": "500mg per serving"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Learn more link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient Spotlight",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Lion's Mane Mushroom", "dose": "500mg per serving", "description": "Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health." } },
+        { "type": "ingredient", "settings": { "name": "Ashwagandha KSM-66", "dose": "600mg per serving", "description": "Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels." } },
+        { "type": "ingredient", "settings": { "name": "Magnesium Glycinate", "dose": "400mg per serving", "description": "The most bioavailable form of magnesium. Supports relaxation, sleep quality, and muscle recovery." } },
+        { "type": "ingredient", "settings": { "name": "Creatine Monohydrate", "dose": "5g per serving", "description": "Backed by 500+ peer-reviewed studies. Increases strength, power output, and supports cognitive function." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

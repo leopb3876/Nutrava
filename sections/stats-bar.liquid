@@ -1,4 +1,4 @@
-<section class="stats-bar section-padding--sm bg-mint">
+<section class="stats-bar" data-fade-in>
   <div class="container">
     <div class="stats-bar__grid">
       {% for block in section.blocks %}
@@ -6,10 +6,8 @@
           <div class="stats-bar__icon">
             <i data-lucide="{{ block.settings.icon }}"></i>
           </div>
-          <div>
-            <span class="stats-bar__number">{{ block.settings.number }}</span>
-            <span class="stats-bar__label">{{ block.settings.label }}</span>
-          </div>
+          <span class="stats-bar__number">{{ block.settings.number }}</span>
+          <span class="stats-bar__label">{{ block.settings.label }}</span>
         </div>
       {% endfor %}
     </div>
@@ -17,60 +15,68 @@
 </section>
 
 <style>
-  .stats-bar__grid {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-3xl);
-    flex-wrap: wrap;
+  .stats-bar {
+    padding: 64px 0;
+    background: var(--color-dark-section);
   }
 
-  .stats-bar__item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
+  .stats-bar__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .stats-bar__icon {
-    width: 44px;
-    height: 44px;
-    background: var(--color-card-bg);
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-primary);
-    flex-shrink: 0;
+    color: var(--color-accent);
+    margin: 0 auto 12px;
   }
 
   .stats-bar__icon svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     stroke-width: 1.75;
   }
 
   .stats-bar__number {
     display: block;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    color: var(--color-text);
-    line-height: 1.2;
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    line-height: 1.1;
+    margin-bottom: 4px;
   }
 
   .stats-bar__label {
-    font-size: 13px;
-    color: var(--color-text-muted);
+    font-size: 14px;
+    color: var(--color-dark-text);
+    opacity: 0.7;
   }
 
   @media (max-width: 768px) {
+    .stats-bar {
+      padding: 32px 0;
+    }
+
     .stats-bar__grid {
-      gap: var(--space-xl);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
   }
 
   @media (max-width: 480px) {
     .stats-bar__grid {
-      flex-direction: column;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 </style>
@@ -109,22 +115,10 @@
     {
       "name": "Stats Bar",
       "blocks": [
-        {
-          "type": "stat",
-          "settings": { "icon": "layers", "number": "5", "label": "Personalised stacks" }
-        },
-        {
-          "type": "stat",
-          "settings": { "icon": "flask-conical", "number": "100%", "label": "Science-backed" }
-        },
-        {
-          "type": "stat",
-          "settings": { "icon": "leaf", "number": "Zero", "label": "Fillers or binders" }
-        },
-        {
-          "type": "stat",
-          "settings": { "icon": "truck", "number": "Free", "label": "UK delivery" }
-        }
+        { "type": "stat", "settings": { "icon": "flask-conical", "number": "40+", "label": "Science-backed supplements" } },
+        { "type": "stat", "settings": { "icon": "leaf", "number": "100%", "label": "Clean, no fillers or binders" } },
+        { "type": "stat", "settings": { "icon": "shield-check", "number": "30", "label": "Day money-back guarantee" } },
+        { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "UK shipping over \u00a350" } }
       ]
     }
   ]

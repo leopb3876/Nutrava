@@ -995,9 +995,12 @@
           });
 
           // Rebuild tiers dynamically based on total product count
-          var total = stack.products.length;
+          // Cap products so stacks feel curated, not overwhelming
+          var MAX_COMPLETE = 6;
+          var total = Math.min(stack.products.length, MAX_COMPLETE);
+          stack.products = stack.products.slice(0, MAX_COMPLETE);
           var essentialCount = Math.min(2, total);
-          var recommendedCount = Math.min(3, total);
+          var recommendedCount = Math.min(4, total);
 
           var essentialIndices = [];
           var recommendedIndices = [];
