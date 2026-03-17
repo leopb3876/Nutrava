@@ -1,0 +1,22 @@
+<section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
+  <div class="container container--narrow">
+    <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">{{ policy.title }}</h1>
+  </div>
+</section>
+
+<section style="padding: 64px 0;">
+  <div class="container" style="max-width: 700px;">
+    <div class="policy-content" style="font-size: 15px; line-height: 1.8; color: var(--color-text-body);">
+      {{ policy.body }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .policy-content h2 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-text); margin: 32px 0 12px; }
+  .policy-content h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text); margin: 24px 0 8px; }
+  .policy-content p { margin-bottom: 16px; }
+  .policy-content ul, .policy-content ol { padding-left: 24px; margin-bottom: 16px; }
+  .policy-content li { margin-bottom: 8px; }
+  .policy-content a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; }
+</style>
