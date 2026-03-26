@@ -343,15 +343,15 @@
     grid.innerHTML = top.map(function(s) {
       var p = s.product;
       var imgHTML = p.image
-        ? '<img src="' + p.image + '" alt="' + p.title + '" class="cart-cross-sell__img">'
+        ? '<img src="' + escapeHtml(p.image) + '" alt="' + escapeHtml(p.title) + '" class="cart-cross-sell__img">'
         : '<div class="cart-cross-sell__img cart-cross-sell__img--placeholder"><i data-lucide="pill"></i></div>';
       return '<div class="cart-cross-sell">' +
         imgHTML +
         '<div class="cart-cross-sell__info">' +
-          '<span class="cart-cross-sell__name">' + p.title + '</span>' +
+          '<span class="cart-cross-sell__name">' + escapeHtml(p.title) + '</span>' +
           '<span class="cart-cross-sell__price">' + formatPrice(p.price) + '</span>' +
         '</div>' +
-        '<button class="btn btn--sm btn--outline cart-cross-sell__add" data-cross-sell-add="' + p.handle + '">+ Add</button>' +
+        '<button class="btn btn--sm btn--outline cart-cross-sell__add" data-cross-sell-add="' + escapeHtml(p.handle) + '">+ Add</button>' +
       '</div>';
     }).join('');
 
@@ -360,18 +360,20 @@
     // Wire up add buttons
     grid.querySelectorAll('[data-cross-sell-add]').forEach(function(btn) {
       btn.addEventListener('click', async function() {
-        var handle = btn.dataset.crossSellAdd;
-        var product = crossSellProducts.find(function(p) { return p.handle === handle; });
-        if (product && typeof NutravaCart !== 'undefined') {
-          NutravaCart.addItem({
-            handle: product.handle,
-            title: product.title,
-            price: product.price,
-            id: product.id,
-            image: product.image,
-            quantity: 1
-          });
-        }
+        try {
+          var handle = btn.dataset.crossSellAdd;
+          var product = crossSellProducts.find(function(p) { return p.handle === handle; });
+          if (product && typeof NutravaCart !== 'undefined') {
+            NutravaCart.addItem({
+              handle: product.handle,
+              title: product.title,
+              price: product.price,
+              id: product.id,
+              image: product.image,
+              quantity: 1
+            });
+          }
+        } catch (err) { console.error('Cross-sell add failed:', err); }
       });
     });
   }
@@ -460,7 +462,7 @@
 
   function proceedToCheckout() {
     closeAuthOverlay();
-    trackEvent('begin_checkout', { currency: 'GBP' });
+    trackEvent('begin_checkout', { currency: (window.Shopify && window.Shopify.currency && window.Shopify.currency.active) || 'USD' });
     var discount = localStorage.getItem('nutrava_discount') || '';
     if (isShopify) {
       window.location.href = discount ? '/checkout?discount=' + encodeURIComponent(discount) : '/checkout';
@@ -676,7 +678,7 @@
       openDrawer();
       showToast(`${item.title} added to cart`);
       window.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart, addedItem: item } }));
-      trackEvent('add_to_cart', { currency: 'GBP', value: (item.price / 100).toFixed(2), items: [{ item_name: item.title, price: (item.price / 100).toFixed(2) }] });
+      trackEvent('add_to_cart', { currency: (window.Shopify && window.Shopify.currency && window.Shopify.currency.active) || 'USD', value: (item.price / 100).toFixed(2), items: [{ item_name: item.title, price: (item.price / 100).toFixed(2) }] });
       // Klaviyo: track add to cart
       if (typeof klaviyo !== 'undefined') {
         klaviyo.push(['track', 'Added to Cart', {

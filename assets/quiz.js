@@ -998,7 +998,7 @@
               handle: handle,
               name: dbProduct.title,
               benefit: dbProduct.description || 'Supports your ' + key + ' goals',
-              fallbackPrice: '\u00A3' + (dbProduct.price / 100).toFixed(2)
+              fallbackPrice: (window.Shopify && window.Shopify.currency && window.Shopify.currency.active === 'GBP' ? '\u00A3' : '$') + (dbProduct.price / 100).toFixed(2)
             });
           });
 
@@ -1028,7 +1028,7 @@
         });
         quizConfigLoaded = true;
       })
-      .catch(function() { quizConfigLoaded = true; /* proceed with empty config */ });
+      .catch(function(err) { console.warn('Quiz config load failed:', err.message || err); quizConfigLoaded = true; });
   })();
 
   /* ---------- Quiz Engine ---------- */

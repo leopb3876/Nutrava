@@ -1041,13 +1041,13 @@
 .quiz-email-modal__icon {
   width: 56px;
   height: 56px;
-  background: var(--color-mint-mist, #e8f5e9);
+  background: var(--color-mint-mist, #e2edda);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  color: var(--color-primary, #2e7d32);
+  color: var(--color-primary, #2D5A27);
 }
 
 .quiz-email-modal__icon svg {
@@ -1056,16 +1056,16 @@
 }
 
 .quiz-email-modal__title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Georgia', serif);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-text, #1a1a2e);
+  color: var(--color-text, #2c241d);
   margin: 0 0 8px;
 }
 
 .quiz-email-modal__text {
   font-size: 1rem;
-  color: var(--color-text-muted, #6b7280);
+  color: var(--color-text-muted, #6d5b45);
   margin: 0 0 28px;
   line-height: 1.5;
 }
