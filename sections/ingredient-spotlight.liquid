@@ -2,7 +2,7 @@
   <div class="container">
     <div class="section-head text-center mb-xl">
       <h2>{{ section.settings.heading | default: 'Ingredient Spotlight' }}</h2>
-      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'A closer look at what goes into our best-selling supplements' }}</p>
+      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'The actives behind our best-selling routines' }}</p>
     </div>
     <div class="spotlight__grid">
       {% for block in section.blocks %}
@@ -130,7 +130,7 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "A closer look at what goes into our best-selling supplements"
+      "default": "The actives behind our best-selling routines"
     }
   ],
   "blocks": [
@@ -147,19 +147,19 @@
           "type": "text",
           "id": "name",
           "label": "Name",
-          "default": "Lion's Mane Mushroom"
+          "default": "Hyaluronic Acid"
         },
         {
           "type": "text",
           "id": "dose",
-          "label": "Dose per serving",
-          "default": "500mg per serving"
+          "label": "Dose / strength",
+          "default": "4 molecular weights"
         },
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
-          "default": "Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health."
+          "default": "Holds up to 1,000x its weight in water. Our serum layers four different molecular weights so hydration reaches every depth of the skin."
         },
         {
           "type": "url",
@@ -173,10 +173,11 @@
     {
       "name": "Ingredient Spotlight",
       "blocks": [
-        { "type": "ingredient", "settings": { "name": "Lion's Mane Mushroom", "dose": "500mg per serving", "description": "Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health." } },
-        { "type": "ingredient", "settings": { "name": "Ashwagandha KSM-66", "dose": "600mg per serving", "description": "Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels." } },
-        { "type": "ingredient", "settings": { "name": "Magnesium Glycinate", "dose": "400mg per serving", "description": "The most bioavailable form of magnesium. Supports relaxation, sleep quality, and muscle recovery." } },
-        { "type": "ingredient", "settings": { "name": "Creatine Monohydrate", "dose": "5g per serving", "description": "Backed by 500+ peer-reviewed studies. Increases strength, power output, and supports cognitive function." } }
+        { "type": "ingredient", "settings": { "name": "Hyaluronic Acid", "dose": "4 molecular weights", "description": "Holds up to 1,000x its weight in water. Our serum layers four different molecular weights so hydration reaches every depth of the skin." } },
+        { "type": "ingredient", "settings": { "name": "Vitamin C (L-Ascorbic Acid)", "dose": "Triple-form + ferulic acid", "description": "The gold standard for brightening and antioxidant defence. Fades dark spots, evens tone, and shields skin from daily damage." } },
+        { "type": "ingredient", "settings": { "name": "Retinol", "dose": "Encapsulated", "description": "The single most studied anti-aging active. Smooths fine lines and refines texture \u2014 paired with ceramides to protect the barrier." } },
+        { "type": "ingredient", "settings": { "name": "Niacinamide", "dose": "10% concentration", "description": "A multitasker that refines pores, evens tone, and strengthens the moisture barrier. Well-tolerated by most skin types." } },
+        { "type": "ingredient", "settings": { "name": "Activated Charcoal", "dose": "With aloe & tea tree", "description": "Draws pore-clogging buildup without stripping. The backbone of our Charcoal Cleanser for oily and blemish-prone skin." } }
       ]
     }
   ]

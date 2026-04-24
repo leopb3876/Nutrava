@@ -18,27 +18,27 @@
     unless seo_desc
       case template.name
         when 'index'
-          assign seo_desc = 'Personalised supplement stacks backed by science. Take our free 60-second quiz to get a custom wellness plan tailored to your goals, lifestyle, and health.'
+          assign seo_desc = 'Personalised skincare routines matched to your skin. Take our free 60-second quiz and get a routine built for your skin type, concerns and habits.'
         when 'collection'
-          assign seo_desc = collection.title | append: ' — science-backed supplements from Nutrava. Free shipping on orders over $50.'
+          assign seo_desc = collection.title | append: ' — clean, clinically-dosed skincare from Nutrava. Free US shipping on orders over $50.'
         when 'product'
           assign seo_desc = product.title | append: ' — ' | append: product.description | strip_html | truncate: 140
         when 'page'
           if template.suffix == 'quiz'
-            assign seo_desc = 'Take the free Nutrava quiz in 60 seconds. Get a personalised supplement stack based on your goals, sleep, energy, and lifestyle.'
+            assign seo_desc = 'Take the free Nutrava skincare quiz — under 60 seconds. Get a personalised routine based on your skin type, top concern, and current habits.'
           elsif template.suffix == 'about'
-            assign seo_desc = 'Nutrava creates personalised, science-backed supplement stacks. Clean ingredients, no fillers, delivered to your door.'
+            assign seo_desc = 'Nutrava builds personalised skincare routines matched to your skin. Clean, cruelty-free formulas with transparent ingredient lists.'
           elsif template.suffix == 'contact'
-            assign seo_desc = 'Get in touch with the Nutrava team. We are here to help with orders, quiz results, or any questions about your supplements.'
+            assign seo_desc = 'Get in touch with the Nutrava team. We are here to help with orders, quiz results, or any questions about your routine.'
           elsif template.suffix == 'shipping'
-            assign seo_desc = 'Free shipping on orders over $50. Learn about Nutrava delivery times, returns, and our 30-day money-back guarantee.'
+            assign seo_desc = 'Free US shipping on orders over $50. Learn about Nutrava delivery times, returns, and our 30-day money-back guarantee.'
           endif
         when 'cart'
-          assign seo_desc = 'Your Nutrava cart — review your personalised supplement stack before checkout. Free shipping over $50.'
+          assign seo_desc = 'Your Nutrava cart — review your personalised skincare routine before checkout. Free US shipping over $50.'
         when 'blog'
-          assign seo_desc = 'Wellness insights and supplement science from Nutrava. Evidence-based articles on focus, sleep, energy, and performance.'
+          assign seo_desc = 'Skincare insights and ingredient science from Nutrava. Evidence-based articles on actives, routines, and skin health.'
         when 'search'
-          assign seo_desc = 'Search the Nutrava store for supplements, stacks, and wellness products personalised to your goals.'
+          assign seo_desc = 'Search the Nutrava store for skincare products and routines matched to your skin.'
       endcase
     endunless
   -%}

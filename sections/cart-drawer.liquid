@@ -17,7 +17,7 @@
       <i data-lucide="shopping-bag"></i>
     </div>
     <p class="cart-drawer__empty-title">Your cart is empty</p>
-    <p class="cart-drawer__empty-text">Take the quiz to find your personalised stack.</p>
+    <p class="cart-drawer__empty-text">Take the quiz to find your personalised routine.</p>
     <a href="/pages/quiz" class="btn btn--primary">Take the Quiz</a>
   </div>
 
@@ -30,7 +30,7 @@
     <div class="cart-drawer__bottom">
       <!-- Cross-Sells -->
       <div class="cart-cross-sells" data-cart-cross-sells style="display: none;">
-        <p class="cart-cross-sells__title">Pairs well with your stack</p>
+        <p class="cart-cross-sells__title">Pairs well with your routine</p>
         <div class="cart-cross-sells__grid" data-cross-sell-items></div>
       </div>
 
@@ -65,9 +65,10 @@
       <div class="cart-footer__savings" data-cart-savings style="display: none;"></div>
       <div class="cart-drawer__subtotal">
         <span>Subtotal</span>
-        <span data-cart-subtotal>£0.00</span>
+        <span data-cart-subtotal>{{ cart.currency.symbol | default: '$' }}0.00</span>
       </div>
-      <p class="cart-drawer__shipping">Free UK shipping on orders over £50</p>
+      {% render 'locale-vars' %}
+      <p class="cart-drawer__shipping">{{ free_shipping_text }}</p>
       <p class="cart-drawer__guarantee">
         <i data-lucide="shield-check"></i>
         30-day money-back guarantee

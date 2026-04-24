@@ -1,51 +1,42 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "label": "Personalised Supplement Stacks",
-        "heading": "Your Supplements, Personalised to You",
-        "subheading": "Take a quick quiz about your goals, lifestyle, and health. We'll build a science-backed supplement stack made just for you.",
+        "label": "Personalised Skincare Routines",
+        "heading": "Your Skin, Understood",
+        "subheading": "Take our 60-second quiz and we\u2019ll match you with a skincare routine built for your skin type, concerns, and current habits.",
         "cta_quiz": "Take the Free Quiz",
-        "cta_shop": "Browse Supplements",
-        "promo_text": "Use code FIRST15 for 15% off your first order"
+        "cta_shop": "Browse Products",
+        "promo_text": "Launch special: 20% off your first order — use code LAUNCH20"
       }
     },
     "how-it-works": {
       "type": "how-it-works",
       "settings": {
         "heading": "How Nutrava Works",
-        "subheading": "Three simple steps to your personalised supplement plan"
+        "subheading": "Three simple steps to a routine that actually fits"
       },
       "blocks": {
         "step-1": {
           "type": "step",
           "settings": {
             "title": "Take the Quiz",
-            "text": "Answer questions about your goals, lifestyle, sleep, diet, and activity level. Takes under 60 seconds."
+            "text": "Answer quick questions about your skin type, concerns, and current routine. Under 60 seconds."
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
-            "title": "Get Your Stack",
-            "text": "We build a personalised supplement stack based on your unique profile, backed by science."
+            "title": "Get Your Routine",
+            "text": "We match you with a personalised 2\u20134 product routine based on your skin profile \u2014 Essential, Recommended, or Complete."
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
-            "title": "Feel the Difference",
-            "text": "Most people feel a difference within the first two weeks of consistent daily use."
+            "title": "See the Difference",
+            "text": "Most people notice visible results in 2\u20134 weeks of consistent daily use. Full benefits compound over 6\u20138 weeks."
           }
         }
       },
@@ -55,35 +46,35 @@
       "type": "best-sellers",
       "settings": {
         "heading": "Best Sellers",
-        "subheading": "Our most popular supplements",
+        "subheading": "The products our customers reach for first",
         "view_all_link": "/collections/all"
       }
     },
     "goals": {
       "type": "goal-categories",
       "settings": {
-        "heading": "What's Your Goal?"
+        "heading": "What\u2019s Your Skin Concern?"
       },
       "blocks": {
-        "focus": { "type": "goal", "settings": { "icon": "brain", "title": "Focus & Study", "description": "Sharpen concentration, memory, and mental clarity for work or study" } },
-        "gym": { "type": "goal", "settings": { "icon": "dumbbell", "title": "Gym & Performance", "description": "Build strength, improve endurance, and recover faster" } },
-        "sleep": { "type": "goal", "settings": { "icon": "moon", "title": "Sleep & Recovery", "description": "Fall asleep faster, sleep deeper, and wake up feeling refreshed" } },
-        "energy": { "type": "goal", "settings": { "icon": "zap", "title": "Energy & Stress", "description": "Sustained all-day energy without crashes, less burnout and fatigue" } },
-        "wellness": { "type": "goal", "settings": { "icon": "leaf", "title": "Daily Wellness", "description": "Support immunity, gut health, and long-term overall wellbeing" } }
+        "acne": { "type": "goal", "settings": { "icon": "droplet", "title": "Acne & Blemishes", "description": "Clear breakouts, calm redness, and prevent new blemishes without stripping your skin" } },
+        "anti-aging": { "type": "goal", "settings": { "icon": "sparkles", "title": "Anti-Aging", "description": "Smooth fine lines, support firmness, and keep skin looking its age \u2014 or younger" } },
+        "hydration": { "type": "goal", "settings": { "icon": "glass-water", "title": "Hydration", "description": "Relieve tightness, restore plumpness, and lock moisture in all day" } },
+        "brightening": { "type": "goal", "settings": { "icon": "sun", "title": "Brightening", "description": "Fade dark spots, even out tone, and bring back your natural radiance" } },
+        "sensitive": { "type": "goal", "settings": { "icon": "feather", "title": "Sensitive Skin", "description": "Calm reactive skin with gentle, fragrance-free formulas that actually work" } }
       },
-      "block_order": ["focus", "gym", "sleep", "energy", "wellness"]
+      "block_order": ["acne", "anti-aging", "hydration", "brightening", "sensitive"]
     },
     "why-nutrava": {
       "type": "why-nutrava",
       "settings": {
         "heading": "The Nutrava Difference",
-        "subheading": "What sets us apart from generic supplement brands"
+        "subheading": "What sets us apart from generic skincare brands"
       },
       "blocks": {
-        "point-1": { "type": "point", "settings": { "icon": "user", "stat": "Unique", "title": "Personalised to You", "text": "No one-size-fits-all. Every stack is tailored to your unique goals, lifestyle, and health profile." } },
-        "point-2": { "type": "point", "settings": { "icon": "flask-conical", "stat": "100%", "title": "Clinically Dosed", "text": "Every ingredient at its researched effective dose. No pixie dusting, no under-dosing, no shortcuts." } },
-        "point-3": { "type": "point", "settings": { "icon": "shield-check", "stat": "Zero", "title": "Fillers or Binders", "text": "No proprietary blends, no artificial fillers, no hidden ingredients. Clean supplements, always." } },
-        "point-4": { "type": "point", "settings": { "icon": "eye", "stat": "100%", "title": "Transparent Labels", "text": "You see exactly what's inside and how much. Third-party lab tested for purity and potency." } }
+        "point-1": { "type": "point", "settings": { "icon": "user", "stat": "Unique", "title": "Personalised to You", "text": "No one-size-fits-all. Your routine is matched to your skin type, concerns, sensitivity, and current habits." } },
+        "point-2": { "type": "point", "settings": { "icon": "flask-conical", "stat": "100%", "title": "Clinically Dosed Actives", "text": "Real percentages of proven ingredients \u2014 not trace amounts on the back of the label." } },
+        "point-3": { "type": "point", "settings": { "icon": "shield-check", "stat": "Zero", "title": "Fragrance, Fillers, Drama", "text": "No synthetic fragrance, no harsh sulphates, no proprietary blends. Clean formulas your skin can trust." } },
+        "point-4": { "type": "point", "settings": { "icon": "eye", "stat": "100%", "title": "Transparent Labels", "text": "Full INCI ingredient lists on every product \u2014 you see exactly what goes on your skin." } }
       },
       "block_order": ["point-1", "point-2", "point-3", "point-4"]
     },
@@ -91,8 +82,8 @@
       "type": "stats-bar",
       "settings": {},
       "blocks": {
-        "stat-1": { "type": "stat", "settings": { "icon": "flask-conical", "number": "40+", "label": "Science-backed supplements" } },
-        "stat-2": { "type": "stat", "settings": { "icon": "leaf", "number": "100%", "label": "Clean, no fillers or binders" } },
+        "stat-1": { "type": "stat", "settings": { "icon": "sparkles", "number": "12", "label": "Formulas across 5 skin concerns" } },
+        "stat-2": { "type": "stat", "settings": { "icon": "leaf", "number": "100%", "label": "Cruelty-free, vegan-friendly" } },
         "stat-3": { "type": "stat", "settings": { "icon": "shield-check", "number": "30", "label": "Day money-back guarantee" } },
         "stat-4": { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "US shipping over $50" } }
       },
@@ -101,29 +92,29 @@
     "science-bar": {
       "type": "science-bar",
       "settings": {
-        "heading": "What Goes In Matters",
-        "subheading": "Every ingredient is selected based on clinical research"
+        "heading": "What Goes On Your Skin Matters",
+        "subheading": "Every formula built around actives with proven clinical evidence"
       },
       "blocks": {
-        "card-1": { "type": "card", "settings": { "icon": "flask-conical", "title": "Clinically Dosed", "text": "Every ingredient at its researched effective dose — no pixie dusting." } },
-        "card-2": { "type": "card", "settings": { "icon": "shield-check", "title": "Third-Party Lab Tested", "text": "Independent verification for purity and potency you can trust." } },
-        "card-3": { "type": "card", "settings": { "icon": "eye", "title": "No Proprietary Blends", "text": "Full transparency — you see exactly what you're taking and how much." } }
+        "card-1": { "type": "card", "settings": { "icon": "flask-conical", "title": "Real Active Percentages", "text": "Clinically effective doses of retinol, vitamin C, hyaluronic acid and peptides \u2014 not symbolic dustings." } },
+        "card-2": { "type": "card", "settings": { "icon": "shield-check", "title": "Barrier-First Formulas", "text": "Every routine is designed around your moisture barrier so actives can work without causing irritation." } },
+        "card-3": { "type": "card", "settings": { "icon": "eye", "title": "No Secret Ingredients", "text": "Full INCI lists on every product \u2014 nothing hiding behind \u201Cproprietary blend.\u201D" } }
       },
       "block_order": ["card-1", "card-2", "card-3"]
     },
     "comparison": {
       "type": "comparison-table",
       "settings": {
-        "heading": "Nutrava vs. Generic Supplements",
-        "subheading": "Not all supplements are created equal"
+        "heading": "Nutrava vs. Generic Skincare",
+        "subheading": "Why personalised beats the one-size-fits-all aisle"
       },
       "blocks": {
-        "row-1": { "type": "row", "settings": { "feature": "Personalised to your goals", "nutrava": true, "generic": false } },
-        "row-2": { "type": "row", "settings": { "feature": "Clinically effective doses", "nutrava": true, "generic": false } },
-        "row-3": { "type": "row", "settings": { "feature": "No proprietary blends", "nutrava": true, "generic": false } },
-        "row-4": { "type": "row", "settings": { "feature": "Third-party lab tested", "nutrava": true, "generic": false } },
-        "row-5": { "type": "row", "settings": { "feature": "Free from fillers & binders", "nutrava": true, "generic": false } },
-        "row-6": { "type": "row", "settings": { "feature": "Transparent ingredient labels", "nutrava": true, "generic": false } }
+        "row-1": { "type": "row", "settings": { "feature": "Matched to your skin type & concern", "nutrava": true, "generic": false } },
+        "row-2": { "type": "row", "settings": { "feature": "Clinically effective active percentages", "nutrava": true, "generic": false } },
+        "row-3": { "type": "row", "settings": { "feature": "Fragrance-free options for sensitive skin", "nutrava": true, "generic": false } },
+        "row-4": { "type": "row", "settings": { "feature": "Full INCI ingredient transparency", "nutrava": true, "generic": false } },
+        "row-5": { "type": "row", "settings": { "feature": "Cruelty-free & vegan-friendly", "nutrava": true, "generic": false } },
+        "row-6": { "type": "row", "settings": { "feature": "Built as a routine, not random picks", "nutrava": true, "generic": false } }
       },
       "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6"]
     },
@@ -131,57 +122,38 @@
       "type": "ingredient-spotlight",
       "settings": {
         "heading": "Ingredient Spotlight",
-        "subheading": "A closer look at what goes into our best-selling supplements"
+        "subheading": "The actives behind our best-selling routines"
       },
       "blocks": {
-        "ing-1": { "type": "ingredient", "settings": { "name": "Lion's Mane Mushroom", "dose": "500mg per serving", "description": "Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health." } },
-        "ing-2": { "type": "ingredient", "settings": { "name": "Ashwagandha KSM-66", "dose": "600mg per serving", "description": "Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels." } },
-        "ing-3": { "type": "ingredient", "settings": { "name": "Magnesium Glycinate", "dose": "400mg per serving", "description": "The most bioavailable form of magnesium. Supports relaxation, sleep quality, and muscle recovery." } },
-        "ing-4": { "type": "ingredient", "settings": { "name": "Creatine Monohydrate", "dose": "5g per serving", "description": "Backed by 500+ peer-reviewed studies. Increases strength, power output, and supports cognitive function." } }
+        "ing-1": { "type": "ingredient", "settings": { "name": "Hyaluronic Acid", "dose": "4 molecular weights", "description": "Holds up to 1,000x its weight in water. Our serum layers four different molecular weights so hydration reaches every depth of the skin." } },
+        "ing-2": { "type": "ingredient", "settings": { "name": "Vitamin C (L-Ascorbic Acid)", "dose": "Triple-form + ferulic acid", "description": "The gold standard for brightening and antioxidant defence. Fades dark spots, evens tone, and shields skin from daily damage." } },
+        "ing-3": { "type": "ingredient", "settings": { "name": "Retinol", "dose": "Encapsulated", "description": "The single most studied anti-aging active. Smooths fine lines and refines texture \u2014 paired with ceramides to protect the barrier." } },
+        "ing-4": { "type": "ingredient", "settings": { "name": "Niacinamide", "dose": "10% concentration", "description": "A multitasker that refines pores, evens tone, and strengthens the moisture barrier. Well-tolerated by most skin types." } },
+        "ing-5": { "type": "ingredient", "settings": { "name": "Activated Charcoal", "dose": "With aloe & tea tree", "description": "Draws pore-clogging buildup without stripping. The backbone of our Charcoal Cleanser for oily and blemish-prone skin." } }
       },
-      "block_order": ["ing-1", "ing-2", "ing-3", "ing-4"]
+      "block_order": ["ing-1", "ing-2", "ing-3", "ing-4", "ing-5"]
     },
     "faq": {
       "type": "home-faq",
       "settings": {
         "heading": "Frequently Asked Questions",
-        "subheading": "Everything you need to know before getting started"
+        "subheading": "Everything you need to know before building your routine"
       },
       "blocks": {
-        "faq-1": { "type": "faq", "settings": { "question": "What makes Nutrava different from other supplement brands?", "answer": "Unlike generic supplement brands, Nutrava personalises your stack based on your unique goals, lifestyle, and health profile. Every ingredient is clinically dosed (no pixie dusting), third-party lab tested, and completely transparent — no proprietary blends, no fillers, no hidden ingredients." } },
-        "faq-2": { "type": "faq", "settings": { "question": "How does the personalised quiz work?", "answer": "Our adaptive quiz takes about 60 seconds and asks about your wellness goals, sleep habits, diet, activity level, and lifestyle. It branches based on your answers, getting more specific until it can confidently recommend the right supplement stack. No two recommendations are exactly alike." } },
-        "faq-3": { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "Most people notice initial effects within 1-2 weeks, particularly with supplements like magnesium (better sleep) and creatine (strength gains). Full benefits typically build over 4-8 weeks of consistent daily use. Adaptogens like ashwagandha tend to show their best results around the 6-8 week mark." } },
-        "faq-4": { "type": "faq", "settings": { "question": "Can I take these supplements together?", "answer": "Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan." } },
-        "faq-5": { "type": "faq", "settings": { "question": "What's your shipping and returns policy?", "answer": "We offer free US shipping on all orders over $50, delivered within 3-5 business days. Every product comes with our 30-day satisfaction guarantee — if you're not happy, we'll refund you in full, no questions asked." } },
-        "faq-6": { "type": "faq", "settings": { "question": "Are your supplements vegan and gluten-free?", "answer": "The majority of our supplements are vegan and gluten-free. A few products (like Omega-3 Fish Oil) are sourced from fish, but we always offer plant-based alternatives. Every product page clearly lists all ingredients, allergens, and dietary information." } }
+        "faq-1": { "type": "faq", "settings": { "question": "What makes Nutrava different from other skincare brands?", "answer": "Most skincare is a lottery \u2014 you buy what the aisle has. Nutrava matches a routine to your skin type, top concern, sensitivity, and current habits. Every formula is clinically dosed, fragrance-free where it matters, and transparent about what\u2019s inside." } },
+        "faq-2": { "type": "faq", "settings": { "question": "How does the personalised quiz work?", "answer": "Our quiz takes under 60 seconds and asks about your skin type, top concern, current routine, and sensitivity. It branches based on your answers and matches you with a 2\u20134 product routine built specifically for your skin." } },
+        "faq-3": { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "Hydration and calming products usually feel different on day one. For brightening and anti-aging actives, expect visible improvement in 2\u20134 weeks of consistent use, with the full benefits building over 6\u20138 weeks." } },
+        "faq-4": { "type": "faq", "settings": { "question": "Can I use these products together?", "answer": "Yes \u2014 every routine is designed to layer. We handle the order and balance so you\u2019re not mixing incompatible actives. A good rule: apply thinnest to thickest, water-based serums before oils, SPF last in the morning." } },
+        "faq-5": { "type": "faq", "settings": { "question": "What\u2019s your shipping and returns policy?", "answer": "Free US shipping on orders over $50, delivered within 3\u20135 business days. Every product is covered by our 30-day satisfaction guarantee \u2014 if it doesn\u2019t work for your skin, we\u2019ll refund you, no questions asked." } },
+        "faq-6": { "type": "faq", "settings": { "question": "Are your products vegan and cruelty-free?", "answer": "100% cruelty-free, never tested on animals, and the vast majority are vegan. Every product page lists the full INCI ingredient list so you can check for anything you need to avoid." } }
       },
       "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6"]
-    },
-    "testimonials": {
-      "type": "testimonials",
-      "settings": {
-        "heading": "What People Are Saying",
-        "subheading": "Real results from real people"
-      },
-      "blocks": {
-        "t-1": { "type": "testimonial", "settings": { "quote": "The quiz built me a personalised stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee.", "author": "James T.", "meta": "Verified buyer — 3 months", "five_stars": true } },
-        "t-2": { "type": "testimonial", "settings": { "quote": "I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting my custom stack.", "author": "Sophie M.", "meta": "Verified buyer — 6 weeks", "five_stars": true } },
-        "t-3": { "type": "testimonial", "settings": { "quote": "Love that everything is science-backed and the ingredients are clean. My personalised stack has noticeably improved my recovery between training sessions.", "author": "Daniel K.", "meta": "Verified buyer — 2 months", "five_stars": true } },
-        "t-4": { "type": "testimonial", "settings": { "quote": "Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over.", "author": "Emma R.", "meta": "Verified buyer — 4 months", "five_stars": true } },
-        "t-5": { "type": "testimonial", "settings": { "quote": "I've tried so many energy supplements that give you a crash. My Nutrava stack gives me sustained focus all day — no jitters, no afternoon slump.", "author": "Michael B.", "meta": "Verified buyer — 2 months", "five_stars": true } },
-        "t-6": { "type": "testimonial", "settings": { "quote": "Started my personalised stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed.", "author": "Lauren W.", "meta": "Verified buyer — 5 weeks", "five_stars": false } },
-        "t-7": { "type": "testimonial", "settings": { "quote": "As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine.", "author": "Tom H.", "meta": "Verified buyer — 6 weeks", "five_stars": true } },
-        "t-8": { "type": "testimonial", "settings": { "quote": "The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too.", "author": "Priya K.", "meta": "Subscriber — 5 months", "five_stars": true } },
-        "t-9": { "type": "testimonial", "settings": { "quote": "My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery.", "author": "Chris A.", "meta": "Verified buyer — 3 months", "five_stars": true } },
-        "t-10": { "type": "testimonial", "settings": { "quote": "Nutrava helped me figure out what I actually need. The quiz was spot on — I'm taking fewer supplements now but getting better results than before.", "author": "Hannah L.", "meta": "Verified buyer — 2 months", "five_stars": true } }
-      },
-      "block_order": ["t-1", "t-2", "t-3", "t-4", "t-5", "t-6", "t-7", "t-8", "t-9", "t-10"]
     },
     "quiz-cta": {
       "type": "quiz-cta",
       "settings": {
-        "heading": "Ready to find your stack?",
-        "text": "Take our personalised quiz and discover the supplements your body actually needs. It takes less than 60 seconds.",
+        "heading": "Ready to find your routine?",
+        "text": "Take our quiz and we\u2019ll match you with a skincare routine built for your skin. Under 60 seconds.",
         "cta_text": "Take the Quiz"
       }
     },
@@ -189,7 +161,7 @@
       "type": "newsletter",
       "settings": {
         "heading": "Stay in the loop",
-        "subheading": "Join 10,000+ people optimising their wellness. Get tips, new stacks, and exclusive offers."
+        "subheading": "Skincare tips, new launches, and exclusive subscriber offers \u2014 no spam."
       }
     }
   },
@@ -204,7 +176,6 @@
     "comparison",
     "spotlight",
     "faq",
-    "testimonials",
     "quiz-cta",
     "newsletter"
   ]

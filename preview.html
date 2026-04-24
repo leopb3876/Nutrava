@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nutrava — Personalised Wellness</title>
-  <meta name="description" content="Personalised supplement stacks based on your goals. Take our 60-second quiz to get science-backed recommendations tailored to you.">
-  <meta property="og:title" content="Nutrava — Personalised Wellness">
-  <meta property="og:description" content="Science-backed supplements personalised to your goals. Clean ingredients, effective doses, delivered to your door.">
+  <title>Nutrava — Personalised Skincare</title>
+  <meta name="description" content="Personalised skincare routines matched to your skin. Take our free 60-second quiz to get a routine built for your skin.">
+  <meta property="og:title" content="Nutrava — Personalised Skincare">
+  <meta property="og:description" content="Personalised skincare routines built for your skin. Clean formulas, transparent ingredients, delivered to your door.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://images.unsplash.com/photo-1582237054380-b6362d21256e?w=1200&q=80">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nutrava — Personalised Wellness">
-  <meta name="twitter:description" content="Science-backed supplements personalised to your goals.">
+  <meta name="twitter:title" content="Nutrava — Personalised Skincare">
+  <meta name="twitter:description" content="Personalised skincare built for your skin.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
     /* Header */
     .header { position: sticky; top: 0; z-index: 100; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
-    .header__inner { max-width: 100%; margin: 0 auto; padding: 0 48px 0 240px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
     .header__logo { font-family: 'Josefin Sans', sans-serif; font-size: 1.4rem; font-weight: 400; color: #2C1E14; letter-spacing: 0.27em; text-transform: uppercase; }
     .header__links { display: flex; align-items: center; gap: 32px; }
     .header__link { font-size: 14px; color: var(--color-text-body); font-weight: 500; transition: color 0.15s; }
@@ -94,7 +94,7 @@
     .steps-v2__connector svg { width: 24px; height: 24px; }
 
     /* Goals Grid */
-    .goals-v2 { padding: 64px 0; background: #fff; }
+    .goals-v2 { padding: 64px 24px; background: #fff; }
     .goals-v2__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
     .goals-v2__card { background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; cursor: pointer; transition: all 0.25s; display: flex; flex-direction: column; align-items: center; }
     .goals-v2__card:hover { border-color: var(--color-primary); background: var(--color-mint-mist); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(90,122,94,0.12); }
@@ -162,30 +162,92 @@
     .section-head p { font-size: 1rem; color: var(--color-text-muted); max-width: 480px; margin: 0 auto; }
 
     /* Responsive */
+    /* Mobile hamburger menu */
+    .header__hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--color-text); padding: 6px; }
+    .header__hamburger svg { width: 22px; height: 22px; }
+    .header__mobile-nav { display: none; position: fixed; inset: 0; background: var(--color-bg); z-index: 99999; flex-direction: column; padding: 64px 24px 32px; }
+    .header__mobile-nav.is-open { display: flex; }
+    .header__mobile-nav a { font-size: 18px; font-weight: 500; color: var(--color-text); padding: 14px 0; border-bottom: 1px solid var(--color-border); }
+    .header__mobile-close { position: absolute; top: 12px; right: 16px; background: none; border: none; cursor: pointer; color: var(--color-text); padding: 8px; z-index: 10000; }
+    .header__mobile-close svg { width: 22px; height: 22px; }
+
     @media (max-width: 768px) {
-      .hero-v2 { padding: 48px 0 40px; }
-      .hero-v2__grid { grid-template-columns: 1fr; gap: 32px; }
+      /* Header */
+      .header__links { display: none !important; }
+      .header__mobile-icons { display: flex !important; }
+      .header__inner { padding: 0 16px; height: 48px; }
+      .header__hamburger { display: block; }
+      .header__logo { font-size: 1.2rem; }
+
+      /* Hero */
+      .hero-v2 { padding: 32px 0 28px; }
+      .hero-v2__grid { grid-template-columns: 1fr; gap: 24px; }
       .hero-v2__content { text-align: center; }
-      .hero-v2__sub { margin-left: auto; margin-right: auto; }
-      .hero-v2__actions { justify-content: center; }
-      .hero-v2__actions .btn--lg { padding: 14px 28px; font-size: 14px; }
-      .hero-v2__trust { gap: 20px; justify-content: center; }
-      .hero-v2__image img { min-height: 280px; }
-      .steps-v2__grid { grid-template-columns: 1fr !important; gap: 32px; }
+      .hero-v2__sub { margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+      .hero-v2__actions { justify-content: center; gap: 10px; }
+      .hero-v2__actions .btn--lg { padding: 12px 24px; font-size: 14px; }
+      .hero-v2__trust { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .hero-v2__trust-item { font-size: 12px; gap: 6px; }
+      .hero-v2__trust-icon { width: 28px; height: 28px; }
+      .hero-v2__trust-icon svg { width: 14px; height: 14px; }
+      .hero-v2__image img { min-height: 220px; border-radius: 16px; }
+      .hero-v2__promo { font-size: 13px; padding: 8px 16px; margin-bottom: 20px; }
+
+      /* Steps */
+      .steps-v2 { padding: 40px 0; }
+      .steps-v2__grid { grid-template-columns: 1fr !important; gap: 24px; }
       .steps-v2__connector { display: none !important; }
-      .steps-v2__photo { width: 140px; height: 140px; }
-      .goals-v2__grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-v2__photo { width: 120px; height: 120px; }
+      .steps-v2__title { font-size: 1.05rem; }
+      .steps-v2__text { font-size: 13px; }
+
+      /* Goals */
+      .goals-v2 { padding: 40px 0; }
+      .goals-v2__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .goals-v2__card { padding: 20px 16px; }
+      .goals-v2__icon { width: 44px; height: 44px; margin-bottom: 10px; }
+      .goals-v2__name { font-size: 14px; }
+      .goals-v2__desc { font-size: 12px; }
+
+      /* Social proof */
+      .social-proof { padding: 40px 0; }
       .social-proof__grid { grid-template-columns: 1fr; }
-      .footer-v2__grid { grid-template-columns: 1fr 1fr; }
-      .header__links { display: none; }
-      .header__inner { padding: 0 16px; }
-      .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .testimonial { width: 260px; padding: 20px; }
+      .testimonial__text { font-size: 14px; }
+
+      /* Stats */
       .stats-bar { padding: 32px 0; }
-      .big-cta { padding: 48px 0; }
-      .announcement-bar__inner { padding: 10px 32px 10px 16px; }
-      .footer-v2__grid { gap: 24px; }
-      .newsletter-section { padding: 48px 0 !important; }
-      .testimonial { width: 280px; }
+      .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .stats-bar__number { font-size: 2rem; }
+      .stats-bar__icon { width: 40px; height: 40px; margin-bottom: 8px; }
+
+      /* Footer */
+      .footer-v2 { padding: 40px 0 24px; }
+      .footer-v2__grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+      /* CTA */
+      .big-cta { padding: 40px 0; }
+
+      /* Announcement bar */
+      .announcement-bar__inner { padding: 8px 32px 8px 12px; }
+      .announcement-bar__message { font-size: 11px; }
+
+      /* Newsletter */
+      .newsletter-section { padding: 40px 0 !important; }
+
+      /* Sections general */
+      .section-head { margin-bottom: 28px; }
+      .section-head h2 { font-size: 1.4rem; }
+      .section-head p { font-size: 0.9rem; }
+
+      /* Comparison section */
+      .comparison-section { padding: 40px 0; }
+
+      /* Ingredient section */
+      .ingredient-section { padding: 40px 0; }
+
+      /* FAQ section */
+      .faq-section { padding: 40px 0; }
     }
 
     /* Catalog */
@@ -244,16 +306,24 @@
       .why-nutrava-grid { grid-template-columns: 1fr !important; }
       .ingredient-grid { grid-template-columns: 1fr !important; }
       .announcement-bar__inner { padding: 8px 28px 8px 12px; }
-      .stats-bar__grid { grid-template-columns: 1fr; gap: 16px; }
+      .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .footer-v2__grid { grid-template-columns: 1fr; gap: 16px; }
-      .goals-v2__grid { grid-template-columns: 1fr; }
+      .goals-v2__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .section-head--flex { flex-direction: column; align-items: flex-start !important; gap: 8px; }
       .newsletter-form { flex-direction: column; }
       .newsletter-form input,
       .newsletter-form .btn { width: 100%; }
-      .comparison-wrap { position: relative; }
-      .comparison-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; right: 0; width: 30px; background: linear-gradient(to left, rgba(255,255,255,0.9), transparent); pointer-events: none; z-index: 1; }
-      .comparison-wrap table { min-width: 420px; }
+      .comparison-wrap { position: relative; overflow-x: hidden !important; }
+      .comparison-wrap::after { display: none; }
+      .comparison-wrap table { min-width: 0 !important; width: 100% !important; font-size: 13px !important; }
+      .comparison-wrap table th,
+      .comparison-wrap table td { padding: 10px 8px !important; }
+      .comparison-wrap table th:first-child,
+      .comparison-wrap table td:first-child { width: 45% !important; }
+      .comparison-wrap table th:nth-child(2),
+      .comparison-wrap table td:nth-child(2),
+      .comparison-wrap table th:nth-child(3),
+      .comparison-wrap table td:nth-child(3) { width: 27.5% !important; }
       .mobile-pad-reduce { padding-top: 40px !important; padding-bottom: 40px !important; }
     }
 
@@ -405,8 +475,8 @@
 <div class="announcement-bar" data-announcement-bar>
   <div class="announcement-bar__inner">
     <div class="announcement-bar__messages" data-announcement-messages>
-      <div class="announcement-bar__message is-active"><span class="announcement-bar__icon"><i data-lucide="truck"></i></span> Free UK shipping on orders over £50</div>
-      <div class="announcement-bar__message"><span class="announcement-bar__icon"><i data-lucide="sparkles"></i></span> <a href="#" onclick="showPage('quiz')">Take our 60-second quiz</a> <span class="announcement-bar__sep"></span> find your personalised stack</div>
+      <div class="announcement-bar__message is-active"><span class="announcement-bar__icon"><i data-lucide="truck"></i></span> Free US shipping on orders over $50</div>
+      <div class="announcement-bar__message"><span class="announcement-bar__icon"><i data-lucide="sparkles"></i></span> <a href="#" onclick="showPage('quiz')">Take our quiz</a> <span class="announcement-bar__sep"></span> find your skincare routine</div>
       <div class="announcement-bar__message"><span class="announcement-bar__icon"><i data-lucide="shield-check"></i></span> 30-day money-back guarantee on all products</div>
     </div>
     <button class="announcement-bar__close" data-announcement-close aria-label="Close announcement">
@@ -434,6 +504,25 @@
         <i data-lucide="user"></i>
       </button>
     </nav>
+    <div class="header__mobile-icons" style="display:none;align-items:center;gap:8px;">
+      <button class="cart-toggle" data-cart-toggle aria-label="Open cart" style="background:none;border:none;cursor:pointer;color:var(--color-text);padding:6px;position:relative;">
+        <i data-lucide="shopping-bag"></i>
+        <span class="cart-badge" data-cart-badge style="position:absolute;top:0;right:-2px;">0</span>
+      </button>
+      <button class="header__hamburger" onclick="document.querySelector('.header__mobile-nav').classList.add('is-open');document.querySelector('.announcement-bar').style.display='none'" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="header__mobile-nav">
+    <button class="header__mobile-close" onclick="this.parentElement.classList.remove('is-open');document.querySelector('.announcement-bar').style.display=''" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <a href="#" onclick="showPage('home');this.closest('.header__mobile-nav').classList.remove('is-open')">Home</a>
+    <a href="#" onclick="showPage('quiz');this.closest('.header__mobile-nav').classList.remove('is-open')">Take the Quiz</a>
+    <a href="#" onclick="showPage('shop');this.closest('.header__mobile-nav').classList.remove('is-open')">Shop</a>
+    <a href="#" onclick="showPage('about');this.closest('.header__mobile-nav').classList.remove('is-open')">How It Works</a>
+    <a href="#" onclick="showPage('account');this.closest('.header__mobile-nav').classList.remove('is-open')">Account</a>
   </div>
 </header>
 
@@ -445,15 +534,15 @@
   <section class="hero-v2">
     <div class="hero-v2__grid">
       <div class="hero-v2__content">
-        <h1 class="hero-v2__heading">Your Supplements,<br><span class="text-accent">Personalised</span> to You</h1>
-        <p class="hero-v2__sub">Take a quick quiz about your goals, lifestyle, and health. We'll build a science-backed supplement stack made just for you.</p>
+        <h1 class="hero-v2__heading">Your Skin,<br><span class="text-accent">Understood</span></h1>
+        <p class="hero-v2__sub">Take our 60-second quiz and we’ll match you with a skincare routine built for your skin.</p>
         <div class="hero-v2__actions">
           <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
-          <a href="#" onclick="showPage('shop')" class="btn btn--outline btn--lg">Browse Supplements</a>
+          <a href="#" onclick="showPage('shop')" class="btn btn--outline btn--lg">Browse Products</a>
         </div>
         <div class="hero-v2__promo">
           <i data-lucide="tag"></i>
-          <span>Use code <strong>FIRST15</strong> for 15% off your first order</span>
+          <span>Launch special: use code <strong>LAUNCH20</strong> for 20% off your first order</span>
         </div>
         <div class="hero-v2__trust">
           <div class="hero-v2__trust-item">
@@ -475,7 +564,7 @@
         </div>
       </div>
       <div class="hero-v2__image">
-        <img src="https://images.unsplash.com/photo-1628829706300-d1ed475bfc9e?w=600&q=80" alt="Premium supplement bottles arranged naturally" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&q=80" alt="Premium skincare bottles arranged naturally" loading="lazy">
       </div>
     </div>
   </section>
@@ -486,7 +575,7 @@
     <div class="container">
       <div class="section-head">
         <h2>How Nutrava Works</h2>
-        <p>Three simple steps to your personalised supplement plan</p>
+        <p>Three simple steps to a routine that actually fits</p>
       </div>
       <div class="steps-v2__grid">
         <div class="steps-v2__step">
@@ -495,16 +584,16 @@
             <span class="steps-v2__num-overlay">1</span>
           </div>
           <h3 class="steps-v2__title">Take the Quiz</h3>
-          <p class="steps-v2__text">Answer questions about your goals, lifestyle, sleep, diet, and activity level. Takes under 60 seconds.</p>
+          <p class="steps-v2__text">Answer quick questions about your skin type, concerns, and current routine. Under 60 seconds.</p>
         </div>
         <div class="steps-v2__connector"><i data-lucide="chevron-right"></i></div>
         <div class="steps-v2__step">
           <div class="steps-v2__photo">
-            <img src="https://images.unsplash.com/photo-1608571424266-edeb9bbefdec?w=300&q=80" alt="Supplement bottles and packets" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&q=80" alt="Skincare bottles and serums" loading="lazy">
             <span class="steps-v2__num-overlay">2</span>
           </div>
-          <h3 class="steps-v2__title">Get Your Stack</h3>
-          <p class="steps-v2__text">We build a personalised supplement stack based on your unique profile, backed by science.</p>
+          <h3 class="steps-v2__title">Get Your Routine</h3>
+          <p class="steps-v2__text">We match you with a personalised 2–4 product routine built for your skin.</p>
         </div>
         <div class="steps-v2__connector"><i data-lucide="chevron-right"></i></div>
         <div class="steps-v2__step">
@@ -525,7 +614,7 @@
       <div class="section-head section-head--flex" style="display: flex; justify-content: space-between; align-items: flex-end; text-align: left; margin-bottom: 32px;">
         <div>
           <h2 style="margin-bottom: 4px;">Best Sellers</h2>
-          <p style="margin: 0;">Our most popular science-backed supplements</p>
+          <p style="margin: 0;">The products our customers reach for first</p>
         </div>
         <a href="#" onclick="showPage('shop')" style="font-size: 14px; font-weight: 600; color: var(--color-primary); white-space: nowrap;">Shop All <span style="font-size: 16px;">→</span></a>
       </div>
@@ -539,38 +628,38 @@
   <section class="goals-v2" style="padding: 64px 0;">
     <div class="container">
       <div class="section-head">
-        <h2>What's Your Goal?</h2>
-        <p>Each quiz path is tailored to your specific wellness goal</p>
+        <h2>What's Your Skin Concern?</h2>
+        <p>Each routine is tailored to your top skin concern</p>
       </div>
       <div class="goals-v2__grid">
         <div class="goals-v2__card" onclick="showPage('quiz')">
-          <span class="goals-v2__icon"><i data-lucide="brain"></i></span>
-          <div class="goals-v2__name">Focus & Study</div>
-          <div class="goals-v2__desc">Sharpen concentration, memory, and mental clarity for work or study</div>
+          <span class="goals-v2__icon"><i data-lucide="droplet"></i></span>
+          <div class="goals-v2__name">Acne & Blemishes</div>
+          <div class="goals-v2__desc">Clear breakouts, calm redness, and prevent new blemishes</div>
           <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
-          <span class="goals-v2__icon"><i data-lucide="dumbbell"></i></span>
-          <div class="goals-v2__name">Gym & Performance</div>
-          <div class="goals-v2__desc">Build strength, speed recovery, and optimise training performance</div>
+          <span class="goals-v2__icon"><i data-lucide="sparkles"></i></span>
+          <div class="goals-v2__name">Anti-Aging</div>
+          <div class="goals-v2__desc">Smooth fine lines, support firmness, and maintain elasticity</div>
           <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
-          <span class="goals-v2__icon"><i data-lucide="moon"></i></span>
-          <div class="goals-v2__name">Sleep & Recovery</div>
-          <div class="goals-v2__desc">Fall asleep faster, sleep deeper, and wake up feeling refreshed</div>
+          <span class="goals-v2__icon"><i data-lucide="glass-water"></i></span>
+          <div class="goals-v2__name">Hydration</div>
+          <div class="goals-v2__desc">Relieve tightness, restore plumpness, and lock moisture in</div>
           <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
-          <span class="goals-v2__icon"><i data-lucide="zap"></i></span>
-          <div class="goals-v2__name">Energy & Stress</div>
-          <div class="goals-v2__desc">Sustained all-day energy without crashes, less burnout and fatigue</div>
+          <span class="goals-v2__icon"><i data-lucide="sun"></i></span>
+          <div class="goals-v2__name">Brightening</div>
+          <div class="goals-v2__desc">Fade dark spots, even out tone, and bring back your natural radiance</div>
           <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
         <div class="goals-v2__card" onclick="showPage('quiz')">
-          <span class="goals-v2__icon"><i data-lucide="leaf"></i></span>
-          <div class="goals-v2__name">Daily Wellness</div>
-          <div class="goals-v2__desc">Support immunity, gut health, and long-term overall wellbeing</div>
+          <span class="goals-v2__icon"><i data-lucide="feather"></i></span>
+          <div class="goals-v2__name">Sensitive Skin</div>
+          <div class="goals-v2__desc">Calm reactive skin with gentle, fragrance-free formulas</div>
           <span class="goals-v2__cta">Take the Quiz →</span>
         </div>
       </div>
@@ -582,32 +671,32 @@
     <div class="container">
       <div class="section-head">
         <h2>The Nutrava Difference</h2>
-        <p>What sets us apart from generic supplement brands</p>
+        <p>What sets us apart from generic skincare brands</p>
       </div>
       <div class="why-nutrava-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto;">
         <div class="why-card">
           <div class="why-card__icon"><i data-lucide="user"></i></div>
           <div class="why-card__stat">Unique</div>
           <h3 class="why-card__title">Personalised to You</h3>
-          <p class="why-card__text">No one-size-fits-all. Every stack is tailored to your unique goals, lifestyle, and health profile.</p>
+          <p class="why-card__text">No one-size-fits-all. Your routine is matched to your skin type, concerns, sensitivity, and current habits.</p>
         </div>
         <div class="why-card">
           <div class="why-card__icon"><i data-lucide="flask-conical"></i></div>
           <div class="why-card__stat">100%</div>
-          <h3 class="why-card__title">Clinically Dosed</h3>
-          <p class="why-card__text">Every ingredient at its researched effective dose. No pixie dusting, no under-dosing, no shortcuts.</p>
+          <h3 class="why-card__title">Clinically Dosed Actives</h3>
+          <p class="why-card__text">Real percentages of proven ingredients — not trace amounts on the back of the label.</p>
         </div>
         <div class="why-card">
           <div class="why-card__icon"><i data-lucide="shield-check"></i></div>
           <div class="why-card__stat">Zero</div>
-          <h3 class="why-card__title">Fillers or Binders</h3>
-          <p class="why-card__text">No proprietary blends, no artificial fillers, no hidden ingredients. Clean supplements, always.</p>
+          <h3 class="why-card__title">Fragrance, Fillers, Drama</h3>
+          <p class="why-card__text">No synthetic fragrance, no harsh sulphates, no proprietary blends. Clean formulas your skin can trust.</p>
         </div>
         <div class="why-card">
           <div class="why-card__icon"><i data-lucide="eye"></i></div>
           <div class="why-card__stat">100%</div>
           <h3 class="why-card__title">Transparent Labels</h3>
-          <p class="why-card__text">You see exactly what's inside and how much. Third-party lab tested for purity and potency.</p>
+          <p class="why-card__text">Full INCI ingredient lists on every product — you see exactly what goes on your skin.</p>
         </div>
       </div>
     </div>
@@ -619,13 +708,13 @@
       <div class="stats-bar__grid">
         <div>
           <div class="stats-bar__icon"><i data-lucide="flask-conical"></i></div>
-          <span class="stats-bar__number" data-count-up="40+">0</span>
-          <span class="stats-bar__label">Science-backed supplements</span>
+          <span class="stats-bar__number" data-count-up="15">0</span>
+          <span class="stats-bar__label">Formulas across 5 skin concerns</span>
         </div>
         <div>
           <div class="stats-bar__icon"><i data-lucide="leaf"></i></div>
           <span class="stats-bar__number" data-count-up="100%">0</span>
-          <span class="stats-bar__label">Clean, no fillers or binders</span>
+          <span class="stats-bar__label">Cruelty-free, vegan-friendly</span>
         </div>
         <div>
           <div class="stats-bar__icon"><i data-lucide="shield-check"></i></div>
@@ -635,34 +724,34 @@
         <div>
           <div class="stats-bar__icon"><i data-lucide="truck"></i></div>
           <span class="stats-bar__number">Free</span>
-          <span class="stats-bar__label">UK shipping over £50</span>
+          <span class="stats-bar__label">US shipping over $50</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What Goes In Matters -->
+  <!-- What Goes On Your Skin Matters -->
   <section class="mobile-pad-reduce" style="padding: 64px 0; background: var(--color-mint-mist);">
     <div class="container">
       <div class="section-head">
-        <h2>What Goes In Matters</h2>
-        <p>Every ingredient is selected based on clinical research</p>
+        <h2>What Goes On Your Skin Matters</h2>
+        <p>Every formula is built around actives with proven clinical evidence</p>
       </div>
       <div class="ingredient-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 900px; margin: 0 auto;">
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="flask-conical"></i></div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Clinically Dosed</h3>
-          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Every ingredient at its researched effective dose — no pixie dusting.</p>
+          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Clinically Dosed Actives</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Clinically effective active percentages of retinol, vitamin C, hyaluronic acid and peptides — not symbolic dustings.</p>
         </div>
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="shield-check"></i></div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Third-Party Lab Tested</h3>
-          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Independent verification for purity and potency you can trust.</p>
+          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">Barrier-First Formulas</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Every routine is designed around your moisture barrier so actives can work without causing irritation.</p>
         </div>
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);"><i data-lucide="eye"></i></div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">No Proprietary Blends</h3>
-          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Full transparency — you see exactly what you're taking and how much.</p>
+          <h3 style="font-family: var(--font-heading); font-size: 1.125rem; color: var(--color-text); margin-bottom: 8px;">No Secret Ingredients</h3>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto;">Full INCI lists on every product — nothing hiding behind “proprietary blend.”</p>
         </div>
       </div>
     </div>
@@ -672,11 +761,11 @@
   <section class="mobile-pad-reduce" style="padding: 64px 0; background: #fff;">
     <div class="container">
       <div class="section-head">
-        <h2>Nutrava vs. Generic Supplements</h2>
-        <p>Not all supplements are created equal</p>
+        <h2>Nutrava vs. Generic Skincare</h2>
+        <p>Why personalised beats the one-size-fits-all aisle</p>
       </div>
       <div class="comparison-wrap" style="max-width: 700px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--color-border); background: #fff; overflow-x: auto; -webkit-overflow-scrolling: touch;">
-        <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
           <thead>
             <tr style="background: var(--color-dark-section);">
               <th style="padding: 16px 20px; text-align: left; color: var(--color-dark-text); font-weight: 600; width: 40%;"></th>
@@ -689,32 +778,32 @@
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border);">
-              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Personalised to your goals</td>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Matched to your skin type & concern</td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
-              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Clinically effective doses</td>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Clinically effective active percentages</td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border);">
-              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">No proprietary blends</td>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Fragrance-free options for sensitive skin</td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
-              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Third-party lab tested</td>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Full INCI ingredient transparency</td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
               <td style="padding: 14px 20px; text-align: center; font-size: 13px; color: var(--color-text-muted);">Rarely</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border);">
-              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Free from fillers & binders</td>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Cruelty-free & vegan-friendly</td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fce8e8; border-radius: 50%; color: #d32f2f;"><i data-lucide="x" style="width:16px;height:16px;"></i></span></td>
             </tr>
             <tr>
-              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Transparent ingredient labels</td>
+              <td style="padding: 14px 20px; color: var(--color-text); font-weight: 500;">Built as a routine, not random picks</td>
               <td style="padding: 14px 20px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #e6f4ea; border-radius: 50%; color: #1e7e34;"><i data-lucide="check" style="width:16px;height:16px;"></i></span></td>
               <td style="padding: 14px 20px; text-align: center; font-size: 13px; color: var(--color-text-muted);">Sometimes</td>
             </tr>
@@ -729,50 +818,50 @@
     <div class="container">
       <div class="section-head">
         <h2>Ingredient Spotlight</h2>
-        <p>A closer look at what goes into our best-selling supplements</p>
+        <p>The actives behind our best-selling routines</p>
       </div>
       <div class="home-ingredients-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; margin: 0 auto;">
         <div class="bestseller-card">
           <div class="bestseller-card__icon">
-            <img src="https://images.unsplash.com/photo-1625286535466-68a6d71e4568?w=128&q=80" alt="Lion's Mane Mushroom" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1625286535466-68a6d71e4568?w=128&q=80" alt="Hyaluronic Acid" loading="lazy">
           </div>
           <div>
-            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Lion's Mane Mushroom</h4>
-            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">500mg per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory formation, and long-term cognitive health.</p>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Hyaluronic Acid</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">4 molecular weights</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Holds up to 1,000x its weight in water. Our serum layers four different molecular weights so hydration reaches every depth of the skin.</p>
             <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
         <div class="bestseller-card">
           <div class="bestseller-card__icon">
-            <img src="https://images.unsplash.com/photo-1569936906148-06de87cb0681?w=128&q=80" alt="Ashwagandha root" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=128&q=80" alt="Vitamin C serum bottle" loading="lazy">
           </div>
           <div>
-            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Ashwagandha KSM-66</h4>
-            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">600mg per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Clinically shown to reduce cortisol by up to 30%, improve stress resilience, and support testosterone levels.</p>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Vitamin C (L-Ascorbic Acid)</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">Triple-form + ferulic acid</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">The gold standard for brightening and antioxidant defence. Fades dark spots, evens tone, and shields skin from daily damage.</p>
             <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
         <div class="bestseller-card">
           <div class="bestseller-card__icon">
-            <img src="https://images.unsplash.com/photo-1729708273852-b63222c8b35d?w=128&q=80" alt="Magnesium supplement" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=128&q=80" alt="Retinol skincare serum" loading="lazy">
           </div>
           <div>
-            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Magnesium Glycinate</h4>
-            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">400mg per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">The most bioavailable form of magnesium. Supports relaxation, sleep quality, and muscle recovery.</p>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Retinol</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">Encapsulated</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">The single most studied anti-aging active. Smooths fine lines and refines texture — paired with ceramides to protect the barrier.</p>
             <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
         <div class="bestseller-card">
           <div class="bestseller-card__icon">
-            <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=128&q=80" alt="Creatine powder" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=128&q=80" alt="Niacinamide serum" loading="lazy">
           </div>
           <div>
-            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Creatine Monohydrate</h4>
-            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">5g per serving</p>
-            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">Backed by 500+ peer-reviewed studies. Increases strength, power output, and supports cognitive function.</p>
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-bottom: 4px;">Niacinamide</h4>
+            <p style="font-size: 13px; color: var(--color-accent); font-weight: 600; margin-bottom: 6px;">10% concentration</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0 0 8px;">A multitasker that refines pores, evens tone, and strengthens the moisture barrier. Well-tolerated by most skin types.</p>
             <a href="#" onclick="showPage('shop')" style="font-size: 13px; font-weight: 600; color: var(--color-primary);">Learn More →</a>
           </div>
         </div>
@@ -789,164 +878,46 @@
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
-          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">What makes Nutrava different from other supplement brands?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Unlike generic supplement brands, Nutrava personalises your stack based on your unique goals, lifestyle, and health profile. Every ingredient is clinically dosed (no pixie dusting), third-party lab tested, and completely transparent — no proprietary blends, no fillers, no hidden ingredients.</div>
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">What makes Nutrava different from other skincare brands?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Most skincare is a lottery — you buy what the aisle has. Nutrava matches a routine to your skin type, top concern, sensitivity, and current habits. Every formula is clinically dosed, fragrance-free where it matters, and transparent about what’s inside.</div>
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">How does the personalised quiz work?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Our adaptive quiz takes about 60 seconds and asks about your wellness goals, sleep habits, diet, activity level, and lifestyle. It branches based on your answers, getting more specific until it can confidently recommend the right supplement stack. No two recommendations are exactly alike.</div>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Our quiz takes under 60 seconds and asks about your skin type, top concern, current routine, and sensitivity. It branches based on your answers and matches you with a 2–4 product routine built specifically for your skin.</div>
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">How long until I see results?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Most people notice initial effects within 1-2 weeks, particularly with supplements like magnesium (better sleep) and creatine (strength gains). Full benefits typically build over 4-8 weeks of consistent daily use. Adaptogens like ashwagandha tend to show their best results around the 6-8 week mark.</div>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Hydration and calming products usually feel different on day one. For brightening and anti-aging actives, expect visible improvement in 2–4 weeks of consistent use, with full benefits building over 6–8 weeks.</div>
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
-          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Can I take these supplements together?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Yes! Each stack is carefully designed so the supplements complement each other. We consider synergies and interactions when building your personalised plan. For example, we might pair Lion's Mane with L-Theanine and Omega-3, which research shows work better together than individually.</div>
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Can I use these products together?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Yes — every routine is designed to layer. We handle the order and balance so you're not mixing incompatible actives. A good rule: apply thinnest to thickest, water-based serums before oils, SPF last in the morning.</div>
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">What's your shipping and returns policy?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">We offer free UK shipping on all orders over £50, delivered within 2-4 business days. Every product comes with our 30-day satisfaction guarantee — if you're not happy, we'll refund you in full, no questions asked. Subscriptions can be paused, modified, or cancelled anytime.</div>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">We ship to the US only. Orders are fulfilled by our US-based fulfillment partner and typically arrive within 5–10 business days. Free shipping on orders over $50. Every product comes with our 30-day satisfaction guarantee — if you're not happy, we'll refund you in full, no questions asked.</div>
         </details>
         <details class="home-faq" style="background: #fff; border-radius: 12px; border: 1px solid var(--color-border);">
-          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Are your supplements vegan and gluten-free?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
-          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">The majority of our supplements are vegan and gluten-free. A few products (like Omega-3 Fish Oil) are sourced from fish, but we always offer plant-based alternatives. Every product page clearly lists all ingredients, allergens, and dietary information so you know exactly what you're taking.</div>
+          <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; align-items: center;">Are your products vegan and cruelty-free?<span style="color: var(--color-primary); font-size: 20px; transition: transform 0.2s;">+</span></summary>
+          <div style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">The majority of our products are vegan and gluten-free. A few products (like Omega-3 Fish Oil) are sourced from fish, but we always offer plant-based alternatives. Every product page clearly lists all ingredients, allergens, and dietary information so you know exactly what you're taking.</div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials (Dark Section) — seamless infinite ticker -->
-  <section class="social-proof">
-    <div class="container">
-      <div class="section-head">
-        <h2>What People Are Saying</h2>
-        <p>Real results from real people</p>
-      </div>
-    </div>
-    <div class="social-proof__ticker-wrap">
-      <div class="social-proof__ticker" data-testimonial-ticker>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"The quiz built me a personalised stack and it's been a game-changer for my work. I actually feel sharper by mid-afternoon instead of reaching for more coffee."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="James T.">
-            <div class="testimonial__info"><div class="testimonial__author">James T.</div><div class="testimonial__meta">Verified buyer — 3 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"I was sceptical about personalised supplements but the quiz nailed my issues. Sleep has improved massively since starting my custom stack."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Sophie M.">
-            <div class="testimonial__info"><div class="testimonial__author">Sophie M.</div><div class="testimonial__meta">Verified buyer — 6 weeks</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"Love that everything is science-backed and the ingredients are clean. My personalised stack has noticeably improved my recovery between training sessions."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&q=80" alt="Daniel K.">
-            <div class="testimonial__info"><div class="testimonial__author">Daniel K.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"Finally a supplement company that doesn't hide behind proprietary blends. I can see every ingredient and dose. The transparency alone won me over."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Emma R.">
-            <div class="testimonial__info"><div class="testimonial__author">Emma R.</div><div class="testimonial__meta">Verified buyer — 4 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"I've tried so many energy supplements that give you a crash. My Nutrava stack gives me sustained focus all day — no jitters, no afternoon slump."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&q=80" alt="Michael B.">
-            <div class="testimonial__info"><div class="testimonial__author">Michael B.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          <p class="testimonial__text">"Started my personalised stack after years of poor sleep. Within the first week I was falling asleep faster and waking up refreshed. My Fitbit confirms it too."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80" alt="Lauren W.">
-            <div class="testimonial__info"><div class="testimonial__author">Lauren W.</div><div class="testimonial__meta">Verified buyer — 5 weeks</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"As a uni student I needed something for exam season. Lion's Mane + Alpha-GPC has been incredible for long study sessions. Way better than just caffeine."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&q=80" alt="Tom H.">
-            <div class="testimonial__info"><div class="testimonial__author">Tom H.</div><div class="testimonial__meta">Verified buyer — 6 weeks</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"The subscription saves me 15% and I never run out. Love that I can pause or change my stack anytime. Customer service is brilliant too."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&q=80" alt="Priya K.">
-            <div class="testimonial__info"><div class="testimonial__author">Priya K.</div><div class="testimonial__meta">Subscriber — 5 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"My PT recommended Nutrava and I'm glad he did. Creatine + Ashwagandha together has made a noticeable difference to my strength and recovery."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&q=80" alt="Chris A.">
-            <div class="testimonial__info"><div class="testimonial__author">Chris A.</div><div class="testimonial__meta">Verified buyer — 3 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"Nutrava helped me figure out what I actually need. The quiz was spot on — I'm taking fewer supplements now but getting better results than before."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&q=80" alt="Hannah L.">
-            <div class="testimonial__info"><div class="testimonial__author">Hannah L.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"Proper doses, clean ingredients, and they actually explain why each supplement is in your stack. First brand I've trusted enough to set up a subscription."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=96&q=80" alt="Alex D.">
-            <div class="testimonial__info"><div class="testimonial__author">Alex D.</div><div class="testimonial__meta">Subscriber — 3 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          <p class="testimonial__text">"Got my personalised stack after burnout from work. Two months in and I feel like a different person. More energy, better mood, sleeping properly again."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=96&q=80" alt="Olivia S.">
-            <div class="testimonial__info"><div class="testimonial__author">Olivia S.</div><div class="testimonial__meta">Verified buyer — 2 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"I was spending £60/month on random supplements. Nutrava streamlined everything into one stack for less money and I actually feel the difference now."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=96&q=80" alt="Ryan P.">
-            <div class="testimonial__info"><div class="testimonial__author">Ryan P.</div><div class="testimonial__meta">Subscriber — 4 months</div></div>
-          </div>
-        </div>
-        <div class="testimonial">
-          <span class="testimonial__stars-text">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p class="testimonial__text">"My mum recommended Nutrava to me. We both have our own personalised stacks now. Love that it's UK-based with free shipping and actually arrives quickly."</p>
-          <div class="testimonial__footer">
-            <img class="testimonial__avatar" loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=96&q=80" alt="Natasha G.">
-            <div class="testimonial__info"><div class="testimonial__author">Natasha G.</div><div class="testimonial__meta">Subscriber — 6 months</div></div>
-          </div>
-        </div>
-      </div>
+  <!-- Launch Offer Banner -->
+  <section style="padding: 48px 0; background: var(--color-mint-mist); text-align: center;">
+    <div class="container container--narrow">
+      <p style="font-size: 1rem; font-weight: 600; color: var(--color-text); margin-bottom: 8px;">Launch Special</p>
+      <p style="font-size: 0.95rem; color: var(--color-text-body);">Use code <strong>LAUNCH20</strong> for 20% off your first order.</p>
     </div>
   </section>
 
   <!-- Big CTA -->
   <section class="big-cta">
     <div class="container">
-      <h2 class="big-cta__heading">Ready to find your stack?</h2>
-      <p class="big-cta__sub">Take our personalised quiz and discover the supplements your body actually needs. It takes less than 60 seconds.</p>
+      <h2 class="big-cta__heading">Ready to find your routine?</h2>
+      <p class="big-cta__sub">Take our quiz and we'll match you with a skincare routine built for your skin. Under 60 seconds.</p>
       <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
     </div>
   </section>
@@ -965,9 +936,9 @@
     <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80" alt="Clean lab and natural ingredients" loading="lazy" style="width: 100%; height: 300px; object-fit: cover; display: block;">
     <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(44,58,46,0.4) 0%, rgba(44,58,46,0.7) 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px;">
       <div>
-        <span class="hero-v2__label" style="color: var(--color-accent);">Our Approach</span>
-        <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.8rem); color: #fff; margin-bottom: 16px;">Wellness That Actually Works</h1>
-        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 600px; margin: 0 auto;">We combine science-backed ingredients with personalised recommendations. No guessing, no generic multivitamins.</p>
+        <span class="hero-v2__label" style="color: var(--color-accent);">Our Story</span>
+        <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.8rem); color: #fff; margin-bottom: 16px;">Built Out of Frustration with the Skincare Aisle</h1>
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 600px; margin: 0 auto;">Nutrava started because skincare shopping is broken. The aisle is a lottery — a thousand bottles, each promising miracles, none designed with your actual skin in mind. Half the time you end up reacting, the other half you can't tell if anything's working.</p>
       </div>
     </div>
   </div>
@@ -982,12 +953,12 @@
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary); border: 2px solid var(--color-fern);"><i data-lucide="flask-conical"></i></div>
           <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 8px;">Science-First</h3>
-          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Every supplement is selected based on clinical research and evidence-based dosing.</p>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Every formula is built around ingredients with clinical evidence — retinol, vitamin C, hyaluronic acid and peptides — at percentages that actually move the needle.</p>
         </div>
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary); border: 2px solid var(--color-fern);"><i data-lucide="puzzle"></i></div>
           <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 8px;">Synergistic</h3>
-          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Supplements are chosen to complement each other — together they work better than alone.</p>
+          <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.6;">Each product in a routine is chosen to layer with the others — cleanser, serum, moisturiser, designed to work together.</p>
         </div>
         <div style="text-align: center; padding: 24px;">
           <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary); border: 2px solid var(--color-fern);"><i data-lucide="target"></i></div>
@@ -1032,7 +1003,7 @@
           <span class="trust-badge__icon" style="flex-shrink: 0;">✓</span>
           <div>
             <h4 style="font-weight: 600; margin-bottom: 4px; color: var(--color-text);">Transparent Labels</h4>
-            <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Full ingredient lists with exact amounts. No proprietary blends.</p>
+            <p style="font-size: 14px; color: var(--color-text-body); line-height: 1.6; margin: 0;">Full ingredient lists with exact amounts. Fragrance-free options for sensitive skin.</p>
           </div>
         </div>
       </div>
@@ -1047,7 +1018,7 @@
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <details style="background: var(--color-bg); border-radius: 12px;">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">How does the personalised quiz work?</summary>
-          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Our adaptive quiz asks about your goals, lifestyle, sleep, and diet. It branches based on your answers — getting more specific as it learns about you — until it can confidently recommend a stack.</p>
+          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Our quiz asks about your skin type, top concern, current routine, and sensitivity. It branches based on your answers and matches you with a 2–4 product routine built for your skin.</p>
         </details>
         <details style="background: var(--color-bg); border-radius: 12px;">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">How long until I see results?</summary>
@@ -1059,7 +1030,7 @@
         </details>
         <details style="background: var(--color-bg); border-radius: 12px;">
           <summary style="padding: 20px 24px; font-weight: 600; color: var(--color-text); cursor: pointer; list-style: none; font-size: 15px;">What's your shipping and returns policy?</summary>
-          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">Free UK shipping on orders over £50. Delivered in 2-4 business days. 30-day satisfaction guarantee on all products.</p>
+          <p style="padding: 0 24px 20px; font-size: 14px; color: var(--color-text-body); line-height: 1.7;">We ship to the US only. Free shipping on orders over $50. Orders are fulfilled by our US-based partner and typically arrive within 5–10 business days. 30-day satisfaction guarantee on all products.</p>
         </details>
       </div>
     </div>
@@ -1069,7 +1040,7 @@
   <section class="big-cta">
     <div class="container">
       <h2 class="big-cta__heading">Find your personalised stack</h2>
-      <p class="big-cta__sub">It takes less than 60 seconds</p>
+      <p class="big-cta__sub">Under 60 seconds</p>
       <a href="#" onclick="showPage('quiz')" class="btn btn--primary btn--lg">Take the Free Quiz</a>
     </div>
   </section>
@@ -1080,8 +1051,8 @@
   <section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
     <div class="container container--narrow">
       <span class="hero-v2__label">Browse</span>
-      <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Shop All Supplements</h1>
-      <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Science-backed supplements for every goal. Filter by category to find what you need.</p>
+      <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Shop All Products</h1>
+      <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Formulas across 5 skin concerns for every goal. Filter by category to find what you need.</p>
     </div>
   </section>
   <section style="padding: 48px 0;">
@@ -1142,8 +1113,8 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">Your Stack</div>
-              <div class="account-card__meta">3 items &middot; £44.97</div>
+              <div class="account-card__title">Your Routine</div>
+              <div class="account-card__meta">3 items &middot; $44.97</div>
             </div>
             <span class="account-badge account-badge--transit">In Transit</span>
           </div>
@@ -1166,14 +1137,14 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">Your Stack</div>
+              <div class="account-card__title">Your Routine</div>
               <div class="account-card__meta">3 items &middot; Next delivery: <strong style="color: var(--color-text);">Apr 2</strong></div>
             </div>
-            <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary);">£38.22<span style="font-size: 13px; font-family: var(--font-body); color: var(--color-text-muted);">/mo</span></span>
+            <span style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-primary);">$38.22<span style="font-size: 13px; font-family: var(--font-body); color: var(--color-text-muted);">/mo</span></span>
           </div>
           <div class="account-card__actions">
             <span class="account-savings"><i data-lucide="tag" style="width: 12px; height: 12px;"></i> 15% saved</span>
-            <span style="font-size: 12px; color: var(--color-text-muted);">Includes: Lion's Mane, L-Theanine + Caffeine, Omega-3</span>
+            <span style="font-size: 12px; color: var(--color-text-muted);">Includes: Hyaluronic Acid Serum, Vitamin C Serum, Anti-Aging Moisturizer</span>
           </div>
           <div style="margin-top: 16px; display: flex; gap: 12px;">
             <button class="btn--sm-outline" onclick="alert('Manage subscription (preview mode)')">Manage</button>
@@ -1189,17 +1160,17 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">#NTV-1042 &middot; Your Stack</div>
+              <div class="account-card__title">#NTV-1042 &middot; Your Routine</div>
               <div class="account-card__meta">Feb 12, 2026 &middot; 3 items</div>
             </div>
             <div style="text-align: right;">
               <span class="account-badge account-badge--delivered">Delivered</span>
-              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">£44.97</div>
+              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">$44.97</div>
             </div>
           </div>
           <div class="account-card__actions">
             <button class="btn--sm-outline" onclick="alert('Order details (preview mode)')">View Details</button>
-            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'lions-mane',title:'Lion\'s Mane Complex',price:2499},{handle:'l-theanine',title:'L-Theanine + Caffeine',price:1499},{handle:'omega-3',title:'Omega-3 DHA',price:999}])">
+            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'charcoal-facial-cleanser',title:'Charcoal Facial Cleanser',price:1990},{handle:'hyaluronic-acid-serum',title:'Hyaluronic Acid Serum',price:3000},{handle:'vitamin-c-serum',title:'Vitamin C Serum',price:2000}])">
               <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i>
               Reorder
             </button>
@@ -1209,17 +1180,17 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">#NTV-1031 &middot; Your Stack</div>
+              <div class="account-card__title">#NTV-1031 &middot; Your Routine</div>
               <div class="account-card__meta">Jan 15, 2026 &middot; 2 items</div>
             </div>
             <div style="text-align: right;">
               <span class="account-badge account-badge--delivered">Delivered</span>
-              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">£27.98</div>
+              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">$27.98</div>
             </div>
           </div>
           <div class="account-card__actions">
             <button class="btn--sm-outline" onclick="alert('Order details (preview mode)')">View Details</button>
-            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'magnesium',title:'Magnesium Glycinate',price:1499},{handle:'ashwagandha',title:'Ashwagandha KSM-66',price:1299}])">
+            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'anti-aging-moisturizer',title:'Anti-Aging Moisturizer',price:4000},{handle:'vitamin-c-serum',title:'Vitamin C Serum',price:2000}])">
               <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i>
               Reorder
             </button>
@@ -1229,17 +1200,17 @@
         <div class="account-card">
           <div class="account-card__header">
             <div>
-              <div class="account-card__title">#NTV-1018 &middot; Your Stack</div>
+              <div class="account-card__title">#NTV-1018 &middot; Your Routine</div>
               <div class="account-card__meta">Dec 20, 2025 &middot; 4 items</div>
             </div>
             <div style="text-align: right;">
               <span class="account-badge account-badge--delivered">Delivered</span>
-              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">£59.96</div>
+              <div style="font-family: var(--font-heading); font-size: 1rem; color: var(--color-text); margin-top: 4px;">$59.96</div>
             </div>
           </div>
           <div class="account-card__actions">
             <button class="btn--sm-outline" onclick="alert('Order details (preview mode)')">View Details</button>
-            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'b-complex',title:'B-Complex',price:1299},{handle:'coq10',title:'CoQ10',price:1799},{handle:'rhodiola',title:'Rhodiola Rosea',price:1499},{handle:'iron',title:'Iron Bisglycinate',price:1399}])">
+            <button class="btn--sm-outline" onclick="NutravaCart.addItems([{handle:'hyaluronic-acid-serum',title:'Hyaluronic Acid Serum',price:3000},{handle:'gua-sha-face-oil',title:'Gua Sha Face Oil',price:1990},{handle:'vitamin-c-serum',title:'Vitamin C Serum',price:2000},{handle:'anti-aging-moisturizer',title:'Anti-Aging Moisturizer',price:4000}])">
               <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i>
               Reorder
             </button>
@@ -1287,7 +1258,7 @@
   <div style="max-width: 600px; margin: 0 auto;">
     <div style="position: relative;">
       <i data-lucide="search" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:20px; height:20px; color:var(--color-text-muted);"></i>
-      <input type="text" data-search-input placeholder="Search supplements..." style="width:100%; padding:16px 48px 16px 48px; font-size:16px; font-family:var(--font-body); border:2px solid var(--color-border); border-radius:var(--radius-pill); background:#fff; color:var(--color-text); outline:none; box-shadow:0 8px 40px rgba(0,0,0,0.15);" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'">
+      <input type="text" data-search-input placeholder="Search skincare..." style="width:100%; padding:16px 48px 16px 48px; font-size:16px; font-family:var(--font-body); border:2px solid var(--color-border); border-radius:var(--radius-pill); background:#fff; color:var(--color-text); outline:none; box-shadow:0 8px 40px rgba(0,0,0,0.15);" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'">
       <button data-search-close style="position:absolute; right:16px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--color-text-muted); padding:4px;" aria-label="Close search">
         <i data-lucide="x" style="width:20px; height:20px;"></i>
       </button>
@@ -1313,7 +1284,7 @@
       <i data-lucide="shopping-bag"></i>
     </div>
     <p class="cart-drawer__empty-title">Your cart is empty</p>
-    <p class="cart-drawer__empty-text">Take the quiz to find your personalised stack.</p>
+    <p class="cart-drawer__empty-text">Take the quiz to find your skincare routine.</p>
     <a href="#" onclick="showPage('quiz')" class="btn btn--primary">Take the Quiz</a>
   </div>
   <div class="cart-drawer__filled" data-cart-filled style="display: none;">
@@ -1354,9 +1325,9 @@
         <div class="cart-footer__savings" data-cart-savings style="display: none;"></div>
         <div class="cart-drawer__subtotal">
           <span>Subtotal</span>
-          <span data-cart-subtotal>£0.00</span>
+          <span data-cart-subtotal>$0.00</span>
         </div>
-        <p class="cart-drawer__shipping">Free UK shipping on orders over £50</p>
+        <p class="cart-drawer__shipping">Free US shipping on orders over $50</p>
         <p style="font-size: 12px; color: var(--color-text-muted); text-align: center; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;"><i data-lucide="shield-check" style="width: 14px; height: 14px; color: var(--color-primary);"></i> 30-day money-back guarantee</p>
         <div class="cart-discount" data-cart-discount>
           <a href="#" class="cart-discount__toggle" data-discount-toggle>Have a promo code?</a>
@@ -1457,7 +1428,7 @@
 <section class="newsletter-section" style="padding:80px 0; background:var(--color-dark-section); text-align:center;">
   <div style="max-width:600px; margin:0 auto; padding:0 24px;">
     <h2 style="font-family:var(--font-heading); font-size:1.75rem; color:var(--color-dark-text); margin-bottom:8px;">Stay in the loop</h2>
-    <p style="font-size:15px; color:var(--color-dark-text); opacity:0.8; margin-bottom:24px;">Join 10,000+ people optimising their wellness. Get tips, new supplements, and exclusive offers.</p>
+    <p style="font-size:15px; color:var(--color-dark-text); opacity:0.8; margin-bottom:24px;">Skincare tips, new launches, and exclusive subscriber offers — no spam.</p>
     <form class="newsletter-form" style="display:flex; gap:8px; max-width:440px; margin:0 auto;" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='var(--color-primary)'; setTimeout(()=>{this.querySelector('button').textContent='Subscribe'; this.querySelector('button').style.background='var(--color-accent)';}, 2000);">
       <input type="email" placeholder="Your email address" required style="flex:1; padding:12px 16px; border:1.5px solid rgba(255,255,255,0.2); border-radius:var(--radius-pill); background:rgba(255,255,255,0.1); color:var(--color-dark-text); font-size:14px; font-family:var(--font-body); outline:none;" onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
       <button type="submit" class="btn btn--primary" style="background:var(--color-accent); border-color:var(--color-accent); white-space:nowrap;">Subscribe</button>
@@ -1591,7 +1562,7 @@ var NutravaProducts = [];
       + '<div class="product-expand"><div class="product-expand__inner">'
         + '<div class="product-expand__section"><span class="product-expand__label">About</span><p class="product-expand__text">' + escHtml(p.expand.about) + '</p></div>'
         + '<div class="product-expand__section"><span class="product-expand__label">Key Benefits</span><ul class="product-expand__benefits">' + benefitsLi + '</ul></div>'
-        + '<div class="product-expand__section"><span class="product-expand__label">Supplement Facts</span><table class="product-expand__facts">' + factsRows + '</table></div>'
+        + '<div class="product-expand__section"><span class="product-expand__label">Product Facts</span><table class="product-expand__facts">' + factsRows + '</table></div>'
         + '<div class="product-expand__section"><span class="product-expand__label">Pairs Well With</span><div class="product-expand__pairs">' + pairsSpans + '</div></div>'
       + '</div></div>'
       + '<button class="product-expand__toggle" onclick="event.stopPropagation(); toggleProductExpand(this)">View Details \u2193</button>'
@@ -1646,7 +1617,7 @@ var NutravaProducts = [];
     var best = products.filter(function(p) { return p.bestSeller; }).slice(0, 4);
     if (best.length === 0) best = products.slice(0, 4);
     container.innerHTML = best.map(function(p) {
-      var price = '£' + (p.price / 100).toFixed(2);
+      var price = '$' + (p.price / 100).toFixed(2);
       var img = p.image || 'https://images.unsplash.com/photo-1730388843790-f753ecf9ba94?w=300&q=80';
       return '<div style="background:#fff; border:1.5px solid var(--color-border); border-radius:16px; overflow:hidden; transition:all 0.25s; cursor:pointer;" onmouseover="this.style.borderColor=\'var(--color-primary)\';this.style.transform=\'translateY(-4px)\';this.style.boxShadow=\'0 8px 30px rgba(90,122,94,0.12)\'" onmouseout="this.style.borderColor=\'var(--color-border)\';this.style.transform=\'none\';this.style.boxShadow=\'none\'">' +
         '<div style="aspect-ratio:1; overflow:hidden; background:var(--color-bg);">' +
@@ -1829,11 +1800,11 @@ document.addEventListener('click', function(e) {
     if (isSubscribe) {
       var discounted = (num * 0.85).toFixed(2);
       var saved = (num - parseFloat(discounted)).toFixed(2);
-      subtotalEl.innerHTML = '<span style="text-decoration:line-through; color:var(--color-text-muted); font-size:13px;">£' + num.toFixed(2) + '</span> £' + discounted;
-      if (savingsEl) { savingsEl.textContent = 'You save £' + saved + ' with Subscribe & Save'; savingsEl.style.display = 'block'; }
+      subtotalEl.innerHTML = '<span style="text-decoration:line-through; color:var(--color-text-muted); font-size:13px;">$' + num.toFixed(2) + '</span> $' + discounted;
+      if (savingsEl) { savingsEl.textContent = 'You save $' + saved + ' with Subscribe & Save'; savingsEl.style.display = 'block'; }
       if (checkoutBtn) checkoutBtn.textContent = 'Subscribe & Checkout';
     } else {
-      subtotalEl.textContent = '£' + num.toFixed(2);
+      subtotalEl.textContent = '$' + num.toFixed(2);
       if (savingsEl) savingsEl.style.display = 'none';
       if (checkoutBtn) checkoutBtn.textContent = 'Checkout';
     }
@@ -1843,7 +1814,7 @@ document.addEventListener('click', function(e) {
   window.addEventListener('cart:updated', function(e) {
     if (e.detail && e.detail.cart) {
       var total = (e.detail.cart.total_price / 100).toFixed(2);
-      if (subtotalEl) subtotalEl.dataset.rawTotal = '£' + total;
+      if (subtotalEl) subtotalEl.dataset.rawTotal = '$' + total;
     }
     syncUI();
   });

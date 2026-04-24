@@ -2,7 +2,7 @@
   <div class="container">
     <div class="section-head text-center mb-xl">
       <h2>{{ section.settings.heading | default: 'The Nutrava Difference' }}</h2>
-      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'What sets us apart from generic supplement brands' }}</p>
+      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'What sets us apart from generic skincare brands' }}</p>
     </div>
     <div class="why-nutrava__grid">
       {%- for block in section.blocks -%}
@@ -104,7 +104,7 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "What sets us apart from generic supplement brands"
+      "default": "What sets us apart from generic skincare brands"
     }
   ],
   "blocks": [
@@ -134,7 +134,7 @@
           "type": "textarea",
           "id": "text",
           "label": "Description",
-          "default": "No one-size-fits-all. Every stack is tailored to your unique goals, lifestyle, and health profile."
+          "default": "No one-size-fits-all. Your routine is matched to your skin type, concerns, sensitivity, and current habits."
         }
       ]
     }
@@ -143,9 +143,9 @@
     {
       "name": "Why Nutrava",
       "blocks": [
-        { "type": "point", "settings": { "icon": "user", "stat": "Unique", "title": "Personalised to You", "text": "No one-size-fits-all. Every stack is tailored to your unique goals, lifestyle, and health profile." } },
+        { "type": "point", "settings": { "icon": "user", "stat": "Unique", "title": "Personalised to You", "text": "No one-size-fits-all. Your routine is matched to your skin type, concerns, sensitivity, and current habits." } },
         { "type": "point", "settings": { "icon": "flask-conical", "stat": "100%", "title": "Clinically Dosed", "text": "Every ingredient at its researched effective dose. No pixie dusting, no under-dosing, no shortcuts." } },
-        { "type": "point", "settings": { "icon": "shield-check", "stat": "Zero", "title": "Fillers or Binders", "text": "No proprietary blends, no artificial fillers, no hidden ingredients. Clean supplements, always." } },
+        { "type": "point", "settings": { "icon": "shield-check", "stat": "Zero", "title": "Fragrance, Fillers, Drama", "text": "No synthetic fragrance, no harsh sulphates, no proprietary blends. Clean formulas your skin can trust." } },
         { "type": "point", "settings": { "icon": "eye", "stat": "100%", "title": "Transparent Labels", "text": "You see exactly what's inside and how much. Third-party lab tested for purity and potency." } }
       ]
     }

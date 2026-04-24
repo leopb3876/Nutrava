@@ -12,7 +12,7 @@
             type="search"
             name="q"
             value="{{ search.terms | escape }}"
-            placeholder="Search supplements, ingredients, goals..."
+            placeholder="Search skincare, ingredients, concerns..."
             class="search-page__input"
             aria-label="Search"
             autocomplete="off"
@@ -85,7 +85,7 @@
               <i data-lucide="search-x"></i>
             </div>
             <h2 class="search-empty__title">No results found</h2>
-            <p class="search-empty__text">We couldn't find anything for "<strong>{{ search.terms }}</strong>". Try a different search or take our quiz to find the right supplements.</p>
+            <p class="search-empty__text">We couldn't find anything for "<strong>{{ search.terms }}</strong>". Try a different search or take our quiz to find your routine.</p>
             <div class="search-empty__actions">
               <a href="/pages/quiz" class="btn btn--primary">Take the Quiz</a>
               <a href="/collections/all" class="btn btn--outline">Browse All Products</a>
@@ -99,7 +99,7 @@
           <div class="search-empty__icon">
             <i data-lucide="search"></i>
           </div>
-          <p class="search-empty__text">Search for supplements by name, ingredient, or health goal.</p>
+          <p class="search-empty__text">Search for skincare by product name, ingredient, or skin concern.</p>
         </div>
       {% endif %}
 

@@ -60,9 +60,9 @@
         </div>
       {%- endif -%}
       <div class="product-expand__section">
-        <span class="product-expand__label">Supplement Facts</span>
+        <span class="product-expand__label">Product Facts</span>
         <table class="product-expand__facts">
-          <tr><td>Serving Size</td><td>{{ product.metafields.custom.serving_size | default: '2 capsules' }}</td></tr>
+          <tr><td>Size</td><td>{{ product.metafields.custom.serving_size | default: '1 fl oz' }}</td></tr>
           {%- for ingredient in product.metafields.custom.ingredients.value -%}
             <tr><td>{{ ingredient.name }}</td><td>{{ ingredient.dose }}</td></tr>
           {%- endfor -%}
