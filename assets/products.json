@@ -1,1705 +1,411 @@
 {
   "categories": [
     {
-      "key": "focus",
-      "label": "Focus & Study",
-      "shortLabel": "Focus"
+      "key": "acne",
+      "label": "Acne & Blemishes",
+      "shortLabel": "Acne"
     },
     {
-      "key": "gym",
-      "label": "Gym & Performance",
-      "shortLabel": "Gym"
+      "key": "anti-aging",
+      "label": "Anti-Aging",
+      "shortLabel": "Anti-Aging"
     },
     {
-      "key": "sleep",
-      "label": "Sleep & Recovery",
-      "shortLabel": "Sleep"
+      "key": "hydration",
+      "label": "Hydration",
+      "shortLabel": "Hydration"
     },
     {
-      "key": "energy",
-      "label": "Energy & Stress",
-      "shortLabel": "Energy"
+      "key": "brightening",
+      "label": "Brightening",
+      "shortLabel": "Brightening"
     },
     {
-      "key": "wellness",
-      "label": "Daily Wellness",
-      "shortLabel": "Wellness"
+      "key": "sensitive",
+      "label": "Sensitive Skin",
+      "shortLabel": "Sensitive"
+    },
+    {
+      "key": "hair",
+      "label": "Hair",
+      "shortLabel": "Hair"
+    },
+    {
+      "key": "body",
+      "label": "Body",
+      "shortLabel": "Body"
     }
   ],
   "products": [
     {
-      "id": 2001,
-      "handle": "lions-mane-mushroom",
-      "title": "Lion's Mane Mushroom",
-      "price": 3390,
-      "category": "focus",
-      "categoryLabel": "Focus",
-      "image": "https://images.unsplash.com/photo-1625286535466-68a6d71e4568?w=400&q=80",
-      "alt": "Lion's Mane Mushroom — white fluffy fungus",
-      "description": "Supports cognitive function, memory, and nerve growth factor production.",
-      "bestSeller": true,
-      "expand": {
-        "about": "Organic Lion's Mane mushroom extract standardised for active compounds. Stimulates Nerve Growth Factor (NGF) production, supporting neuroplasticity, memory, and long-term brain health.",
-        "benefits": [
-          "Enhances focus and mental clarity",
-          "Supports memory and learning",
-          "Promotes nerve regeneration",
-          "May reduce mild anxiety"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Lion's Mane Extract",
-            "500mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Brain & Focus Formula",
-          "Mushroom Focus Strips"
-        ]
-      }
-    },
-    {
-      "id": 2002,
-      "handle": "brain-focus-formula",
-      "title": "Brain & Focus Formula",
-      "price": 3990,
-      "category": "focus",
-      "categoryLabel": "Focus",
-      "image": "https://images.unsplash.com/photo-1559087316-6b27308e53f6?w=400&q=80",
-      "alt": "Brain and focus nootropic supplement capsules",
-      "description": "Comprehensive nootropic blend for sharper cognitive performance.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A multi-ingredient cognitive formula combining proven nootropics to support focus, mental clarity, and processing speed. Designed for students, professionals, and anyone who needs sustained brainpower.",
-        "benefits": [
-          "Sharpens focus and concentration",
-          "Supports mental processing speed",
-          "Enhances memory recall",
-          "Reduces mental fatigue"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Proprietary Brain Blend",
-            "800mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Lion's Mane Mushroom",
-          "Focus Powder"
-        ]
-      }
-    },
-    {
-      "id": 2003,
-      "handle": "mushroom-focus-strips",
-      "title": "Mushroom Focus Strips",
-      "price": 3900,
-      "category": "focus",
-      "categoryLabel": "Focus",
-      "image": "https://images.unsplash.com/photo-1634194405074-e1f9f172543a?w=400&q=80",
-      "alt": "Functional mushroom supplement",
-      "description": "Fast-dissolving strips with mushroom extracts for on-the-go focus.",
-      "bestSeller": false,
-      "expand": {
-        "about": "Convenient oral strips infused with functional mushroom extracts. Dissolves on the tongue for fast absorption — perfect for pre-study sessions or before important meetings.",
-        "benefits": [
-          "Quick-dissolving convenience",
-          "Mushroom-powered cognitive support",
-          "No water needed",
-          "Great chocolate flavour"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 strip"
-          ],
-          [
-            "Mushroom Blend",
-            "250mg"
-          ],
-          [
-            "Strips Per Pack",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Lion's Mane Mushroom",
-          "Brain & Focus Formula"
-        ]
-      }
-    },
-    {
-      "id": 2004,
-      "handle": "cognitive-relax-strips",
-      "title": "Cognitive Relax Strips",
-      "price": 3290,
-      "category": "focus",
-      "categoryLabel": "Focus",
-      "image": "https://images.unsplash.com/photo-1724494050986-0aaba56b0975?w=400&q=80",
-      "alt": "Calm relaxation and focus concept",
-      "description": "Calm focus strips that sharpen the mind without overstimulation.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A unique combination of calming and cognitive-enhancing ingredients in a fast-dissolving strip. Promotes a state of relaxed alertness — perfect for focus without the jitters.",
-        "benefits": [
-          "Promotes calm, clear focus",
-          "Reduces mental tension",
-          "No caffeine jitters",
-          "Fast-absorbing strip format"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 strip"
-          ],
-          [
-            "Cognitive Blend",
-            "200mg"
-          ],
-          [
-            "Strips Per Pack",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Brain & Focus Formula",
-          "Lion's Mane Mushroom"
-        ]
-      }
-    },
-    {
-      "id": 2005,
-      "handle": "focus-powder",
-      "title": "Focus Powder",
-      "price": 3990,
-      "category": "focus",
-      "categoryLabel": "Focus",
-      "image": "https://images.unsplash.com/photo-1708573106044-2bbefb3d9fc3?w=400&q=80",
-      "alt": "Focus powder supplement scoop",
-      "description": "Sour grape flavoured powder for sustained mental performance.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A flavoured nootropic powder designed for pre-study or pre-work sessions. Mix with water for a delicious sour grape drink that primes your brain for deep work.",
-        "benefits": [
-          "Sustained mental focus",
-          "Great tasting sour grape flavour",
-          "Easy to mix with water",
-          "No crash formula"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (8g)"
-          ],
-          [
-            "Focus Blend",
-            "3,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Lion's Mane Mushroom",
-          "Brain & Focus Formula"
-        ]
-      }
-    },
-    {
-      "id": 2006,
-      "handle": "creatine-monohydrate",
-      "title": "Creatine Monohydrate",
-      "price": 4200,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&q=80",
-      "alt": "Creatine powder scoop for gym performance",
-      "description": "The most researched supplement for strength and power output.",
-      "bestSeller": true,
-      "expand": {
-        "about": "Pure creatine monohydrate — the gold standard backed by over 500 peer-reviewed studies. Increases phosphocreatine stores in muscles, providing more ATP energy during high-intensity exercise.",
-        "benefits": [
-          "Increases strength and power output",
-          "Supports lean muscle growth",
-          "Enhances high-intensity performance",
-          "May support cognitive function"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (5g)"
-          ],
-          [
-            "Creatine Monohydrate",
-            "5,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
-        ],
-        "pairsWith": [
-          "Ashwagandha",
-          "Creatine Hydration Powder"
-        ]
-      }
-    },
-    {
-      "id": 2007,
-      "handle": "ashwagandha",
-      "title": "Ashwagandha",
-      "price": 3499,
-      "category": "gym sleep",
-      "categoryLabel": "Gym / Sleep",
-      "image": "https://images.unsplash.com/photo-1569936906148-06de87cb0681?w=400&q=80",
-      "alt": "Ashwagandha root adaptogenic herb",
-      "description": "Reduces cortisol, supports recovery, and improves sleep quality.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A powerful adaptogenic herb clinically shown to reduce cortisol levels by up to 30%. Supports stress resilience, muscle recovery, and restful sleep — making it a must-have for active lifestyles.",
-        "benefits": [
-          "Reduces cortisol and stress",
-          "Supports muscle recovery",
-          "Improves sleep quality",
-          "Boosts endurance"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 capsule"
-          ],
-          [
-            "Ashwagandha Root Extract",
-            "600mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "Magnesium Glycinate"
-        ]
-      }
-    },
-    {
-      "id": 2008,
-      "handle": "l-citrulline-l-arginine",
-      "title": "L-Citrulline & L-Arginine Stack",
-      "price": 3999,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1734607402896-73dc3ed1f2c9?w=400&q=80",
-      "alt": "Amino acid supplement capsules",
-      "description": "Boosts blood flow for better pumps and workout performance.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A synergistic stack of L-Citrulline and L-Arginine — two amino acids that boost nitric oxide production. Improves blood flow, nutrient delivery to muscles, and workout endurance.",
-        "benefits": [
-          "Enhances muscle pumps",
-          "Improves blood flow and circulation",
-          "Supports endurance",
-          "Faster nutrient delivery to muscles"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "L-Citrulline",
-            "1,000mg"
-          ],
-          [
-            "L-Arginine",
-            "500mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "Nitric Shock Pre-Workout"
-        ]
-      }
-    },
-    {
-      "id": 2009,
-      "handle": "creatine-hydration-powder",
-      "title": "Creatine Hydration Powder",
-      "price": 4200,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1741520504652-27c2a6c0015e?w=400&q=80",
-      "alt": "Electrolyte hydration drink for fitness",
-      "description": "Creatine combined with electrolytes for performance and hydration.",
-      "bestSeller": false,
-      "expand": {
-        "about": "Combines creatine monohydrate with essential electrolytes for dual-action performance support. Stay hydrated while fuelling your muscles during intense training sessions.",
-        "benefits": [
-          "Creatine + electrolyte combo",
-          "Supports hydration during training",
-          "Enhances muscle performance",
-          "Convenient powder format"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (12g)"
-          ],
-          [
-            "Creatine Monohydrate",
-            "5,000mg"
-          ],
-          [
-            "Electrolyte Blend",
-            "500mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "L-Citrulline & L-Arginine Stack",
-          "Ashwagandha"
-        ]
-      }
-    },
-    {
-      "id": 2010,
-      "handle": "nitric-shock-pre-workout",
-      "title": "Nitric Shock Pre-Workout",
-      "price": 3890,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1704650311162-153bbf7f17b0?w=400&q=80",
-      "alt": "Pre-workout powder scoop",
-      "description": "Full-spectrum pre-workout for explosive energy and pump.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A comprehensive pre-workout formula with nitric oxide boosters, energy compounds, and focus enhancers. Fruit punch flavour designed to fuel your most intense training sessions.",
-        "benefits": [
-          "Explosive energy and focus",
-          "Enhanced muscle pumps",
-          "Improved endurance",
-          "Great fruit punch taste"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (15g)"
-          ],
-          [
-            "Pre-Workout Blend",
-            "8,000mg"
-          ],
-          [
-            "Caffeine",
-            "200mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "L-Citrulline & L-Arginine Stack"
-        ]
-      }
-    },
-    {
-      "id": 2011,
-      "handle": "colostrum-powder",
-      "title": "Colostrum Powder",
-      "price": 3995,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1631824681694-60908ffbbff6?w=400&q=80",
-      "alt": "Colostrum powder supplement",
-      "description": "Supports recovery, gut health, and immune function for athletes.",
-      "bestSeller": false,
-      "expand": {
-        "about": "Bovine colostrum is nature's first superfood — rich in immunoglobulins, growth factors, and bioactive compounds. Supports gut health, immune function, and athletic recovery.",
-        "benefits": [
-          "Accelerates post-workout recovery",
-          "Supports gut lining integrity",
-          "Boosts immune function",
-          "Rich in growth factors"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (10g)"
-          ],
-          [
-            "Bovine Colostrum",
-            "10,000mg"
-          ],
-          [
-            "IgG Content",
-            "30%"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "Whey Protein Isolate"
-        ]
-      }
-    },
-    {
-      "id": 2012,
-      "handle": "whey-protein-isolate",
-      "title": "Whey Protein Isolate",
-      "price": 4990,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1675897275724-202ce4be4f23?w=400&q=80",
-      "alt": "Whey protein chocolate powder",
-      "description": "Premium chocolate whey isolate for lean muscle growth.",
-      "bestSeller": false,
-      "expand": {
-        "about": "100% whey protein isolate with minimal fat and lactose. 25g of protein per serving with a complete amino acid profile to support muscle protein synthesis and recovery.",
-        "benefits": [
-          "25g protein per serving",
-          "Low fat and lactose",
-          "Supports muscle growth",
-          "Rich chocolate flavour"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (32g)"
-          ],
-          [
-            "Protein",
-            "25g"
-          ],
-          [
-            "Fat",
-            "1g"
-          ],
-          [
-            "Carbs",
-            "2g"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "Colostrum Powder"
-        ]
-      }
-    },
-    {
-      "id": 2013,
-      "handle": "magnesium-glycinate",
-      "title": "Magnesium Glycinate",
-      "price": 2690,
-      "category": "sleep",
-      "categoryLabel": "Sleep",
-      "image": "https://images.unsplash.com/photo-1729708273852-b63222c8b35d?w=400&q=80",
-      "alt": "Magnesium mineral supplement",
-      "description": "Promotes deep relaxation and restful sleep.",
-      "bestSeller": true,
-      "expand": {
-        "about": "Magnesium chelated with glycine for maximum bioavailability and gentle absorption. Most people are deficient — this form is the easiest on the stomach and most effective for relaxation and sleep quality.",
-        "benefits": [
-          "Promotes deep, restful sleep",
-          "Reduces muscle tension and cramps",
-          "Supports nervous system relaxation",
-          "Gentle on the stomach"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Magnesium (as Glycinate)",
-            "400mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Sleep Formula",
-          "Ashwagandha"
-        ]
-      }
-    },
-    {
-      "id": 2014,
-      "handle": "sleep-formula",
-      "title": "Sleep Formula",
-      "price": 2990,
-      "category": "sleep",
-      "categoryLabel": "Sleep",
-      "image": "https://images.unsplash.com/photo-1650195396825-cbb20b29082f?w=400&q=80",
-      "alt": "Night sky moon — sleep and calm",
-      "description": "A dedicated sleep blend for falling asleep faster and staying asleep.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A comprehensive sleep support formula combining clinically studied ingredients that promote relaxation, reduce time to fall asleep, and improve overall sleep quality without next-day grogginess.",
-        "benefits": [
-          "Faster sleep onset",
-          "Deeper sleep cycles",
-          "Wake feeling refreshed",
-          "No next-day drowsiness"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Sleep Blend",
-            "600mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Magnesium Glycinate",
-          "Ashwagandha"
-        ]
-      }
-    },
-    {
-      "id": 2015,
-      "handle": "ashwagandha-plus",
-      "title": "Ashwagandha Plus",
-      "price": 2950,
-      "category": "sleep",
-      "categoryLabel": "Sleep",
-      "image": "https://images.unsplash.com/photo-1618038754693-ded6426550dd?w=400&q=80",
-      "alt": "Ashwagandha plant leaves",
-      "description": "Enhanced ashwagandha formula for stress relief and better sleep.",
-      "bestSeller": false,
-      "expand": {
-        "about": "An enhanced ashwagandha formula with additional calming compounds. Targets the stress-sleep connection by lowering cortisol levels, promoting relaxation, and improving sleep onset.",
-        "benefits": [
-          "Lowers cortisol for better sleep",
-          "Reduces stress and anxiety",
-          "Promotes relaxation",
-          "Enhanced absorption formula"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 capsule"
-          ],
-          [
-            "Ashwagandha Extract",
-            "600mg"
-          ],
-          [
-            "Calming Blend",
-            "200mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
-        ],
-        "pairsWith": [
-          "Magnesium Glycinate",
-          "Sleep Formula"
-        ]
-      }
-    },
-    {
-      "id": 2016,
-      "handle": "energy-strips",
-      "title": "Energy Strips",
-      "price": 3650,
-      "category": "energy",
-      "categoryLabel": "Energy",
-      "image": "https://images.unsplash.com/photo-1614858819016-2d5e6006f29a?w=400&q=80",
-      "alt": "Energy supplement strips",
-      "description": "Fast-dissolving energy strips for on-the-go mental and physical energy.",
-      "bestSeller": true,
-      "expand": {
-        "about": "Convenient oral strips that dissolve on the tongue for rapid energy delivery. Combines natural caffeine with B vitamins and adaptogens for clean, sustained energy without the crash.",
-        "benefits": [
-          "Instant energy boost",
-          "No water needed",
-          "Clean energy, no crash",
-          "Pocket-sized convenience"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 strip"
-          ],
-          [
-            "Energy Blend",
-            "150mg"
-          ],
-          [
-            "Natural Caffeine",
-            "75mg"
-          ],
-          [
-            "Strips Per Pack",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Energy Powder",
-          "Mushroom Complex 10X"
-        ]
-      }
-    },
-    {
-      "id": 2017,
-      "handle": "energy-powder",
-      "title": "Energy Powder",
-      "price": 3499,
-      "category": "energy",
-      "categoryLabel": "Energy",
-      "image": "https://images.unsplash.com/photo-1768161680813-615df885ff82?w=400&q=80",
-      "alt": "Energy powder supplement scoop",
-      "description": "Guava berry pre-workout energy powder for sustained performance.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A clean energy powder designed for pre-workout or anytime sustained energy. Guava berry flavour with natural caffeine, B vitamins, and amino acids for a smooth energy boost.",
-        "benefits": [
-          "Sustained energy without crash",
-          "Natural caffeine source",
-          "Great guava berry taste",
-          "Supports endurance"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (10g)"
-          ],
-          [
-            "Energy Blend",
-            "3,000mg"
-          ],
-          [
-            "Natural Caffeine",
-            "150mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Energy Strips",
-          "Beetroot"
-        ]
-      }
-    },
-    {
-      "id": 2018,
-      "handle": "beetroot",
-      "title": "Beetroot",
-      "price": 2090,
-      "category": "energy gym",
-      "categoryLabel": "Energy / Gym",
-      "image": "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?w=400&q=80",
-      "alt": "Fresh beetroot sliced",
-      "description": "Natural nitric oxide booster for stamina and blood flow.",
-      "bestSeller": false,
-      "expand": {
-        "about": "Concentrated beetroot extract rich in dietary nitrates, which convert to nitric oxide in the body. Improves blood flow, oxygen delivery, and exercise endurance naturally.",
-        "benefits": [
-          "Boosts natural nitric oxide",
-          "Improves stamina and endurance",
-          "Enhances blood flow",
-          "Supports cardiovascular health"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Beetroot Extract",
-            "1,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Energy Powder",
-          "Creatine Monohydrate"
-        ]
-      }
-    },
-    {
-      "id": 2019,
-      "handle": "beetroot-powder",
-      "title": "Beetroot Powder",
-      "price": 3590,
-      "category": "energy",
-      "categoryLabel": "Energy",
-      "image": "https://images.unsplash.com/photo-1503623758111-863eb2abd7a9?w=400&q=80",
-      "alt": "Fresh beetroots — natural nitric oxide",
-      "description": "Pure beetroot powder for endurance and natural energy.",
-      "bestSeller": false,
-      "expand": {
-        "about": "100% organic beetroot powder — a concentrated source of dietary nitrates. Mix into smoothies, water, or juice for a natural pre-workout that boosts endurance and oxygen efficiency.",
-        "benefits": [
-          "Pure organic beetroot",
-          "Mix into any drink",
-          "Natural pre-workout",
-          "Rich in nitrates and antioxidants"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (5g)"
-          ],
-          [
-            "Organic Beetroot Powder",
-            "5,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Energy Powder",
-          "Mushroom Complex 10X"
-        ]
-      }
-    },
-    {
-      "id": 2020,
-      "handle": "mushroom-complex-10x",
-      "title": "Mushroom Complex 10X",
-      "price": 3590,
-      "category": "energy wellness",
-      "categoryLabel": "Energy / Wellness",
-      "image": "https://images.unsplash.com/photo-1552078115-61dc22459bff?w=400&q=80",
-      "alt": "Variety of functional mushrooms",
-      "description": "10 functional mushrooms for energy, immunity, and adaptogenic support.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A comprehensive blend of 10 functional mushrooms including Lion's Mane, Reishi, Cordyceps, Chaga, and more. Provides broad-spectrum adaptogenic support for energy, immunity, and overall vitality.",
-        "benefits": [
-          "10 mushroom blend",
-          "Adaptogenic energy support",
-          "Immune system boost",
-          "Cognitive and mood support"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "10-Mushroom Blend",
-            "1,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Energy Strips",
-          "Sea Moss"
-        ]
-      }
-    },
-    {
-      "id": 2021,
-      "handle": "complete-multivitamin",
-      "title": "Complete Multivitamin",
-      "price": 3290,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1730388843790-f753ecf9ba94?w=400&q=80",
-      "alt": "Multivitamin supplement capsules",
-      "description": "Full-spectrum daily multivitamin covering all essential nutrients.",
-      "bestSeller": true,
-      "expand": {
-        "about": "A comprehensive daily multivitamin with all essential vitamins and minerals in bioavailable forms. Fills nutritional gaps from modern diets and supports overall health and vitality.",
-        "benefits": [
-          "Covers all essential vitamins & minerals",
-          "Fills nutritional gaps",
-          "Supports energy and immunity",
-          "Bioavailable forms"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Vitamin A",
-            "900mcg"
-          ],
-          [
-            "Vitamin C",
-            "90mg"
-          ],
-          [
-            "Vitamin D3",
-            "2,000 IU"
-          ],
-          [
-            "Zinc",
-            "15mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Vitamin D3",
-          "Gut Health"
-        ]
-      }
-    },
-    {
-      "id": 2022,
-      "handle": "vitamin-d3",
-      "title": "Vitamin D3 2,000 IU",
+      "id": 3001,
+      "handle": "charcoal-facial-cleanser",
+      "title": "Charcoal Facial Cleanser",
       "price": 1990,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1562957429-ff708ca20e95?w=400&q=80",
-      "alt": "Sunshine and vitamin D concept",
-      "description": "Essential sunshine vitamin for immunity, bones, and mood.",
-      "bestSeller": false,
+      "category": "acne",
+      "categoryLabel": "Acne",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/5e7378e79c011e71c9bd172b010a60befcf80290-2048x2048.jpg",
+      "alt": "Charcoal Facial Cleanser — detoxifying face wash",
+      "description": "Detoxifying face wash that pulls pore-clogging impurities with activated charcoal, without stripping your skin.",
+      "bestSeller": true,
       "expand": {
-        "about": "Vitamin D3 (cholecalciferol) — the most bioavailable form of vitamin D. Most people are deficient, especially during autumn and winter. Supports immune function, bone health, and mood regulation.",
+        "about": "A gentle daily cleanser built around activated charcoal, aloe vera, and vitamin E. Lifts out daily buildup, sweat, and excess oil while tea tree oil supports blemish-prone skin. Good for oily, combination and congested skin types.",
         "benefits": [
-          "Supports immune system",
-          "Strengthens bones and teeth",
-          "Supports mood and mental health",
-          "Essential for indoor lifestyles"
+          "Deep-cleans pores without over-drying",
+          "Reduces visible oil and shine",
+          "Calms and conditions with aloe vera",
+          "Tea tree oil for blemish-prone skin"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 softgel"
-          ],
-          [
-            "Vitamin D3",
-            "2,000 IU (50mcg)"
-          ],
-          [
-            "Servings Per Container",
-            "90"
-          ]
+          ["Size", "2 fl oz / 60 ml"],
+          ["Key Actives", "Activated Charcoal, Tea Tree Oil, Vitamin E"],
+          ["Best for", "Oily and blemish-prone"],
+          ["Use", "Morning and night"]
         ],
         "pairsWith": [
-          "Complete Multivitamin",
-          "Magnesium Glycinate"
+          "Hyaluronic Acid Serum",
+          "Aloe & Tea Tree Radiance Gel"
         ]
       }
     },
     {
-      "id": 2023,
-      "handle": "gut-health",
-      "title": "Gut Health",
-      "price": 2999,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1649073586751-695a1f9f76de?w=400&q=80",
-      "alt": "Gut health and digestive wellness",
-      "description": "Comprehensive gut support for digestion and microbiome balance.",
-      "bestSeller": false,
+      "id": 3002,
+      "handle": "hyaluronic-acid-serum",
+      "title": "Hyaluronic Acid Serum",
+      "price": 3000,
+      "category": "hydration sensitive",
+      "categoryLabel": "Hydration / Sensitive",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/cbfe1b43023b73a5c80c631f06bf00a11716ee69-2048x2048.jpg",
+      "alt": "Hyaluronic Acid Serum — multi-weight hydration serum",
+      "description": "Four weights of hyaluronic acid, each targeting a different skin layer for plump, bouncy hydration.",
+      "bestSeller": true,
       "expand": {
-        "about": "A multi-action gut health formula that supports digestive function, microbiome diversity, and gut lining integrity. A healthy gut is the foundation of overall wellness, immunity, and even mood.",
+        "about": "A lightweight water-based serum featuring four different molecular weights of hyaluronic acid and its derivatives. Each type pulls moisture into a different layer, so skin stays hydrated through the day instead of dehydrated by mid-afternoon. Safe for all skin types including sensitive.",
         "benefits": [
-          "Supports healthy digestion",
-          "Promotes microbiome balance",
-          "Strengthens gut lining",
-          "Reduces bloating"
+          "Multi-weight hyaluronic acid for deeper hydration",
+          "Plumps fine lines caused by dehydration",
+          "Sinks in fast, no sticky finish",
+          "Works under any moisturiser"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Gut Health Blend",
-            "800mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "Sodium Hyaluronate (4 weights), Glycerin"],
+          ["Made in", "USA"],
+          ["Use", "AM and PM, on damp skin"]
         ],
         "pairsWith": [
-          "Probiotic 40 Billion",
-          "Sea Moss"
+          "Vitamin C Serum",
+          "Skin Hydration Cream"
         ]
       }
     },
     {
-      "id": 2024,
-      "handle": "probiotic-40-billion",
-      "title": "Probiotic 40 Billion",
-      "price": 3090,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1567011345445-fd175f248019?w=400&q=80",
-      "alt": "Probiotic supplement capsules",
-      "description": "High-strength probiotic with prebiotics for gut and immune health.",
-      "bestSeller": false,
+      "id": 3003,
+      "handle": "vitamin-c-serum",
+      "title": "Vitamin C Serum",
+      "price": 2000,
+      "category": "brightening",
+      "categoryLabel": "Brightening",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/02e38ac1697203a7e99baa00631bdb6c68bff6d2-2048x2048.jpg",
+      "alt": "Vitamin C Serum — brightening and antioxidant",
+      "description": "Triple-form vitamin C with ferulic acid to brighten tone, fade dark spots and defend against daily damage.",
+      "bestSeller": true,
       "expand": {
-        "about": "40 billion CFU multi-strain probiotic with added prebiotics for maximum effectiveness. Supports digestive health, immune function, and nutrient absorption with clinically studied strains.",
+        "about": "A brightening serum powered by three forms of vitamin C — L-ascorbic acid for potency, plus magnesium ascorbyl phosphate and 3-glyceryl ascorbate for stability. Ferulic acid amplifies the antioxidant shield, while calendula and chamomile keep the formula kind to the skin.",
         "benefits": [
-          "40 billion CFU per serving",
-          "Multi-strain formula",
-          "Includes prebiotic fibre",
-          "Supports immune function"
+          "Evens out dark spots and uneven tone",
+          "Brightens a dull complexion",
+          "Antioxidant defence vs pollution & UV stress",
+          "Supports natural collagen"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 capsule"
-          ],
-          [
-            "Probiotic Blend",
-            "40 Billion CFU"
-          ],
-          [
-            "Prebiotic Fibre",
-            "100mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "L-Ascorbic Acid, Ferulic Acid, Calendula"],
+          ["Made in", "USA"],
+          ["Use", "AM — always layer sunscreen over it"]
         ],
         "pairsWith": [
-          "Gut Health",
-          "Complete Multivitamin"
+          "Hyaluronic Acid Serum",
+          "Anti-Aging Moisturizer"
         ]
       }
     },
     {
-      "id": 2025,
-      "handle": "sea-moss",
-      "title": "Sea Moss",
-      "price": 2590,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1583915221213-4106c49411d3?w=400&q=80",
-      "alt": "Sea moss golden seaweed",
-      "description": "Nutrient-dense superfood with 92 essential minerals.",
+      "id": 3004,
+      "handle": "dark-spot-serum-sensitive-skin",
+      "title": "Dark Spot Serum for Sensitive Skin",
+      "price": 2790,
+      "category": "brightening sensitive",
+      "categoryLabel": "Brightening / Sensitive",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/05d41074173d664f625c7f8773da18576c823b2e-2048x2048.jpg",
+      "alt": "Dark Spot Serum for Sensitive Skin — gentle tone correction",
+      "description": "Brightens without brightening acids. Adaptogenic mushroom extracts even tone on reactive skin.",
       "bestSeller": false,
       "expand": {
-        "about": "Irish sea moss (Chondrus crispus) contains 92 of the 102 minerals the body needs. A trending superfood that supports thyroid function, digestion, and immune health with a dense mineral profile.",
+        "about": "A gentle dark-spot serum designed for skin that reacts badly to kojic acid, strong acids, or hydroquinone. Adaptogenic mushrooms (shiitake, turkey tail) plus jackfruit and rice extract fade uneven tone over time, while chamomile and calendula keep things calm.",
         "benefits": [
-          "92 essential minerals",
-          "Supports thyroid function",
-          "Boosts immune health",
-          "Promotes healthy skin"
+          "Fades dark spots without irritation",
+          "No kojic acid, no hydroquinone",
+          "Calms redness with chamomile & calendula",
+          "Safe for sensitive and reactive skin"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Sea Moss Extract",
-            "1,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "Shiitake, Turkey Tail, Jackfruit Extract"],
+          ["Best for", "Sensitive, reactive, easily flushed skin"],
+          ["Use", "AM or PM after cleansing"]
         ],
         "pairsWith": [
-          "Complete Multivitamin",
-          "Mushroom Complex 10X"
+          "Hyaluronic Acid Serum",
+          "Skin Hydration Cream"
         ]
       }
     },
     {
-      "id": 2026,
-      "handle": "platinum-turmeric",
-      "title": "Platinum Turmeric",
-      "price": 2590,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1768729341217-0e11cb959252?w=400&q=80",
-      "alt": "Turmeric root golden spice",
-      "description": "High-potency turmeric with enhanced bioavailability for inflammation.",
+      "id": 3005,
+      "handle": "pdrn-brightening-serum",
+      "title": "PDRN Brightening Serum",
+      "price": 3200,
+      "category": "brightening anti-aging",
+      "categoryLabel": "Brightening / Anti-Aging",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/6421e6baecda23a06f99c09c7678e0d16ed0388a-2048x2048.jpg",
+      "alt": "PDRN Brightening Serum — K-beauty inspired radiance",
+      "description": "K-beauty inspired PDRN, peptides and hyaluronic acid for a glassy, lit-from-within glow.",
       "bestSeller": false,
       "expand": {
-        "about": "Premium turmeric extract with enhanced bioavailability for maximum anti-inflammatory effects. Curcumin, the active compound, supports joint health, recovery, and overall wellness.",
+        "about": "PDRN (polydeoxyribonucleotide) is a regenerative ingredient from Korean skincare, often used in aesthetic clinics. Paired here with Acetyl Hexapeptide-8 and sodium hyaluronate in a lightweight hydrating base that absorbs fast and leaves skin looking plump and radiant.",
         "benefits": [
-          "Powerful anti-inflammatory",
-          "Supports joint health",
-          "Enhanced absorption formula",
-          "Antioxidant protection"
+          "Plumps, smooths and refines texture",
+          "Boosts surface radiance and glow",
+          "Peptides support elasticity over time",
+          "Lightweight, layers under any routine"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 capsule"
-          ],
-          [
-            "Turmeric Extract (95% curcuminoids)",
-            "500mg"
-          ],
-          [
-            "BioPerine",
-            "5mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "PDRN, Acetyl Hexapeptide-8, Panthenol"],
+          ["Made in", "USA"],
+          ["Use", "AM and PM"]
         ],
         "pairsWith": [
-          "Collagen Peptides",
-          "Gut Health"
+          "Hyaluronic Acid Serum",
+          "Anti-Aging Moisturizer"
         ]
       }
     },
     {
-      "id": 2027,
-      "handle": "collagen-peptides",
-      "title": "Collagen Peptides",
-      "price": 3390,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1647004692483-c5d942fe1137?w=400&q=80",
-      "alt": "Collagen peptides for skin health",
-      "description": "Grass-fed hydrolyzed collagen for skin, joints, and gut health.",
-      "bestSeller": false,
-      "expand": {
-        "about": "100% grass-fed, hydrolyzed collagen peptides for maximum absorption. Supports skin elasticity, joint flexibility, and gut lining integrity. Type I and III collagen — the most abundant types in the human body.",
-        "benefits": [
-          "Improves skin elasticity",
-          "Supports joint flexibility",
-          "Strengthens gut lining",
-          "Promotes healthy hair and nails"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (10g)"
-          ],
-          [
-            "Hydrolyzed Collagen Peptides",
-            "10,000mg"
-          ],
-          [
-            "Type I & III Collagen",
-            "10,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Platinum Turmeric",
-          "Vitamin D3"
-        ]
-      }
-    },
-    {
-      "id": 2028,
-      "handle": "ginkgo-biloba-ginseng",
-      "title": "Ginkgo Biloba + Ginseng",
-      "price": 2990,
-      "category": "focus",
-      "categoryLabel": "Focus",
-      "image": "https://images.unsplash.com/photo-1630250109419-ce82a25477d7?w=400&q=80",
-      "alt": "Ginkgo biloba green leaves",
-      "description": "Traditional nootropic duo for mental sharpness and cerebral blood flow.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A time-tested combination of Ginkgo Biloba and Panax Ginseng. Ginkgo improves cerebral blood flow and oxygen delivery to the brain, while Ginseng enhances mental performance and reduces fatigue.",
-        "benefits": [
-          "Improves cerebral blood flow",
-          "Enhances mental sharpness",
-          "Reduces mental fatigue",
-          "Supports memory and recall"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Ginkgo Biloba Extract",
-            "120mg"
-          ],
-          [
-            "Panax Ginseng Extract",
-            "200mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Lion's Mane Mushroom",
-          "Brain & Focus Formula"
-        ]
-      }
-    },
-    {
-      "id": 2029,
-      "handle": "hydration-powder-lemonade",
-      "title": "Hydration Powder",
-      "price": 3499,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1741520504652-27c2a6c0015e?w=400&q=80",
-      "alt": "Lemonade electrolyte hydration drink",
-      "description": "Lemonade-flavoured electrolyte powder for optimal hydration during training.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A refreshing lemonade-flavoured electrolyte powder formulated for athletes. Replenishes sodium, potassium, magnesium, and other minerals lost through sweat during intense training sessions.",
-        "benefits": [
-          "Replenishes key electrolytes",
-          "Prevents dehydration",
-          "Supports endurance",
-          "Refreshing lemonade flavour"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (10g)"
-          ],
-          [
-            "Sodium",
-            "500mg"
-          ],
-          [
-            "Potassium",
-            "200mg"
-          ],
-          [
-            "Magnesium",
-            "60mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "Whey Protein Isolate"
-        ]
-      }
-    },
-    {
-      "id": 2030,
-      "handle": "plant-protein-vanilla",
-      "title": "Plant Protein",
-      "price": 4490,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1773051428154-e542f2656136?w=400&q=80",
-      "alt": "Plant protein shake vanilla",
-      "description": "Vanilla plant-based protein blend for vegan athletes and muscle recovery.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A smooth vanilla plant-based protein powder combining pea, rice, and hemp proteins for a complete amino acid profile. Ideal for vegan athletes or anyone who prefers plant-based nutrition.",
-        "benefits": [
-          "Complete amino acid profile",
-          "Vegan-friendly protein source",
-          "Easy to digest",
-          "Smooth vanilla flavour"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 scoop (35g)"
-          ],
-          [
-            "Protein",
-            "22g"
-          ],
-          [
-            "Fat",
-            "2g"
-          ],
-          [
-            "Carbs",
-            "4g"
-          ],
-          [
-            "Servings Per Container",
-            "28"
-          ]
-        ],
-        "pairsWith": [
-          "Creatine Monohydrate",
-          "L-Citrulline & L-Arginine Stack"
-        ]
-      }
-    },
-    {
-      "id": 2031,
-      "handle": "l-glutamine-powder",
-      "title": "L-Glutamine Powder",
+      "id": 3006,
+      "handle": "skin-hydration-cream",
+      "title": "Skin Hydration Cream",
       "price": 2690,
-      "category": "gym",
-      "categoryLabel": "Gym",
-      "image": "https://images.unsplash.com/photo-1616526629705-981c263b68bc?w=400&q=80",
-      "alt": "L-Glutamine amino acid powder",
-      "description": "Supports muscle recovery, gut health, and immune function after training.",
+      "category": "hydration",
+      "categoryLabel": "Hydration",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/cc05128df99df86d4a12f7f4f7252d08c15e2fb6-2048x2048.jpg",
+      "alt": "Skin Hydration Cream — lightweight daily moisturiser",
+      "description": "Lightweight moisturiser with hyaluronic acid, avocado oil and vitamin E. The finishing step in any routine.",
       "bestSeller": false,
       "expand": {
-        "about": "Pure L-Glutamine — the most abundant amino acid in muscle tissue. Intense training depletes glutamine stores, slowing recovery and weakening immune function. Replenishing it accelerates muscle repair and supports gut barrier integrity.",
+        "about": "A daily moisturiser that seals in whatever you layered before. Hyaluronic acid pulls water into the skin, avocado oil and vitamin E keep the barrier happy, and a cool cucumber note makes it pleasant to use morning or night.",
         "benefits": [
-          "Accelerates muscle recovery",
-          "Supports immune function post-training",
-          "Strengthens gut barrier",
-          "Reduces post-workout soreness"
+          "Locks in serum hydration",
+          "Supports a healthy moisture barrier",
+          "Lightweight — not greasy",
+          "Works under SPF and makeup"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 scoop (5g)"
-          ],
-          [
-            "L-Glutamine",
-            "5,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
+          ["Size", "2 oz / 56 g"],
+          ["Key Actives", "Hyaluronic Acid, Avocado Oil, Vitamin E"],
+          ["Best for", "Normal to dry skin"],
+          ["Use", "AM and PM"]
         ],
         "pairsWith": [
-          "Whey Protein Isolate",
-          "Creatine Monohydrate"
+          "Hyaluronic Acid Serum",
+          "Vitamin C Serum"
         ]
       }
     },
     {
-      "id": 2032,
-      "handle": "joint-support",
-      "title": "Joint Support",
-      "price": 2990,
-      "category": "gym wellness",
-      "categoryLabel": "Gym / Wellness",
-      "image": "https://images.unsplash.com/photo-1571385778997-1ae4643264e6?w=400&q=80",
-      "alt": "Joint health and mobility exercise",
-      "description": "Comprehensive joint formula for mobility, flexibility, and pain relief.",
-      "bestSeller": false,
+      "id": 3007,
+      "handle": "anti-aging-moisturizer",
+      "title": "Anti-Aging Moisturizer",
+      "price": 4000,
+      "category": "anti-aging",
+      "categoryLabel": "Anti-Aging",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/4a9c689ff56ee1311fb28263dcb0106d2d95fb82-2048x2048.jpg",
+      "alt": "Anti-Aging Moisturizer — retinol, peptides and ceramides",
+      "description": "Retinol, peptides and ceramides in a rich daily cream. Smooths fine lines without sensitising skin.",
+      "bestSeller": true,
       "expand": {
-        "about": "A comprehensive joint health formula combining glucosamine, chondroitin, MSM, and anti-inflammatory botanicals. Supports cartilage repair, reduces stiffness, and keeps joints flexible for active lifestyles.",
+        "about": "A multi-active anti-aging moisturiser. Encapsulated retinol supports cell turnover, Acetyl Octapeptide-3 softens the look of expression lines, and ceramide NP plus shea butter keep the barrier strong so you can use actives without irritation. Designed for mature and maturing skin.",
         "benefits": [
-          "Supports cartilage health",
-          "Reduces joint stiffness",
-          "Improves mobility and flexibility",
-          "Anti-inflammatory support"
+          "Smooths fine lines and texture",
+          "Supports elasticity with peptides",
+          "Ceramides reinforce the moisture barrier",
+          "Rich but not heavy"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Glucosamine HCl",
-            "750mg"
-          ],
-          [
-            "Chondroitin Sulfate",
-            "300mg"
-          ],
-          [
-            "MSM",
-            "250mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "1.7 fl oz / 50 ml"],
+          ["Key Actives", "Retinol, Acetyl Octapeptide-3, Ceramide NP"],
+          ["Made in", "USA"],
+          ["Use", "PM only — layer SPF in the AM"]
         ],
         "pairsWith": [
-          "Collagen Peptides",
-          "Platinum Turmeric"
+          "PDRN Brightening Serum",
+          "Gua Sha Face Oil"
         ]
       }
     },
     {
-      "id": 2033,
-      "handle": "chaga-mushroom",
-      "title": "Chaga Mushroom",
-      "price": 2990,
-      "category": "sleep wellness",
-      "categoryLabel": "Sleep / Wellness",
-      "image": "https://images.unsplash.com/photo-1695426585038-6f76e8310591?w=400&q=80",
-      "alt": "Chaga mushroom on birch tree",
-      "description": "Calming adaptogenic mushroom for relaxation and immune support.",
+      "id": 3008,
+      "handle": "skin-firming-cream",
+      "title": "Skin Firming Cream",
+      "price": 3899,
+      "category": "anti-aging",
+      "categoryLabel": "Anti-Aging",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/f6ff12974d89aad6c931eb1f6a33fd9ad23d8f54-2048x2048.jpg",
+      "alt": "Skin Firming Cream — DMAE and CoQ10 treatment",
+      "description": "DMAE, hyaluronic acid and CoQ10 work together on the look of firmness, bounce and tone.",
       "bestSeller": false,
       "expand": {
-        "about": "Wild-harvested Chaga mushroom extract — one of nature's most potent adaptogens. Supports immune function, reduces oxidative stress, and promotes a calm, balanced state that helps prepare the body for restful sleep.",
+        "about": "A focused firming cream for skin that's starting to lose snap. DMAE visibly tightens, hyaluronic acid plumps, and Coenzyme Q10 brings antioxidant support. Avocado and almond oils round out the texture so it feels more like a treat than a treatment.",
         "benefits": [
-          "Powerful adaptogenic support",
-          "Promotes calm and relaxation",
-          "Rich in antioxidants",
-          "Supports immune health"
+          "Visibly firmer, more toned look",
+          "Hydrates without feeling heavy",
+          "CoQ10 antioxidant support",
+          "Layer under your usual moisturiser"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Chaga Mushroom Extract",
-            "500mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "2 oz / 56 g"],
+          ["Key Actives", "DMAE, Hyaluronic Acid, CoQ10"],
+          ["Best for", "Mature skin, loss of firmness"],
+          ["Use", "PM, 2–3x per week to start"]
         ],
         "pairsWith": [
-          "Magnesium Glycinate",
-          "Mushroom Complex 10X"
+          "Anti-Aging Moisturizer",
+          "Gua Sha Face Oil"
         ]
       }
     },
     {
-      "id": 2034,
-      "handle": "moringa-pure",
-      "title": "Moringa Pure",
-      "price": 2690,
-      "category": "energy wellness",
-      "categoryLabel": "Energy / Wellness",
-      "image": "https://images.unsplash.com/photo-1667928729816-0ed8c59cd3c9?w=400&q=80",
-      "alt": "Moringa green leaves superfood",
-      "description": "Nutrient-dense superfood leaf for natural energy and vitality.",
+      "id": 3009,
+      "handle": "gua-sha-face-oil",
+      "title": "Gua Sha Face Oil",
+      "price": 1990,
+      "category": "anti-aging hydration",
+      "categoryLabel": "Anti-Aging / Hydration",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/fa9b7741ca162cfa97c2fef854cef6a0a11a7365-2048x2048.jpg",
+      "alt": "Gua Sha Face Oil — botanical facial oil",
+      "description": "Twelve botanical oils in one silky blend. Perfect slip for gua sha, great on its own at night.",
       "bestSeller": false,
       "expand": {
-        "about": "100% pure Moringa oleifera leaf — packed with vitamins, minerals, and antioxidants. Known as the 'miracle tree,' Moringa provides natural, sustained energy from its rich nutrient density rather than stimulants.",
+        "about": "A blend of twelve cold-pressed botanical oils — including rosehip, grapeseed, camellia, pomegranate and baobab — that delivers antioxidants and fatty acids where skin wants them. Light enough for daily use, slippy enough for gua sha, facial massage or jade roller.",
         "benefits": [
-          "Natural energy from nutrients",
-          "Rich in iron and B vitamins",
-          "Powerful antioxidant protection",
-          "Supports overall vitality"
+          "Smooth slip for gua sha and massage",
+          "Supports elasticity and glow",
+          "Rich in antioxidants and omegas",
+          "Non-greasy, absorbs cleanly"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Moringa Leaf Powder",
-            "1,000mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "Rosehip, Grapeseed, Camellia, Pomegranate Oils"],
+          ["Best for", "All skin types, especially dry"],
+          ["Use", "PM as last step, or before gua sha"]
         ],
         "pairsWith": [
-          "Complete Multivitamin",
-          "Energy Strips"
+          "Skin Firming Cream",
+          "Anti-Aging Moisturizer"
         ]
       }
     },
     {
-      "id": 2035,
-      "handle": "energy-powder-lychee",
-      "title": "Energy Powder (Lychee)",
-      "price": 3499,
-      "category": "energy",
-      "categoryLabel": "Energy",
-      "image": "https://images.unsplash.com/photo-1597975371270-cf80e4f54921?w=400&q=80",
-      "alt": "Fresh lychee fruit",
-      "description": "Lychee-flavoured clean energy powder for all-day performance.",
+      "id": 3010,
+      "handle": "aloe-tea-tree-radiance-gel",
+      "title": "Aloe & Tea Tree Radiance Gel",
+      "price": 3500,
+      "category": "acne sensitive",
+      "categoryLabel": "Acne / Sensitive",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/2bda4fa36a54412499bd1abc9e9f2dce3efeebb9-2048x2048.jpg",
+      "alt": "Aloe & Tea Tree Radiance Gel — soothing spot-friendly gel",
+      "description": "Cooling aloe gel with tea tree and willow bark. Calms redness and visibly reduces blemishes.",
       "bestSeller": false,
       "expand": {
-        "about": "A refreshing lychee-flavoured energy powder with natural caffeine, B vitamins, and amino acids. Provides clean, sustained energy without the crash — perfect as a pre-workout or afternoon pick-me-up.",
+        "about": "A soothing leave-on gel built for skin that breaks out easily. Aloe vera and cucumber calm redness on contact, black willow bark (nature's salicylic acid) works on blemishes, and tea tree oil supports clarity. Use all over or as a targeted spot treatment.",
         "benefits": [
-          "Clean sustained energy",
-          "Natural caffeine source",
-          "Refreshing lychee flavour",
-          "No crash formula"
+          "Calms red, angry-looking skin",
+          "Reduces look of blemishes",
+          "Gentle enough for daily use",
+          "Lightweight — great under SPF"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 scoop (10g)"
-          ],
-          [
-            "Energy Blend",
-            "3,000mg"
-          ],
-          [
-            "Natural Caffeine",
-            "150mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
+          ["Size", "2.2 fl oz / 62 g"],
+          ["Key Actives", "Aloe Vera, Tea Tree Oil, Black Willow Bark"],
+          ["Best for", "Blemish-prone, sensitive, reactive skin"],
+          ["Use", "AM/PM or as a spot treatment"]
         ],
         "pairsWith": [
-          "Energy Strips",
-          "Beetroot"
+          "Charcoal Facial Cleanser",
+          "Hyaluronic Acid Serum"
         ]
       }
     },
     {
-      "id": 2036,
-      "handle": "berberine",
-      "title": "Berberine",
-      "price": 3990,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1607721098274-e54cbfab475d?w=400&q=80",
-      "alt": "Natural herb supplement — Berberine",
-      "description": "Supports healthy blood sugar, metabolism, and cardiovascular health.",
+      "id": 3011,
+      "handle": "peppermint-coffee-scrub",
+      "title": "Peppermint Coffee Scrub",
+      "price": 2200,
+      "category": "body",
+      "categoryLabel": "Body",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/c623d60bfe4541ffc90c4adaea54f660b66fc625-2048x2048.jpg",
+      "alt": "Peppermint Coffee Scrub — body exfoliator",
+      "description": "Organic coffee grounds, brown sugar and peppermint oil. Wakes up dull skin and boosts circulation.",
       "bestSeller": false,
       "expand": {
-        "about": "Berberine is a bioactive compound found in several plants. Clinically studied for its ability to support healthy blood sugar levels, improve insulin sensitivity, and support cardiovascular health. Often called 'nature's metformin.'",
+        "about": "A body scrub that smells like your favourite Monday morning. Fresh-ground organic coffee is loaded with antioxidants, sugar and sea salt buff away dullness, and peppermint oil gives that cool, tingly finish. Great for cellulite-prone zones and tired-looking legs.",
         "benefits": [
-          "Supports healthy blood sugar",
-          "Improves insulin sensitivity",
-          "Supports heart health",
-          "Promotes healthy metabolism"
+          "Exfoliates without stripping",
+          "Boosts circulation and skin tone",
+          "Antioxidant-rich organic coffee",
+          "Cool, invigorating peppermint finish"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 capsule"
-          ],
-          [
-            "Berberine HCl",
-            "500mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
+          ["Size", "4 oz / 113 g"],
+          ["Key Actives", "Organic Coffee, Brown Sugar, Peppermint Oil"],
+          ["Made in", "USA"],
+          ["Use", "In the shower, 2–3x per week"]
         ],
         "pairsWith": [
-          "Complete Multivitamin",
-          "Platinum Turmeric"
+          "Skin Hydration Cream",
+          "Charcoal Facial Cleanser"
         ]
       }
     },
     {
-      "id": 2037,
-      "handle": "resveratrol-600",
-      "title": "Resveratrol 50% 600mg",
-      "price": 2590,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1663687552745-f76a59fd7bcc?w=400&q=80",
-      "alt": "Red grapes — source of resveratrol",
-      "description": "Potent antioxidant for anti-aging, heart health, and cellular protection.",
+      "id": 3012,
+      "handle": "peptide-hair-growth-serum",
+      "title": "Peptide Hair Growth Serum",
+      "price": 6500,
+      "category": "hair",
+      "categoryLabel": "Hair",
+      "image": "https://cdn.sanity.io/images/g0smbdlu/production/2875e33df3917f8fae8b2cbf5d803c80b719529b-2048x2048.jpg",
+      "alt": "Peptide Hair Growth Serum — scalp and hair treatment",
+      "description": "Five peptides plus rosemary and saw palmetto. Nourishes the scalp for fuller, healthier-looking hair.",
       "bestSeller": false,
       "expand": {
-        "about": "High-potency Resveratrol standardised to 50% trans-resveratrol. A powerful polyphenol found in red grapes, studied for its anti-aging, cardiovascular, and neuroprotective properties. Activates sirtuins — the longevity genes.",
+        "about": "A leave-in scalp serum built around five biomimetic peptides (sh-Polypeptide-11, sh-Polypeptide-1, sh-Oligopeptide-2, sh-Oligopeptide-10, sh-Polypeptide-9) plus rosemary, saw palmetto and ginseng. Lightweight and non-greasy — massages into the scalp and absorbs fast with no sticky residue.",
         "benefits": [
-          "Powerful anti-aging antioxidant",
-          "Supports cardiovascular health",
-          "Activates longevity pathways",
-          "Neuroprotective properties"
+          "Nourishes the scalp at the root",
+          "Supports fuller-looking hair",
+          "Rosemary and saw palmetto for scalp health",
+          "Lightweight — no greasy residue"
         ],
         "facts": [
-          [
-            "Serving Size",
-            "1 capsule"
-          ],
-          [
-            "Resveratrol (50% trans-resveratrol)",
-            "600mg"
-          ],
-          [
-            "Servings Per Container",
-            "60"
-          ]
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "5 Biomimetic Peptides, Rosemary, Saw Palmetto"],
+          ["Made in", "USA"],
+          ["Use", "Daily on clean, damp scalp"]
         ],
         "pairsWith": [
-          "Berberine",
-          "Collagen Peptides"
-        ]
-      }
-    },
-    {
-      "id": 2038,
-      "handle": "liver-support",
-      "title": "Liver Support",
-      "price": 2990,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1688845608224-89dcf2fed871?w=400&q=80",
-      "alt": "Milk thistle flower — liver support",
-      "description": "Supports liver detoxification and healthy liver function.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A comprehensive liver health formula with milk thistle, NAC, and artichoke extract. Supports your body's natural detoxification pathways, protects liver cells from oxidative damage, and promotes healthy bile production.",
-        "benefits": [
-          "Supports natural detoxification",
-          "Protects liver cells",
-          "Promotes healthy bile flow",
-          "Antioxidant liver protection"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Milk Thistle Extract",
-            "250mg"
-          ],
-          [
-            "N-Acetyl Cysteine",
-            "200mg"
-          ],
-          [
-            "Artichoke Extract",
-            "150mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Gut Health",
-          "Complete Multivitamin"
-        ]
-      }
-    },
-    {
-      "id": 2039,
-      "handle": "digestive-gut-health-strips",
-      "title": "Digestive + Gut Health Strips",
-      "price": 3590,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1634463278803-f9f71890e67d?w=400&q=80",
-      "alt": "Digestive health supplement strips",
-      "description": "Fast-dissolving strips with probiotics and digestive enzymes.",
-      "bestSeller": false,
-      "expand": {
-        "about": "Convenient oral strips that combine probiotics with digestive enzymes for on-the-go gut support. Dissolve on the tongue after meals to aid digestion, reduce bloating, and support microbiome balance.",
-        "benefits": [
-          "Probiotics + digestive enzymes",
-          "Reduces bloating after meals",
-          "Convenient strip format",
-          "No water needed"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "1 strip"
-          ],
-          [
-            "Probiotic Blend",
-            "5 Billion CFU"
-          ],
-          [
-            "Digestive Enzyme Blend",
-            "100mg"
-          ],
-          [
-            "Strips Per Pack",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Gut Health",
-          "Probiotic 40 Billion"
-        ]
-      }
-    },
-    {
-      "id": 2040,
-      "handle": "hair-skin-nails-essentials",
-      "title": "Hair, Skin & Nails Essentials",
-      "price": 3290,
-      "category": "wellness",
-      "categoryLabel": "Wellness",
-      "image": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=400&q=80",
-      "alt": "Healthy hair and glowing skin",
-      "description": "Biotin, keratin, and vitamins for healthy hair, glowing skin, and strong nails.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A targeted beauty-from-within formula with biotin, keratin, vitamin E, and zinc. Supports healthy hair growth, skin elasticity, and nail strength from the inside out.",
-        "benefits": [
-          "Supports healthy hair growth",
-          "Promotes skin elasticity",
-          "Strengthens brittle nails",
-          "Beauty from within"
-        ],
-        "facts": [
-          [
-            "Serving Size",
-            "2 capsules"
-          ],
-          [
-            "Biotin",
-            "5,000mcg"
-          ],
-          [
-            "Keratin",
-            "100mg"
-          ],
-          [
-            "Vitamin E",
-            "15mg"
-          ],
-          [
-            "Zinc",
-            "10mg"
-          ],
-          [
-            "Servings Per Container",
-            "30"
-          ]
-        ],
-        "pairsWith": [
-          "Collagen Peptides",
-          "Complete Multivitamin"
+          "Vitamin C Serum",
+          "Hyaluronic Acid Serum"
         ]
       }
     }

@@ -3,7 +3,7 @@
     <div class="best-sellers__head">
       <div class="section-head" style="margin-bottom: 0; text-align: left;">
         <h2>{{ section.settings.heading | default: 'Best Sellers' }}</h2>
-        <p>{{ section.settings.subheading | default: 'Our most popular supplements' }}</p>
+        <p>{{ section.settings.subheading | default: 'The products our customers reach for first' }}</p>
       </div>
       <a href="{{ section.settings.view_all_link | default: '/collections/all' }}" class="best-sellers__link">Shop All &rarr;</a>
     </div>
@@ -21,13 +21,13 @@
             </div>
             <div class="card__body" style="padding: 16px 0 0;">
               <span class="card__tag" style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary);">
-                {%- case i -%}{%- when 1 -%}Focus{%- when 2 -%}Sleep{%- when 3 -%}Energy{%- when 4 -%}Wellness{%- endcase -%}
+                {%- case i -%}{%- when 1 -%}Acne{%- when 2 -%}Hydration{%- when 3 -%}Brightening{%- when 4 -%}Anti-Aging{%- endcase -%}
               </span>
               <h3 class="card__title" style="font-family: var(--font-heading); font-size: 1rem; margin: 4px 0;">
-                {%- case i -%}{%- when 1 -%}Lion's Mane Mushroom{%- when 2 -%}Magnesium Glycinate{%- when 3 -%}Energy Strips{%- when 4 -%}Complete Multivitamin{%- endcase -%}
+                {%- case i -%}{%- when 1 -%}Charcoal Facial Cleanser{%- when 2 -%}Hyaluronic Acid Serum{%- when 3 -%}Vitamin C Serum{%- when 4 -%}Anti-Aging Moisturizer{%- endcase -%}
               </h3>
               <span class="card__price" style="font-size: 14px; color: var(--color-text-body);">
-                {%- case i -%}{%- when 1 -%}&pound;24.90{%- when 2 -%}&pound;26.90{%- when 3 -%}&pound;36.50{%- when 4 -%}&pound;21.90{%- endcase -%}
+                {%- case i -%}{%- when 1 -%}$19.90{%- when 2 -%}$30.00{%- when 3 -%}$20.00{%- when 4 -%}$40.00{%- endcase -%}
               </span>
             </div>
           </div>
@@ -101,7 +101,7 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Our most popular supplements"
+      "default": "The products our customers reach for first"
     },
     {
       "type": "collection",

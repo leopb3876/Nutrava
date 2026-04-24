@@ -185,7 +185,7 @@
                 results.innerHTML = '<div class="search-result__empty">No products found</div>';
               } else {
                 results.innerHTML = products.map(function(p) {
-                  return '<a href="' + p.url + '" class="search-result"><strong>' + p.title + '</strong><span class="search-result__price">\u00A3' + (p.price / 100).toFixed(2) + '</span></a>';
+                  return '<a href="' + p.url + '" class="search-result"><strong>' + p.title + '</strong><span class="search-result__price">$' + (p.price / 100).toFixed(2) + '</span></a>';
                 }).join('');
               }
               results.classList.add('has-results');
