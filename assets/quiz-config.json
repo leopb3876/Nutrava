@@ -1,414 +1,139 @@
 {
   "stacks": {
-    "focus": {
-      "name": "Focus & Clarity Stack",
-      "handle": "focus-stack",
-      "description": "Sharpen your mind with science-backed nootropics",
+    "acne": {
+      "name": "Clear Skin Routine",
+      "handle": "clear-skin-routine",
+      "description": "A gentle-but-effective daily rhythm for breakouts and blemish-prone skin",
       "products": [
-        { "handle": "lions-mane-mushroom", "benefit": "Cognitive function & memory" },
-        { "handle": "brain-focus-formula", "benefit": "Comprehensive brain support" },
-        { "handle": "mushroom-focus-strips", "benefit": "On-the-go focus boost" },
-        { "handle": "focus-powder", "benefit": "Sustained mental performance" }
-      ],
-      "tiers": {
-        "essential":   { "label": "Essential",   "tag": null,           "productIndices": [0, 1] },
-        "recommended": { "label": "Recommended", "tag": "Most Popular", "productIndices": [0, 1, 2] },
-        "complete":    { "label": "Complete",    "tag": "Best Value",   "productIndices": [0, 1, 2, 3] }
-      }
+        { "handle": "charcoal-facial-cleanser", "benefit": "Deep-cleans pores without stripping" },
+        { "handle": "hyaluronic-acid-serum", "benefit": "Hydration that won't clog pores" },
+        { "handle": "aloe-tea-tree-radiance-gel", "benefit": "Calms redness, targets blemishes" },
+        { "handle": "vitamin-c-serum", "benefit": "Fades post-acne marks over time" }
+      ]
     },
-    "gym": {
-      "name": "Performance Stack",
-      "handle": "gym-performance-stack",
-      "description": "Train harder, recover faster, build more muscle",
+    "anti-aging": {
+      "name": "Age-Defying Routine",
+      "handle": "anti-aging-routine",
+      "description": "Antioxidants, peptides and retinol in a kind-to-skin rhythm",
       "products": [
-        { "handle": "creatine-monohydrate", "benefit": "Strength & power output" },
-        { "handle": "ashwagandha", "benefit": "Recovery & stress reduction" },
-        { "handle": "l-citrulline-l-arginine", "benefit": "Blood flow & pumps" },
-        { "handle": "whey-protein-isolate", "benefit": "Lean muscle growth" }
-      ],
-      "tiers": {
-        "essential":   { "label": "Essential",   "tag": null,           "productIndices": [0, 1] },
-        "recommended": { "label": "Recommended", "tag": "Most Popular", "productIndices": [0, 1, 2] },
-        "complete":    { "label": "Complete",    "tag": "Best Value",   "productIndices": [0, 1, 2, 3] }
-      }
+        { "handle": "hyaluronic-acid-serum", "benefit": "Plumps fine lines caused by dehydration" },
+        { "handle": "gua-sha-face-oil", "benefit": "Slip for facial massage + antioxidants" },
+        { "handle": "vitamin-c-serum", "benefit": "Brightens tone and supports collagen" },
+        { "handle": "anti-aging-moisturizer", "benefit": "Retinol + peptides for smoother skin" }
+      ]
     },
-    "sleep": {
-      "name": "Sleep & Recovery Stack",
-      "handle": "sleep-recovery-stack",
-      "description": "Fall asleep faster, wake up feeling rested",
+    "hydration": {
+      "name": "Deep Hydration Routine",
+      "handle": "deep-hydration-routine",
+      "description": "Layered hydration for tight, thirsty, dehydration-lined skin",
       "products": [
-        { "handle": "magnesium-glycinate", "benefit": "Deep relaxation & calm" },
-        { "handle": "sleep-formula", "benefit": "Faster sleep onset" },
-        { "handle": "ashwagandha-plus", "benefit": "Stress relief for better sleep" }
-      ],
-      "tiers": {
-        "essential":   { "label": "Essential",   "tag": null,           "productIndices": [0, 1] },
-        "recommended": { "label": "Recommended", "tag": "Most Popular", "productIndices": [0, 1, 2] },
-        "complete":    { "label": "Complete",    "tag": "Best Value",   "productIndices": [0, 1, 2] }
-      }
+        { "handle": "charcoal-facial-cleanser", "benefit": "Cleans gently without stripping" },
+        { "handle": "hyaluronic-acid-serum", "benefit": "4 weights of hyaluronic acid" },
+        { "handle": "skin-hydration-cream", "benefit": "Seals moisture in" },
+        { "handle": "gua-sha-face-oil", "benefit": "Barrier-nourishing botanical oils" }
+      ]
     },
-    "energy": {
-      "name": "Energy & Resilience Stack",
-      "handle": "stress-energy-stack",
-      "description": "Sustained energy and stress resilience all day",
+    "brightening": {
+      "name": "Radiance Routine",
+      "handle": "radiance-routine",
+      "description": "Vitamin C, PDRN and gentle actives for even-toned, glowing skin",
       "products": [
-        { "handle": "energy-strips", "benefit": "Instant on-the-go energy" },
-        { "handle": "energy-powder", "benefit": "Sustained pre-workout energy" },
-        { "handle": "beetroot", "benefit": "Natural stamina booster" },
-        { "handle": "mushroom-complex-10x", "benefit": "Adaptogenic energy support" }
-      ],
-      "tiers": {
-        "essential":   { "label": "Essential",   "tag": null,           "productIndices": [0, 1] },
-        "recommended": { "label": "Recommended", "tag": "Most Popular", "productIndices": [0, 1, 2] },
-        "complete":    { "label": "Complete",    "tag": "Best Value",   "productIndices": [0, 1, 2, 3] }
-      }
+        { "handle": "vitamin-c-serum", "benefit": "Triple-form vitamin C for brightening" },
+        { "handle": "hyaluronic-acid-serum", "benefit": "Hydration base for brightening actives" },
+        { "handle": "pdrn-brightening-serum", "benefit": "K-beauty peptides for radiance" },
+        { "handle": "skin-hydration-cream", "benefit": "Locks in your new glow" }
+      ]
     },
-    "wellness": {
-      "name": "Daily Wellness Stack",
-      "handle": "daily-wellness-stack",
-      "description": "Your daily foundation for optimal health",
+    "sensitive": {
+      "name": "Soothing Routine",
+      "handle": "sensitive-skin-routine",
+      "description": "Calming, fragrance-free formulas for easily irritated skin",
       "products": [
-        { "handle": "complete-multivitamin", "benefit": "Full-spectrum nutrition" },
-        { "handle": "vitamin-d3", "benefit": "Immune & bone health" },
-        { "handle": "gut-health", "benefit": "Digestive foundation" },
-        { "handle": "probiotic-40-billion", "benefit": "Gut & immune support" }
-      ],
-      "tiers": {
-        "essential":   { "label": "Essential",   "tag": null,           "productIndices": [0, 1] },
-        "recommended": { "label": "Recommended", "tag": "Most Popular", "productIndices": [0, 1, 2] },
-        "complete":    { "label": "Complete",    "tag": "Best Value",   "productIndices": [0, 1, 2, 3] }
-      }
+        { "handle": "hyaluronic-acid-serum", "benefit": "Hydration, no fragrance, no acids" },
+        { "handle": "charcoal-facial-cleanser", "benefit": "Gentle daily cleanse" },
+        { "handle": "dark-spot-serum-sensitive-skin", "benefit": "Evens tone without stinging" },
+        { "handle": "aloe-tea-tree-radiance-gel", "benefit": "Calms redness on contact" }
+      ]
     }
   },
   "productReasons": {
-    "lions-mane-mushroom": [
-      { "nodeId": "focus_2", "optionIndex": 1, "reason": "You said you get distracted easily \u2014 Lion\u2019s Mane supports sustained attention" },
-      { "nodeId": "focus_2", "optionIndex": 2, "reason": "Brain fog is a sign of neuroinflammation \u2014 Lion\u2019s Mane targets this directly" },
-      { "nodeId": "focus_8", "optionIndex": 2, "reason": "Your declining memory benefits from Lion\u2019s Mane\u2019s nerve growth factor support" },
-      { "nodeId": "focus_8", "optionIndex": 3, "reason": "Frequent forgetfulness signals NGF decline \u2014 Lion\u2019s Mane stimulates nerve regeneration" },
-      { "nodeId": "focus_9", "optionIndex": 2, "reason": "Constant multitasking depletes neurons \u2014 Lion\u2019s Mane promotes brain cell repair" },
-      { "nodeId": "focus_1b_gaming", "optionIndex": 1, "reason": "Long gaming sessions tax your brain \u2014 Lion\u2019s Mane supports sustained cognitive endurance" },
-      { "nodeId": "focus_2b_fog", "optionIndex": 1, "reason": "You\u2019ve been dealing with brain fog for months \u2014 Lion\u2019s Mane targets long-term cognitive recovery" },
-      { "nodeId": "focus_2b_fog", "optionIndex": 2, "reason": "Lifelong brain fog responds well to Lion\u2019s Mane\u2019s nerve growth factor stimulation" },
-      { "nodeId": "focus_8b_memory", "optionIndex": 2, "reason": "Forgetting recent conversations points to short-term memory decline \u2014 Lion\u2019s Mane rebuilds those pathways" },
-      { "nodeId": "energy_7b_fog", "optionIndex": 0, "reason": "Morning brain fog that takes hours to clear \u2014 Lion\u2019s Mane supports clearer thinking from the start" },
-      { "nodeId": "energy_7b_fog", "optionIndex": 2, "reason": "Constant brain haze alongside low energy \u2014 Lion\u2019s Mane targets the cognitive side of the equation" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 2, "reason": "Cognitive decline concerns are exactly what Lion\u2019s Mane was studied for \u2014 it promotes nerve regeneration" },
-      { "nodeId": null, "reason": "Supports cognitive function, memory, and nerve growth" }
+    "charcoal-facial-cleanser": [
+      { "nodeId": "skin_type", "optionIndex": 0, "reason": "Oily skin benefits from activated charcoal's ability to draw out excess sebum without stripping" },
+      { "nodeId": "skin_type", "optionIndex": 2, "reason": "Combination skin needs a cleanser that balances \u2014 charcoal degreases the T-zone while aloe conditions cheeks" },
+      { "nodeId": "concern", "optionIndex": 0, "reason": "Breakout-prone skin starts with a deeper cleanse \u2014 activated charcoal clears pore-clogging buildup" },
+      { "nodeId": "acne_freq", "optionIndex": 0, "reason": "Daily breakouts respond well to an activated-charcoal cleanser twice a day" },
+      { "nodeId": "acne_freq", "optionIndex": 1, "reason": "Weekly breakouts need a consistent deep-cleanse habit \u2014 charcoal handles the job without over-drying" },
+      { "nodeId": null, "reason": "Detoxifying daily cleanser that pulls pore-clogging impurities without stripping" }
     ],
-    "brain-focus-formula": [
-      { "nodeId": "focus_1", "optionIndex": 0, "reason": "Deep work demands a comprehensive cognitive formula \u2014 this covers all angles" },
-      { "nodeId": "focus_1", "optionIndex": 1, "reason": "Studying and exams benefit from a multi-ingredient nootropic blend" },
-      { "nodeId": "focus_2", "optionIndex": 0, "reason": "Fading focus throughout the day is exactly what this formula targets" },
-      { "nodeId": "focus_2b_fog", "optionIndex": 2, "reason": "Brain fog you\u2019ve always had needs a comprehensive nootropic approach to address multiple pathways" },
-      { "nodeId": "focus_8b_memory", "optionIndex": 1, "reason": "Forgetting tasks and appointments calls for a multi-ingredient formula that supports working memory" },
-      { "nodeId": "energy_7b_fog", "optionIndex": 0, "reason": "Morning fog that lingers for hours \u2014 Brain Focus Formula helps you think clearly earlier in the day" },
-      { "nodeId": null, "reason": "Comprehensive nootropic blend for sharper cognitive performance" }
+    "hyaluronic-acid-serum": [
+      { "nodeId": "skin_type", "optionIndex": 1, "reason": "Dry skin is thirsty skin \u2014 hyaluronic acid pulls water into every layer" },
+      { "nodeId": "skin_type", "optionIndex": 3, "reason": "Sensitive skin tolerates hyaluronic acid exceptionally well \u2014 no fragrance, no acids, just hydration" },
+      { "nodeId": "concern", "optionIndex": 2, "reason": "Dehydration lives in the top layers of the skin \u2014 this serum's four weights of hyaluronic acid hit them all" },
+      { "nodeId": "hydration_feel", "optionIndex": 0, "reason": "Tightness after cleansing is a clear sign your skin needs hyaluronic acid \u2014 apply on damp skin" },
+      { "nodeId": "hydration_feel", "optionIndex": 1, "reason": "Midday dryness points to dehydration \u2014 multi-weight HA keeps skin hydrated for longer" },
+      { "nodeId": null, "reason": "Four weights of hyaluronic acid for plump, bouncy, all-day hydration" }
     ],
-    "mushroom-focus-strips": [
-      { "nodeId": "focus_3", "optionIndex": 2, "reason": "With heavy caffeine use, these strips offer a caffeine-free focus alternative" },
-      { "nodeId": "focus_4", "optionIndex": 2, "reason": "Long screen hours need convenient focus support \u2014 strips dissolve in seconds" },
-      { "nodeId": null, "reason": "Fast-dissolving mushroom strips for on-the-go focus" }
+    "vitamin-c-serum": [
+      { "nodeId": "concern", "optionIndex": 3, "reason": "Vitamin C is the gold standard for fading dark spots and evening out skin tone" },
+      { "nodeId": "brightening_focus", "optionIndex": 1, "reason": "Sun damage and age spots respond best to a potent L-ascorbic acid serum paired with ferulic acid" },
+      { "nodeId": "brightening_focus", "optionIndex": 2, "reason": "For overall dullness, antioxidants wake the skin up \u2014 this triple-form vitamin C delivers on day one" },
+      { "nodeId": "sun_care", "optionIndex": 2, "reason": "Low SPF use means accumulated UV damage \u2014 vitamin C mops up free radicals while you protect going forward" },
+      { "nodeId": "sun_care", "optionIndex": 3, "reason": "No SPF habit yet means stacking antioxidants is even more important \u2014 vitamin C plus ferulic acid shields what you can't block" },
+      { "nodeId": null, "reason": "Triple-form vitamin C + ferulic acid for tone-correcting antioxidant defence" }
     ],
-    "cognitive-relax-strips": [
-      { "nodeId": "focus_6", "optionIndex": 2, "reason": "Frequent stress affects your focus \u2014 these strips promote calm clarity" },
-      { "nodeId": "focus_6", "optionIndex": 3, "reason": "High anxiety disrupts concentration \u2014 Cognitive Relax Strips help without sedation" },
-      { "nodeId": "focus_6b_stress", "optionIndex": 0, "reason": "Racing thoughts from stress \u2014 Cognitive Relax Strips calm the mental chatter so you can focus" },
-      { "nodeId": "sleep_1b_racing", "optionIndex": 1, "reason": "Anxiety-driven racing thoughts at bedtime \u2014 these strips promote calm without full sedation" },
-      { "nodeId": "sleep_4b_screens", "optionIndex": 0, "reason": "Doom scrolling before bed overstimulates your mind \u2014 Cognitive Relax Strips help you wind down" },
-      { "nodeId": null, "reason": "Calm focus strips that sharpen the mind without overstimulation" }
+    "dark-spot-serum-sensitive-skin": [
+      { "nodeId": "skin_type", "optionIndex": 3, "reason": "Your sensitive skin needs brightening without the sting \u2014 adaptogenic mushrooms replace kojic acid" },
+      { "nodeId": "brightening_focus", "optionIndex": 3, "reason": "Uneven tone on reactive skin calls for gentle actives \u2014 shiitake and turkey tail brighten without irritation" },
+      { "nodeId": "sensitive_trigger", "optionIndex": 0, "reason": "Reactive to new products \u2014 this formula skips fragrance, kojic acid, and hydroquinone" },
+      { "nodeId": "sensitive_trigger", "optionIndex": 3, "reason": "When everything seems to react, you need a serum built without the usual irritants" },
+      { "nodeId": "bad_reaction", "optionIndex": 2, "reason": "You've avoided strong actives for good reason \u2014 this adaptogenic mushroom formula brightens without the risk" },
+      { "nodeId": null, "reason": "Adaptogenic mushroom serum that brightens without brightening acids" }
     ],
-    "focus-powder": [
-      { "nodeId": "focus_1", "optionIndex": 0, "reason": "Deep work sessions benefit from a pre-work focus drink" },
-      { "nodeId": "focus_9", "optionIndex": 3, "reason": "Heavy context-switching needs a focused mindset \u2014 mix this before work" },
-      { "nodeId": null, "reason": "Sour grape powder for sustained mental performance" }
+    "pdrn-brightening-serum": [
+      { "nodeId": "concern", "optionIndex": 3, "reason": "PDRN and peptides brighten, plump and smooth in one pass \u2014 a K-beauty favourite for glassy skin" },
+      { "nodeId": "brightening_focus", "optionIndex": 2, "reason": "For dullness, PDRN's regenerative action brings radiance back fast" },
+      { "nodeId": "routine", "optionIndex": 2, "reason": "Since you're already using serums, PDRN layers beautifully for next-level results" },
+      { "nodeId": "routine", "optionIndex": 3, "reason": "A detailed routine deserves a premium active \u2014 PDRN is the upgrade" },
+      { "nodeId": null, "reason": "K-beauty inspired PDRN + peptides for a glassy, radiant glow" }
     ],
-    "creatine-monohydrate": [
-      { "nodeId": "gym_1", "optionIndex": 0, "reason": "Strength training benefits most from creatine\u2019s ATP energy boost" },
-      { "nodeId": "gym_1", "optionIndex": 2, "reason": "CrossFit\u2019s explosive movements demand the extra ATP creatine provides" },
-      { "nodeId": "gym_6", "optionIndex": 0, "reason": "Building muscle requires the phosphocreatine boost only creatine delivers" },
-      { "nodeId": "gym_2", "optionIndex": 0, "reason": "Beginners see the fastest gains with creatine \u2014 it\u2019s the #1 starter supplement" },
-      { "nodeId": "gym_2b_experienced", "optionIndex": 0, "reason": "Strength plateaus respond to creatine loading \u2014 it pushes past stalled lifts" },
-      { "nodeId": null, "reason": "The most researched and effective performance supplement" }
+    "skin-hydration-cream": [
+      { "nodeId": "skin_type", "optionIndex": 1, "reason": "Dry skin needs a moisturiser that seals hydration in \u2014 this one does exactly that" },
+      { "nodeId": "concern", "optionIndex": 2, "reason": "Hydration starts in the serum and ends in the cream \u2014 avocado oil and vitamin E lock it in" },
+      { "nodeId": "hydration_feel", "optionIndex": 1, "reason": "Midday dryness means your moisturiser isn't sealing well enough \u2014 this lightweight cream holds hydration through the day" },
+      { "nodeId": "hydration_feel", "optionIndex": 3, "reason": "Dehydration lines disappear when skin is properly hydrated and sealed \u2014 this cream is the final step" },
+      { "nodeId": null, "reason": "Lightweight daily moisturiser that seals hydration in" }
     ],
-    "ashwagandha": [
-      { "nodeId": "gym_3", "optionIndex": 1, "reason": "Prolonged soreness signals high cortisol \u2014 Ashwagandha reduces it by 30%" },
-      { "nodeId": "gym_3", "optionIndex": 3, "reason": "Feeling overtrained means cortisol is too high \u2014 Ashwagandha brings it down" },
-      { "nodeId": "gym_5", "optionIndex": 2, "reason": "Poor sleep hurting your gains \u2014 Ashwagandha improves sleep quality and recovery" },
-      { "nodeId": "energy_2", "optionIndex": 2, "reason": "Feeling wired but tired is a cortisol issue \u2014 Ashwagandha regulates it" },
-      { "nodeId": "sleep_5", "optionIndex": 2, "reason": "High stress keeping you up \u2014 Ashwagandha lowers cortisol for better sleep" },
-      { "nodeId": "focus_2b_distraction", "optionIndex": 1, "reason": "Internal worries pulling your focus \u2014 Ashwagandha quiets the mental noise so you can concentrate" },
-      { "nodeId": "focus_6b_stress", "optionIndex": 0, "reason": "Racing thoughts from stress \u2014 Ashwagandha lowers cortisol to restore mental calm" },
-      { "nodeId": "focus_6b_stress", "optionIndex": 2, "reason": "Emotional overwhelm is draining your focus \u2014 Ashwagandha helps regulate the stress response" },
-      { "nodeId": "focus_2b_fog2", "optionIndex": 0, "reason": "A new job or more stress triggered your brain fog \u2014 Ashwagandha targets stress-induced cognitive decline" },
-      { "nodeId": "energy_2b_wired", "optionIndex": 0, "reason": "You can\u2019t switch off even when exhausted \u2014 Ashwagandha breaks the wired-but-tired cycle" },
-      { "nodeId": "energy_2b_wired", "optionIndex": 1, "reason": "Constant low-grade tension drains your energy reserves \u2014 Ashwagandha restores balance" },
-      { "nodeId": "energy_2b_burnout", "optionIndex": 0, "reason": "Overworked with no breaks \u2014 Ashwagandha protects against burnout by lowering cortisol" },
-      { "nodeId": "energy_2b_burnout", "optionIndex": 1, "reason": "Emotionally draining work depletes your resilience \u2014 Ashwagandha rebuilds your stress buffer" },
-      { "nodeId": "energy_2b_burnout", "optionIndex": 2, "reason": "Pulled in every direction \u2014 Ashwagandha helps your body cope with constant demands" },
-      { "nodeId": "sleep_5b_stress", "optionIndex": 0, "reason": "Work stress keeping you awake \u2014 Ashwagandha lowers cortisol so your mind can rest" },
-      { "nodeId": "sleep_5b_stress", "optionIndex": 2, "reason": "Stress from all sides disrupting sleep \u2014 Ashwagandha addresses the cortisol overload" },
-      { "nodeId": "wellness_8b_mood", "optionIndex": 1, "reason": "Months of low mood can signal chronic stress \u2014 Ashwagandha supports emotional balance" },
-      { "nodeId": null, "reason": "Adaptogenic herb that reduces cortisol and supports recovery" }
+    "anti-aging-moisturizer": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Retinol, peptides and ceramides are the trio that actually moves the needle on fine lines" },
+      { "nodeId": "aging_focus", "optionIndex": 0, "reason": "For fine lines specifically, encapsulated retinol is the gold standard \u2014 and this one pairs it with ceramides so your barrier stays happy" },
+      { "nodeId": "aging_focus", "optionIndex": 3, "reason": "A multi-concern anti-aging moisturiser hits retinol, peptides, and barrier support in one step" },
+      { "nodeId": "routine", "optionIndex": 3, "reason": "A detailed routine deserves a multi-active night cream \u2014 retinol + peptides + ceramides do real work" },
+      { "nodeId": null, "reason": "Retinol, peptides and ceramides for smoother skin over time" }
     ],
-    "l-citrulline-l-arginine": [
-      { "nodeId": "gym_6", "optionIndex": 2, "reason": "Hitting PRs needs better blood flow \u2014 this stack boosts nitric oxide" },
-      { "nodeId": "gym_1", "optionIndex": 0, "reason": "Strength training with better blood flow means better nutrient delivery" },
-      { "nodeId": null, "reason": "Boosts blood flow for better pumps and workout performance" }
+    "skin-firming-cream": [
+      { "nodeId": "aging_focus", "optionIndex": 1, "reason": "Loss of firmness is exactly what DMAE was formulated for \u2014 paired with CoQ10 for antioxidant support" },
+      { "nodeId": "aging_focus", "optionIndex": 3, "reason": "For a full anti-aging routine, firming support belongs alongside retinol" },
+      { "nodeId": null, "reason": "DMAE + CoQ10 + hyaluronic acid for the look of firmness and bounce" }
     ],
-    "creatine-hydration-powder": [
-      { "nodeId": "gym_1", "optionIndex": 1, "reason": "Cardio and endurance training needs hydration plus creatine support" },
-      { "nodeId": "gym_8", "optionIndex": 2, "reason": "Skipping post-workout nutrition \u2014 this combines creatine and electrolytes in one" },
-      { "nodeId": null, "reason": "Creatine plus electrolytes for performance and hydration" }
+    "gua-sha-face-oil": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "A botanical face oil with rosehip and camellia supports elasticity and the glow anti-aging routines rely on" },
+      { "nodeId": "hydration_feel", "optionIndex": 3, "reason": "Dehydration lines smooth out once you seal in water with a botanical oil \u2014 this is the final step" },
+      { "nodeId": "routine", "optionIndex": 0, "reason": "If you only want to do one thing, a face oil does a lot \u2014 12 botanical oils in one bottle" },
+      { "nodeId": null, "reason": "Twelve botanical oils for antioxidant support and silky slip" }
     ],
-    "nitric-shock-pre-workout": [
-      { "nodeId": "gym_9", "optionIndex": 3, "reason": "Low motivation and energy before training \u2014 this pre-workout fires you up" },
-      { "nodeId": "gym_1", "optionIndex": 2, "reason": "CrossFit demands explosive energy \u2014 Nitric Shock delivers" },
-      { "nodeId": "gym_2b_experienced", "optionIndex": 0, "reason": "Strength plateau after 3+ years \u2014 a pre-workout can push through stalled lifts" },
-      { "nodeId": null, "reason": "Full-spectrum pre-workout for explosive energy and pump" }
+    "aloe-tea-tree-radiance-gel": [
+      { "nodeId": "concern", "optionIndex": 0, "reason": "Tea tree and black willow bark work on blemishes while aloe calms the redness around them" },
+      { "nodeId": "concern", "optionIndex": 4, "reason": "Aloe and cucumber are the calming backbone of this gel \u2014 reaches for angry, red skin without stinging" },
+      { "nodeId": "acne_freq", "optionIndex": 0, "reason": "Daily breakouts respond to the gentle exfoliation of black willow bark combined with tea tree's clarifying action" },
+      { "nodeId": "acne_freq", "optionIndex": 2, "reason": "Hormonal breakouts need spot-friendly support \u2014 this gel can be used all over or as a targeted treatment" },
+      { "nodeId": "sensitive_trigger", "optionIndex": 1, "reason": "Weather-reactive skin responds well to an aloe-based gel \u2014 cooling on contact, calming over time" },
+      { "nodeId": null, "reason": "Aloe gel with tea tree and willow bark to calm redness and clarify blemishes" }
     ],
-    "colostrum-powder": [
-      { "nodeId": "gym_3", "optionIndex": 1, "reason": "Days of soreness means you need enhanced recovery support" },
-      { "nodeId": "gym_9", "optionIndex": 2, "reason": "Recovery is your biggest barrier \u2014 colostrum accelerates muscle repair" },
-      { "nodeId": "gym_3b_soreness", "optionIndex": 1, "reason": "Upper body soreness lingering \u2014 colostrum accelerates muscle tissue repair" },
-      { "nodeId": null, "reason": "Supports recovery, gut health, and immune function for athletes" }
+    "peppermint-coffee-scrub": [
+      { "nodeId": null, "reason": "Body exfoliator with organic coffee, brown sugar and peppermint oil" }
     ],
-    "whey-protein-isolate": [
-      { "nodeId": "gym_4", "optionIndex": 2, "reason": "Low protein intake plus training \u2014 you need a quality protein source" },
-      { "nodeId": "gym_6", "optionIndex": 0, "reason": "Building muscle requires adequate protein \u2014 25g per serving" },
-      { "nodeId": "gym_2b_experienced", "optionIndex": 1, "reason": "Muscle growth has slowed \u2014 ensuring adequate protein intake is the first fix" },
-      { "nodeId": "gym_4b_protein", "optionIndex": 0, "reason": "No dietary restrictions and low protein \u2014 whey isolate is the gold standard" },
-      { "nodeId": "gym_8b_postworkout", "optionIndex": 1, "reason": "No time after training \u2014 a quick protein shake takes 30 seconds and fuels recovery" },
-      { "nodeId": null, "reason": "Premium whey isolate with 25g protein per serving" }
-    ],
-    "magnesium-glycinate": [
-      { "nodeId": "sleep_1", "optionIndex": 0, "reason": "Trouble falling asleep is magnesium\u2019s strongest benefit \u2014 it relaxes muscles and mind" },
-      { "nodeId": "sleep_1", "optionIndex": 1, "reason": "Waking during the night often signals magnesium deficiency" },
-      { "nodeId": "sleep_6", "optionIndex": 1, "reason": "Restless legs is a classic sign of magnesium deficiency" },
-      { "nodeId": "sleep_6", "optionIndex": 2, "reason": "Teeth grinding indicates muscle tension \u2014 magnesium relaxes the jaw" },
-      { "nodeId": "focus_2b_fog2", "optionIndex": 1, "reason": "Poor sleep triggered your brain fog \u2014 magnesium helps you sleep deeper so your brain can recover" },
-      { "nodeId": "focus_5b_sleep", "optionIndex": 0, "reason": "You can\u2019t fall asleep and it\u2019s wrecking your focus \u2014 magnesium relaxes your body and mind" },
-      { "nodeId": "focus_5b_sleep", "optionIndex": 1, "reason": "Waking up repeatedly disrupts your cognitive recovery \u2014 magnesium promotes uninterrupted sleep" },
-      { "nodeId": "focus_6b_stress", "optionIndex": 1, "reason": "Physical tension from stress \u2014 magnesium relaxes tight muscles and eases headaches" },
-      { "nodeId": "sleep_1b_onset", "optionIndex": 0, "reason": "Taking 30\u201360 minutes to fall asleep \u2014 magnesium calms the nervous system for faster onset" },
-      { "nodeId": "sleep_1b_onset", "optionIndex": 1, "reason": "1\u20132 hours to fall asleep is significant \u2014 magnesium\u2019s muscle and nerve relaxation can cut that down" },
-      { "nodeId": "sleep_1b_onset", "optionIndex": 2, "reason": "Over 2 hours to fall asleep \u2014 you need magnesium\u2019s deep relaxation support" },
-      { "nodeId": "sleep_1b_maintenance", "optionIndex": 1, "reason": "Waking 2\u20133 times a night often signals low magnesium \u2014 supplementing can improve sleep continuity" },
-      { "nodeId": "sleep_1b_maintenance", "optionIndex": 2, "reason": "Frequent night waking with trouble returning to sleep \u2014 magnesium supports deeper, more sustained sleep" },
-      { "nodeId": "sleep_1b_racing", "optionIndex": 2, "reason": "Random racing thoughts you can\u2019t switch off \u2014 magnesium calms neural activity for a quieter mind" },
-      { "nodeId": "energy_2b_wired", "optionIndex": 0, "reason": "Can\u2019t relax even when exhausted \u2014 magnesium calms the nervous system so you can actually unwind" },
-      { "nodeId": "gym_3b_soreness", "optionIndex": 2, "reason": "Full-body aches after training \u2014 magnesium supports muscle relaxation and recovery" },
-      { "nodeId": null, "reason": "The relaxation mineral \u2014 calms muscles, nerves and mind" }
-    ],
-    "sleep-formula": [
-      { "nodeId": "sleep_1", "optionIndex": 0, "reason": "A dedicated sleep formula helps you fall asleep faster" },
-      { "nodeId": "sleep_1", "optionIndex": 2, "reason": "Not feeling rested means your sleep quality needs targeted support" },
-      { "nodeId": "sleep_3", "optionIndex": 3, "reason": "Less than 5 hours of sleep demands a serious sleep intervention" },
-      { "nodeId": "focus_5b_sleep", "optionIndex": 0, "reason": "Can\u2019t fall asleep and it\u2019s hurting your focus \u2014 a dedicated sleep formula speeds up onset" },
-      { "nodeId": "sleep_1b_onset", "optionIndex": 0, "reason": "30\u201360 minutes to fall asleep \u2014 the sleep formula\u2019s targeted blend shortens that window" },
-      { "nodeId": "sleep_1b_onset", "optionIndex": 1, "reason": "1\u20132 hours to fall asleep \u2014 you need a dedicated formula designed for stubborn sleep onset" },
-      { "nodeId": "sleep_1b_onset", "optionIndex": 2, "reason": "Over 2 hours to fall asleep calls for serious support \u2014 this formula is built for exactly that" },
-      { "nodeId": "energy_1b_morning", "optionIndex": 0, "reason": "Hitting snooze 3+ times means you\u2019re not sleeping deeply enough \u2014 better sleep quality starts here" },
-      { "nodeId": "energy_5b_sleep", "optionIndex": 0, "reason": "Can\u2019t fall asleep and it\u2019s crushing your energy \u2014 a sleep formula restores that foundation" },
-      { "nodeId": null, "reason": "Dedicated sleep blend for faster onset and deeper sleep" }
-    ],
-    "ashwagandha-plus": [
-      { "nodeId": "sleep_5", "optionIndex": 2, "reason": "High stress disrupting sleep \u2014 Ashwagandha Plus targets the stress-sleep connection" },
-      { "nodeId": "sleep_1", "optionIndex": 3, "reason": "A racing mind at bedtime responds well to Ashwagandha Plus\u2019s calming effects" },
-      { "nodeId": "focus_5b_sleep", "optionIndex": 2, "reason": "You sleep but don\u2019t feel rested \u2014 Ashwagandha Plus improves actual sleep quality, not just duration" },
-      { "nodeId": "sleep_1b_maintenance", "optionIndex": 2, "reason": "Waking multiple times and can\u2019t get back to sleep \u2014 Ashwagandha Plus promotes sustained relaxation" },
-      { "nodeId": "sleep_1b_racing", "optionIndex": 0, "reason": "Work responsibilities racing through your mind \u2014 Ashwagandha Plus calms the mental load" },
-      { "nodeId": "sleep_1b_racing", "optionIndex": 1, "reason": "Anxiety-driven thoughts keeping you up \u2014 Ashwagandha Plus addresses the stress root cause" },
-      { "nodeId": "sleep_2b_quality", "optionIndex": 2, "reason": "7+ hours but still tired without snoring issues \u2014 Ashwagandha Plus improves actual sleep quality" },
-      { "nodeId": "sleep_4b_screens", "optionIndex": 1, "reason": "Working on emails before bed keeps your stress elevated \u2014 Ashwagandha Plus helps you transition to rest" },
-      { "nodeId": "sleep_5b_stress", "optionIndex": 1, "reason": "Personal and family stress disrupting sleep \u2014 Ashwagandha Plus provides gentle calming support" },
-      { "nodeId": null, "reason": "Enhanced ashwagandha formula for stress relief and better sleep" }
-    ],
-    "energy-strips": [
-      { "nodeId": "energy_1", "optionIndex": 1, "reason": "The afternoon crash is perfect for a quick energy strip \u2014 no water needed" },
-      { "nodeId": "energy_1", "optionIndex": 3, "reason": "Constant low energy \u2014 keep Energy Strips in your pocket for instant support" },
-      { "nodeId": "focus_1b_gaming", "optionIndex": 0, "reason": "Competitive gaming needs fast reaction times \u2014 Energy Strips give you an instant edge mid-session" },
-      { "nodeId": "energy_2b_burnout", "optionIndex": 2, "reason": "Pulled in every direction \u2014 Energy Strips give you a quick boost between commitments" },
-      { "nodeId": null, "reason": "Fast-dissolving strips for on-the-go energy" }
-    ],
-    "energy-powder": [
-      { "nodeId": "energy_1", "optionIndex": 0, "reason": "Morning sluggishness needs a clean energy boost to kickstart your day" },
-      { "nodeId": "energy_4", "optionIndex": 2, "reason": "Heavy caffeine reliance \u2014 Energy Powder offers a cleaner alternative" },
-      { "nodeId": "focus_3b_caffeine", "optionIndex": 0, "reason": "Caffeine withdrawal headaches \u2014 Energy Powder provides a smoother transition with balanced energy" },
-      { "nodeId": "gym_1b_cardio", "optionIndex": 2, "reason": "Weight loss goal \u2014 Energy Powder fuels your cardio without the sugar crash" },
-      { "nodeId": "energy_1b_morning", "optionIndex": 2, "reason": "Needing caffeine just to function \u2014 Energy Powder gives you a cleaner, more sustained morning boost" },
-      { "nodeId": "energy_4b_caffeine", "optionIndex": 0, "reason": "You want to cut back on caffeine \u2014 Energy Powder is the perfect transition to cleaner energy" },
-      { "nodeId": null, "reason": "Guava berry energy powder for sustained performance" }
-    ],
-    "beetroot": [
-      { "nodeId": "gym_1", "optionIndex": 1, "reason": "Cardio and endurance training benefits from beetroot\u2019s nitric oxide boost" },
-      { "nodeId": "energy_8", "optionIndex": 2, "reason": "Declining energy over time \u2014 beetroot naturally improves oxygen efficiency" },
-      { "nodeId": "gym_1b_cardio", "optionIndex": 0, "reason": "Endurance training like running, cycling, or swimming \u2014 beetroot\u2019s nitric oxide boost improves oxygen delivery" },
-      { "nodeId": "gym_1b_cardio", "optionIndex": 1, "reason": "Heart health and general fitness \u2014 beetroot supports cardiovascular function naturally" },
-      { "nodeId": null, "reason": "Natural nitric oxide booster for stamina and blood flow" }
-    ],
-    "beetroot-powder": [
-      { "nodeId": "gym_1", "optionIndex": 1, "reason": "Endurance training responds well to a pre-workout beetroot drink" },
-      { "nodeId": "gym_1b_cardio", "optionIndex": 0, "reason": "Endurance athletes benefit from a pre-workout beetroot drink to boost nitric oxide" },
-      { "nodeId": null, "reason": "Pure beetroot powder for endurance and natural energy" }
-    ],
-    "mushroom-complex-10x": [
-      { "nodeId": "energy_2", "optionIndex": 2, "reason": "Feeling wired but tired \u2014 adaptogenic mushrooms restore natural energy balance" },
-      { "nodeId": "wellness_7", "optionIndex": 2, "reason": "High stress depletes your reserves \u2014 adaptogenic mushrooms rebuild resilience" },
-      { "nodeId": "wellness_1b_immune", "optionIndex": 2, "reason": "Getting sick randomly any time of year \u2014 adaptogenic mushrooms strengthen your baseline immunity" },
-      { "nodeId": "energy_1b_allday", "optionIndex": 1, "reason": "Months of constant low energy \u2014 adaptogenic mushrooms restore your natural energy rhythms" },
-      { "nodeId": "energy_2b_burnout", "optionIndex": 0, "reason": "Overworked with no breaks \u2014 adaptogenic mushrooms help your body adapt to sustained demands" },
-      { "nodeId": "energy_4b_caffeine", "optionIndex": 0, "reason": "Wanting to reduce caffeine \u2014 adaptogenic mushrooms provide sustained energy without stimulants" },
-      { "nodeId": "sleep_5b_stress", "optionIndex": 2, "reason": "Stress from every direction disrupting sleep \u2014 adaptogenic mushrooms build resilience across the board" },
-      { "nodeId": null, "reason": "10 functional mushrooms for adaptogenic energy and immunity" }
-    ],
-    "complete-multivitamin": [
-      { "nodeId": "intro_2", "optionIndex": 2, "reason": "Restricted diets mean nutritional gaps \u2014 a multivitamin fills them" },
-      { "nodeId": "intro_2", "optionIndex": 3, "reason": "Inconsistent eating means inconsistent nutrition \u2014 a daily multi stabilises it" },
-      { "nodeId": "wellness_4", "optionIndex": 2, "reason": "Low energy most days can signal micronutrient deficiencies" },
-      { "nodeId": "focus_2b_fog2", "optionIndex": 2, "reason": "A diet change triggered your brain fog \u2014 a multivitamin fills the nutritional gaps" },
-      { "nodeId": "energy_1b_morning", "optionIndex": 1, "reason": "Groggy for hours every morning \u2014 a multivitamin addresses underlying nutrient deficiencies" },
-      { "nodeId": "energy_1b_allday", "optionIndex": 2, "reason": "Years of constant low energy \u2014 a multivitamin covers the essential bases your body may be missing" },
-      { "nodeId": "energy_5b_sleep", "optionIndex": 2, "reason": "Sleeping but still exhausted \u2014 a multivitamin ensures your body has what it needs to actually recover" },
-      { "nodeId": "energy_7b_fog", "optionIndex": 2, "reason": "Constant fog and fatigue together \u2014 a multivitamin addresses the nutritional gaps that fuel both" },
-      { "nodeId": "wellness_8b_mood", "optionIndex": 2, "reason": "Persistently low mood for a long time \u2014 key vitamins like B12, D, and folate support mood regulation" },
-      { "nodeId": null, "reason": "Full-spectrum daily multivitamin for nutritional insurance" }
-    ],
-    "vitamin-d3": [
-      { "nodeId": "wellness_3", "optionIndex": 2, "reason": "Mostly indoors means low vitamin D \u2014 supplementing is essential" },
-      { "nodeId": "wellness_3", "optionIndex": 3, "reason": "Working from home with minimal sunlight \u2014 you almost certainly need vitamin D" },
-      { "nodeId": "wellness_2", "optionIndex": 2, "reason": "Getting sick often \u2014 Vitamin D is critical for immune function" },
-      { "nodeId": "wellness_8", "optionIndex": 3, "reason": "Persistently low mood responds well to vitamin D supplementation" },
-      { "nodeId": "wellness_1b_immune", "optionIndex": 0, "reason": "Getting sick during winter and seasonal changes \u2014 Vitamin D is your first line of defence" },
-      { "nodeId": "wellness_1b_immune", "optionIndex": 2, "reason": "Random illness throughout the year \u2014 Vitamin D shores up your immune system year-round" },
-      { "nodeId": "wellness_3b_indoors", "optionIndex": 1, "reason": "Working from home and not taking vitamin D \u2014 with minimal sunlight, supplementation is essential" },
-      { "nodeId": "wellness_3b_indoors", "optionIndex": 2, "reason": "Not sure if you take vitamin D \u2014 with your indoor lifestyle, it\u2019s important to start" },
-      { "nodeId": "wellness_8b_mood", "optionIndex": 1, "reason": "Months of low mood \u2014 Vitamin D deficiency is a common contributor and easy to fix" },
-      { "nodeId": "wellness_8b_mood", "optionIndex": 2, "reason": "Long-term low mood benefits from Vitamin D \u2014 it plays a key role in serotonin production" },
-      { "nodeId": null, "reason": "Essential sunshine vitamin for immunity, bones, and mood" }
-    ],
-    "gut-health": [
-      { "nodeId": "wellness_5", "optionIndex": 2, "reason": "Digestive issues \u2014 gut health is the foundation of overall wellness" },
-      { "nodeId": "wellness_5", "optionIndex": 3, "reason": "Frequent bloating and discomfort needs targeted gut support" },
-      { "nodeId": "wellness_1b_gut", "optionIndex": 0, "reason": "Bloating after meals \u2014 targeted gut support helps your digestion break food down properly" },
-      { "nodeId": "wellness_1b_gut", "optionIndex": 1, "reason": "Irregular bowel habits need comprehensive gut support to restore regularity" },
-      { "nodeId": "wellness_1b_gut", "optionIndex": 2, "reason": "Acid reflux and discomfort \u2014 gut health support soothes the digestive lining" },
-      { "nodeId": "wellness_6b_gut", "optionIndex": 0, "reason": "Never tried probiotics \u2014 pairing them with comprehensive gut support gives you the best foundation" },
-      { "nodeId": "wellness_6b_gut", "optionIndex": 2, "reason": "Probiotics alone didn\u2019t work \u2014 a broader gut health formula addresses the issue differently" },
-      { "nodeId": "energy_7b_fog", "optionIndex": 1, "reason": "Brain fog after meals points to a gut-brain connection issue \u2014 gut health support can clear the haze" },
-      { "nodeId": null, "reason": "Comprehensive gut support for digestion and microbiome balance" }
-    ],
-    "probiotic-40-billion": [
-      { "nodeId": "wellness_5", "optionIndex": 2, "reason": "Digestive issues respond well to a high-strength probiotic" },
-      { "nodeId": "wellness_2", "optionIndex": 2, "reason": "Getting sick often \u2014 70% of your immune system is in your gut" },
-      { "nodeId": "wellness_1b_immune", "optionIndex": 1, "reason": "Getting sick after travel \u2014 probiotics strengthen your gut-based immune defences" },
-      { "nodeId": "wellness_1b_gut", "optionIndex": 1, "reason": "Irregular bowel habits respond well to a high-strength probiotic" },
-      { "nodeId": "wellness_6b_gut", "optionIndex": 0, "reason": "Never tried probiotics \u2014 40 billion CFU is a strong starting point for gut health" },
-      { "nodeId": "wellness_6b_gut", "optionIndex": 1, "reason": "Probiotics worked before \u2014 continuing with a high-strength formula maintains your progress" },
-      { "nodeId": null, "reason": "High-strength probiotic with prebiotics for gut and immune health" }
-    ],
-    "sea-moss": [
-      { "nodeId": "wellness_4", "optionIndex": 2, "reason": "Low energy can signal mineral deficiencies \u2014 Sea Moss has 92 minerals" },
-      { "nodeId": "intro_2", "optionIndex": 2, "reason": "Restricted diets benefit from Sea Moss\u2019s dense mineral profile" },
-      { "nodeId": null, "reason": "Nutrient-dense superfood with 92 essential minerals" }
-    ],
-    "platinum-turmeric": [
-      { "nodeId": "wellness_9", "optionIndex": 0, "reason": "Joint and inflammation concerns benefit from turmeric\u2019s powerful anti-inflammatory effects" },
-      { "nodeId": "gym_3", "optionIndex": 2, "reason": "Joint stiffness improves with turmeric\u2019s curcumin" },
-      { "nodeId": "gym_3b_joints", "optionIndex": 2, "reason": "Multiple joints affected \u2014 turmeric\u2019s anti-inflammatory action works systemically to ease widespread discomfort" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 0, "reason": "Joint stiffness and mobility concerns \u2014 turmeric\u2019s curcumin is one of the strongest natural anti-inflammatories" },
-      { "nodeId": null, "reason": "High-potency turmeric for inflammation and joint support" }
-    ],
-    "collagen-peptides": [
-      { "nodeId": "wellness_9", "optionIndex": 1, "reason": "Skin and aging concerns benefit from collagen\u2019s proven elasticity support" },
-      { "nodeId": "gym_3", "optionIndex": 2, "reason": "Joint stiffness improves with collagen\u2019s connective tissue support" },
-      { "nodeId": "gym_3b_joints", "optionIndex": 0, "reason": "Knee issues benefit from collagen \u2014 it rebuilds the cartilage that cushions your joints" },
-      { "nodeId": "gym_3b_joints", "optionIndex": 2, "reason": "Multiple joint issues \u2014 collagen supports the connective tissue throughout your body" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 0, "reason": "Joint stiffness with aging \u2014 collagen rebuilds the connective tissue that breaks down over time" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 1, "reason": "Skin, hair, and nail concerns \u2014 collagen peptides are the building blocks your body needs" },
-      { "nodeId": null, "reason": "Grass-fed collagen for skin, joints, and gut health" }
-    ],
-    "ginkgo-biloba-ginseng": [
-      { "nodeId": "focus_8", "optionIndex": 2, "reason": "Memory decline benefits from Ginkgo\u2019s proven cerebral blood flow enhancement" },
-      { "nodeId": "focus_2", "optionIndex": 0, "reason": "Fading focus throughout the day \u2014 Ginkgo + Ginseng combats mental fatigue" },
-      { "nodeId": "focus_8b_memory", "optionIndex": 0, "reason": "Tip-of-tongue moments with names and words \u2014 Ginkgo boosts blood flow to the brain\u2019s recall centres" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 2, "reason": "Cognitive decline is a top concern \u2014 Ginkgo + Ginseng supports mental sharpness as you age" },
-      { "nodeId": null, "reason": "Traditional nootropic duo for mental sharpness and blood flow" }
-    ],
-    "hydration-powder-lemonade": [
-      { "nodeId": "gym_1", "optionIndex": 1, "reason": "Cardio and endurance sessions lose electrolytes fast \u2014 this replenishes them" },
-      { "nodeId": "gym_8", "optionIndex": 2, "reason": "Skipping post-workout nutrition \u2014 electrolyte powder is the easiest fix" },
-      { "nodeId": "gym_8b_postworkout", "optionIndex": 0, "reason": "Not hungry after training \u2014 a light electrolyte drink replenishes what you lost without heavy food" },
-      { "nodeId": null, "reason": "Electrolyte powder for optimal hydration during training" }
-    ],
-    "plant-protein-vanilla": [
-      { "nodeId": "intro_2", "optionIndex": 2, "reason": "Plant-based or restricted diet \u2014 you need a vegan protein source" },
-      { "nodeId": "gym_4", "optionIndex": 2, "reason": "Low protein intake \u2014 plant protein is a clean, digestible option" },
-      { "nodeId": "gym_4b_protein", "optionIndex": 1, "reason": "Vegan or vegetarian and low on protein \u2014 plant protein is your ideal match" },
-      { "nodeId": "gym_4b_protein", "optionIndex": 2, "reason": "Lactose intolerant \u2014 plant protein gives you the same amino acids without the dairy" },
-      { "nodeId": null, "reason": "Vegan-friendly protein blend with complete amino acid profile" }
-    ],
-    "l-glutamine-powder": [
-      { "nodeId": "gym_3", "optionIndex": 1, "reason": "Prolonged soreness signals glutamine depletion \u2014 replenish for faster recovery" },
-      { "nodeId": "gym_9", "optionIndex": 2, "reason": "Recovery is your barrier \u2014 L-Glutamine accelerates muscle repair" },
-      { "nodeId": "gym_3b_soreness", "optionIndex": 0, "reason": "Leg and lower body soreness \u2014 L-Glutamine speeds recovery in those large muscle groups" },
-      { "nodeId": "gym_3b_soreness", "optionIndex": 1, "reason": "Upper body soreness lasting days \u2014 L-Glutamine replenishes what intense training depletes" },
-      { "nodeId": "gym_3b_soreness", "optionIndex": 2, "reason": "Full-body aches after training \u2014 L-Glutamine addresses the systemic recovery demand" },
-      { "nodeId": null, "reason": "Supports muscle recovery, gut health, and immune function" }
-    ],
-    "joint-support": [
-      { "nodeId": "gym_3", "optionIndex": 2, "reason": "Joint stiffness during training \u2014 targeted joint support keeps you moving" },
-      { "nodeId": "wellness_9", "optionIndex": 0, "reason": "Joint and inflammation concerns benefit from glucosamine and chondroitin" },
-      { "nodeId": "gym_3b_joints", "optionIndex": 0, "reason": "Knee pain during training \u2014 glucosamine and chondroitin protect and rebuild knee cartilage" },
-      { "nodeId": "gym_3b_joints", "optionIndex": 1, "reason": "Shoulder or elbow pain \u2014 targeted joint support keeps those high-use joints moving smoothly" },
-      { "nodeId": "gym_3b_joints", "optionIndex": 2, "reason": "Multiple joints affected \u2014 comprehensive joint support with glucosamine and chondroitin covers all of them" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 0, "reason": "Joint stiffness and mobility are your top aging concern \u2014 this formula is built for exactly that" },
-      { "nodeId": null, "reason": "Comprehensive joint formula for mobility and flexibility" }
-    ],
-    "chaga-mushroom": [
-      { "nodeId": "sleep_5", "optionIndex": 2, "reason": "High stress disrupting sleep \u2014 Chaga\u2019s adaptogenic compounds promote calm" },
-      { "nodeId": "sleep_1", "optionIndex": 3, "reason": "A racing mind at bedtime responds to Chaga\u2019s calming adaptogenic effects" },
-      { "nodeId": null, "reason": "Calming adaptogenic mushroom for relaxation and immune support" }
-    ],
-    "moringa-pure": [
-      { "nodeId": "energy_1", "optionIndex": 3, "reason": "Constant low energy \u2014 Moringa provides natural energy from dense nutrients" },
-      { "nodeId": "wellness_4", "optionIndex": 2, "reason": "Low energy most days \u2014 Moringa\u2019s iron and B vitamins address root causes" },
-      { "nodeId": "energy_1b_allday", "optionIndex": 2, "reason": "Years of low energy \u2014 Moringa\u2019s dense nutrient profile fills the long-standing gaps your body needs" },
-      { "nodeId": null, "reason": "Nutrient-dense superfood for natural energy and vitality" }
-    ],
-    "energy-powder-lychee": [
-      { "nodeId": "energy_1", "optionIndex": 1, "reason": "Afternoon energy crash \u2014 a refreshing lychee energy drink beats the slump" },
-      { "nodeId": "energy_4", "optionIndex": 2, "reason": "Heavy caffeine use \u2014 this provides a cleaner lychee-flavoured alternative" },
-      { "nodeId": null, "reason": "Lychee-flavoured clean energy powder for sustained performance" }
-    ],
-    "berberine": [
-      { "nodeId": "wellness_4", "optionIndex": 2, "reason": "Low energy can signal blood sugar imbalance \u2014 Berberine supports healthy levels" },
-      { "nodeId": "intro_2", "optionIndex": 3, "reason": "Inconsistent eating affects blood sugar \u2014 Berberine helps stabilise it" },
-      { "nodeId": "energy_7b_fog", "optionIndex": 1, "reason": "Brain fog after meals is a classic blood sugar signal \u2014 Berberine helps stabilise those post-meal dips" },
-      { "nodeId": null, "reason": "Supports healthy blood sugar, metabolism, and heart health" }
-    ],
-    "resveratrol-600": [
-      { "nodeId": "wellness_9", "optionIndex": 1, "reason": "Anti-aging concerns \u2014 Resveratrol activates longevity pathways" },
-      { "nodeId": "wellness_2", "optionIndex": 2, "reason": "Getting sick often \u2014 Resveratrol\u2019s antioxidant protection boosts resilience" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 3, "reason": "Cellular health and longevity are your priority \u2014 Resveratrol activates the pathways that matter most" },
-      { "nodeId": null, "reason": "Potent antioxidant for anti-aging and cellular protection" }
-    ],
-    "liver-support": [
-      { "nodeId": "wellness_5", "optionIndex": 3, "reason": "Digestive discomfort often starts with liver function \u2014 support your detox pathways" },
-      { "nodeId": "wellness_9", "optionIndex": 0, "reason": "Overall health depends on liver function \u2014 this protects and supports it" },
-      { "nodeId": null, "reason": "Supports liver detoxification and healthy liver function" }
-    ],
-    "digestive-gut-health-strips": [
-      { "nodeId": "wellness_5", "optionIndex": 2, "reason": "Digestive issues \u2014 convenient strips with probiotics and enzymes after meals" },
-      { "nodeId": "wellness_5", "optionIndex": 3, "reason": "Frequent bloating \u2014 digestive strips provide on-the-go relief" },
-      { "nodeId": "wellness_1b_gut", "optionIndex": 0, "reason": "Bloating after meals \u2014 pop a digestive strip right after eating for fast enzyme support" },
-      { "nodeId": "wellness_6b_gut", "optionIndex": 2, "reason": "Probiotics alone didn\u2019t help \u2014 digestive strips add enzyme support for a different approach" },
-      { "nodeId": null, "reason": "Fast-dissolving strips with probiotics and digestive enzymes" }
-    ],
-    "hair-skin-nails-essentials": [
-      { "nodeId": "wellness_9", "optionIndex": 1, "reason": "Skin and aging concerns benefit from biotin and keratin support" },
-      { "nodeId": "wellness_1b_aging", "optionIndex": 1, "reason": "Skin, hair, and nails are your focus \u2014 biotin and keratin provide targeted beauty-from-within support" },
-      { "nodeId": null, "reason": "Biotin, keratin, and vitamins for hair, skin, and nail health" }
+    "peptide-hair-growth-serum": [
+      { "nodeId": null, "reason": "Five biomimetic peptides plus rosemary and saw palmetto for fuller-looking hair" }
     ]
   }
 }

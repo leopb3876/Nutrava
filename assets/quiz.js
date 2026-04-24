@@ -7,8 +7,8 @@
   'use strict';
 
   /* ---------- Quiz Decision Tree ---------- */
-  var CONFIDENCE_THRESHOLD = 24;
-  var MAX_QUESTIONS = 22;
+  var CONFIDENCE_THRESHOLD = 10;
+  var MAX_QUESTIONS = 10;
 
   /* ---------- Product Database Lookup ---------- */
   var productDB = {};
@@ -30,18 +30,12 @@
       .catch(function() { productDBLoaded = true; /* products.json not available, use fallback data */ });
   })();
 
+  var quizCurrencySymbol = '$';
+
   function getProductImage(handle) {
     var p = productDB[handle];
     return p ? p.image : null;
   }
-
-  // Detect currency symbol from Shopify or default to $
-  var quizCurrencySymbol = (function() {
-    try {
-      if (window.Shopify && window.Shopify.currency) return window.Shopify.currency.active === 'GBP' ? '\u00A3' : '$';
-    } catch(e) {}
-    return '$';
-  })();
 
   function getProductPrice(handle, fallback) {
     var p = productDB[handle];
@@ -56,890 +50,168 @@
 
   /* ---------- Category Insights ---------- */
   var categoryInsights = {
-    focus: { label: 'Focus & Mental Clarity', icon: 'brain' },
-    gym: { label: 'Gym & Performance', icon: 'dumbbell' },
-    sleep: { label: 'Sleep & Recovery', icon: 'moon' },
-    energy: { label: 'Energy & Stress', icon: 'zap' },
-    wellness: { label: 'Daily Wellness', icon: 'leaf' }
+    acne: { label: 'Acne & Blemishes', icon: 'droplet' },
+    'anti-aging': { label: 'Anti-Aging', icon: 'sparkles' },
+    hydration: { label: 'Hydration', icon: 'glass-water' },
+    brightening: { label: 'Brightening', icon: 'sun' },
+    sensitive: { label: 'Sensitive Skin', icon: 'feather' }
   };
 
   var goalEncouragements = {
-    focus: "Great choice \u2014 let's dial in your cognitive support",
-    gym: "Let's build your performance stack",
-    sleep: "Let's fix your sleep",
-    energy: "Let's get your energy back on track",
-    wellness: "Smart \u2014 let's optimise your daily health"
+    acne: "Let\u2019s build you a clear-skin routine",
+    'anti-aging': "Let\u2019s build your age-defying routine",
+    hydration: "Let\u2019s quench that dehydrated skin",
+    brightening: "Let\u2019s brighten things up",
+    sensitive: "Let\u2019s find formulas your skin actually loves"
   };
 
   var crossCategoryInsights = {
-    'focus+sleep': 'focus and sleep are your biggest opportunities. We\u2019ve built a stack to sharpen your mind during the day and help you recover at night.',
-    'focus+energy': 'focus and energy are closely connected for you. This stack supports sustained mental clarity and all-day drive.',
-    'focus+gym': 'cognitive performance and physical training go hand in hand. This stack fuels both your brain and body.',
-    'focus+wellness': 'mental clarity and overall health are your priorities. This stack sharpens focus while supporting your daily wellness.',
-    'gym+sleep': 'training performance and recovery are your focus areas. This stack helps you push harder and recover faster.',
-    'gym+energy': 'physical performance and energy are your top needs. This stack powers your workouts and fights fatigue.',
-    'gym+wellness': 'training and overall health matter most to you. This stack supports performance while keeping your foundations strong.',
-    'sleep+energy': 'sleep and energy are deeply connected for you. Better sleep means more energy \u2014 this stack tackles both.',
-    'sleep+wellness': 'sleep quality and daily wellness are your priorities. This stack helps you rest deeply and feel your best.',
-    'energy+wellness': 'energy and overall health are what you need most. This stack addresses fatigue at the root while boosting vitality.'
+    'acne+hydration': 'oily or blemish-prone skin is often dehydrated underneath. Your routine balances both.',
+    'acne+sensitive': 'breakouts on reactive skin need gentle-but-effective actives. This routine skips the sting.',
+    'acne+brightening': 'blemishes now, dark spots after. This routine clears and evens tone at the same time.',
+    'acne+anti-aging': 'adult breakouts plus early aging is common. This routine handles both without harsh actives.',
+    'anti-aging+hydration': 'dehydration makes fine lines look worse than they are. Hydrate first, then anti-age.',
+    'anti-aging+brightening': 'smoother skin and even tone go together. This routine targets both.',
+    'anti-aging+sensitive': 'anti-aging for reactive skin means gentle retinol and peptides. This routine is built for that.',
+    'hydration+brightening': 'hydrated skin reflects light better \u2014 that\u2019s half of brightness. This routine delivers both.',
+    'hydration+sensitive': 'sensitive skin is often a compromised moisture barrier. Hydrate to heal.',
+    'brightening+sensitive': 'brightening on reactive skin needs mushroom actives, not kojic acid. Your routine is tailored for that.'
   };
 
   function getCrossInsight(cat1, cat2) {
     var key1 = cat1 + '+' + cat2;
     var key2 = cat2 + '+' + cat1;
     return crossCategoryInsights[key1] || crossCategoryInsights[key2] ||
-      categoryInsights[cat1].label.toLowerCase() + ' is your top priority. This stack is designed to help you reach your goals.';
+      categoryInsights[cat1].label.toLowerCase() + ' is your top priority. This routine is tailored to get you there.';
   }
 
-  /* ---------- Social Proof Testimonials ---------- */
+  /* ---------- Social Proof Testimonials (empty until real reviews collected) ---------- */
   var testimonials = {
-    focus: [
-      { text: "After 3 weeks I noticed I could work for hours without losing focus. Game changer for deep work.", author: "James K.", stars: 5 },
-      { text: "Brain fog is finally gone. I feel sharper in meetings and my memory has noticeably improved.", author: "Priya M.", stars: 5 },
-      { text: "Better than any nootropic I\u2019ve tried. The combination actually works together.", author: "Tom W.", stars: 5 }
-    ],
-    gym: [
-      { text: "Recovery between sessions is night and day. I\u2019m hitting PRs I didn\u2019t think were possible.", author: "Ryan S.", stars: 5 },
-      { text: "Finally a stack that\u2019s backed by real research, not just marketing hype.", author: "Emma L.", stars: 5 },
-      { text: "The performance boost was noticeable within the first week. Highly recommend.", author: "Marcus D.", stars: 5 }
-    ],
-    sleep: [
-      { text: "I fall asleep in minutes now instead of lying awake for an hour. Life changing.", author: "Sarah T.", stars: 5 },
-      { text: "Waking up actually feeling rested is something I forgot was possible.", author: "David R.", stars: 5 },
-      { text: "No grogginess, no dependency. Just natural, deep sleep. Exactly what I needed.", author: "Lucy H.", stars: 5 }
-    ],
-    energy: [
-      { text: "No more 2pm crash. I have consistent energy from morning to evening now.", author: "Alex P.", stars: 5 },
-      { text: "Replaced my 4-coffee habit with this stack. Feel calmer but more energised.", author: "Natasha B.", stars: 5 },
-      { text: "The stress resilience is real. I handle pressure so much better now.", author: "Chris M.", stars: 5 }
-    ],
-    wellness: [
-      { text: "Haven\u2019t had a cold in 6 months. My immune system feels bulletproof.", author: "Hannah J.", stars: 5 },
-      { text: "The difference in how I feel day-to-day is remarkable. More energy, better mood.", author: "Oliver K.", stars: 5 },
-      { text: "Simple, effective, no fillers. These are the supplements I\u2019ll keep taking.", author: "Kate F.", stars: 5 }
-    ]
+    acne: [],
+    'anti-aging': [],
+    hydration: [],
+    brightening: [],
+    sensitive: []
   };
 
   /* ---------- Quiz Tree ---------- */
   var quizTree = {
-    /* ===== Universal Intro Questions ===== */
+    /* ===== Q1: Skin Type ===== */
     start: {
-      question: "First, what\u2019s your age range?",
-      subtitle: "Nutritional needs change with age \u2014 this helps us get it right",
+      question: "What\u2019s your skin type?",
+      subtitle: "This is the biggest signal for what your skin actually needs",
       options: [
-        { text: "18\u201324", icon: "user", scores: {}, next: "intro_2" },
-        { text: "25\u201334", icon: "user", scores: { wellness: 1 }, next: "intro_2" },
-        { text: "35\u201344", icon: "user", scores: { wellness: 2 }, next: "intro_2" },
-        { text: "45+", icon: "user", scores: { wellness: 3 }, next: "intro_2" }
-      ]
-    },
-    intro_2: {
-      question: "How would you describe your current diet?",
-      subtitle: "Food is your foundation \u2014 supplements fill the gaps",
-      options: [
-        { text: "Balanced \u2014 I eat a good variety", icon: "apple", scores: {}, next: "intro_3" },
-        { text: "Mostly healthy but could improve", icon: "salad", scores: { wellness: 1 }, next: "intro_3" },
-        { text: "Quite restricted (vegan, keto, IF)", icon: "leaf", scores: { wellness: 2 }, next: "intro_3" },
-        { text: "Inconsistent \u2014 depends on the week", icon: "shuffle", scores: { energy: 1, wellness: 1 }, next: "intro_3" }
-      ]
-    },
-    intro_3: {
-      question: "How physically active are you?",
-      subtitle: "Exercise levels affect which supplements benefit you most",
-      options: [
-        { text: "Very active \u2014 4+ sessions per week", icon: "dumbbell", scores: { gym: 2 }, next: "intro_4" },
-        { text: "Moderately active \u2014 2\u20133 sessions", icon: "footprints", scores: { gym: 1 }, next: "intro_4" },
-        { text: "Lightly active \u2014 walks and casual", icon: "trees", scores: {}, next: "intro_4" },
-        { text: "Sedentary \u2014 desk job, minimal exercise", icon: "laptop", scores: { energy: 1 }, next: "intro_4" }
-      ]
-    },
-    intro_4: {
-      question: "Are you currently taking any supplements?",
-      subtitle: "We want to complement what you already take, not duplicate",
-      options: [
-        { text: "No \u2014 this is my first time", icon: "plus", scores: {}, next: "intro_diet" },
-        { text: "Just a basic multivitamin", icon: "pill", scores: {}, next: "intro_diet" },
-        { text: "Yes \u2014 a few different ones", icon: "package", scores: {}, next: "intro_diet" },
-        { text: "Yes but not sure they\u2019re working", icon: "help-circle", scores: { wellness: 1 }, next: "intro_diet" }
-      ]
-    },
-    intro_diet: {
-      question: "Any dietary restrictions or sensitivities?",
-      subtitle: "We\u2019ll make sure your stack is compatible",
-      options: [
-        { text: "None", icon: "check", scores: {}, next: "goal" },
-        { text: "Vegan / vegetarian", icon: "sprout", scores: { wellness: 1 }, next: "goal" },
-        { text: "Gluten or dairy intolerant", icon: "wheat-off", scores: { wellness: 1 }, next: "goal" },
-        { text: "Multiple sensitivities", icon: "shield-alert", scores: { wellness: 2 }, next: "goal" }
+        { text: "Oily \u2014 shine, large pores, breakouts", icon: "droplet", scores: { acne: 2, hydration: 1 }, next: "concern" },
+        { text: "Dry \u2014 tight, flaky, rough patches", icon: "wind", scores: { hydration: 3 }, next: "concern" },
+        { text: "Combination \u2014 oily T-zone, dry cheeks", icon: "split", scores: { hydration: 1, acne: 1 }, next: "concern" },
+        { text: "Sensitive \u2014 redness, easily irritated", icon: "feather", scores: { sensitive: 4 }, next: "concern" },
+        { text: "Normal / I\u2019m not sure", icon: "help-circle", scores: {}, next: "concern" }
       ]
     },
 
-    /* ===== Goal Selection ===== */
-    goal: {
-      question: "What\u2019s your main wellness goal?",
-      subtitle: "Choose the one that matters most right now",
+    /* ===== Q2: Top Concern (goal selector) ===== */
+    concern: {
+      question: "What\u2019s your top skin concern right now?",
+      subtitle: "Pick the one that bothers you most \u2014 your routine will focus here",
       isGoalQuestion: true,
       options: [
-        { text: "Focus & Mental Clarity", icon: "brain", scores: { focus: 5 }, next: "focus_1", goalKey: "focus" },
-        { text: "Gym & Performance", icon: "dumbbell", scores: { gym: 5 }, next: "gym_1", goalKey: "gym" },
-        { text: "Sleep & Recovery", icon: "moon", scores: { sleep: 5 }, next: "sleep_1", goalKey: "sleep" },
-        { text: "Energy & Stress", icon: "zap", scores: { energy: 5 }, next: "energy_1", goalKey: "energy" },
-        { text: "Daily Wellness", icon: "leaf", scores: { wellness: 5 }, next: "wellness_1", goalKey: "wellness" }
+        { text: "Breakouts & blemishes", icon: "circle-dot", scores: { acne: 5 }, next: "acne_freq", goalKey: "acne" },
+        { text: "Fine lines & loss of firmness", icon: "activity", scores: { 'anti-aging': 5 }, next: "aging_focus", goalKey: "anti-aging" },
+        { text: "Dehydration & dullness", icon: "glass-water", scores: { hydration: 5 }, next: "hydration_feel", goalKey: "hydration" },
+        { text: "Dark spots & uneven tone", icon: "sun", scores: { brightening: 5 }, next: "brightening_focus", goalKey: "brightening" },
+        { text: "Redness & reactivity", icon: "feather", scores: { sensitive: 5 }, next: "sensitive_trigger", goalKey: "sensitive" }
       ]
     },
 
-    /* ----- Focus Path (adaptive branching) ----- */
-    focus_1: {
-      question: "What do you need focus for?",
-      subtitle: "This helps us tailor the right nootropic support",
+    /* ===== Q3 branches ===== */
+    acne_freq: {
+      question: "How often do you break out?",
+      subtitle: "Frequency helps us match the right strength of treatment",
       options: [
-        { text: "Work \u2014 deep tasks & meetings", icon: "briefcase", scores: { focus: 3, energy: 1 }, next: "focus_2" },
-        { text: "Studying & exams", icon: "book-open", scores: { focus: 3 }, next: "focus_2" },
-        { text: "Creative work & flow states", icon: "palette", scores: { focus: 2, energy: 1 }, next: "focus_2" },
-        { text: "Gaming & reaction time", icon: "gamepad-2", scores: { focus: 2, energy: 2 }, next: "focus_1b_gaming" }
+        { text: "Daily \u2014 constant active breakouts", icon: "zap", scores: { acne: 3 }, productBoosts: { "aloe-tea-tree-radiance-gel": 3, "charcoal-facial-cleanser": 2 }, next: "routine" },
+        { text: "Weekly \u2014 regular flare-ups", icon: "calendar", scores: { acne: 2 }, productBoosts: { "charcoal-facial-cleanser": 2 }, next: "routine" },
+        { text: "Hormonal \u2014 monthly cycle", icon: "moon", scores: { acne: 1, sensitive: 1 }, productBoosts: { "aloe-tea-tree-radiance-gel": 2 }, next: "routine" },
+        { text: "Rarely \u2014 but I want clearer skin", icon: "sparkles", scores: { acne: 1 }, next: "routine" }
       ]
     },
-    focus_1b_gaming: {
-      question: "What type of gaming?",
-      subtitle: "Different gaming styles need different cognitive support",
+    aging_focus: {
+      question: "What\u2019s your top aging concern?",
+      subtitle: "We\u2019ll bias your routine toward the biggest issue",
       options: [
-        { text: "Competitive \u2014 FPS / MOBA / ranked", icon: "swords", scores: { energy: 2, focus: 1 }, productBoosts: { "energy-strips": 2 }, next: "focus_2" },
-        { text: "Long sessions \u2014 MMO / RPG / strategy", icon: "gamepad-2", scores: { focus: 2 }, productBoosts: { "lions-mane-mushroom": 2 }, next: "focus_2" }
+        { text: "Fine lines around eyes & mouth", icon: "minus", scores: { 'anti-aging': 2 }, productBoosts: { "anti-aging-moisturizer": 3 }, next: "routine" },
+        { text: "Loss of firmness & bounce", icon: "activity", scores: { 'anti-aging': 3 }, productBoosts: { "skin-firming-cream": 3, "gua-sha-face-oil": 2 }, next: "routine" },
+        { text: "Dullness & tired-looking skin", icon: "sun", scores: { 'anti-aging': 1, brightening: 2 }, productBoosts: { "vitamin-c-serum": 2 }, next: "routine" },
+        { text: "All of the above", icon: "layers", scores: { 'anti-aging': 3 }, productBoosts: { "anti-aging-moisturizer": 2 }, next: "routine" }
       ]
     },
-    focus_2: {
-      question: "How would you describe your current concentration?",
-      subtitle: "Be honest \u2014 there\u2019s no wrong answer",
+    hydration_feel: {
+      question: "How does your skin feel most of the time?",
+      subtitle: "Different dryness signals point to different fixes",
       options: [
-        { text: "I can focus but it fades quickly", icon: "timer", scores: { focus: 2 }, next: "focus_3" },
-        { text: "I get distracted easily", icon: "radar", scores: { focus: 3 }, next: "focus_2b_distraction" },
-        { text: "Brain fog \u2014 hard to think clearly", icon: "cloud", scores: { focus: 3, wellness: 1 }, next: "focus_2b_fog" },
-        { text: "It\u2019s okay, I just want an edge", icon: "trending-up", scores: { focus: 1 }, next: "focus_4" }
+        { text: "Tight right after cleansing", icon: "alert-triangle", scores: { hydration: 2 }, productBoosts: { "hyaluronic-acid-serum": 3, "charcoal-facial-cleanser": 1 }, next: "routine" },
+        { text: "Dry & flaky by midday", icon: "wind", scores: { hydration: 3 }, productBoosts: { "skin-hydration-cream": 3 }, next: "routine" },
+        { text: "Dehydrated \u2014 dull and parched", icon: "droplet", scores: { hydration: 2, brightening: 1 }, productBoosts: { "hyaluronic-acid-serum": 2 }, next: "routine" },
+        { text: "Fine lines appear when dehydrated", icon: "minus", scores: { hydration: 2, 'anti-aging': 1 }, productBoosts: { "gua-sha-face-oil": 2 }, next: "routine" }
       ]
     },
-    focus_2b_distraction: {
-      question: "What distracts you most?",
-      subtitle: "Understanding the source helps us target the right support",
+    brightening_focus: {
+      question: "What\u2019s your main tone concern?",
+      subtitle: "Different causes of uneven tone respond to different actives",
       options: [
-        { text: "Phone & notifications", icon: "smartphone", scores: { focus: 1 }, next: "focus_3" },
-        { text: "Internal thoughts & worries", icon: "brain", scores: { energy: 1, focus: 1 }, productBoosts: { "ashwagandha": 2 }, next: "focus_3" },
-        { text: "Environment \u2014 noise, people", icon: "volume-2", scores: { focus: 1 }, next: "focus_3" }
+        { text: "Post-acne marks & scarring", icon: "circle-dot", scores: { brightening: 2, acne: 1 }, productBoosts: { "vitamin-c-serum": 2 }, next: "routine" },
+        { text: "Sun damage & age spots", icon: "sun", scores: { brightening: 3 }, productBoosts: { "vitamin-c-serum": 3 }, next: "routine" },
+        { text: "Overall dullness", icon: "sparkles", scores: { brightening: 2 }, productBoosts: { "pdrn-brightening-serum": 3 }, next: "routine" },
+        { text: "Uneven tone + sensitivity", icon: "feather", scores: { brightening: 2, sensitive: 2 }, productBoosts: { "dark-spot-serum-sensitive-skin": 3 }, next: "routine" }
       ]
     },
-    focus_2b_fog: {
-      question: "When did the brain fog start?",
-      subtitle: "Timing can reveal the underlying cause",
+    sensitive_trigger: {
+      question: "What tends to trigger your skin?",
+      subtitle: "Identifying the trigger helps us avoid it in your routine",
       options: [
-        { text: "Recently \u2014 past few weeks", icon: "calendar", scores: { focus: 1 }, next: "focus_2b_fog2" },
-        { text: "Months ago", icon: "calendar-check", scores: { focus: 2 }, productBoosts: { "lions-mane-mushroom": 3 }, next: "focus_3" },
-        { text: "Always had it \u2014 as long as I remember", icon: "infinity", scores: { focus: 2, wellness: 2 }, productBoosts: { "lions-mane-mushroom": 3, "brain-focus-formula": 2 }, next: "focus_3" }
-      ]
-    },
-    focus_2b_fog2: {
-      question: "Did anything change around that time?",
-      subtitle: "Life changes often trigger cognitive shifts",
-      options: [
-        { text: "New job or more stress", icon: "briefcase", scores: { energy: 2 }, productBoosts: { "ashwagandha": 3 }, next: "focus_5" },
-        { text: "Poor sleep started", icon: "moon", scores: { sleep: 2 }, productBoosts: { "magnesium-glycinate": 2 }, next: "focus_5" },
-        { text: "Diet change", icon: "utensils", scores: { wellness: 2 }, productBoosts: { "complete-multivitamin": 2 }, next: "focus_3" },
-        { text: "Not sure", icon: "help-circle", scores: { focus: 1 }, next: "focus_3" }
-      ]
-    },
-    focus_3: {
-      question: "How much caffeine do you consume daily?",
-      subtitle: "This affects which ingredients work best for you",
-      options: [
-        { text: "None", icon: "ban", scores: { focus: 1, energy: 1 }, next: "focus_4" },
-        { text: "1\u20132 cups of coffee/tea", icon: "coffee", scores: { focus: 1 }, next: "focus_4" },
-        { text: "3\u20134 cups", icon: "cup-soda", scores: { energy: 2 }, productBoosts: { "mushroom-focus-strips": 2 }, next: "focus_4" },
-        { text: "5+ cups \u2014 I need it to function", icon: "zap", scores: { energy: 3, sleep: 1 }, next: "focus_3b_caffeine" }
-      ]
-    },
-    focus_3b_caffeine: {
-      question: "How do you feel without caffeine?",
-      subtitle: "Dependency level affects which supplements help most",
-      options: [
-        { text: "Headaches & withdrawal symptoms", icon: "alert-triangle", scores: { energy: 1, wellness: 1 }, productBoosts: { "energy-powder": 2 }, next: "focus_4" },
-        { text: "Just tired \u2014 nothing severe", icon: "battery-low", scores: { energy: 1 }, next: "focus_4" }
-      ]
-    },
-    focus_4: {
-      question: "How many hours do you spend on screens daily?",
-      subtitle: "Screen time affects cognitive fatigue and eye health",
-      options: [
-        { text: "Less than 4 hours", icon: "monitor", scores: { focus: 1 }, next: "focus_5" },
-        { text: "4\u20138 hours", icon: "monitor", scores: { focus: 1, wellness: 1 }, next: "focus_5" },
-        { text: "8\u201312 hours", icon: "monitor", scores: { focus: 2, sleep: 1 }, next: "focus_5" },
-        { text: "12+ hours \u2014 nearly all day", icon: "monitor", scores: { focus: 2, sleep: 2 }, next: "focus_5" }
-      ]
-    },
-    focus_5: {
-      question: "How\u2019s your sleep been lately?",
-      subtitle: "Sleep quality directly impacts cognitive performance",
-      options: [
-        { text: "Great \u2014 7\u20139 hours, feel rested", icon: "smile", scores: { focus: 1 }, next: "focus_7" },
-        { text: "Okay \u2014 could be better", icon: "meh", scores: { sleep: 1 }, next: "focus_6" },
-        { text: "Poor \u2014 I struggle to sleep well", icon: "frown", scores: { sleep: 3 }, next: "focus_5b_sleep" },
-        { text: "Inconsistent \u2014 varies a lot", icon: "shuffle", scores: { sleep: 2 }, next: "focus_6" }
-      ]
-    },
-    focus_5b_sleep: {
-      question: "What happens at night?",
-      subtitle: "Different sleep issues need different solutions",
-      options: [
-        { text: "Can\u2019t fall asleep", icon: "bed", scores: { sleep: 2 }, productBoosts: { "magnesium-glycinate": 3, "sleep-formula": 2 }, next: "focus_6" },
-        { text: "Wake up repeatedly", icon: "alarm-clock", scores: { sleep: 2 }, productBoosts: { "magnesium-glycinate": 3 }, next: "focus_6" },
-        { text: "Sleep but don\u2019t feel rested", icon: "battery-low", scores: { sleep: 1, wellness: 1 }, productBoosts: { "ashwagandha-plus": 2 }, next: "focus_6" }
-      ]
-    },
-    focus_6: {
-      question: "Do you experience stress or anxiety regularly?",
-      subtitle: "Stress can significantly impact focus and memory",
-      options: [
-        { text: "Rarely \u2014 I manage stress well", icon: "heart", scores: { focus: 1 }, next: "focus_8" },
-        { text: "Sometimes \u2014 during busy periods", icon: "bar-chart", scores: { energy: 1 }, next: "focus_7" },
-        { text: "Often \u2014 it affects my daily life", icon: "alert-triangle", scores: { energy: 3 }, next: "focus_6b_stress" },
-        { text: "Yes \u2014 it\u2019s a major issue for me", icon: "alert-circle", scores: { energy: 4 }, next: "focus_6b_stress" }
-      ]
-    },
-    focus_6b_stress: {
-      question: "How does stress show up for you?",
-      subtitle: "The way stress manifests tells us which support you need",
-      options: [
-        { text: "Racing thoughts", icon: "zap", scores: { sleep: 1 }, productBoosts: { "ashwagandha": 3, "cognitive-relax-strips": 2 }, next: "focus_7" },
-        { text: "Physical tension \u2014 tight muscles, headaches", icon: "activity", scores: { wellness: 1 }, productBoosts: { "magnesium-glycinate": 2 }, next: "focus_7" },
-        { text: "Emotional overwhelm", icon: "heart-crack", scores: { energy: 1 }, productBoosts: { "ashwagandha": 3 }, next: "focus_7" }
-      ]
-    },
-    focus_7: {
-      question: "Have you tried nootropics or brain supplements before?",
-      subtitle: "This helps us calibrate the right starting point",
-      options: [
-        { text: "No \u2014 completely new to this", icon: "plus", scores: { focus: 1 }, next: "focus_8" },
-        { text: "Just caffeine + L-theanine", icon: "coffee", scores: { focus: 1 }, next: "focus_8" },
-        { text: "Yes \u2014 some worked, some didn\u2019t", icon: "flask-conical", scores: { focus: 2 }, next: "focus_8" },
-        { text: "Yes \u2014 nothing has really worked", icon: "x-circle", scores: { focus: 2, wellness: 1 }, next: "focus_8" }
-      ]
-    },
-    focus_8: {
-      question: "How would you rate your memory lately?",
-      subtitle: "Memory and focus are closely linked \u2014 both can be supported",
-      options: [
-        { text: "Sharp \u2014 no complaints", icon: "check", scores: { focus: 1 }, next: "focus_9" },
-        { text: "Decent but occasional lapses", icon: "minus", scores: { focus: 2 }, next: "focus_9" },
-        { text: "Noticeably worse than before", icon: "trending-down", scores: { focus: 3, wellness: 1 }, next: "focus_8b_memory" },
-        { text: "Frequently forgetting things", icon: "alert-circle", scores: { focus: 3, wellness: 1 }, next: "focus_8b_memory" }
-      ]
-    },
-    focus_8b_memory: {
-      question: "What kind of things do you forget?",
-      subtitle: "Different memory issues point to different supplements",
-      options: [
-        { text: "Names & words \u2014 tip of tongue", icon: "message-circle", scores: { focus: 1 }, productBoosts: { "ginkgo-biloba-ginseng": 3 }, next: "focus_9" },
-        { text: "Tasks & appointments", icon: "calendar-x", scores: { focus: 1 }, productBoosts: { "brain-focus-formula": 2 }, next: "focus_9" },
-        { text: "Recent conversations", icon: "message-square", scores: { focus: 2 }, productBoosts: { "lions-mane-mushroom": 3 }, next: "focus_9" }
-      ]
-    },
-    focus_9: {
-      question: "How often do you multitask during your day?",
-      subtitle: "Constant context-switching drains cognitive resources",
-      options: [
-        { text: "Rarely \u2014 I single-task and focus", icon: "target", scores: { focus: 1 }, next: null },
-        { text: "Sometimes \u2014 when things get busy", icon: "layers", scores: { focus: 2 }, next: null },
-        { text: "Frequently \u2014 it\u2019s hard to avoid", icon: "split", scores: { focus: 3 }, next: null },
-        { text: "Constantly \u2014 always juggling things", icon: "shuffle", scores: { focus: 3, energy: 1 }, next: null }
+        { text: "New products & ingredients", icon: "package", scores: { sensitive: 2 }, productBoosts: { "dark-spot-serum-sensitive-skin": 2 }, next: "routine" },
+        { text: "Hot water, sun, weather", icon: "thermometer", scores: { sensitive: 2 }, productBoosts: { "aloe-tea-tree-radiance-gel": 2 }, next: "routine" },
+        { text: "Stress", icon: "zap", scores: { sensitive: 1, hydration: 1 }, productBoosts: { "hyaluronic-acid-serum": 1 }, next: "routine" },
+        { text: "Not sure \u2014 feels like everything", icon: "help-circle", scores: { sensitive: 3 }, productBoosts: { "dark-spot-serum-sensitive-skin": 3 }, next: "routine" }
       ]
     },
 
-    /* ----- Gym Path (adaptive branching) ----- */
-    gym_1: {
-      question: "What type of training do you do?",
-      subtitle: "Different training styles need different nutritional support",
+    /* ===== Q4: Current routine ===== */
+    routine: {
+      question: "What does your current routine look like?",
+      subtitle: "We\u2019ll meet you where you are",
       options: [
-        { text: "Strength / Hypertrophy", icon: "dumbbell", scores: { gym: 3 }, productBoosts: { "creatine-monohydrate": 2 }, next: "gym_2" },
-        { text: "Cardio / Endurance", icon: "heart-pulse", scores: { gym: 2, energy: 1 }, next: "gym_1b_cardio" },
-        { text: "Mixed / CrossFit", icon: "repeat", scores: { gym: 2, energy: 1 }, productBoosts: { "nitric-shock-pre-workout": 2 }, next: "gym_2" },
-        { text: "Sports-specific training", icon: "trophy", scores: { gym: 2 }, next: "gym_2" }
-      ]
-    },
-    gym_1b_cardio: {
-      question: "What\u2019s your cardio goal?",
-      subtitle: "This helps us pick the right performance support",
-      options: [
-        { text: "Endurance \u2014 running / cycling / swimming", icon: "bike", scores: { gym: 1, energy: 1 }, productBoosts: { "beetroot": 3, "beetroot-powder": 2 }, next: "gym_2" },
-        { text: "Heart health & general fitness", icon: "heart-pulse", scores: { wellness: 1 }, productBoosts: { "beetroot": 2 }, next: "gym_2" },
-        { text: "Weight loss", icon: "flame", scores: { energy: 1 }, productBoosts: { "energy-powder": 2 }, next: "gym_2" }
-      ]
-    },
-    gym_2: {
-      question: "How long have you been training consistently?",
-      subtitle: "Experience level affects which supplements will benefit you most",
-      options: [
-        { text: "Less than 3 months", icon: "calendar", scores: { gym: 1 }, next: "gym_3" },
-        { text: "3\u201312 months", icon: "calendar-check", scores: { gym: 2 }, next: "gym_3" },
-        { text: "1\u20133 years", icon: "award", scores: { gym: 2 }, next: "gym_3" },
-        { text: "3+ years", icon: "trophy", scores: { gym: 3 }, next: "gym_2b_experienced" }
-      ]
-    },
-    gym_2b_experienced: {
-      question: "Hit any plateaus lately?",
-      subtitle: "Stalls are normal \u2014 the right support can break through them",
-      options: [
-        { text: "Yes \u2014 strength has stalled", icon: "trending-down", scores: { gym: 2 }, productBoosts: { "creatine-monohydrate": 3, "nitric-shock-pre-workout": 2 }, next: "gym_3" },
-        { text: "Yes \u2014 muscle growth has slowed", icon: "minus", scores: { gym: 2 }, productBoosts: { "whey-protein-isolate": 3 }, next: "gym_3" },
-        { text: "No \u2014 still progressing", icon: "trending-up", scores: { gym: 1 }, next: "gym_3" }
-      ]
-    },
-    gym_3: {
-      question: "How\u2019s your recovery between sessions?",
-      subtitle: "Recovery is where progress actually happens",
-      options: [
-        { text: "Great \u2014 I feel ready each session", icon: "thumbs-up", scores: { gym: 1 }, next: "gym_5" },
-        { text: "Often sore for days", icon: "activity", scores: { gym: 2, sleep: 1 }, next: "gym_3b_soreness" },
-        { text: "Joint pain or stiffness", icon: "bone", scores: { gym: 2, wellness: 1 }, next: "gym_3b_joints" },
-        { text: "I feel run down / overtrained", icon: "battery-low", scores: { gym: 2, sleep: 2, energy: 1 }, productBoosts: { "ashwagandha": 3 }, next: "gym_4" }
-      ]
-    },
-    gym_3b_soreness: {
-      question: "Where do you feel the soreness most?",
-      subtitle: "Location helps us recommend targeted recovery support",
-      options: [
-        { text: "Legs & lower body", icon: "footprints", scores: { gym: 1 }, productBoosts: { "l-glutamine-powder": 3 }, next: "gym_4" },
-        { text: "Upper body \u2014 chest, back, arms", icon: "dumbbell", scores: { gym: 1 }, productBoosts: { "l-glutamine-powder": 2, "colostrum-powder": 2 }, next: "gym_4" },
-        { text: "Full body aches", icon: "alert-triangle", scores: { gym: 1, wellness: 1 }, productBoosts: { "l-glutamine-powder": 3, "magnesium-glycinate": 2 }, next: "gym_4" }
-      ]
-    },
-    gym_3b_joints: {
-      question: "Which joints bother you?",
-      subtitle: "Targeted support can make a real difference",
-      options: [
-        { text: "Knees", icon: "bone", scores: { wellness: 1 }, productBoosts: { "joint-support": 3, "collagen-peptides": 2 }, next: "gym_4" },
-        { text: "Shoulders or elbows", icon: "activity", scores: { wellness: 1 }, productBoosts: { "joint-support": 3 }, next: "gym_4" },
-        { text: "Multiple joints", icon: "alert-circle", scores: { wellness: 2 }, productBoosts: { "joint-support": 3, "platinum-turmeric": 3, "collagen-peptides": 2 }, next: "gym_4" }
-      ]
-    },
-    gym_4: {
-      question: "How much protein do you consume daily?",
-      subtitle: "Protein requirements depend on your training intensity",
-      options: [
-        { text: "High \u2014 I hit my targets consistently", icon: "beef", scores: { gym: 1 }, next: "gym_5" },
-        { text: "Moderate \u2014 I try but often miss", icon: "egg", scores: { gym: 1 }, next: "gym_5" },
-        { text: "Low \u2014 I know I don\u2019t get enough", icon: "alert-triangle", scores: { gym: 2 }, next: "gym_4b_protein" },
-        { text: "Not sure \u2014 I don\u2019t track it", icon: "help-circle", scores: { gym: 1, wellness: 1 }, next: "gym_5" }
-      ]
-    },
-    gym_4b_protein: {
-      question: "Any dietary restrictions?",
-      subtitle: "This determines which protein source suits you best",
-      options: [
-        { text: "No restrictions", icon: "check", scores: { gym: 1 }, productBoosts: { "whey-protein-isolate": 3 }, next: "gym_5" },
-        { text: "Vegan / vegetarian", icon: "sprout", scores: { gym: 1 }, productBoosts: { "plant-protein-vanilla": 3 }, next: "gym_5" },
-        { text: "Lactose intolerant", icon: "wheat-off", scores: { gym: 1 }, productBoosts: { "plant-protein-vanilla": 3 }, next: "gym_5" }
-      ]
-    },
-    gym_5: {
-      question: "How\u2019s your sleep and energy?",
-      subtitle: "Recovery happens while you sleep \u2014 this affects your results",
-      options: [
-        { text: "I sleep well and have good energy", icon: "smile", scores: { gym: 1 }, next: "gym_6" },
-        { text: "Sleep is okay but energy dips", icon: "meh", scores: { energy: 1 }, next: "gym_6" },
-        { text: "Poor sleep \u2014 it\u2019s hurting my gains", icon: "frown", scores: { sleep: 2 }, next: "gym_6" },
-        { text: "Both need serious improvement", icon: "alert-circle", scores: { sleep: 2, energy: 2 }, next: "gym_6" }
-      ]
-    },
-    gym_6: {
-      question: "What\u2019s your primary gym goal right now?",
-      subtitle: "This determines the exact supplements we recommend",
-      options: [
-        { text: "Build muscle / Get bigger", icon: "trending-up", scores: { gym: 2 }, next: "gym_7" },
-        { text: "Lose fat / Get lean", icon: "flame", scores: { gym: 1, energy: 1 }, next: "gym_7" },
-        { text: "Improve performance / PRs", icon: "trophy", scores: { gym: 2 }, next: "gym_7" },
-        { text: "General fitness / Stay active", icon: "heart-pulse", scores: { gym: 1, wellness: 1 }, next: "gym_7" }
-      ]
-    },
-    gym_7: {
-      question: "Do you experience any joint or mobility issues?",
-      subtitle: "Joint health is crucial for long-term training",
-      skipIf: { visitedNode: "gym_3b_joints", skipTo: "gym_8" },
-      options: [
-        { text: "No issues at all", icon: "check", scores: { gym: 1 }, next: "gym_8" },
-        { text: "Minor stiffness after training", icon: "minus", scores: { gym: 1, wellness: 1 }, next: "gym_8" },
-        { text: "Recurring joint pain", icon: "alert-triangle", scores: { gym: 2, wellness: 2 }, next: "gym_8" },
-        { text: "Yes \u2014 it limits my training", icon: "alert-circle", scores: { gym: 2, wellness: 3 }, next: "gym_8" }
-      ]
-    },
-    gym_8: {
-      question: "What does your post-workout nutrition look like?",
-      subtitle: "Recovery nutrition is as important as the workout itself",
-      options: [
-        { text: "Protein shake within 30 min", icon: "cup-soda", scores: { gym: 1 }, next: "gym_9" },
-        { text: "A full meal after training", icon: "utensils", scores: { gym: 1 }, next: "gym_9" },
-        { text: "I don\u2019t eat after training", icon: "x-circle", scores: { gym: 3 }, next: "gym_8b_postworkout" },
-        { text: "Inconsistent \u2014 depends on the day", icon: "shuffle", scores: { gym: 2 }, next: "gym_9" }
-      ]
-    },
-    gym_8b_postworkout: {
-      question: "Why don\u2019t you eat after training?",
-      subtitle: "Understanding the reason helps us find the right solution",
-      options: [
-        { text: "Not hungry / nauseous after", icon: "x-circle", scores: { gym: 1 }, productBoosts: { "hydration-powder-lemonade": 2 }, next: "gym_9" },
-        { text: "No time \u2014 straight to work/life", icon: "clock", scores: { gym: 1 }, productBoosts: { "whey-protein-isolate": 2 }, next: "gym_9" },
-        { text: "Don\u2019t know what to eat", icon: "help-circle", scores: { gym: 1 }, next: "gym_9" }
-      ]
-    },
-    gym_9: {
-      question: "What\u2019s been your biggest barrier to progress?",
-      subtitle: "Identifying blockers helps us target the right support",
-      options: [
-        { text: "Inconsistent training schedule", icon: "calendar-x", scores: { gym: 1 }, next: null },
-        { text: "Nutrition \u2014 I can\u2019t dial it in", icon: "utensils-crossed", scores: { gym: 2 }, next: null },
-        { text: "Recovery & soreness", icon: "thermometer", scores: { gym: 3, sleep: 1 }, next: null },
-        { text: "Motivation & energy", icon: "battery-low", scores: { gym: 1, energy: 2 }, next: null }
-      ]
-    },
-    /* ----- Sleep Path (adaptive branching) ----- */
-    sleep_1: {
-      question: "What\u2019s your biggest sleep struggle?",
-      subtitle: "Understanding the problem helps us find the right solution",
-      options: [
-        { text: "Trouble falling asleep", icon: "bed", scores: { sleep: 3 }, next: "sleep_1b_onset" },
-        { text: "Waking up during the night", icon: "moon", scores: { sleep: 3 }, next: "sleep_1b_maintenance" },
-        { text: "Not feeling rested in the morning", icon: "alarm-clock", scores: { sleep: 2, energy: 1 }, next: "sleep_2" },
-        { text: "Racing mind at bedtime", icon: "brain", scores: { sleep: 2, energy: 1 }, next: "sleep_1b_racing" }
-      ]
-    },
-    sleep_1b_onset: {
-      question: "How long does it take you to fall asleep?",
-      subtitle: "Sleep onset time tells us a lot about what\u2019s happening",
-      options: [
-        { text: "30\u201360 minutes", icon: "clock", scores: { sleep: 1 }, productBoosts: { "magnesium-glycinate": 2, "sleep-formula": 2 }, next: "sleep_2" },
-        { text: "1\u20132 hours", icon: "timer", scores: { sleep: 2 }, productBoosts: { "magnesium-glycinate": 3, "sleep-formula": 3 }, next: "sleep_2" },
-        { text: "2+ hours \u2014 it\u2019s a real struggle", icon: "alert-circle", scores: { sleep: 3 }, productBoosts: { "sleep-formula": 3, "magnesium-glycinate": 3 }, next: "sleep_2" }
-      ]
-    },
-    sleep_1b_maintenance: {
-      question: "How often do you wake up at night?",
-      subtitle: "Wake frequency helps us identify the right support",
-      options: [
-        { text: "Once \u2014 I fall back fairly easily", icon: "minus", scores: { sleep: 1 }, next: "sleep_2" },
-        { text: "2\u20133 times per night", icon: "alert-triangle", scores: { sleep: 2 }, productBoosts: { "magnesium-glycinate": 3 }, next: "sleep_2" },
-        { text: "Multiple times \u2014 hard to get back to sleep", icon: "alert-circle", scores: { sleep: 3 }, productBoosts: { "magnesium-glycinate": 3, "ashwagandha-plus": 2 }, next: "sleep_2" }
-      ]
-    },
-    sleep_1b_racing: {
-      question: "What\u2019s your mind racing about?",
-      subtitle: "The content of racing thoughts guides our recommendation",
-      options: [
-        { text: "Work & responsibilities", icon: "briefcase", scores: { energy: 2 }, productBoosts: { "ashwagandha-plus": 3 }, next: "sleep_2" },
-        { text: "Anxiety & worries", icon: "alert-triangle", scores: { energy: 2 }, productBoosts: { "ashwagandha-plus": 3, "cognitive-relax-strips": 2 }, next: "sleep_2" },
-        { text: "Random thoughts \u2014 can\u2019t switch off", icon: "shuffle", scores: { energy: 1, focus: 1 }, productBoosts: { "magnesium-glycinate": 2 }, next: "sleep_2" }
-      ]
-    },
-    sleep_2: {
-      question: "How many hours of sleep do you typically get?",
-      subtitle: "Most adults need 7\u20139 hours for optimal health",
-      options: [
-        { text: "Less than 5 hours", icon: "alert-circle", scores: { sleep: 4, energy: 2 }, next: "sleep_3" },
-        { text: "5\u20136 hours", icon: "clock", scores: { sleep: 3 }, next: "sleep_3" },
-        { text: "6\u20137 hours", icon: "timer", scores: { sleep: 2 }, next: "sleep_4" },
-        { text: "7+ hours but still tired", icon: "help-circle", scores: { sleep: 2, wellness: 1 }, next: "sleep_2b_quality" }
-      ]
-    },
-    sleep_2b_quality: {
-      question: "Do you snore or wake up with a dry mouth?",
-      subtitle: "These can indicate something your supplements alone can\u2019t fix",
-      options: [
-        { text: "Yes \u2014 frequently", icon: "alert-triangle", scores: { wellness: 1 }, next: "sleep_3" },
-        { text: "Occasionally", icon: "minus", scores: { sleep: 1 }, next: "sleep_3" },
-        { text: "No", icon: "check", scores: { sleep: 1 }, productBoosts: { "ashwagandha-plus": 2 }, next: "sleep_3" }
-      ]
-    },
-    sleep_3: {
-      question: "What time do you typically go to bed?",
-      subtitle: "Your circadian rhythm affects which sleep supplements work best",
-      options: [
-        { text: "Before 10pm", icon: "sunset", scores: { sleep: 1 }, next: "sleep_4" },
-        { text: "10pm \u2013 11pm", icon: "clock", scores: { sleep: 1 }, next: "sleep_4" },
-        { text: "11pm \u2013 midnight", icon: "moon", scores: { sleep: 2 }, next: "sleep_4" },
-        { text: "After midnight \u2014 I\u2019m a night owl", icon: "star", scores: { sleep: 2, energy: 1 }, next: "sleep_4" }
-      ]
-    },
-    sleep_4: {
-      question: "Do you use screens within an hour of bedtime?",
-      subtitle: "Blue light affects melatonin production",
-      options: [
-        { text: "Yes \u2014 phone, laptop, or TV", icon: "smartphone", scores: { sleep: 2 }, next: "sleep_4b_screens" },
-        { text: "Sometimes", icon: "monitor", scores: { sleep: 1 }, next: "sleep_5" },
-        { text: "No \u2014 I have a wind-down routine", icon: "book-open", scores: { sleep: 1 }, next: "sleep_6" }
-      ]
-    },
-    sleep_4b_screens: {
-      question: "What do you use screens for before bed?",
-      subtitle: "The type of screen activity matters",
-      options: [
-        { text: "Social media / doom scrolling", icon: "smartphone", scores: { sleep: 1, focus: 1 }, productBoosts: { "cognitive-relax-strips": 2 }, next: "sleep_5" },
-        { text: "Work emails & tasks", icon: "mail", scores: { energy: 1 }, productBoosts: { "ashwagandha-plus": 2 }, next: "sleep_5" },
-        { text: "TV / streaming (passive)", icon: "tv", scores: { sleep: 1 }, next: "sleep_5" }
-      ]
-    },
-    sleep_5: {
-      question: "How\u2019s your stress level?",
-      subtitle: "Cortisol can significantly disrupt sleep patterns",
-      options: [
-        { text: "Low \u2014 I\u2019m pretty relaxed", icon: "heart", scores: { sleep: 1 }, next: "sleep_7" },
-        { text: "Moderate \u2014 manageable", icon: "scale", scores: { energy: 1 }, next: "sleep_6" },
-        { text: "High \u2014 it keeps me up at night", icon: "alert-triangle", scores: { energy: 3, sleep: 1 }, next: "sleep_5b_stress" },
-        { text: "Very high \u2014 I\u2019m overwhelmed", icon: "alert-circle", scores: { energy: 4, sleep: 1 }, next: "sleep_5b_stress" }
-      ]
-    },
-    sleep_5b_stress: {
-      question: "Is the stress mostly work or personal?",
-      subtitle: "The source helps us recommend the right calming support",
-      options: [
-        { text: "Work / career", icon: "briefcase", scores: { energy: 1 }, productBoosts: { "ashwagandha": 3 }, next: "sleep_6" },
-        { text: "Personal / family", icon: "heart", scores: { energy: 1 }, productBoosts: { "ashwagandha-plus": 2 }, next: "sleep_6" },
-        { text: "Both equally", icon: "scale", scores: { energy: 2 }, productBoosts: { "ashwagandha": 3, "mushroom-complex-10x": 2 }, next: "sleep_6" }
-      ]
-    },
-    sleep_6: {
-      question: "Do you experience any of these at night?",
-      subtitle: "These symptoms can point to specific nutritional gaps",
-      options: [
-        { text: "Night sweats", icon: "thermometer", scores: { sleep: 2, wellness: 1 }, next: "sleep_7" },
-        { text: "Restless legs", icon: "footprints", scores: { sleep: 3, wellness: 1 }, next: "sleep_7" },
-        { text: "Teeth grinding / jaw clenching", icon: "alert-triangle", scores: { sleep: 2, wellness: 2 }, next: "sleep_7" },
-        { text: "None of these", icon: "check", scores: { sleep: 1 }, next: "sleep_7" }
-      ]
-    },
-    sleep_7: {
-      question: "Have you tried any sleep supplements before?",
-      subtitle: "This helps us avoid recommending what hasn\u2019t worked",
-      options: [
-        { text: "No \u2014 this would be my first", icon: "plus", scores: { sleep: 1 }, next: "sleep_8" },
-        { text: "Melatonin \u2014 it helped a bit", icon: "pill", scores: { sleep: 1 }, next: "sleep_8" },
-        { text: "Melatonin \u2014 didn\u2019t help", icon: "x-circle", scores: { sleep: 2 }, next: "sleep_8" },
-        { text: "Yes \u2014 various things", icon: "package", scores: { sleep: 2 }, next: "sleep_8" }
-      ]
-    },
-    sleep_8: {
-      question: "How consistent is your sleep schedule on weekends?",
-      subtitle: "Irregular schedules can disrupt your circadian rhythm",
-      options: [
-        { text: "Same as weekdays", icon: "check", scores: { sleep: 1 }, next: "sleep_9" },
-        { text: "1\u20132 hours later", icon: "clock", scores: { sleep: 1 }, next: "sleep_9" },
-        { text: "Completely different", icon: "shuffle", scores: { sleep: 3 }, next: "sleep_9" },
-        { text: "No routine at all", icon: "x-circle", scores: { sleep: 3, energy: 1 }, next: "sleep_9" }
-      ]
-    },
-    sleep_9: {
-      question: "How does poor sleep affect your day?",
-      subtitle: "Understanding the ripple effects helps us prioritise",
-      options: [
-        { text: "Mild \u2014 I push through", icon: "trending-up", scores: { sleep: 1 }, next: null },
-        { text: "Moderate \u2014 productivity drops", icon: "minus", scores: { sleep: 2, focus: 1 }, next: null },
-        { text: "Significant \u2014 mood & focus suffer", icon: "alert-triangle", scores: { sleep: 3, focus: 2 }, next: null },
-        { text: "Severe \u2014 struggle to function", icon: "alert-circle", scores: { sleep: 3, energy: 2 }, next: null }
+        { text: "Nothing special \u2014 soap and water", icon: "droplet", scores: {}, next: "sun_care" },
+        { text: "Basic \u2014 cleanser + moisturiser", icon: "layers", scores: {}, next: "sun_care" },
+        { text: "I use serums and treatments", icon: "flask-conical", scores: { 'anti-aging': 1 }, next: "sun_care" },
+        { text: "Full detailed routine \u2014 ready to upgrade", icon: "sparkles", scores: { 'anti-aging': 1, brightening: 1 }, next: "sun_care" }
       ]
     },
 
-    /* ----- Energy Path (adaptive branching) ----- */
-    energy_1: {
-      question: "When do you feel most drained?",
-      subtitle: "Energy patterns reveal what your body needs",
+    /* ===== Q5: SPF ===== */
+    sun_care: {
+      question: "How often do you wear SPF?",
+      subtitle: "This is the #1 factor in aging and uneven tone",
       options: [
-        { text: "Morning \u2014 hard to get going", icon: "sunrise", scores: { energy: 3, sleep: 1 }, next: "energy_1b_morning" },
-        { text: "Afternoon \u2014 the 2pm crash", icon: "clock", scores: { energy: 3 }, productBoosts: { "energy-strips": 2 }, next: "energy_2" },
-        { text: "Evening \u2014 exhausted after work", icon: "sunset", scores: { energy: 2, sleep: 1 }, next: "energy_2" },
-        { text: "All day \u2014 constantly low", icon: "battery-low", scores: { energy: 4, wellness: 1 }, next: "energy_1b_allday" }
+        { text: "Every single day", icon: "shield-check", scores: {}, next: "bad_reaction" },
+        { text: "When I\u2019m going outside", icon: "sun", scores: { brightening: 1 }, next: "bad_reaction" },
+        { text: "Rarely", icon: "cloud-sun", scores: { brightening: 2, 'anti-aging': 1 }, productBoosts: { "vitamin-c-serum": 1 }, next: "bad_reaction" },
+        { text: "Never", icon: "x", scores: { brightening: 2, 'anti-aging': 1 }, productBoosts: { "vitamin-c-serum": 2 }, next: "bad_reaction" }
       ]
     },
-    energy_1b_morning: {
-      question: "What does your morning look like?",
-      subtitle: "Morning patterns reveal the root cause",
+
+    /* ===== Q6: Sensitivity history ===== */
+    bad_reaction: {
+      question: "Have you ever had a bad reaction to skincare?",
+      subtitle: "This tells us what to avoid for your routine",
       options: [
-        { text: "Snooze the alarm 3+ times", icon: "alarm-clock", scores: { sleep: 1 }, productBoosts: { "sleep-formula": 2 }, next: "energy_2" },
-        { text: "Up but groggy for hours", icon: "cloud", scores: { sleep: 1, wellness: 1 }, productBoosts: { "complete-multivitamin": 2 }, next: "energy_2" },
-        { text: "Need caffeine to function", icon: "coffee", scores: { energy: 1 }, productBoosts: { "energy-powder": 2 }, next: "energy_2" }
-      ]
-    },
-    energy_1b_allday: {
-      question: "How long has this been going on?",
-      subtitle: "Duration helps us understand the severity",
-      options: [
-        { text: "Weeks \u2014 it\u2019s recent", icon: "calendar", scores: { energy: 1 }, next: "energy_2" },
-        { text: "Months", icon: "calendar-check", scores: { energy: 2 }, productBoosts: { "mushroom-complex-10x": 2 }, next: "energy_2" },
-        { text: "Years \u2014 as long as I can remember", icon: "infinity", scores: { energy: 2, wellness: 1 }, productBoosts: { "complete-multivitamin": 3, "moringa-pure": 2 }, next: "energy_2" }
-      ]
-    },
-    energy_2: {
-      question: "How would you rate your stress level?",
-      subtitle: "Chronic stress drains energy reserves",
-      options: [
-        { text: "Low \u2014 I\u2019m fairly relaxed", icon: "heart", scores: { energy: 1 }, next: "energy_4" },
-        { text: "Moderate \u2014 work/life pressure", icon: "scale", scores: { energy: 2 }, next: "energy_3" },
-        { text: "High \u2014 I feel wired but tired", icon: "zap", scores: { energy: 3 }, next: "energy_2b_wired" },
-        { text: "Burnout level", icon: "flame", scores: { energy: 4, sleep: 1 }, next: "energy_2b_burnout" }
-      ]
-    },
-    energy_2b_wired: {
-      question: "Do you feel tired but can\u2019t relax?",
-      subtitle: "This \u2018wired but tired\u2019 pattern has specific solutions",
-      options: [
-        { text: "Yes \u2014 I can\u2019t switch off even when exhausted", icon: "zap", scores: { sleep: 1 }, productBoosts: { "ashwagandha": 3, "magnesium-glycinate": 2 }, next: "energy_3" },
-        { text: "Just constant low-grade tension", icon: "minus", scores: { energy: 1 }, productBoosts: { "ashwagandha": 3 }, next: "energy_3" }
-      ]
-    },
-    energy_2b_burnout: {
-      question: "What\u2019s your work situation?",
-      subtitle: "Burnout has different faces \u2014 this helps us target support",
-      options: [
-        { text: "Overworked \u2014 long hours, no breaks", icon: "briefcase", scores: { energy: 2 }, productBoosts: { "ashwagandha": 3, "mushroom-complex-10x": 2 }, next: "energy_3" },
-        { text: "Emotionally draining role", icon: "heart-crack", scores: { energy: 1, wellness: 1 }, productBoosts: { "ashwagandha": 3 }, next: "energy_3" },
-        { text: "Multiple commitments pulling me apart", icon: "split", scores: { energy: 1 }, productBoosts: { "energy-strips": 2, "ashwagandha": 2 }, next: "energy_3" }
-      ]
-    },
-    energy_3: {
-      question: "How much water do you drink daily?",
-      subtitle: "Dehydration is the #1 hidden cause of fatigue",
-      options: [
-        { text: "Plenty \u2014 2+ litres", icon: "droplets", scores: { energy: 1 }, next: "energy_4" },
-        { text: "Some \u2014 about 1 litre", icon: "droplet", scores: { energy: 1, wellness: 1 }, next: "energy_4" },
-        { text: "Not enough \u2014 I forget to drink", icon: "cloud-off", scores: { wellness: 2 }, next: "energy_4" }
-      ]
-    },
-    energy_4: {
-      question: "How much caffeine do you rely on?",
-      subtitle: "Caffeine dependency can mask underlying issues",
-      options: [
-        { text: "None \u2014 I avoid it", icon: "ban", scores: { energy: 1 }, next: "energy_5" },
-        { text: "1\u20132 cups \u2014 keeps me going", icon: "coffee", scores: { energy: 1 }, next: "energy_5" },
-        { text: "3\u20134 cups \u2014 can\u2019t function without it", icon: "cup-soda", scores: { energy: 2 }, next: "energy_5" },
-        { text: "5+ cups and still crashing", icon: "zap", scores: { energy: 3, sleep: 1 }, next: "energy_4b_caffeine" }
-      ]
-    },
-    energy_4b_caffeine: {
-      question: "Would you like to reduce your caffeine intake?",
-      subtitle: "We can recommend cleaner alternatives",
-      options: [
-        { text: "Yes \u2014 I want to cut back", icon: "trending-down", scores: { energy: 1 }, productBoosts: { "energy-powder": 3, "mushroom-complex-10x": 2 }, next: "energy_5" },
-        { text: "No \u2014 I just want more energy on top", icon: "trending-up", scores: { energy: 1 }, next: "energy_5" }
-      ]
-    },
-    energy_5: {
-      question: "How\u2019s your sleep quality?",
-      subtitle: "Poor sleep is the most common cause of low energy",
-      options: [
-        { text: "Great \u2014 I wake up refreshed", icon: "smile", scores: { energy: 1 }, next: "energy_7" },
-        { text: "Average \u2014 could be better", icon: "meh", scores: { sleep: 1 }, next: "energy_6" },
-        { text: "Poor \u2014 I rarely feel rested", icon: "frown", scores: { sleep: 3 }, productBoosts: { "magnesium-glycinate": 2, "sleep-formula": 2 }, next: "energy_6" },
-        { text: "Terrible \u2014 barely sleeping", icon: "alert-circle", scores: { sleep: 4 }, next: "energy_5b_sleep" }
-      ]
-    },
-    energy_5b_sleep: {
-      question: "What\u2019s the main sleep issue?",
-      subtitle: "Different sleep problems need different solutions",
-      options: [
-        { text: "Can\u2019t fall asleep", icon: "bed", scores: { sleep: 2 }, productBoosts: { "sleep-formula": 3 }, next: "energy_6" },
-        { text: "Wake up at night", icon: "alarm-clock", scores: { sleep: 2 }, productBoosts: { "magnesium-glycinate": 3 }, next: "energy_6" },
-        { text: "Sleep but still exhausted", icon: "battery-low", scores: { sleep: 1, wellness: 1 }, productBoosts: { "complete-multivitamin": 2 }, next: "energy_6" }
-      ]
-    },
-    energy_6: {
-      question: "How does low energy affect your daily life?",
-      subtitle: "Understanding the impact helps us prioritise",
-      options: [
-        { text: "Mild \u2014 I push through it", icon: "trending-up", scores: { energy: 1 }, next: "energy_7" },
-        { text: "Moderate \u2014 it slows me down", icon: "minus", scores: { energy: 2 }, next: "energy_7" },
-        { text: "Significant \u2014 affects work/relationships", icon: "alert-triangle", scores: { energy: 3 }, next: "energy_7" },
-        { text: "Severe \u2014 I\u2019ve had to change my lifestyle", icon: "alert-circle", scores: { energy: 4 }, next: "energy_7" }
-      ]
-    },
-    energy_7: {
-      question: "Do you experience brain fog along with low energy?",
-      subtitle: "Brain fog and fatigue often share the same root causes",
-      options: [
-        { text: "No \u2014 just tired, thinking is fine", icon: "check", scores: { energy: 1 }, next: "energy_9" },
-        { text: "Occasionally \u2014 some foggy days", icon: "cloud", scores: { energy: 1, focus: 1 }, next: "energy_8" },
-        { text: "Frequently \u2014 hard to think clearly", icon: "cloud-fog", scores: { energy: 2, focus: 2 }, productBoosts: { "lions-mane-mushroom": 2 }, next: "energy_8" },
-        { text: "Yes \u2014 constantly foggy and drained", icon: "alert-circle", scores: { energy: 2, focus: 3 }, next: "energy_7b_fog" }
-      ]
-    },
-    energy_7b_fog: {
-      question: "Is the fog worse at a specific time?",
-      subtitle: "Timing patterns reveal the underlying cause",
-      options: [
-        { text: "Morning \u2014 takes hours to clear", icon: "sunrise", scores: { sleep: 1 }, productBoosts: { "lions-mane-mushroom": 3, "brain-focus-formula": 2 }, next: "energy_8" },
-        { text: "After meals", icon: "utensils", scores: { wellness: 1 }, productBoosts: { "berberine": 2, "gut-health": 2 }, next: "energy_8" },
-        { text: "All the time \u2014 constant haze", icon: "cloud", scores: { focus: 1, wellness: 1 }, productBoosts: { "lions-mane-mushroom": 3, "complete-multivitamin": 2 }, next: "energy_8" }
-      ]
-    },
-    energy_8: {
-      question: "How does your energy compare to a year ago?",
-      subtitle: "Trends matter \u2014 declining energy can signal deeper needs",
-      options: [
-        { text: "Better \u2014 it\u2019s improved", icon: "trending-up", scores: { energy: 1 }, next: "energy_9" },
-        { text: "About the same", icon: "minus", scores: { energy: 1 }, next: "energy_9" },
-        { text: "Worse \u2014 noticeably declining", icon: "trending-down", scores: { energy: 3, wellness: 1 }, next: "energy_9" },
-        { text: "Much worse \u2014 I\u2019m worried", icon: "alert-circle", scores: { energy: 3, wellness: 2 }, next: "energy_9" }
-      ]
-    },
-    energy_9: {
-      question: "What have you tried to improve your energy?",
-      subtitle: "This helps us recommend things you haven\u2019t tried yet",
-      options: [
-        { text: "Nothing yet \u2014 I\u2019m just starting", icon: "plus", scores: { energy: 1 }, next: null },
-        { text: "More sleep \u2014 helped a bit", icon: "moon", scores: { energy: 1, sleep: 1 }, next: null },
-        { text: "Caffeine & energy drinks", icon: "coffee", scores: { energy: 3 }, next: null },
-        { text: "Diet & lifestyle changes", icon: "salad", scores: { energy: 2 }, next: null }
-      ]
-    },
-    /* ----- Wellness Path (adaptive branching) ----- */
-    wellness_1: {
-      question: "What\u2019s your main wellness concern?",
-      subtitle: "Let\u2019s narrow down what matters most to you",
-      options: [
-        { text: "Immune support \u2014 I get sick easily", icon: "shield", scores: { wellness: 3 }, next: "wellness_1b_immune" },
-        { text: "Gut health \u2014 digestion issues", icon: "heart-pulse", scores: { wellness: 3 }, next: "wellness_1b_gut" },
-        { text: "General vitality \u2014 just feel better", icon: "sparkles", scores: { wellness: 2 }, next: "wellness_2" },
-        { text: "Healthy aging \u2014 long-term health", icon: "trees", scores: { wellness: 2 }, next: "wellness_1b_aging" }
-      ]
-    },
-    wellness_1b_immune: {
-      question: "When do you tend to get sick?",
-      subtitle: "Timing helps us pinpoint the right immune support",
-      options: [
-        { text: "Winter / seasonal changes", icon: "snowflake", scores: { wellness: 1 }, productBoosts: { "vitamin-d3": 3 }, next: "wellness_2" },
-        { text: "After travel", icon: "plane", scores: { wellness: 1 }, productBoosts: { "probiotic-40-billion": 2 }, next: "wellness_2" },
-        { text: "Random \u2014 any time of year", icon: "shuffle", scores: { wellness: 2 }, productBoosts: { "vitamin-d3": 2, "mushroom-complex-10x": 2 }, next: "wellness_2" }
-      ]
-    },
-    wellness_1b_gut: {
-      question: "What\u2019s your main digestive issue?",
-      subtitle: "Different gut problems need different approaches",
-      options: [
-        { text: "Bloating after meals", icon: "alert-triangle", scores: { wellness: 1 }, productBoosts: { "digestive-gut-health-strips": 3, "gut-health": 2 }, next: "wellness_2" },
-        { text: "Irregular bowel habits", icon: "shuffle", scores: { wellness: 1 }, productBoosts: { "probiotic-40-billion": 3, "gut-health": 2 }, next: "wellness_2" },
-        { text: "Acid reflux / discomfort", icon: "flame", scores: { wellness: 1 }, productBoosts: { "gut-health": 3 }, next: "wellness_2" }
-      ]
-    },
-    wellness_1b_aging: {
-      question: "What aging concern matters most?",
-      subtitle: "Targeted support can make a real difference",
-      options: [
-        { text: "Joint stiffness & mobility", icon: "bone", scores: { wellness: 1 }, productBoosts: { "joint-support": 3, "collagen-peptides": 2, "platinum-turmeric": 2 }, next: "wellness_2" },
-        { text: "Skin, hair & nails", icon: "sparkles", scores: { wellness: 1 }, productBoosts: { "collagen-peptides": 3, "hair-skin-nails-essentials": 2 }, next: "wellness_2" },
-        { text: "Cognitive decline & sharpness", icon: "brain", scores: { focus: 1 }, productBoosts: { "lions-mane-mushroom": 3, "ginkgo-biloba-ginseng": 2 }, next: "wellness_2" },
-        { text: "Cellular health & longevity", icon: "dna", scores: { wellness: 1 }, productBoosts: { "resveratrol-600": 3 }, next: "wellness_2" }
-      ]
-    },
-    wellness_2: {
-      question: "How often do you get sick?",
-      subtitle: "Illness frequency tells us about immune function",
-      options: [
-        { text: "Rarely \u2014 maybe once a year", icon: "shield-check", scores: { wellness: 1 }, next: "wellness_3" },
-        { text: "Occasionally \u2014 a few colds per year", icon: "thermometer", scores: { wellness: 2 }, next: "wellness_3" },
-        { text: "Often \u2014 I catch everything going around", icon: "alert-triangle", scores: { wellness: 3 }, next: "wellness_3" },
-        { text: "Frequently \u2014 it\u2019s frustrating", icon: "alert-circle", scores: { wellness: 4 }, next: "wellness_3" }
-      ]
-    },
-    wellness_3: {
-      question: "Do you spend much time outdoors?",
-      subtitle: "Sunlight exposure affects vitamin D and mood",
-      options: [
-        { text: "Yes \u2014 I\u2019m outside daily", icon: "sun", scores: { wellness: 1 }, next: "wellness_4" },
-        { text: "Some \u2014 a few times a week", icon: "cloud-sun", scores: { wellness: 1 }, next: "wellness_4" },
-        { text: "Not much \u2014 mostly indoors", icon: "home", scores: { wellness: 2 }, productBoosts: { "vitamin-d3": 3 }, next: "wellness_4" },
-        { text: "Rarely \u2014 I work from home", icon: "laptop", scores: { wellness: 3 }, next: "wellness_3b_indoors" }
-      ]
-    },
-    wellness_3b_indoors: {
-      question: "Do you take vitamin D already?",
-      subtitle: "With minimal sunlight, this is important to know",
-      options: [
-        { text: "Yes", icon: "check", scores: { wellness: 1 }, next: "wellness_4" },
-        { text: "No", icon: "x-circle", scores: { wellness: 1 }, productBoosts: { "vitamin-d3": 3 }, next: "wellness_4" },
-        { text: "Not sure", icon: "help-circle", scores: { wellness: 1 }, productBoosts: { "vitamin-d3": 3 }, next: "wellness_4" }
-      ]
-    },
-    wellness_4: {
-      question: "How would you describe your energy levels?",
-      subtitle: "Low energy often signals nutritional deficiencies",
-      options: [
-        { text: "Good \u2014 consistent throughout the day", icon: "battery-full", scores: { wellness: 1 }, next: "wellness_5" },
-        { text: "Okay \u2014 occasional dips", icon: "battery-medium", scores: { energy: 1 }, next: "wellness_5" },
-        { text: "Low \u2014 I feel tired most days", icon: "battery-low", scores: { energy: 2 }, next: "wellness_5" },
-        { text: "Very low \u2014 it\u2019s a real problem", icon: "battery-warning", scores: { energy: 3 }, next: "wellness_5" }
-      ]
-    },
-    wellness_5: {
-      question: "How\u2019s your sleep quality?",
-      subtitle: "Sleep is when your body does most of its repair work",
-      options: [
-        { text: "Great \u2014 I sleep deeply", icon: "smile", scores: { wellness: 1 }, next: "wellness_6" },
-        { text: "Average \u2014 room for improvement", icon: "meh", scores: { sleep: 1 }, next: "wellness_6" },
-        { text: "Poor \u2014 I struggle with sleep", icon: "frown", scores: { sleep: 2 }, next: "wellness_6" },
-        { text: "I have specific sleep issues", icon: "moon", scores: { sleep: 3 }, next: "wellness_6" }
-      ]
-    },
-    wellness_6: {
-      question: "Do you experience digestive issues?",
-      subtitle: "Gut health affects nutrient absorption and immunity",
-      options: [
-        { text: "No \u2014 digestion is fine", icon: "check", scores: { wellness: 1 }, next: "wellness_8" },
-        { text: "Occasional bloating or discomfort", icon: "minus", scores: { wellness: 2 }, next: "wellness_7" },
-        { text: "Regular issues \u2014 IBS or sensitivity", icon: "alert-triangle", scores: { wellness: 3 }, next: "wellness_6b_gut" },
-        { text: "Significant \u2014 it affects my life", icon: "alert-circle", scores: { wellness: 4 }, next: "wellness_6b_gut" }
-      ]
-    },
-    wellness_6b_gut: {
-      question: "Have you tried probiotics before?",
-      subtitle: "This helps us recommend the right gut support",
-      options: [
-        { text: "No \u2014 never tried them", icon: "plus", scores: { wellness: 1 }, productBoosts: { "probiotic-40-billion": 3, "gut-health": 2 }, next: "wellness_7" },
-        { text: "Yes \u2014 they helped", icon: "thumbs-up", scores: { wellness: 1 }, productBoosts: { "probiotic-40-billion": 2 }, next: "wellness_7" },
-        { text: "Yes \u2014 no difference", icon: "minus", scores: { wellness: 1 }, productBoosts: { "gut-health": 3, "digestive-gut-health-strips": 2 }, next: "wellness_7" }
-      ]
-    },
-    wellness_7: {
-      question: "What\u2019s your stress level like?",
-      subtitle: "Chronic stress depletes key vitamins and minerals",
-      options: [
-        { text: "Low \u2014 I manage it well", icon: "heart", scores: { wellness: 1 }, next: "wellness_8" },
-        { text: "Moderate \u2014 normal life pressures", icon: "scale", scores: { energy: 1 }, next: "wellness_8" },
-        { text: "High \u2014 it\u2019s taking a toll", icon: "alert-triangle", scores: { energy: 2 }, next: "wellness_8" },
-        { text: "Very high \u2014 burnout territory", icon: "alert-circle", scores: { energy: 3 }, next: "wellness_8" }
-      ]
-    },
-    wellness_8: {
-      question: "How would you rate your overall mood day-to-day?",
-      subtitle: "Mood and nutrition are more connected than most people realise",
-      options: [
-        { text: "Great \u2014 generally positive", icon: "smile", scores: { wellness: 1 }, next: "wellness_9" },
-        { text: "Good most days", icon: "meh", scores: { wellness: 1 }, next: "wellness_9" },
-        { text: "Up and down \u2014 unpredictable", icon: "trending-down", scores: { wellness: 2, energy: 1 }, next: "wellness_9" },
-        { text: "Persistently low", icon: "frown", scores: { wellness: 3, energy: 2 }, next: "wellness_8b_mood" }
-      ]
-    },
-    wellness_8b_mood: {
-      question: "How long have you felt this way?",
-      subtitle: "Duration helps us understand the right approach",
-      options: [
-        { text: "Weeks \u2014 it\u2019s recent", icon: "calendar", scores: { wellness: 1 }, next: "wellness_9" },
-        { text: "Months", icon: "calendar-check", scores: { wellness: 1 }, productBoosts: { "vitamin-d3": 3, "ashwagandha": 2 }, next: "wellness_9" },
-        { text: "A long time", icon: "infinity", scores: { wellness: 2 }, productBoosts: { "vitamin-d3": 3, "complete-multivitamin": 2 }, next: "wellness_9" }
-      ]
-    },
-    wellness_9: {
-      question: "Are you concerned about any specific health risks?",
-      subtitle: "Targeted support can make a real difference long-term",
-      options: [
-        { text: "Heart health", icon: "heart-pulse", scores: { wellness: 3 }, next: null },
-        { text: "Bone density & joints", icon: "bone", scores: { wellness: 3 }, next: null },
-        { text: "Gut health & immunity", icon: "shield", scores: { wellness: 2 }, next: null },
-        { text: "No specific concerns", icon: "check", scores: { wellness: 1 }, next: null }
+        { text: "Never \u2014 my skin is pretty easygoing", icon: "check", scores: {}, next: null },
+        { text: "Once or twice", icon: "alert-circle", scores: { sensitive: 1 }, next: null },
+        { text: "Often \u2014 I avoid strong actives", icon: "shield", scores: { sensitive: 3 }, productBoosts: { "dark-spot-serum-sensitive-skin": 2 }, next: null },
+        { text: "I don\u2019t know what\u2019s safe to try", icon: "help-circle", scores: { sensitive: 2 }, next: null }
       ]
     }
   };
+
 
   /* ---------- Personalised Product Reasons ---------- */
   var productReasons = {};
@@ -998,17 +270,17 @@
               handle: handle,
               name: dbProduct.title,
               benefit: dbProduct.description || 'Supports your ' + key + ' goals',
-              fallbackPrice: (window.Shopify && window.Shopify.currency && window.Shopify.currency.active === 'GBP' ? '\u00A3' : '$') + (dbProduct.price / 100).toFixed(2)
+              fallbackPrice: '\u00A3' + (dbProduct.price / 100).toFixed(2)
             });
           });
 
           // Rebuild tiers dynamically based on total product count
           // Cap products so stacks feel curated, not overwhelming
-          var MAX_COMPLETE = 6;
+          var MAX_COMPLETE = 4;
           var total = Math.min(stack.products.length, MAX_COMPLETE);
           stack.products = stack.products.slice(0, MAX_COMPLETE);
           var essentialCount = Math.min(2, total);
-          var recommendedCount = Math.min(4, total);
+          var recommendedCount = Math.min(3, total);
 
           var essentialIndices = [];
           var recommendedIndices = [];
@@ -1028,13 +300,13 @@
         });
         quizConfigLoaded = true;
       })
-      .catch(function(err) { console.warn('Quiz config load failed:', err.message || err); quizConfigLoaded = true; });
+      .catch(function() { quizConfigLoaded = true; /* proceed with empty config */ });
   })();
 
   /* ---------- Quiz Engine ---------- */
   function QuizEngine(container) {
     this.container = container;
-    this.scores = { focus: 0, gym: 0, sleep: 0, energy: 0, wellness: 0 };
+    this.scores = { acne: 0, 'anti-aging': 0, hydration: 0, brightening: 0, sensitive: 0 };
     this.productBoosts = {};
     this.visitedNodes = {};
     this.history = [];
@@ -1135,10 +407,6 @@
     if (node.isGoalQuestion && option.goalKey) {
       this.selectedGoalKey = option.goalKey;
       var nextNode = this.resolveNext(option.next, optionIndex);
-      // Skip gym training-type questions for sedentary/light users
-      if (option.goalKey === 'gym' && this.activityLevel >= 2) {
-        nextNode = 'gym_2';
-      }
       this.currentNodeId = nextNode;
       this.showEncouragement(option.goalKey);
       return;
@@ -1182,11 +450,11 @@
       '<div class="quiz-screen">' +
         '<div class="quiz-welcome">' +
           '<div class="quiz-welcome__icon"><i data-lucide="sparkles"></i></div>' +
-          '<h1 class="quiz-welcome__title">Let\u2019s find your perfect stack</h1>' +
-          '<p class="quiz-welcome__text">Answer a few quick questions and we\u2019ll build a science-backed supplement plan just for you.</p>' +
-          '<p class="quiz-welcome__time"><i data-lucide="clock"></i> Takes 3\u20134 minutes</p>' +
+          '<h1 class="quiz-welcome__title">Let\u2019s find your perfect routine</h1>' +
+          '<p class="quiz-welcome__text">Answer a few quick questions and we\u2019ll match you with a skincare routine built for your skin.</p>' +
+          '<p class="quiz-welcome__time"><i data-lucide="clock"></i> Under 60 seconds</p>' +
           '<button class="btn btn--primary btn--lg quiz-welcome__cta" data-quiz-start>Start the Quiz</button>' +
-          '<p class="quiz-welcome__social">10,000+ personalised stacks built</p>' +
+          '<p class="quiz-welcome__social">Free US shipping on orders over $50 \u00B7 30-day money-back guarantee</p>' +
         '</div>' +
       '</div>';
 
@@ -1203,7 +471,7 @@
   /* ---------- Goal Encouragement Transition ---------- */
   QuizEngine.prototype.showEncouragement = function(goalKey) {
     var self = this;
-    var message = goalEncouragements[goalKey] || "Let\u2019s personalise your stack";
+    var message = goalEncouragements[goalKey] || "Let\u2019s personalise your routine";
     var icon = categoryInsights[goalKey] ? categoryInsights[goalKey].icon : 'sparkles';
 
     this.container.innerHTML =
@@ -1231,9 +499,9 @@
   QuizEngine.prototype.showAnalysing = function() {
     var self = this;
     var steps = [
-      { icon: 'user', text: 'Analysing your wellness profile...' },
-      { icon: 'search', text: 'Matching supplements to your goals...' },
-      { icon: 'package', text: 'Building your personalised stack...' }
+      { icon: 'user', text: 'Analysing your skin profile...' },
+      { icon: 'search', text: 'Matching products to your skin...' },
+      { icon: 'package', text: 'Building your personalised routine...' }
     ];
 
     this.container.innerHTML =
@@ -1282,43 +550,34 @@
     }, 3200);
   };
 
-  /* ---------- Email Gate (before results) ---------- */
+  /* ---------- Email Gate (blocks results until email captured) ---------- */
   QuizEngine.prototype.showEmailGate = function() {
     var self = this;
-
-    // Skip if already submitted this session
+    // If email already captured this session, skip the gate
     if (sessionStorage.getItem('nutrava_quiz_email')) {
       this.showResults();
       return;
     }
 
-    // Blur the quiz container background
-    this.container.classList.add('quiz--blurred');
-
-    // Create overlay
     var overlay = document.createElement('div');
     overlay.className = 'quiz-email-overlay';
     overlay.innerHTML =
       '<div class="quiz-email-modal">' +
         '<div class="quiz-email-modal__icon"><i data-lucide="lock"></i></div>' +
-        '<h2 class="quiz-email-modal__title">Your results are ready!</h2>' +
-        '<p class="quiz-email-modal__text">Enter your email to unlock your personalised supplement plan.</p>' +
+        '<h2 class="quiz-email-modal__title">Your routine is ready!</h2>' +
+        '<p class="quiz-email-modal__text">Enter your email to unlock your personalised skincare routine.</p>' +
         '<form class="quiz-email-modal__form" data-email-form>' +
           '<input type="email" class="quiz-email-modal__input" placeholder="your@email.com" required autocomplete="email" data-email-input />' +
-          '<button type="submit" class="btn btn--primary btn--lg quiz-email-modal__btn">See My Results</button>' +
+          '<button type="submit" class="btn btn--primary btn--lg quiz-email-modal__btn">See My Routine</button>' +
         '</form>' +
         '<p class="quiz-email-modal__disclaimer">We\u2019ll send you a copy of your results. No spam, unsubscribe anytime.</p>' +
       '</div>';
-
     document.body.appendChild(overlay);
-
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
-    // Focus the input
     var input = overlay.querySelector('[data-email-input]');
-    if (input) setTimeout(function() { input.focus(); }, 100);
+    setTimeout(function() { if (input) input.focus(); }, 200);
 
-    // Handle form submit
     var form = overlay.querySelector('[data-email-form]');
     if (form) {
       form.addEventListener('submit', function(e) {
@@ -1326,50 +585,40 @@
         var email = input ? input.value.trim() : '';
         if (!email) return;
 
-        // Store email
         sessionStorage.setItem('nutrava_quiz_email', email);
-
-        // Send to Shopify customer API (creates or tags customer)
-        self.submitQuizEmail(email);
 
         // Analytics
         if (typeof gtag === 'function') gtag('event', 'quiz_email_submit', { method: 'email_gate' });
-        if (typeof fbq === 'function') fbq('trackCustom', 'QuizEmailCapture');
-
-        // Klaviyo: identify + track quiz event
-        if (typeof klaviyo !== 'undefined') {
-          klaviyo.push(['identify', { '$email': email }]);
-          klaviyo.push(['track', 'Quiz Completed', {
-            category: self.getTopTwo()[0][0],
-            scores: self.scores,
-            questions_answered: self.questionsAnswered
-          }]);
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        // Klaviyo identify if available
+        if (typeof klaviyo !== 'undefined' && klaviyo.push) {
+          try { klaviyo.push(['identify', { '$email': email }]); } catch (err) {}
         }
 
-        // Remove overlay and show results
-        self.container.classList.remove('quiz--blurred');
+        // Optional: POST to Shopify customer form if NutravaCart-style integration exists
+        try { self.submitQuizEmail(email); } catch (err) {}
+
         overlay.classList.add('quiz-email-overlay--closing');
         setTimeout(function() {
-          if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+          overlay.remove();
           self.showResults();
-        }, 300);
+        }, 400);
       });
     }
   };
 
-  /* ---------- Submit email to Shopify ---------- */
+  /* ---------- Submit email to Shopify customer endpoint (best-effort) ---------- */
   QuizEngine.prototype.submitQuizEmail = function(email) {
-    var topTwo = this.getTopTwo();
-    var topCategory = topTwo[0][0];
-
-    // Post to Shopify newsletter / customer creation endpoint
-    fetch('/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'form_type=customer&utf8=\u2713&customer[email]=' + encodeURIComponent(email) +
-            '&customer[tags]=quiz,' + encodeURIComponent(topCategory) +
-            '&customer[note]=' + encodeURIComponent('Quiz result: ' + topCategory + ' | Scores: ' + JSON.stringify(this.scores))
-    }).catch(function() { /* silent fail */ });
+    // Use the standard Shopify customer create-from-form endpoint where available.
+    // Fails silently in preview where /contact is not a real endpoint.
+    try {
+      fetch('/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'form_type=customer&utf8=\u2713&customer[email]=' + encodeURIComponent(email) +
+              '&customer[tags]=quiz-lead&customer[accepts_marketing]=true'
+      }).catch(function() { /* ignore */ });
+    } catch (e) { /* ignore */ }
   };
 
   /* ---------- Question Renderer ---------- */
@@ -1454,7 +703,7 @@
   };
 
   QuizEngine.prototype.formatPrice = function(pence) {
-    return '\u00A3' + (pence / 100).toFixed(2);
+    return quizCurrencySymbol + (pence / 100).toFixed(2);
   };
 
   QuizEngine.prototype.renderProductImage = function(product) {
@@ -1476,7 +725,7 @@
       '<h3 class="quiz-tier__name">' + tier.label + '</h3>' +
       '<div class="quiz-tier__price">' +
         '<span class="quiz-tier__amount">' + this.formatPrice(pricePence) + '</span>' +
-        '<span class="quiz-tier__count">' + products.length + ' supplements</span>' +
+        '<span class="quiz-tier__count">' + products.length + ' products</span>' +
       '</div>' +
       '<ul class="quiz-tier__products">' +
         products.map(function(p) {
@@ -1498,11 +747,11 @@
   /* ---------- Stats & Reasoning ---------- */
   /* ---------- Radar Chart Helpers ---------- */
   var RADAR_CATEGORIES = [
-    { key: 'focus', label: 'Focus', icon: 'brain' },
-    { key: 'gym', label: 'Performance', icon: 'dumbbell' },
-    { key: 'sleep', label: 'Sleep', icon: 'moon' },
-    { key: 'energy', label: 'Energy', icon: 'zap' },
-    { key: 'wellness', label: 'Wellness', icon: 'leaf' }
+    { key: 'acne', label: 'Acne', icon: 'droplet' },
+    { key: 'anti-aging', label: 'Anti-Aging', icon: 'sparkles' },
+    { key: 'hydration', label: 'Hydration', icon: 'glass-water' },
+    { key: 'brightening', label: 'Brightening', icon: 'sun' },
+    { key: 'sensitive', label: 'Sensitive', icon: 'feather' }
   ];
 
   function radarPoint(cx, cy, radius, angleDeg) {
@@ -1593,11 +842,11 @@
     });
 
     var categoryNotes = {
-      focus: { high: 'Cognitive support is your top priority', mid: 'Mental clarity would benefit from support', low: 'Foundational brain health coverage' },
-      gym: { high: 'Performance nutrition is key for your goals', mid: 'Targeted training support recommended', low: 'Basic performance foundations' },
-      sleep: { high: 'Sleep quality is a primary area to address', mid: 'Recovery and rest need attention', low: 'Sleep foundations in good shape' },
-      energy: { high: 'Sustained energy is essential for you', mid: 'Energy patterns could use a boost', low: 'Energy levels well managed' },
-      wellness: { high: 'Daily wellness is your core focus', mid: 'Overall health deserves attention', low: 'General wellness foundation' }
+      acne: { high: 'Clearing breakouts is your top priority', mid: 'Congestion and blemishes to keep an eye on', low: 'Skin clarity is in good shape' },
+      'anti-aging': { high: 'Anti-aging support is your top priority', mid: 'A few early signs worth getting ahead of', low: 'Skin is firm and youthful' },
+      hydration: { high: 'Your skin is thirsty \u2014 hydration comes first', mid: 'Could use more moisture through the day', low: 'Hydration levels look balanced' },
+      brightening: { high: 'Even tone and radiance is a priority', mid: 'Some uneven tone to address gradually', low: 'Tone is even and bright' },
+      sensitive: { high: 'Your skin is reactive \u2014 gentle formulas only', mid: 'Some sensitivity to manage', low: 'Skin tolerates most products well' }
     };
 
     var rows = sorted.map(function(cat) {
@@ -1629,7 +878,7 @@
 
   QuizEngine.prototype.renderStats = function(topCategory, secondCategory) {
     return '<div class="quiz-stats">' +
-      '<h3 class="quiz-stats__heading">Your Wellness Profile</h3>' +
+      '<h3 class="quiz-stats__heading">Your Skin Profile</h3>' +
       '<div class="quiz-stats__grid">' +
         this.renderRadarChart() +
         this.renderCategoryBreakdown(topCategory) +
@@ -1692,7 +941,7 @@
     var namePrefix = 'Your ';
     var insight = getCrossInsight(topCategory, secondCategory);
 
-    var catTestimonials = testimonials[topCategory] || testimonials.wellness;
+    var catTestimonials = testimonials[topCategory] || [];
 
     this.container.innerHTML =
       '<div class="quiz-results-page">' +
@@ -1706,8 +955,8 @@
           '<p class="quiz-results__insight">Based on your answers, ' + insight + '</p>' +
           '<div class="quiz-results__trust">' +
             '<span class="quiz-results__trust-item"><i data-lucide="shield-check"></i> 30-day money-back guarantee</span>' +
-            '<span class="quiz-results__trust-item"><i data-lucide="leaf"></i> No fillers or additives</span>' +
-            '<span class="quiz-results__trust-item"><i data-lucide="truck"></i> Free shipping</span>' +
+            '<span class="quiz-results__trust-item"><i data-lucide="leaf"></i> Clean, dermatologist-friendly</span>' +
+            '<span class="quiz-results__trust-item"><i data-lucide="truck"></i> Free US shipping over $50</span>' +
           '</div>' +
         '</div>' +
 
@@ -1719,20 +968,6 @@
           this.renderTierCard(stack, 'essential', false) +
           this.renderTierCard(stack, 'recommended', true) +
           this.renderTierCard(stack, 'complete', false) +
-        '</div>' +
-
-        '<!-- Social Proof -->' +
-        '<div class="quiz-social-proof">' +
-          '<p class="quiz-social-proof__heading">Join 10,000+ people optimising their wellness</p>' +
-          '<div class="quiz-social-proof__grid">' +
-            catTestimonials.map(function(t) {
-              return '<div class="quiz-testimonial">' +
-                '<div class="quiz-testimonial__stars">' + '\u2605'.repeat(t.stars) + '</div>' +
-                '<p class="quiz-testimonial__text">\u201C' + t.text + '\u201D</p>' +
-                '<span class="quiz-testimonial__author">' + t.author + '</span>' +
-              '</div>';
-            }).join('') +
-          '</div>' +
         '</div>' +
 
         '<!-- Individual Products -->' +
@@ -1800,7 +1035,7 @@
     var retakeBtn = this.container.querySelector('[data-quiz-retake]');
     if (retakeBtn) {
       retakeBtn.addEventListener('click', function() {
-        self.scores = { focus: 0, gym: 0, sleep: 0, energy: 0, wellness: 0 };
+        self.scores = { acne: 0, 'anti-aging': 0, hydration: 0, brightening: 0, sensitive: 0 };
         self.productBoosts = {};
         self.visitedNodes = {};
         self.history = [];
