@@ -1,139 +1,180 @@
 {
   "stacks": {
     "acne": {
-      "name": "Clear Skin Routine",
-      "handle": "clear-skin-routine",
-      "description": "A gentle-but-effective daily rhythm for breakouts and blemish-prone skin",
+      "name": "Acne Care Collection",
+      "handle": "acne-care-collection-box",
+      "description": "The full routine for blemish-prone skin — clears breakouts without stripping",
+      "boxHandle": "acne-care-collection-box",
       "products": [
-        { "handle": "charcoal-facial-cleanser", "benefit": "Deep-cleans pores without stripping" },
-        { "handle": "hyaluronic-acid-serum", "benefit": "Hydration that won't clog pores" },
-        { "handle": "aloe-tea-tree-radiance-gel", "benefit": "Calms redness, targets blemishes" },
-        { "handle": "vitamin-c-serum", "benefit": "Fades post-acne marks over time" }
+        { "handle": "acne-care-collection-box", "benefit": "Your full routine in one box — save vs buying individually" },
+        { "handle": "blemish-purifying-face-wash", "benefit": "Clears pore-clogging buildup without over-drying" },
+        { "handle": "niacinamide-gel-moisturiser", "benefit": "Refines pores and balances oil" },
+        { "handle": "blemish-care-moisturiser", "benefit": "Hydrates without clogging pores" },
+        { "handle": "targeted-dark-spot-care", "benefit": "Fades post-acne marks over time" }
       ]
     },
     "anti-aging": {
-      "name": "Age-Defying Routine",
-      "handle": "anti-aging-routine",
-      "description": "Antioxidants, peptides and retinol in a kind-to-skin rhythm",
+      "name": "Anti-Aging Collection",
+      "handle": "anti-aging-collection-box",
+      "description": "Peptides, retinol-alternative and eye care in a kind-to-skin daily rhythm",
+      "boxHandle": "anti-aging-collection-box",
       "products": [
-        { "handle": "hyaluronic-acid-serum", "benefit": "Plumps fine lines caused by dehydration" },
-        { "handle": "gua-sha-face-oil", "benefit": "Slip for facial massage + antioxidants" },
-        { "handle": "vitamin-c-serum", "benefit": "Brightens tone and supports collagen" },
-        { "handle": "anti-aging-moisturizer", "benefit": "Retinol + peptides for smoother skin" }
+        { "handle": "anti-aging-collection-box", "benefit": "Your full routine in one box — save vs buying individually" },
+        { "handle": "peptide-anti-aging-serum", "benefit": "Targets firmness and fine lines" },
+        { "handle": "retinol-alternative-moisturiser", "benefit": "Smooths fine lines without irritation" },
+        { "handle": "smoothing-eye-cream", "benefit": "Daily under-eye support" },
+        { "handle": "vitamin-c-serum", "benefit": "Brightens tone and supports collagen" }
       ]
     },
     "hydration": {
-      "name": "Deep Hydration Routine",
-      "handle": "deep-hydration-routine",
-      "description": "Layered hydration for tight, thirsty, dehydration-lined skin",
+      "name": "Daily Radiance Collection",
+      "handle": "daily-radiance-collection-box",
+      "description": "Layered hydration and visible glow for tight, dehydrated skin",
+      "boxHandle": "daily-radiance-collection-box",
       "products": [
-        { "handle": "charcoal-facial-cleanser", "benefit": "Cleans gently without stripping" },
-        { "handle": "hyaluronic-acid-serum", "benefit": "4 weights of hyaluronic acid" },
-        { "handle": "skin-hydration-cream", "benefit": "Seals moisture in" },
-        { "handle": "gua-sha-face-oil", "benefit": "Barrier-nourishing botanical oils" }
+        { "handle": "daily-radiance-collection-box", "benefit": "Your full glow routine in one box — save vs buying individually" },
+        { "handle": "moisturising-day-cream", "benefit": "All-day hydration that doesn't weigh skin down" },
+        { "handle": "vitamin-c-serum", "benefit": "Brightens dull, dehydrated complexions" },
+        { "handle": "sunscreen-spf30", "benefit": "Daily SPF — non-negotiable for radiant skin" },
+        { "handle": "niacinamide-gel-moisturiser", "benefit": "Smooths texture and evens tone" }
       ]
     },
     "brightening": {
-      "name": "Radiance Routine",
-      "handle": "radiance-routine",
-      "description": "Vitamin C, PDRN and gentle actives for even-toned, glowing skin",
+      "name": "Dark Spot Routine Duo",
+      "handle": "dark-spot-routine-duo",
+      "description": "Vitamin C and kojic acid for visible tone correction",
+      "boxHandle": "dark-spot-routine-duo",
       "products": [
-        { "handle": "vitamin-c-serum", "benefit": "Triple-form vitamin C for brightening" },
-        { "handle": "hyaluronic-acid-serum", "benefit": "Hydration base for brightening actives" },
-        { "handle": "pdrn-brightening-serum", "benefit": "K-beauty peptides for radiance" },
-        { "handle": "skin-hydration-cream", "benefit": "Locks in your new glow" }
+        { "handle": "dark-spot-routine-duo", "benefit": "Two-product duo — your minimum effective routine for dark spots" },
+        { "handle": "vitamin-c-serum", "benefit": "Triple-form vitamin C for tone correction" },
+        { "handle": "targeted-dark-spot-care", "benefit": "1% kojic acid for stubborn spots" },
+        { "handle": "sunscreen-spf30", "benefit": "Locks in your progress — SPF is non-negotiable" },
+        { "handle": "brightening-exfoliator", "benefit": "Smooths and brightens 2–3x weekly" }
       ]
     },
     "sensitive": {
-      "name": "Soothing Routine",
-      "handle": "sensitive-skin-routine",
+      "name": "Clear Complexion Collection",
+      "handle": "clear-complexion-collection-box",
       "description": "Calming, fragrance-free formulas for easily irritated skin",
+      "boxHandle": "clear-complexion-collection-box",
       "products": [
-        { "handle": "hyaluronic-acid-serum", "benefit": "Hydration, no fragrance, no acids" },
-        { "handle": "charcoal-facial-cleanser", "benefit": "Gentle daily cleanse" },
-        { "handle": "dark-spot-serum-sensitive-skin", "benefit": "Evens tone without stinging" },
-        { "handle": "aloe-tea-tree-radiance-gel", "benefit": "Calms redness on contact" }
+        { "handle": "clear-complexion-collection-box", "benefit": "Your gentle routine in one box — save vs buying individually" },
+        { "handle": "micellar-cleansing-water", "benefit": "No-rinse cleanse, no stinging" },
+        { "handle": "sensitive-skin-moisturiser", "benefit": "Fragrance-free, calms reactivity" },
+        { "handle": "niacinamide-gel-moisturiser", "benefit": "Refines pores without irritation" },
+        { "handle": "retinol-alternative-serum", "benefit": "Anti-aging without redness or peeling" }
       ]
     }
   },
   "productReasons": {
-    "charcoal-facial-cleanser": [
-      { "nodeId": "skin_type", "optionIndex": 0, "reason": "Oily skin benefits from activated charcoal's ability to draw out excess sebum without stripping" },
-      { "nodeId": "skin_type", "optionIndex": 2, "reason": "Combination skin needs a cleanser that balances \u2014 charcoal degreases the T-zone while aloe conditions cheeks" },
-      { "nodeId": "concern", "optionIndex": 0, "reason": "Breakout-prone skin starts with a deeper cleanse \u2014 activated charcoal clears pore-clogging buildup" },
-      { "nodeId": "acne_freq", "optionIndex": 0, "reason": "Daily breakouts respond well to an activated-charcoal cleanser twice a day" },
-      { "nodeId": "acne_freq", "optionIndex": 1, "reason": "Weekly breakouts need a consistent deep-cleanse habit \u2014 charcoal handles the job without over-drying" },
-      { "nodeId": null, "reason": "Detoxifying daily cleanser that pulls pore-clogging impurities without stripping" }
+    "acne-care-collection-box": [
+      { "nodeId": "concern", "optionIndex": 0, "reason": "Your full acne routine — three products that work together to clear breakouts without stripping" },
+      { "nodeId": null, "reason": "The complete routine for blemish-prone skin, ready to use" }
     ],
-    "hyaluronic-acid-serum": [
-      { "nodeId": "skin_type", "optionIndex": 1, "reason": "Dry skin is thirsty skin \u2014 hyaluronic acid pulls water into every layer" },
-      { "nodeId": "skin_type", "optionIndex": 3, "reason": "Sensitive skin tolerates hyaluronic acid exceptionally well \u2014 no fragrance, no acids, just hydration" },
-      { "nodeId": "concern", "optionIndex": 2, "reason": "Dehydration lives in the top layers of the skin \u2014 this serum's four weights of hyaluronic acid hit them all" },
-      { "nodeId": "hydration_feel", "optionIndex": 0, "reason": "Tightness after cleansing is a clear sign your skin needs hyaluronic acid \u2014 apply on damp skin" },
-      { "nodeId": "hydration_feel", "optionIndex": 1, "reason": "Midday dryness points to dehydration \u2014 multi-weight HA keeps skin hydrated for longer" },
-      { "nodeId": null, "reason": "Four weights of hyaluronic acid for plump, bouncy, all-day hydration" }
+    "anti-aging-collection-box": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Your full anti-aging routine — peptides, retinol-alternative and eye care, kind to skin" },
+      { "nodeId": null, "reason": "Complete anti-aging routine ready to use" }
+    ],
+    "daily-radiance-collection-box": [
+      { "nodeId": "concern", "optionIndex": 2, "reason": "Vitamin C, day cream and SPF — the three products that create visible radiance" },
+      { "nodeId": null, "reason": "The morning routine that makes the biggest difference for dull skin" }
+    ],
+    "clear-complexion-collection-box": [
+      { "nodeId": "concern", "optionIndex": 4, "reason": "A gentle, fragrance-free routine engineered for reactive, sensitive skin" },
+      { "nodeId": null, "reason": "The balancing routine for combination and sensitive skin" }
+    ],
+    "dark-spot-routine-duo": [
+      { "nodeId": "concern", "optionIndex": 3, "reason": "Two products that target dark spots from morning and night — minimum effective routine" },
+      { "nodeId": null, "reason": "Focused duo for hyperpigmentation and uneven tone" }
+    ],
+    "micellar-cleansing-water": [
+      { "nodeId": "skin_type", "optionIndex": 3, "reason": "A no-rinse micellar water is the gentlest possible first cleanse for sensitive skin" },
+      { "nodeId": "concern", "optionIndex": 4, "reason": "Reactive skin needs cleansing without surfactants — micellar water lifts without stripping" },
+      { "nodeId": "sensitive_trigger", "optionIndex": 0, "reason": "When new products trigger reactions, this no-rinse formula is the safest starting point" },
+      { "nodeId": null, "reason": "Gentle no-rinse cleanser for sensitive skin types" }
+    ],
+    "cleansing-foam": [
+      { "nodeId": "skin_type", "optionIndex": 0, "reason": "Oily skin needs a foaming cleanser that handles excess sebum without stripping" },
+      { "nodeId": "skin_type", "optionIndex": 2, "reason": "Combination skin benefits from a balanced foaming wash that removes oil without dehydrating dry zones" },
+      { "nodeId": null, "reason": "Daily foaming wash for normal-to-oily skin" }
+    ],
+    "blemish-purifying-face-wash": [
+      { "nodeId": "concern", "optionIndex": 0, "reason": "A targeted blemish wash is step one for clearing breakouts" },
+      { "nodeId": "acne_freq", "optionIndex": 0, "reason": "Daily breakouts respond to a consistent blemish-targeted cleanser AM and PM" },
+      { "nodeId": "acne_freq", "optionIndex": 1, "reason": "Weekly breakouts need a daily preventative wash to break the cycle" },
+      { "nodeId": null, "reason": "Targeted face wash for acne and blemish-prone skin" }
+    ],
+    "niacinamide-gel-moisturiser": [
+      { "nodeId": "skin_type", "optionIndex": 0, "reason": "Niacinamide is the gold standard for refining pores and balancing oil on oily skin" },
+      { "nodeId": "skin_type", "optionIndex": 2, "reason": "Combination skin benefits from niacinamide's barrier support and oil-balancing in one step" },
+      { "nodeId": "concern", "optionIndex": 0, "reason": "Niacinamide refines pores and evens post-acne tone — essential for blemish-prone skin" },
+      { "nodeId": null, "reason": "Lightweight niacinamide gel that refines pores and evens tone" }
     ],
     "vitamin-c-serum": [
       { "nodeId": "concern", "optionIndex": 3, "reason": "Vitamin C is the gold standard for fading dark spots and evening out skin tone" },
-      { "nodeId": "brightening_focus", "optionIndex": 1, "reason": "Sun damage and age spots respond best to a potent L-ascorbic acid serum paired with ferulic acid" },
-      { "nodeId": "brightening_focus", "optionIndex": 2, "reason": "For overall dullness, antioxidants wake the skin up \u2014 this triple-form vitamin C delivers on day one" },
-      { "nodeId": "sun_care", "optionIndex": 2, "reason": "Low SPF use means accumulated UV damage \u2014 vitamin C mops up free radicals while you protect going forward" },
-      { "nodeId": "sun_care", "optionIndex": 3, "reason": "No SPF habit yet means stacking antioxidants is even more important \u2014 vitamin C plus ferulic acid shields what you can't block" },
-      { "nodeId": null, "reason": "Triple-form vitamin C + ferulic acid for tone-correcting antioxidant defence" }
+      { "nodeId": "concern", "optionIndex": 2, "reason": "Vitamin C wakes up dull, dehydrated skin and shields against further damage" },
+      { "nodeId": "sun_care", "optionIndex": 2, "reason": "Low SPF use means accumulated UV damage — vitamin C mops up free radicals" },
+      { "nodeId": "sun_care", "optionIndex": 3, "reason": "No SPF habit means stacking antioxidants is essential — vitamin C is the foundation" },
+      { "nodeId": null, "reason": "Brightening vitamin C serum for tone correction and antioxidant defence" }
     ],
-    "dark-spot-serum-sensitive-skin": [
-      { "nodeId": "skin_type", "optionIndex": 3, "reason": "Your sensitive skin needs brightening without the sting \u2014 adaptogenic mushrooms replace kojic acid" },
-      { "nodeId": "brightening_focus", "optionIndex": 3, "reason": "Uneven tone on reactive skin calls for gentle actives \u2014 shiitake and turkey tail brighten without irritation" },
-      { "nodeId": "sensitive_trigger", "optionIndex": 0, "reason": "Reactive to new products \u2014 this formula skips fragrance, kojic acid, and hydroquinone" },
-      { "nodeId": "sensitive_trigger", "optionIndex": 3, "reason": "When everything seems to react, you need a serum built without the usual irritants" },
-      { "nodeId": "bad_reaction", "optionIndex": 2, "reason": "You've avoided strong actives for good reason \u2014 this adaptogenic mushroom formula brightens without the risk" },
-      { "nodeId": null, "reason": "Adaptogenic mushroom serum that brightens without brightening acids" }
+    "retinol-alternative-serum": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Retinol-alternative gives anti-aging results without the irritation curve of traditional retinol" },
+      { "nodeId": "concern", "optionIndex": 4, "reason": "Sensitive skin can still benefit from anti-aging — retinol alternatives skip the redness and peeling" },
+      { "nodeId": "routine", "optionIndex": 0, "reason": "Starting a routine? A retinol alternative is the gentlest entry point to anti-aging actives" },
+      { "nodeId": null, "reason": "Anti-aging serum without irritation, suitable for sensitive skin" }
     ],
-    "pdrn-brightening-serum": [
-      { "nodeId": "concern", "optionIndex": 3, "reason": "PDRN and peptides brighten, plump and smooth in one pass \u2014 a K-beauty favourite for glassy skin" },
-      { "nodeId": "brightening_focus", "optionIndex": 2, "reason": "For dullness, PDRN's regenerative action brings radiance back fast" },
-      { "nodeId": "routine", "optionIndex": 2, "reason": "Since you're already using serums, PDRN layers beautifully for next-level results" },
-      { "nodeId": "routine", "optionIndex": 3, "reason": "A detailed routine deserves a premium active \u2014 PDRN is the upgrade" },
-      { "nodeId": null, "reason": "K-beauty inspired PDRN + peptides for a glassy, radiant glow" }
+    "peptide-anti-aging-serum": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Peptides target firmness and fine lines while supporting natural collagen production" },
+      { "nodeId": "routine", "optionIndex": 2, "reason": "If you're already running a routine, peptides layer beautifully under your moisturiser" },
+      { "nodeId": "routine", "optionIndex": 3, "reason": "A detailed routine deserves a premium peptide serum — visible results over consistent use" },
+      { "nodeId": null, "reason": "Premium peptide serum for firmness and the look of elasticity" }
     ],
-    "skin-hydration-cream": [
-      { "nodeId": "skin_type", "optionIndex": 1, "reason": "Dry skin needs a moisturiser that seals hydration in \u2014 this one does exactly that" },
-      { "nodeId": "concern", "optionIndex": 2, "reason": "Hydration starts in the serum and ends in the cream \u2014 avocado oil and vitamin E lock it in" },
-      { "nodeId": "hydration_feel", "optionIndex": 1, "reason": "Midday dryness means your moisturiser isn't sealing well enough \u2014 this lightweight cream holds hydration through the day" },
-      { "nodeId": "hydration_feel", "optionIndex": 3, "reason": "Dehydration lines disappear when skin is properly hydrated and sealed \u2014 this cream is the final step" },
-      { "nodeId": null, "reason": "Lightweight daily moisturiser that seals hydration in" }
+    "targeted-dark-spot-care": [
+      { "nodeId": "concern", "optionIndex": 3, "reason": "A targeted 1% kojic acid treatment is the most effective at-home option for stubborn dark spots" },
+      { "nodeId": "brightening_focus", "optionIndex": 1, "reason": "Sun damage and age spots respond best to direct kojic acid application at night" },
+      { "nodeId": null, "reason": "Spot treatment with 1% kojic acid for hyperpigmentation" }
     ],
-    "anti-aging-moisturizer": [
-      { "nodeId": "concern", "optionIndex": 1, "reason": "Retinol, peptides and ceramides are the trio that actually moves the needle on fine lines" },
-      { "nodeId": "aging_focus", "optionIndex": 0, "reason": "For fine lines specifically, encapsulated retinol is the gold standard \u2014 and this one pairs it with ceramides so your barrier stays happy" },
-      { "nodeId": "aging_focus", "optionIndex": 3, "reason": "A multi-concern anti-aging moisturiser hits retinol, peptides, and barrier support in one step" },
-      { "nodeId": "routine", "optionIndex": 3, "reason": "A detailed routine deserves a multi-active night cream \u2014 retinol + peptides + ceramides do real work" },
-      { "nodeId": null, "reason": "Retinol, peptides and ceramides for smoother skin over time" }
+    "moisturising-day-cream": [
+      { "nodeId": "skin_type", "optionIndex": 1, "reason": "Dry skin needs a daily moisturiser that hydrates without weighing skin down" },
+      { "nodeId": "concern", "optionIndex": 2, "reason": "Hydration starts in the serum and ends in the cream — this one seals it in" },
+      { "nodeId": "hydration_feel", "optionIndex": 1, "reason": "Midday dryness is your moisturiser failing — a daily cream that holds hydration solves it" },
+      { "nodeId": null, "reason": "Daily moisturiser for normal-to-dry, dehydrated skin" }
     ],
-    "skin-firming-cream": [
-      { "nodeId": "aging_focus", "optionIndex": 1, "reason": "Loss of firmness is exactly what DMAE was formulated for \u2014 paired with CoQ10 for antioxidant support" },
-      { "nodeId": "aging_focus", "optionIndex": 3, "reason": "For a full anti-aging routine, firming support belongs alongside retinol" },
-      { "nodeId": null, "reason": "DMAE + CoQ10 + hyaluronic acid for the look of firmness and bounce" }
+    "blemish-care-moisturiser": [
+      { "nodeId": "concern", "optionIndex": 0, "reason": "Blemish-prone skin still needs hydration — this non-comedogenic formula gives it without clogging" },
+      { "nodeId": "acne_freq", "optionIndex": 0, "reason": "Daily breakouts mean you need a moisturiser that won't add to the problem" },
+      { "nodeId": null, "reason": "Non-comedogenic daily moisturiser for acne-prone skin" }
     ],
-    "gua-sha-face-oil": [
-      { "nodeId": "concern", "optionIndex": 1, "reason": "A botanical face oil with rosehip and camellia supports elasticity and the glow anti-aging routines rely on" },
-      { "nodeId": "hydration_feel", "optionIndex": 3, "reason": "Dehydration lines smooth out once you seal in water with a botanical oil \u2014 this is the final step" },
-      { "nodeId": "routine", "optionIndex": 0, "reason": "If you only want to do one thing, a face oil does a lot \u2014 12 botanical oils in one bottle" },
-      { "nodeId": null, "reason": "Twelve botanical oils for antioxidant support and silky slip" }
+    "retinol-alternative-moisturiser": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Anti-aging in your daily moisturiser — retinol alternative smooths fine lines without irritation" },
+      { "nodeId": "aging_focus", "optionIndex": 0, "reason": "Fine lines respond to consistent retinol-alternative use — using it in your moisturiser ensures consistency" },
+      { "nodeId": null, "reason": "Daily anti-aging moisturiser with retinol alternative" }
     ],
-    "aloe-tea-tree-radiance-gel": [
-      { "nodeId": "concern", "optionIndex": 0, "reason": "Tea tree and black willow bark work on blemishes while aloe calms the redness around them" },
-      { "nodeId": "concern", "optionIndex": 4, "reason": "Aloe and cucumber are the calming backbone of this gel \u2014 reaches for angry, red skin without stinging" },
-      { "nodeId": "acne_freq", "optionIndex": 0, "reason": "Daily breakouts respond to the gentle exfoliation of black willow bark combined with tea tree's clarifying action" },
-      { "nodeId": "acne_freq", "optionIndex": 2, "reason": "Hormonal breakouts need spot-friendly support \u2014 this gel can be used all over or as a targeted treatment" },
-      { "nodeId": "sensitive_trigger", "optionIndex": 1, "reason": "Weather-reactive skin responds well to an aloe-based gel \u2014 cooling on contact, calming over time" },
-      { "nodeId": null, "reason": "Aloe gel with tea tree and willow bark to calm redness and clarify blemishes" }
+    "sensitive-skin-moisturiser": [
+      { "nodeId": "skin_type", "optionIndex": 3, "reason": "Sensitive skin needs a fragrance-free moisturiser that calms reactivity instead of feeding it" },
+      { "nodeId": "concern", "optionIndex": 4, "reason": "When skin reacts to most products, a stripped-back ceramide moisturiser is the safe foundation" },
+      { "nodeId": "sensitive_trigger", "optionIndex": 0, "reason": "Reactive to new products — this fragrance-free formula skips the usual triggers" },
+      { "nodeId": "sensitive_trigger", "optionIndex": 3, "reason": "When everything seems to react, a fragrance-free ceramide moisturiser is the foundation to build from" },
+      { "nodeId": null, "reason": "Fragrance-free moisturiser for sensitive and reactive skin" }
     ],
-    "peppermint-coffee-scrub": [
-      { "nodeId": null, "reason": "Body exfoliator with organic coffee, brown sugar and peppermint oil" }
+    "smoothing-eye-cream": [
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Anti-aging starts at the eyes — a daily eye cream is the highest-impact addition for visible smoothness" },
+      { "nodeId": "aging_focus", "optionIndex": 0, "reason": "Fine lines around the eyes respond well to a dedicated eye treatment with peptides" },
+      { "nodeId": null, "reason": "Featherweight daily eye cream that smooths and brightens" }
     ],
-    "peptide-hair-growth-serum": [
-      { "nodeId": null, "reason": "Five biomimetic peptides plus rosemary and saw palmetto for fuller-looking hair" }
+    "sunscreen-spf30": [
+      { "nodeId": "sun_care", "optionIndex": 0, "reason": "Daily sun exposure makes broad-spectrum SPF30 the most important product in your routine" },
+      { "nodeId": "sun_care", "optionIndex": 1, "reason": "Even occasional sun exposure causes accumulated damage — daily SPF is the answer" },
+      { "nodeId": "sun_care", "optionIndex": 2, "reason": "Low SPF use is the single biggest gap in most skincare routines — this is non-negotiable" },
+      { "nodeId": "sun_care", "optionIndex": 3, "reason": "If SPF isn't a habit yet, this is the one product that will change your skin long-term" },
+      { "nodeId": "concern", "optionIndex": 1, "reason": "Anti-aging without SPF is wasted effort — UV is the #1 cause of visible skin aging" },
+      { "nodeId": "concern", "optionIndex": 3, "reason": "SPF locks in tone-correction progress — without it, dark spots come back" },
+      { "nodeId": null, "reason": "Daily broad-spectrum SPF30 — non-negotiable for long-term skin health" }
+    ],
+    "brightening-exfoliator": [
+      { "nodeId": "concern", "optionIndex": 3, "reason": "Kojic acid exfoliation smooths and brightens uneven tone over consistent weekly use" },
+      { "nodeId": "brightening_focus", "optionIndex": 2, "reason": "For overall dullness, weekly exfoliation reveals brighter skin underneath" },
+      { "nodeId": null, "reason": "Face and body kojic acid exfoliator" }
     ]
   }
 }

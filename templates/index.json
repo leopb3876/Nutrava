@@ -8,7 +8,7 @@
         "subheading": "Take our 60-second quiz and we\u2019ll match you with a skincare routine built for your skin type, concerns, and current habits.",
         "cta_quiz": "Take the Free Quiz",
         "cta_shop": "Browse Products",
-        "promo_text": "Launch special: 20% off your first order — use code LAUNCH20"
+        "promo_text": "Launch special: 20% off your first routine — use code GLOW20"
       }
     },
     "how-it-works": {
@@ -82,7 +82,7 @@
       "type": "stats-bar",
       "settings": {},
       "blocks": {
-        "stat-1": { "type": "stat", "settings": { "icon": "sparkles", "number": "12", "label": "Formulas across 5 skin concerns" } },
+        "stat-1": { "type": "stat", "settings": { "icon": "sparkles", "number": "20", "label": "Formulas across 5 skin concerns" } },
         "stat-2": { "type": "stat", "settings": { "icon": "leaf", "number": "100%", "label": "Cruelty-free, vegan-friendly" } },
         "stat-3": { "type": "stat", "settings": { "icon": "shield-check", "number": "30", "label": "Day money-back guarantee" } },
         "stat-4": { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "US shipping over $50" } }
@@ -105,18 +105,19 @@
     "comparison": {
       "type": "comparison-table",
       "settings": {
-        "heading": "Nutrava vs. Generic Skincare",
-        "subheading": "Why personalised beats the one-size-fits-all aisle"
+        "heading": "Nutrava vs. Generic Skincare vs. The Ordinary",
+        "subheading": "Why personalised routines beat both the drugstore aisle and the DIY chemistry set"
       },
       "blocks": {
-        "row-1": { "type": "row", "settings": { "feature": "Matched to your skin type & concern", "nutrava": true, "generic": false } },
-        "row-2": { "type": "row", "settings": { "feature": "Clinically effective active percentages", "nutrava": true, "generic": false } },
-        "row-3": { "type": "row", "settings": { "feature": "Fragrance-free options for sensitive skin", "nutrava": true, "generic": false } },
-        "row-4": { "type": "row", "settings": { "feature": "Full INCI ingredient transparency", "nutrava": true, "generic": false } },
-        "row-5": { "type": "row", "settings": { "feature": "Cruelty-free & vegan-friendly", "nutrava": true, "generic": false } },
-        "row-6": { "type": "row", "settings": { "feature": "Built as a routine, not random picks", "nutrava": true, "generic": false } }
+        "row-1": { "type": "row", "settings": { "feature": "Matched to your skin type & concern", "nutrava": true, "generic": false, "ordinary": false } },
+        "row-2": { "type": "row", "settings": { "feature": "Built as a complete routine, not random picks", "nutrava": true, "generic": false, "ordinary": false } },
+        "row-3": { "type": "row", "settings": { "feature": "Beginner-friendly with no guesswork", "nutrava": true, "generic": false, "ordinary": false } },
+        "row-4": { "type": "row", "settings": { "feature": "Clinically effective active percentages", "nutrava": true, "generic": false, "ordinary": true } },
+        "row-5": { "type": "row", "settings": { "feature": "Fragrance-free options for sensitive skin", "nutrava": true, "generic": false, "ordinary": true } },
+        "row-6": { "type": "row", "settings": { "feature": "Full INCI ingredient transparency", "nutrava": true, "generic": false, "ordinary": true } },
+        "row-7": { "type": "row", "settings": { "feature": "Cruelty-free & vegan-friendly", "nutrava": true, "generic": false, "ordinary": true } }
       },
-      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6"]
+      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6", "row-7"]
     },
     "spotlight": {
       "type": "ingredient-spotlight",
@@ -125,13 +126,14 @@
         "subheading": "The actives behind our best-selling routines"
       },
       "blocks": {
-        "ing-1": { "type": "ingredient", "settings": { "name": "Hyaluronic Acid", "dose": "4 molecular weights", "description": "Holds up to 1,000x its weight in water. Our serum layers four different molecular weights so hydration reaches every depth of the skin." } },
-        "ing-2": { "type": "ingredient", "settings": { "name": "Vitamin C (L-Ascorbic Acid)", "dose": "Triple-form + ferulic acid", "description": "The gold standard for brightening and antioxidant defence. Fades dark spots, evens tone, and shields skin from daily damage." } },
-        "ing-3": { "type": "ingredient", "settings": { "name": "Retinol", "dose": "Encapsulated", "description": "The single most studied anti-aging active. Smooths fine lines and refines texture \u2014 paired with ceramides to protect the barrier." } },
-        "ing-4": { "type": "ingredient", "settings": { "name": "Niacinamide", "dose": "10% concentration", "description": "A multitasker that refines pores, evens tone, and strengthens the moisture barrier. Well-tolerated by most skin types." } },
-        "ing-5": { "type": "ingredient", "settings": { "name": "Activated Charcoal", "dose": "With aloe & tea tree", "description": "Draws pore-clogging buildup without stripping. The backbone of our Charcoal Cleanser for oily and blemish-prone skin." } }
+        "ing-1": { "type": "ingredient", "settings": { "name": "Niacinamide", "dose": "Clinically dosed", "description": "A multitasker that refines pores, evens tone, balances oil and strengthens the moisture barrier. Well-tolerated by every skin type \u2014 the workhorse active behind our gel moisturiser." } },
+        "ing-2": { "type": "ingredient", "settings": { "name": "Vitamin C", "dose": "Stabilised", "description": "The gold standard for brightening and antioxidant defence. Fades dark spots, evens tone, and shields skin from daily UV and pollution damage." } },
+        "ing-3": { "type": "ingredient", "settings": { "name": "Retinol Alternative", "dose": "Plant-derived", "description": "All the smoothing, line-refining benefits of retinol \u2014 without the redness, peeling or downtime. Safe for sensitive skin and pregnancy-conscious users." } },
+        "ing-4": { "type": "ingredient", "settings": { "name": "Kojic Acid", "dose": "1% targeted", "description": "One of the most studied tone-correcting actives. Fades stubborn dark spots, post-acne marks, sun damage and uneven patches over consistent use." } },
+        "ing-5": { "type": "ingredient", "settings": { "name": "Peptides", "dose": "Multi-peptide complex", "description": "Signal molecules that target firmness, fine lines and the look of skin elasticity. The premium addition to any anti-aging routine." } },
+        "ing-6": { "type": "ingredient", "settings": { "name": "Hyaluronic Acid", "dose": "Multi-weight", "description": "Holds up to 1,000x its weight in water. Pulls moisture into the skin so it stays hydrated through the day, layered into our day cream and gel moisturiser." } }
       },
-      "block_order": ["ing-1", "ing-2", "ing-3", "ing-4", "ing-5"]
+      "block_order": ["ing-1", "ing-2", "ing-3", "ing-4", "ing-5", "ing-6"]
     },
     "faq": {
       "type": "home-faq",

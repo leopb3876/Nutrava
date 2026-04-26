@@ -1,411 +1,631 @@
 {
   "categories": [
-    {
-      "key": "acne",
-      "label": "Acne & Blemishes",
-      "shortLabel": "Acne"
-    },
-    {
-      "key": "anti-aging",
-      "label": "Anti-Aging",
-      "shortLabel": "Anti-Aging"
-    },
-    {
-      "key": "hydration",
-      "label": "Hydration",
-      "shortLabel": "Hydration"
-    },
-    {
-      "key": "brightening",
-      "label": "Brightening",
-      "shortLabel": "Brightening"
-    },
-    {
-      "key": "sensitive",
-      "label": "Sensitive Skin",
-      "shortLabel": "Sensitive"
-    },
-    {
-      "key": "hair",
-      "label": "Hair",
-      "shortLabel": "Hair"
-    },
-    {
-      "key": "body",
-      "label": "Body",
-      "shortLabel": "Body"
-    }
+    { "key": "acne", "label": "Acne & Blemishes", "shortLabel": "Acne" },
+    { "key": "anti-aging", "label": "Anti-Aging", "shortLabel": "Anti-Aging" },
+    { "key": "hydration", "label": "Hydration", "shortLabel": "Hydration" },
+    { "key": "brightening", "label": "Brightening", "shortLabel": "Brightening" },
+    { "key": "sensitive", "label": "Sensitive Skin", "shortLabel": "Sensitive" },
+    { "key": "routine", "label": "Curated Routines", "shortLabel": "Routines" },
+    { "key": "essential", "label": "Daily Essentials", "shortLabel": "Essentials" }
   ],
   "products": [
     {
-      "id": 3001,
-      "handle": "charcoal-facial-cleanser",
-      "title": "Charcoal Facial Cleanser",
-      "price": 1990,
-      "category": "acne",
-      "categoryLabel": "Acne",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/5e7378e79c011e71c9bd172b010a60befcf80290-2048x2048.jpg",
-      "alt": "Charcoal Facial Cleanser — detoxifying face wash",
-      "description": "Detoxifying face wash that pulls pore-clogging impurities with activated charcoal, without stripping your skin.",
+      "id": 4001,
+      "handle": "micellar-cleansing-water",
+      "title": "Micellar Cleansing Water",
+      "price": 1800,
+      "category": "sensitive essential",
+      "categoryLabel": "Sensitive / Daily",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Micellar+Water",
+      "alt": "Micellar Cleansing Water — gentle daily cleanser",
+      "description": "A no-rinse micellar water that lifts makeup, sunscreen and grime without stripping or stinging. Everyday gentle cleanser.",
       "bestSeller": true,
       "expand": {
-        "about": "A gentle daily cleanser built around activated charcoal, aloe vera, and vitamin E. Lifts out daily buildup, sweat, and excess oil while tea tree oil supports blemish-prone skin. Good for oily, combination and congested skin types.",
+        "about": "A pH-balanced micellar water built around micelle technology — tiny lipid particles that grab onto oil, makeup and SPF and lift them off without surfactants. No rinse, no tightness, no irritation. Safe for every skin type, including reactive and sensitive.",
         "benefits": [
-          "Deep-cleans pores without over-drying",
-          "Reduces visible oil and shine",
-          "Calms and conditions with aloe vera",
-          "Tea tree oil for blemish-prone skin"
-        ],
-        "facts": [
-          ["Size", "2 fl oz / 60 ml"],
-          ["Key Actives", "Activated Charcoal, Tea Tree Oil, Vitamin E"],
-          ["Best for", "Oily and blemish-prone"],
-          ["Use", "Morning and night"]
-        ],
-        "pairsWith": [
-          "Hyaluronic Acid Serum",
-          "Aloe & Tea Tree Radiance Gel"
-        ]
-      }
-    },
-    {
-      "id": 3002,
-      "handle": "hyaluronic-acid-serum",
-      "title": "Hyaluronic Acid Serum",
-      "price": 3000,
-      "category": "hydration sensitive",
-      "categoryLabel": "Hydration / Sensitive",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/cbfe1b43023b73a5c80c631f06bf00a11716ee69-2048x2048.jpg",
-      "alt": "Hyaluronic Acid Serum — multi-weight hydration serum",
-      "description": "Four weights of hyaluronic acid, each targeting a different skin layer for plump, bouncy hydration.",
-      "bestSeller": true,
-      "expand": {
-        "about": "A lightweight water-based serum featuring four different molecular weights of hyaluronic acid and its derivatives. Each type pulls moisture into a different layer, so skin stays hydrated through the day instead of dehydrated by mid-afternoon. Safe for all skin types including sensitive.",
-        "benefits": [
-          "Multi-weight hyaluronic acid for deeper hydration",
-          "Plumps fine lines caused by dehydration",
-          "Sinks in fast, no sticky finish",
-          "Works under any moisturiser"
-        ],
-        "facts": [
-          ["Size", "1 fl oz / 30 ml"],
-          ["Key Actives", "Sodium Hyaluronate (4 weights), Glycerin"],
-          ["Made in", "USA"],
-          ["Use", "AM and PM, on damp skin"]
-        ],
-        "pairsWith": [
-          "Vitamin C Serum",
-          "Skin Hydration Cream"
-        ]
-      }
-    },
-    {
-      "id": 3003,
-      "handle": "vitamin-c-serum",
-      "title": "Vitamin C Serum",
-      "price": 2000,
-      "category": "brightening",
-      "categoryLabel": "Brightening",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/02e38ac1697203a7e99baa00631bdb6c68bff6d2-2048x2048.jpg",
-      "alt": "Vitamin C Serum — brightening and antioxidant",
-      "description": "Triple-form vitamin C with ferulic acid to brighten tone, fade dark spots and defend against daily damage.",
-      "bestSeller": true,
-      "expand": {
-        "about": "A brightening serum powered by three forms of vitamin C — L-ascorbic acid for potency, plus magnesium ascorbyl phosphate and 3-glyceryl ascorbate for stability. Ferulic acid amplifies the antioxidant shield, while calendula and chamomile keep the formula kind to the skin.",
-        "benefits": [
-          "Evens out dark spots and uneven tone",
-          "Brightens a dull complexion",
-          "Antioxidant defence vs pollution & UV stress",
-          "Supports natural collagen"
-        ],
-        "facts": [
-          ["Size", "1 fl oz / 30 ml"],
-          ["Key Actives", "L-Ascorbic Acid, Ferulic Acid, Calendula"],
-          ["Made in", "USA"],
-          ["Use", "AM — always layer sunscreen over it"]
-        ],
-        "pairsWith": [
-          "Hyaluronic Acid Serum",
-          "Anti-Aging Moisturizer"
-        ]
-      }
-    },
-    {
-      "id": 3004,
-      "handle": "dark-spot-serum-sensitive-skin",
-      "title": "Dark Spot Serum for Sensitive Skin",
-      "price": 2790,
-      "category": "brightening sensitive",
-      "categoryLabel": "Brightening / Sensitive",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/05d41074173d664f625c7f8773da18576c823b2e-2048x2048.jpg",
-      "alt": "Dark Spot Serum for Sensitive Skin — gentle tone correction",
-      "description": "Brightens without brightening acids. Adaptogenic mushroom extracts even tone on reactive skin.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A gentle dark-spot serum designed for skin that reacts badly to kojic acid, strong acids, or hydroquinone. Adaptogenic mushrooms (shiitake, turkey tail) plus jackfruit and rice extract fade uneven tone over time, while chamomile and calendula keep things calm.",
-        "benefits": [
-          "Fades dark spots without irritation",
-          "No kojic acid, no hydroquinone",
-          "Calms redness with chamomile & calendula",
+          "Removes makeup and SPF without rubbing",
+          "No-rinse formula — wipe and go",
+          "Fragrance-free, non-stripping",
           "Safe for sensitive and reactive skin"
         ],
         "facts": [
-          ["Size", "1 fl oz / 30 ml"],
-          ["Key Actives", "Shiitake, Turkey Tail, Jackfruit Extract"],
-          ["Best for", "Sensitive, reactive, easily flushed skin"],
-          ["Use", "AM or PM after cleansing"]
+          ["Size", "6.8 fl oz / 200 ml"],
+          ["Best for", "All skin types, especially sensitive"],
+          ["Use", "AM and PM as a first cleanse"],
+          ["Format", "No-rinse"]
         ],
         "pairsWith": [
-          "Hyaluronic Acid Serum",
-          "Skin Hydration Cream"
+          "Cleansing Foam",
+          "Sensitive Skin Moisturiser"
         ]
       }
     },
     {
-      "id": 3005,
-      "handle": "pdrn-brightening-serum",
-      "title": "PDRN Brightening Serum",
+      "id": 4002,
+      "handle": "cleansing-foam",
+      "title": "Cleansing Foam",
       "price": 3200,
-      "category": "brightening anti-aging",
-      "categoryLabel": "Brightening / Anti-Aging",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/6421e6baecda23a06f99c09c7678e0d16ed0388a-2048x2048.jpg",
-      "alt": "PDRN Brightening Serum — K-beauty inspired radiance",
-      "description": "K-beauty inspired PDRN, peptides and hyaluronic acid for a glassy, lit-from-within glow.",
+      "category": "acne hydration",
+      "categoryLabel": "Normal / Oily",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Cleansing+Foam",
+      "alt": "Cleansing Foam — daily face wash for normal to oily skin",
+      "description": "A creamy foaming cleanser that lifts the day off without leaving skin tight. Daily wash for normal-to-oily skin.",
       "bestSeller": false,
       "expand": {
-        "about": "PDRN (polydeoxyribonucleotide) is a regenerative ingredient from Korean skincare, often used in aesthetic clinics. Paired here with Acetyl Hexapeptide-8 and sodium hyaluronate in a lightweight hydrating base that absorbs fast and leaves skin looking plump and radiant.",
+        "about": "A pH-balanced foaming cleanser that creates a soft, cushioning lather. Removes excess oil, sweat and SPF without disturbing the moisture barrier. The kind of basic that quietly upgrades a routine.",
         "benefits": [
-          "Plumps, smooths and refines texture",
-          "Boosts surface radiance and glow",
-          "Peptides support elasticity over time",
-          "Lightweight, layers under any routine"
+          "Removes oil and SPF without stripping",
+          "Soft cushion lather, not squeaky-clean",
+          "Maintains your moisture barrier",
+          "Pleasant daily ritual"
         ],
         "facts": [
-          ["Size", "1 fl oz / 30 ml"],
-          ["Key Actives", "PDRN, Acetyl Hexapeptide-8, Panthenol"],
-          ["Made in", "USA"],
-          ["Use", "AM and PM"]
+          ["Size", "5 fl oz / 150 ml"],
+          ["Best for", "Normal to oily skin"],
+          ["Use", "AM and PM"],
+          ["Format", "Foaming wash"]
         ],
         "pairsWith": [
-          "Hyaluronic Acid Serum",
-          "Anti-Aging Moisturizer"
-        ]
-      }
-    },
-    {
-      "id": 3006,
-      "handle": "skin-hydration-cream",
-      "title": "Skin Hydration Cream",
-      "price": 2690,
-      "category": "hydration",
-      "categoryLabel": "Hydration",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/cc05128df99df86d4a12f7f4f7252d08c15e2fb6-2048x2048.jpg",
-      "alt": "Skin Hydration Cream — lightweight daily moisturiser",
-      "description": "Lightweight moisturiser with hyaluronic acid, avocado oil and vitamin E. The finishing step in any routine.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A daily moisturiser that seals in whatever you layered before. Hyaluronic acid pulls water into the skin, avocado oil and vitamin E keep the barrier happy, and a cool cucumber note makes it pleasant to use morning or night.",
-        "benefits": [
-          "Locks in serum hydration",
-          "Supports a healthy moisture barrier",
-          "Lightweight — not greasy",
-          "Works under SPF and makeup"
-        ],
-        "facts": [
-          ["Size", "2 oz / 56 g"],
-          ["Key Actives", "Hyaluronic Acid, Avocado Oil, Vitamin E"],
-          ["Best for", "Normal to dry skin"],
-          ["Use", "AM and PM"]
-        ],
-        "pairsWith": [
-          "Hyaluronic Acid Serum",
+          "Niacinamide Gel Moisturiser",
           "Vitamin C Serum"
         ]
       }
     },
     {
-      "id": 3007,
-      "handle": "anti-aging-moisturizer",
-      "title": "Anti-Aging Moisturizer",
+      "id": 4003,
+      "handle": "blemish-purifying-face-wash",
+      "title": "Blemish Purifying Face Wash",
+      "price": 3500,
+      "category": "acne",
+      "categoryLabel": "Acne",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Blemish+Face+Wash",
+      "alt": "Blemish Purifying Face Wash — for acne-prone skin",
+      "description": "A targeted blemish wash that clears pore-clogging buildup and calms breakouts without over-drying.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A daily face wash formulated for blemish-prone skin. Clears excess sebum and dead-skin buildup without stripping the barrier — so blemishes calm down rather than getting angrier. The first product to add when breakouts show up.",
+        "benefits": [
+          "Clears pore-clogging buildup",
+          "Calms active breakouts",
+          "Won't over-dry or trigger rebound oil",
+          "Gentle enough for daily use"
+        ],
+        "facts": [
+          ["Size", "4.7 fl oz / 140 ml"],
+          ["Best for", "Acne and blemish-prone skin"],
+          ["Use", "AM and PM"],
+          ["Format", "Cleansing gel"]
+        ],
+        "pairsWith": [
+          "Blemish Care Moisturiser",
+          "Targeted Dark Spot Care"
+        ]
+      }
+    },
+    {
+      "id": 4004,
+      "handle": "niacinamide-gel-moisturiser",
+      "title": "Niacinamide Gel Moisturiser",
+      "price": 1900,
+      "category": "acne hydration",
+      "categoryLabel": "Pores / Oil",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Niacinamide+Gel",
+      "alt": "Niacinamide Gel Moisturiser — pore and tone treatment",
+      "description": "A lightweight niacinamide gel that refines pores, evens tone and balances oil. The serum-meets-moisturiser hybrid your routine has been missing.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A multi-tasking gel that delivers niacinamide (vitamin B3) at a clinically meaningful dose. Refines the look of pores, balances oil production, evens out tone and strengthens the moisture barrier — all in a featherweight finish that layers under SPF without pilling.",
+        "benefits": [
+          "Refines the look of pores",
+          "Evens out tone and texture",
+          "Balances visible oil",
+          "Strengthens the moisture barrier"
+        ],
+        "facts": [
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "Niacinamide (B3)"],
+          ["Best for", "Oily, combination, blemish-prone"],
+          ["Use", "AM and PM after serums"]
+        ],
+        "pairsWith": [
+          "Cleansing Foam",
+          "Sunscreen SPF30"
+        ]
+      }
+    },
+    {
+      "id": 4005,
+      "handle": "vitamin-c-serum",
+      "title": "Vitamin C Serum",
+      "price": 4000,
+      "category": "brightening",
+      "categoryLabel": "Brightening",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Vitamin+C+Serum",
+      "alt": "Vitamin C Serum — brightening antioxidant",
+      "description": "A potent vitamin C serum that fades dark spots, brightens dull skin and shields against daily damage.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A stabilised vitamin C serum that delivers brightening, tone-correcting and antioxidant defence in one step. The hero product of any radiance routine — pairs with sunscreen for the gold-standard daytime stack.",
+        "benefits": [
+          "Fades dark spots and uneven tone",
+          "Brightens dull complexions",
+          "Antioxidant defence vs daily damage",
+          "Supports natural collagen"
+        ],
+        "facts": [
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "Vitamin C, Ferulic Acid"],
+          ["Best for", "All skin types wanting glow"],
+          ["Use", "AM under sunscreen"]
+        ],
+        "pairsWith": [
+          "Sunscreen SPF30",
+          "Moisturising Day Cream"
+        ]
+      }
+    },
+    {
+      "id": 4006,
+      "handle": "retinol-alternative-serum",
+      "title": "Retinol Alternative Serum",
+      "price": 3800,
+      "category": "anti-aging sensitive",
+      "categoryLabel": "Anti-Aging / Gentle",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Retinol+Alt+Serum",
+      "alt": "Retinol Alternative Serum — anti-aging without irritation",
+      "description": "All the smoothing, refining benefits of retinol — without the redness, dryness or peeling. A gentler way into anti-aging.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A plant-derived retinol alternative that delivers anti-aging benefits without the irritation curve of traditional retinol. Smooths fine lines, refines texture and supports cell turnover — kind enough to use every night, even on reactive skin.",
+        "benefits": [
+          "Smooths fine lines and texture",
+          "Supports cell turnover",
+          "No redness, peeling or dryness",
+          "Safe for sensitive and pregnancy-conscious users"
+        ],
+        "facts": [
+          ["Size", "1 fl oz / 30 ml"],
+          ["Key Actives", "Bakuchiol-style retinol alternative"],
+          ["Best for", "Anti-aging starters, sensitive skin"],
+          ["Use", "PM nightly"]
+        ],
+        "pairsWith": [
+          "Retinol Alternative Moisturiser",
+          "Smoothing Eye Cream"
+        ]
+      }
+    },
+    {
+      "id": 4007,
+      "handle": "peptide-anti-aging-serum",
+      "title": "Peptide Anti-Aging Serum",
       "price": 4000,
       "category": "anti-aging",
       "categoryLabel": "Anti-Aging",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/4a9c689ff56ee1311fb28263dcb0106d2d95fb82-2048x2048.jpg",
-      "alt": "Anti-Aging Moisturizer — retinol, peptides and ceramides",
-      "description": "Retinol, peptides and ceramides in a rich daily cream. Smooths fine lines without sensitising skin.",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Peptide+Serum",
+      "alt": "Peptide Anti-Aging Serum — premium anti-aging treatment",
+      "description": "Peptides plus supporting actives that target firmness, fine lines and the look of skin elasticity.",
       "bestSeller": true,
       "expand": {
-        "about": "A multi-active anti-aging moisturiser. Encapsulated retinol supports cell turnover, Acetyl Octapeptide-3 softens the look of expression lines, and ceramide NP plus shea butter keep the barrier strong so you can use actives without irritation. Designed for mature and maturing skin.",
+        "about": "A premium peptide serum that signals to skin to behave younger — supporting firmness, smoothness and elasticity without triggering sensitivity. Layers under any moisturiser, day or night.",
         "benefits": [
-          "Smooths fine lines and texture",
-          "Supports elasticity with peptides",
-          "Ceramides reinforce the moisture barrier",
-          "Rich but not heavy"
-        ],
-        "facts": [
-          ["Size", "1.7 fl oz / 50 ml"],
-          ["Key Actives", "Retinol, Acetyl Octapeptide-3, Ceramide NP"],
-          ["Made in", "USA"],
-          ["Use", "PM only — layer SPF in the AM"]
-        ],
-        "pairsWith": [
-          "PDRN Brightening Serum",
-          "Gua Sha Face Oil"
-        ]
-      }
-    },
-    {
-      "id": 3008,
-      "handle": "skin-firming-cream",
-      "title": "Skin Firming Cream",
-      "price": 3899,
-      "category": "anti-aging",
-      "categoryLabel": "Anti-Aging",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/f6ff12974d89aad6c931eb1f6a33fd9ad23d8f54-2048x2048.jpg",
-      "alt": "Skin Firming Cream — DMAE and CoQ10 treatment",
-      "description": "DMAE, hyaluronic acid and CoQ10 work together on the look of firmness, bounce and tone.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A focused firming cream for skin that's starting to lose snap. DMAE visibly tightens, hyaluronic acid plumps, and Coenzyme Q10 brings antioxidant support. Avocado and almond oils round out the texture so it feels more like a treat than a treatment.",
-        "benefits": [
-          "Visibly firmer, more toned look",
-          "Hydrates without feeling heavy",
-          "CoQ10 antioxidant support",
-          "Layer under your usual moisturiser"
-        ],
-        "facts": [
-          ["Size", "2 oz / 56 g"],
-          ["Key Actives", "DMAE, Hyaluronic Acid, CoQ10"],
-          ["Best for", "Mature skin, loss of firmness"],
-          ["Use", "PM, 2–3x per week to start"]
-        ],
-        "pairsWith": [
-          "Anti-Aging Moisturizer",
-          "Gua Sha Face Oil"
-        ]
-      }
-    },
-    {
-      "id": 3009,
-      "handle": "gua-sha-face-oil",
-      "title": "Gua Sha Face Oil",
-      "price": 1990,
-      "category": "anti-aging hydration",
-      "categoryLabel": "Anti-Aging / Hydration",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/fa9b7741ca162cfa97c2fef854cef6a0a11a7365-2048x2048.jpg",
-      "alt": "Gua Sha Face Oil — botanical facial oil",
-      "description": "Twelve botanical oils in one silky blend. Perfect slip for gua sha, great on its own at night.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A blend of twelve cold-pressed botanical oils — including rosehip, grapeseed, camellia, pomegranate and baobab — that delivers antioxidants and fatty acids where skin wants them. Light enough for daily use, slippy enough for gua sha, facial massage or jade roller.",
-        "benefits": [
-          "Smooth slip for gua sha and massage",
-          "Supports elasticity and glow",
-          "Rich in antioxidants and omegas",
-          "Non-greasy, absorbs cleanly"
+          "Targets firmness and fine lines",
+          "Supports the look of elasticity",
+          "Lightweight, layers cleanly",
+          "Pairs with retinol for full anti-aging routine"
         ],
         "facts": [
           ["Size", "1 fl oz / 30 ml"],
-          ["Key Actives", "Rosehip, Grapeseed, Camellia, Pomegranate Oils"],
-          ["Best for", "All skin types, especially dry"],
-          ["Use", "PM as last step, or before gua sha"]
+          ["Key Actives", "Multi-peptide complex"],
+          ["Best for", "30+ skin, anti-aging focus"],
+          ["Use", "AM and PM"]
         ],
         "pairsWith": [
-          "Skin Firming Cream",
-          "Anti-Aging Moisturizer"
+          "Retinol Alternative Moisturiser",
+          "Smoothing Eye Cream"
         ]
       }
     },
     {
-      "id": 3010,
-      "handle": "aloe-tea-tree-radiance-gel",
-      "title": "Aloe & Tea Tree Radiance Gel",
-      "price": 3500,
-      "category": "acne sensitive",
-      "categoryLabel": "Acne / Sensitive",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/2bda4fa36a54412499bd1abc9e9f2dce3efeebb9-2048x2048.jpg",
-      "alt": "Aloe & Tea Tree Radiance Gel — soothing spot-friendly gel",
-      "description": "Cooling aloe gel with tea tree and willow bark. Calms redness and visibly reduces blemishes.",
+      "id": 4008,
+      "handle": "targeted-dark-spot-care",
+      "title": "Targeted Dark Spot Care 1% Kojic Acid",
+      "price": 3200,
+      "category": "brightening",
+      "categoryLabel": "Dark Spots",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Dark+Spot+Care",
+      "alt": "Targeted Dark Spot Care — 1% kojic acid spot treatment",
+      "description": "A targeted 1% kojic acid treatment for stubborn dark spots, post-blemish marks and uneven patches.",
       "bestSeller": false,
       "expand": {
-        "about": "A soothing leave-on gel built for skin that breaks out easily. Aloe vera and cucumber calm redness on contact, black willow bark (nature's salicylic acid) works on blemishes, and tea tree oil supports clarity. Use all over or as a targeted spot treatment.",
+        "about": "A spot treatment formulated around 1% kojic acid — one of the most studied tone-correcting actives. Apply directly to dark spots, post-acne marks, sun damage or melasma to fade pigmentation over consistent use.",
         "benefits": [
-          "Calms red, angry-looking skin",
-          "Reduces look of blemishes",
-          "Gentle enough for daily use",
-          "Lightweight — great under SPF"
+          "Fades stubborn dark spots over time",
+          "Targets post-blemish marks",
+          "1% kojic acid — clinical strength",
+          "Safe for daily targeted use"
         ],
         "facts": [
-          ["Size", "2.2 fl oz / 62 g"],
-          ["Key Actives", "Aloe Vera, Tea Tree Oil, Black Willow Bark"],
-          ["Best for", "Blemish-prone, sensitive, reactive skin"],
-          ["Use", "AM/PM or as a spot treatment"]
-        ],
-        "pairsWith": [
-          "Charcoal Facial Cleanser",
-          "Hyaluronic Acid Serum"
-        ]
-      }
-    },
-    {
-      "id": 3011,
-      "handle": "peppermint-coffee-scrub",
-      "title": "Peppermint Coffee Scrub",
-      "price": 2200,
-      "category": "body",
-      "categoryLabel": "Body",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/c623d60bfe4541ffc90c4adaea54f660b66fc625-2048x2048.jpg",
-      "alt": "Peppermint Coffee Scrub — body exfoliator",
-      "description": "Organic coffee grounds, brown sugar and peppermint oil. Wakes up dull skin and boosts circulation.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A body scrub that smells like your favourite Monday morning. Fresh-ground organic coffee is loaded with antioxidants, sugar and sea salt buff away dullness, and peppermint oil gives that cool, tingly finish. Great for cellulite-prone zones and tired-looking legs.",
-        "benefits": [
-          "Exfoliates without stripping",
-          "Boosts circulation and skin tone",
-          "Antioxidant-rich organic coffee",
-          "Cool, invigorating peppermint finish"
-        ],
-        "facts": [
-          ["Size", "4 oz / 113 g"],
-          ["Key Actives", "Organic Coffee, Brown Sugar, Peppermint Oil"],
-          ["Made in", "USA"],
-          ["Use", "In the shower, 2–3x per week"]
-        ],
-        "pairsWith": [
-          "Skin Hydration Cream",
-          "Charcoal Facial Cleanser"
-        ]
-      }
-    },
-    {
-      "id": 3012,
-      "handle": "peptide-hair-growth-serum",
-      "title": "Peptide Hair Growth Serum",
-      "price": 6500,
-      "category": "hair",
-      "categoryLabel": "Hair",
-      "image": "https://cdn.sanity.io/images/g0smbdlu/production/2875e33df3917f8fae8b2cbf5d803c80b719529b-2048x2048.jpg",
-      "alt": "Peptide Hair Growth Serum — scalp and hair treatment",
-      "description": "Five peptides plus rosemary and saw palmetto. Nourishes the scalp for fuller, healthier-looking hair.",
-      "bestSeller": false,
-      "expand": {
-        "about": "A leave-in scalp serum built around five biomimetic peptides (sh-Polypeptide-11, sh-Polypeptide-1, sh-Oligopeptide-2, sh-Oligopeptide-10, sh-Polypeptide-9) plus rosemary, saw palmetto and ginseng. Lightweight and non-greasy — massages into the scalp and absorbs fast with no sticky residue.",
-        "benefits": [
-          "Nourishes the scalp at the root",
-          "Supports fuller-looking hair",
-          "Rosemary and saw palmetto for scalp health",
-          "Lightweight — no greasy residue"
-        ],
-        "facts": [
-          ["Size", "1 fl oz / 30 ml"],
-          ["Key Actives", "5 Biomimetic Peptides, Rosemary, Saw Palmetto"],
-          ["Made in", "USA"],
-          ["Use", "Daily on clean, damp scalp"]
+          ["Size", "0.5 fl oz / 15 ml"],
+          ["Key Actives", "Kojic Acid 1%"],
+          ["Best for", "Hyperpigmentation, sun damage"],
+          ["Use", "PM, directly on spots"]
         ],
         "pairsWith": [
           "Vitamin C Serum",
-          "Hyaluronic Acid Serum"
+          "Sunscreen SPF30"
+        ]
+      }
+    },
+    {
+      "id": 4009,
+      "handle": "moisturising-day-cream",
+      "title": "Moisturising Day Cream",
+      "price": 2200,
+      "category": "hydration essential",
+      "categoryLabel": "Daily Essential",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Day+Cream",
+      "alt": "Moisturising Day Cream — daily hydrator",
+      "description": "A daily moisturiser that hydrates, comforts and preps skin for SPF. The non-negotiable middle step.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A clean, lightweight day cream that hydrates without weighing skin down or pilling under sunscreen. The daily essential — pleasant enough to use every morning, supportive enough that your skin notices when you skip it.",
+        "benefits": [
+          "Daily hydration that doesn't weigh skin down",
+          "Comfortable under SPF and makeup",
+          "Smooths the look of texture",
+          "Pleasant fragrance-light finish"
+        ],
+        "facts": [
+          ["Size", "1.7 fl oz / 50 ml"],
+          ["Best for", "Normal, combination, dehydrated skin"],
+          ["Use", "AM and PM"],
+          ["Format", "Lightweight cream"]
+        ],
+        "pairsWith": [
+          "Vitamin C Serum",
+          "Sunscreen SPF30"
+        ]
+      }
+    },
+    {
+      "id": 4010,
+      "handle": "blemish-care-moisturiser",
+      "title": "Blemish Care Moisturiser",
+      "price": 3400,
+      "category": "acne",
+      "categoryLabel": "Acne",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Blemish+Moisturiser",
+      "alt": "Blemish Care Moisturiser — daily moisturiser for acne-prone skin",
+      "description": "A non-comedogenic moisturiser that hydrates blemish-prone skin without clogging pores or feeding breakouts.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A daily moisturiser engineered for acne-prone skin. Hydrates, comforts and supports the moisture barrier — without the heavy butters, oils or fragrance that often trigger congestion. The moisturiser you can keep using during a breakout.",
+        "benefits": [
+          "Hydrates without clogging pores",
+          "Calms inflamed, blemish-prone skin",
+          "Layers cleanly under SPF",
+          "Won't trigger rebound oil"
+        ],
+        "facts": [
+          ["Size", "1.7 fl oz / 50 ml"],
+          ["Best for", "Acne-prone, oily, congested skin"],
+          ["Use", "AM and PM"],
+          ["Format", "Lightweight, non-comedogenic"]
+        ],
+        "pairsWith": [
+          "Blemish Purifying Face Wash",
+          "Niacinamide Gel Moisturiser"
+        ]
+      }
+    },
+    {
+      "id": 4011,
+      "handle": "retinol-alternative-moisturiser",
+      "title": "Retinol Alternative Moisturiser",
+      "price": 3400,
+      "category": "anti-aging",
+      "categoryLabel": "Anti-Aging Daily",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Retinol+Moisturiser",
+      "alt": "Retinol Alternative Moisturiser — anti-aging daily moisturiser",
+      "description": "A daily moisturiser with retinol-alternative actives that smooth fine lines and refine texture without irritation.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A daily moisturiser that bakes anti-aging benefits into the step you'd use anyway. Plant-derived retinol alternative smooths fine lines and refines texture, while ceramides and humectants keep the barrier comfortable.",
+        "benefits": [
+          "Smooths fine lines and texture",
+          "Anti-aging without irritation",
+          "Daily-use friendly — no purge",
+          "Comfortable for sensitive skin"
+        ],
+        "facts": [
+          ["Size", "1.7 fl oz / 50 ml"],
+          ["Key Actives", "Retinol alternative, Ceramides"],
+          ["Best for", "Anti-aging, sensitive skin"],
+          ["Use", "AM and PM"]
+        ],
+        "pairsWith": [
+          "Peptide Anti-Aging Serum",
+          "Smoothing Eye Cream"
+        ]
+      }
+    },
+    {
+      "id": 4012,
+      "handle": "sensitive-skin-moisturiser",
+      "title": "Sensitive Skin Moisturiser",
+      "price": 3600,
+      "category": "sensitive",
+      "categoryLabel": "Sensitive",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Sensitive+Moisturiser",
+      "alt": "Sensitive Skin Moisturiser — fragrance-free daily cream",
+      "description": "A fragrance-free moisturiser built for reactive skin. Calms redness, hydrates deeply and rebuilds a stressed barrier.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A pared-back daily moisturiser for skin that flares at the wrong things. Fragrance-free, essential-oil-free, and built around barrier-supporting humectants and lipids. Designed for skin that has been over-exfoliated, over-active'd, or just runs reactive by default.",
+        "benefits": [
+          "Calms redness and reactivity",
+          "100% fragrance-free",
+          "Rebuilds a stressed moisture barrier",
+          "Comfortable on rosacea-prone skin"
+        ],
+        "facts": [
+          ["Size", "1.7 fl oz / 50 ml"],
+          ["Key Actives", "Ceramides, panthenol, glycerin"],
+          ["Best for", "Sensitive, reactive, rosacea-prone"],
+          ["Use", "AM and PM"]
+        ],
+        "pairsWith": [
+          "Micellar Cleansing Water",
+          "Sunscreen SPF30"
+        ]
+      }
+    },
+    {
+      "id": 4013,
+      "handle": "smoothing-eye-cream",
+      "title": "Smoothing Eye Cream",
+      "price": 1900,
+      "category": "anti-aging essential",
+      "categoryLabel": "Eye Care",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Eye+Cream",
+      "alt": "Smoothing Eye Cream — daily eye treatment",
+      "description": "A featherweight eye cream that smooths the look of fine lines and brightens the under-eye area without migrating.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A daily eye cream that targets the three main concerns of the under-eye area: fine lines, dehydration and dullness. Lightweight enough to layer under makeup, supportive enough that you'll keep reaching for it.",
+        "benefits": [
+          "Smooths the look of fine lines",
+          "Brightens the under-eye area",
+          "Hydrates without migrating",
+          "Layers cleanly under concealer"
+        ],
+        "facts": [
+          ["Size", "0.5 fl oz / 15 ml"],
+          ["Best for", "All ages, fine lines, dark circles"],
+          ["Use", "AM and PM"],
+          ["Format", "Lightweight cream"]
+        ],
+        "pairsWith": [
+          "Peptide Anti-Aging Serum",
+          "Moisturising Day Cream"
+        ]
+      }
+    },
+    {
+      "id": 4014,
+      "handle": "sunscreen-spf30",
+      "title": "Sunscreen SPF30",
+      "price": 2400,
+      "category": "essential brightening",
+      "categoryLabel": "Daily SPF",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Sunscreen+SPF30",
+      "alt": "Sunscreen SPF30 — daily broad-spectrum sun protection",
+      "description": "A daily SPF30 you'll actually want to wear — no white cast, no sticky finish, no excuse not to use it.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A broad-spectrum SPF30 that disappears on every skin tone, layers under makeup without pilling, and feels like a moisturiser instead of a chore. The single product with the biggest impact on long-term skin health.",
+        "benefits": [
+          "Broad-spectrum SPF30 protection",
+          "No white cast on any skin tone",
+          "Layers under makeup without pilling",
+          "Comfortable enough for daily use"
+        ],
+        "facts": [
+          ["Size", "1.7 fl oz / 50 ml"],
+          ["SPF", "Broad-spectrum SPF30"],
+          ["Best for", "All skin types — non-negotiable"],
+          ["Use", "AM as last skincare step"]
+        ],
+        "pairsWith": [
+          "Vitamin C Serum",
+          "Moisturising Day Cream"
+        ]
+      }
+    },
+    {
+      "id": 4015,
+      "handle": "brightening-exfoliator",
+      "title": "Brightening Face & Body Exfoliator with Kojic Acid",
+      "price": 3200,
+      "category": "brightening",
+      "categoryLabel": "Exfoliant",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Exfoliator",
+      "alt": "Brightening Exfoliator with Kojic Acid — face and body",
+      "description": "A dual face-and-body exfoliator with kojic acid that smooths texture and brightens uneven tone.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A kojic-acid exfoliator that works on the face and body. Smooths bumpy texture, fades uneven tone, and unclogs pores — all without micro-tears. Use 2–3x weekly for visible smoothness.",
+        "benefits": [
+          "Smooths bumpy texture (KP, body)",
+          "Fades uneven tone with kojic acid",
+          "Unclogs congested pores",
+          "Use on face or body"
+        ],
+        "facts": [
+          ["Size", "5 fl oz / 150 ml"],
+          ["Key Actives", "Kojic Acid"],
+          ["Best for", "Uneven tone, KP, body bumps"],
+          ["Use", "2–3x per week PM"]
+        ],
+        "pairsWith": [
+          "Targeted Dark Spot Care",
+          "Moisturising Day Cream"
+        ]
+      }
+    },
+    {
+      "id": 4101,
+      "handle": "acne-care-collection-box",
+      "title": "Acne Care Collection",
+      "price": 9500,
+      "category": "routine acne",
+      "categoryLabel": "Routine",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Acne+Care+Box",
+      "alt": "Acne Care Collection — full routine for blemish-prone skin",
+      "description": "The complete routine for acne and blemish-prone skin. Save vs buying individually.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A curated routine for skin that breaks out: targeted cleanser, pore-refining gel and a non-comedogenic moisturiser. Built so each product reinforces the next without overwhelming the barrier — the routine that actually clears blemishes instead of chasing them.",
+        "benefits": [
+          "Complete morning + evening routine",
+          "Save vs buying individually",
+          "Engineered to layer without conflicts",
+          "Replaces 3–4 random products"
+        ],
+        "facts": [
+          ["Includes", "Blemish Face Wash + Niacinamide Gel + Blemish Moisturiser"],
+          ["Best for", "Acne, blemish-prone, congested skin"],
+          ["Use", "AM and PM as a complete routine"],
+          ["Value", "Save ~$15 vs buying separately"]
+        ],
+        "pairsWith": [
+          "Targeted Dark Spot Care",
+          "Sunscreen SPF30"
+        ]
+      }
+    },
+    {
+      "id": 4102,
+      "handle": "anti-aging-collection-box",
+      "title": "Anti-Aging Collection",
+      "price": 10500,
+      "category": "routine anti-aging",
+      "categoryLabel": "Routine",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Anti-Aging+Box",
+      "alt": "Anti-Aging Collection — complete routine for fine lines and firmness",
+      "description": "A full anti-aging routine — peptides, retinol-alternative, eye cream and barrier support. Save vs buying individually.",
+      "bestSeller": true,
+      "expand": {
+        "about": "A complete anti-aging routine: a peptide serum and a retinol-alternative moisturiser layered with a smoothing eye cream. Targets fine lines, firmness and barrier health together — without forcing you to assemble the routine yourself.",
+        "benefits": [
+          "Targets fine lines, firmness and elasticity",
+          "Layered without irritation",
+          "Includes daily eye treatment",
+          "Save vs buying individually"
+        ],
+        "facts": [
+          ["Includes", "Peptide Serum + Retinol Alt Moisturiser + Smoothing Eye Cream"],
+          ["Best for", "30+ skin, anti-aging focus"],
+          ["Use", "AM and PM as a complete routine"],
+          ["Value", "Save ~$20 vs buying separately"]
+        ],
+        "pairsWith": [
+          "Vitamin C Serum",
+          "Sunscreen SPF30"
+        ]
+      }
+    },
+    {
+      "id": 4103,
+      "handle": "daily-radiance-collection-box",
+      "title": "Daily Radiance Collection",
+      "price": 9500,
+      "category": "routine hydration brightening",
+      "categoryLabel": "Routine",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Daily+Radiance+Box",
+      "alt": "Daily Radiance Collection — routine for dull, dehydrated skin",
+      "description": "A radiance routine for dull, dehydrated skin. Vitamin C, day cream and SPF — the three-step glow stack.",
+      "bestSeller": true,
+      "expand": {
+        "about": "The three products that create visible glow: a vitamin C serum to brighten, a day cream to hydrate and smooth, and a daily SPF to protect everything you just built. The morning routine that makes the biggest visual difference.",
+        "benefits": [
+          "Visible radiance and even tone",
+          "Hydration that lasts all day",
+          "Daily SPF protection built in",
+          "Save vs buying individually"
+        ],
+        "facts": [
+          ["Includes", "Vitamin C Serum + Moisturising Day Cream + Sunscreen SPF30"],
+          ["Best for", "Dull, dehydrated, uneven skin"],
+          ["Use", "AM as a complete morning routine"],
+          ["Value", "Save ~$11 vs buying separately"]
+        ],
+        "pairsWith": [
+          "Niacinamide Gel Moisturiser",
+          "Smoothing Eye Cream"
+        ]
+      }
+    },
+    {
+      "id": 4104,
+      "handle": "clear-complexion-collection-box",
+      "title": "Clear Complexion Collection",
+      "price": 9000,
+      "category": "routine sensitive",
+      "categoryLabel": "Routine",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Clear+Complexion+Box",
+      "alt": "Clear Complexion Collection — gentle routine for combination and sensitive skin",
+      "description": "A balanced routine for combination and sensitive skin. Gentle micellar cleanser, niacinamide and a calming moisturiser.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A balancing routine for combination skin and skin that runs reactive. Gentle micellar cleanser, niacinamide gel to refine and balance, and a sensitive-skin moisturiser to keep the barrier comfortable. No fragrance, no overload.",
+        "benefits": [
+          "Balances combination skin",
+          "Calms reactivity",
+          "Refines pores without irritation",
+          "Save vs buying individually"
+        ],
+        "facts": [
+          ["Includes", "Micellar Water + Niacinamide Gel + Sensitive Moisturiser"],
+          ["Best for", "Combination, sensitive, reactive skin"],
+          ["Use", "AM and PM as a complete routine"],
+          ["Value", "Save ~$8 vs buying separately"]
+        ],
+        "pairsWith": [
+          "Sunscreen SPF30",
+          "Smoothing Eye Cream"
+        ]
+      }
+    },
+    {
+      "id": 4105,
+      "handle": "dark-spot-routine-duo",
+      "title": "Dark Spot Routine Duo",
+      "price": 6500,
+      "category": "routine brightening",
+      "categoryLabel": "Routine",
+      "image": "https://placehold.co/800x800/f5f0e8/2a2a2a?text=Dark+Spot+Duo",
+      "alt": "Dark Spot Routine Duo — focused routine for hyperpigmentation",
+      "description": "A two-product duo to fade hyperpigmentation: vitamin C in the AM, kojic acid spot treatment at night.",
+      "bestSeller": false,
+      "expand": {
+        "about": "A focused duo for hyperpigmentation, post-acne marks and sun damage. Vitamin C brightens and shields in the morning; kojic acid targets stubborn spots at night. The minimum effective routine for visible tone correction.",
+        "benefits": [
+          "Targets dark spots from two angles",
+          "AM brighten, PM correct",
+          "Minimum effort, visible results",
+          "Save vs buying individually"
+        ],
+        "facts": [
+          ["Includes", "Vitamin C Serum + Targeted Dark Spot Care"],
+          ["Best for", "Hyperpigmentation, sun damage, melasma"],
+          ["Use", "AM (Vit C) + PM (Spot Care)"],
+          ["Value", "Save ~$7 vs buying separately"]
+        ],
+        "pairsWith": [
+          "Moisturising Day Cream",
+          "Sunscreen SPF30"
         ]
       }
     }

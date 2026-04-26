@@ -128,9 +128,9 @@
       question: "How often do you break out?",
       subtitle: "Frequency helps us match the right strength of treatment",
       options: [
-        { text: "Daily \u2014 constant active breakouts", icon: "zap", scores: { acne: 3 }, productBoosts: { "aloe-tea-tree-radiance-gel": 3, "charcoal-facial-cleanser": 2 }, next: "routine" },
-        { text: "Weekly \u2014 regular flare-ups", icon: "calendar", scores: { acne: 2 }, productBoosts: { "charcoal-facial-cleanser": 2 }, next: "routine" },
-        { text: "Hormonal \u2014 monthly cycle", icon: "moon", scores: { acne: 1, sensitive: 1 }, productBoosts: { "aloe-tea-tree-radiance-gel": 2 }, next: "routine" },
+        { text: "Daily \u2014 constant active breakouts", icon: "zap", scores: { acne: 3 }, productBoosts: { "blemish-care-moisturiser": 3, "blemish-purifying-face-wash": 2 }, next: "routine" },
+        { text: "Weekly \u2014 regular flare-ups", icon: "calendar", scores: { acne: 2 }, productBoosts: { "blemish-purifying-face-wash": 2 }, next: "routine" },
+        { text: "Hormonal \u2014 monthly cycle", icon: "moon", scores: { acne: 1, sensitive: 1 }, productBoosts: { "niacinamide-gel-moisturiser": 2 }, next: "routine" },
         { text: "Rarely \u2014 but I want clearer skin", icon: "sparkles", scores: { acne: 1 }, next: "routine" }
       ]
     },
@@ -138,40 +138,40 @@
       question: "What\u2019s your top aging concern?",
       subtitle: "We\u2019ll bias your routine toward the biggest issue",
       options: [
-        { text: "Fine lines around eyes & mouth", icon: "minus", scores: { 'anti-aging': 2 }, productBoosts: { "anti-aging-moisturizer": 3 }, next: "routine" },
-        { text: "Loss of firmness & bounce", icon: "activity", scores: { 'anti-aging': 3 }, productBoosts: { "skin-firming-cream": 3, "gua-sha-face-oil": 2 }, next: "routine" },
+        { text: "Fine lines around eyes & mouth", icon: "minus", scores: { 'anti-aging': 2 }, productBoosts: { "smoothing-eye-cream": 3, "retinol-alternative-moisturiser": 2 }, next: "routine" },
+        { text: "Loss of firmness & bounce", icon: "activity", scores: { 'anti-aging': 3 }, productBoosts: { "peptide-anti-aging-serum": 3, "smoothing-eye-cream": 2 }, next: "routine" },
         { text: "Dullness & tired-looking skin", icon: "sun", scores: { 'anti-aging': 1, brightening: 2 }, productBoosts: { "vitamin-c-serum": 2 }, next: "routine" },
-        { text: "All of the above", icon: "layers", scores: { 'anti-aging': 3 }, productBoosts: { "anti-aging-moisturizer": 2 }, next: "routine" }
+        { text: "All of the above", icon: "layers", scores: { 'anti-aging': 3 }, productBoosts: { "retinol-alternative-moisturiser": 2, "peptide-anti-aging-serum": 2 }, next: "routine" }
       ]
     },
     hydration_feel: {
       question: "How does your skin feel most of the time?",
       subtitle: "Different dryness signals point to different fixes",
       options: [
-        { text: "Tight right after cleansing", icon: "alert-triangle", scores: { hydration: 2 }, productBoosts: { "hyaluronic-acid-serum": 3, "charcoal-facial-cleanser": 1 }, next: "routine" },
-        { text: "Dry & flaky by midday", icon: "wind", scores: { hydration: 3 }, productBoosts: { "skin-hydration-cream": 3 }, next: "routine" },
-        { text: "Dehydrated \u2014 dull and parched", icon: "droplet", scores: { hydration: 2, brightening: 1 }, productBoosts: { "hyaluronic-acid-serum": 2 }, next: "routine" },
-        { text: "Fine lines appear when dehydrated", icon: "minus", scores: { hydration: 2, 'anti-aging': 1 }, productBoosts: { "gua-sha-face-oil": 2 }, next: "routine" }
+        { text: "Tight right after cleansing", icon: "alert-triangle", scores: { hydration: 2 }, productBoosts: { "moisturising-day-cream": 3, "micellar-cleansing-water": 1 }, next: "routine" },
+        { text: "Dry & flaky by midday", icon: "wind", scores: { hydration: 3 }, productBoosts: { "moisturising-day-cream": 3 }, next: "routine" },
+        { text: "Dehydrated \u2014 dull and parched", icon: "droplet", scores: { hydration: 2, brightening: 1 }, productBoosts: { "moisturising-day-cream": 2, "vitamin-c-serum": 1 }, next: "routine" },
+        { text: "Fine lines appear when dehydrated", icon: "minus", scores: { hydration: 2, 'anti-aging': 1 }, productBoosts: { "moisturising-day-cream": 2, "smoothing-eye-cream": 1 }, next: "routine" }
       ]
     },
     brightening_focus: {
       question: "What\u2019s your main tone concern?",
       subtitle: "Different causes of uneven tone respond to different actives",
       options: [
-        { text: "Post-acne marks & scarring", icon: "circle-dot", scores: { brightening: 2, acne: 1 }, productBoosts: { "vitamin-c-serum": 2 }, next: "routine" },
-        { text: "Sun damage & age spots", icon: "sun", scores: { brightening: 3 }, productBoosts: { "vitamin-c-serum": 3 }, next: "routine" },
-        { text: "Overall dullness", icon: "sparkles", scores: { brightening: 2 }, productBoosts: { "pdrn-brightening-serum": 3 }, next: "routine" },
-        { text: "Uneven tone + sensitivity", icon: "feather", scores: { brightening: 2, sensitive: 2 }, productBoosts: { "dark-spot-serum-sensitive-skin": 3 }, next: "routine" }
+        { text: "Post-acne marks & scarring", icon: "circle-dot", scores: { brightening: 2, acne: 1 }, productBoosts: { "vitamin-c-serum": 2, "targeted-dark-spot-care": 2 }, next: "routine" },
+        { text: "Sun damage & age spots", icon: "sun", scores: { brightening: 3 }, productBoosts: { "vitamin-c-serum": 3, "targeted-dark-spot-care": 3 }, next: "routine" },
+        { text: "Overall dullness", icon: "sparkles", scores: { brightening: 2 }, productBoosts: { "brightening-exfoliator": 3, "vitamin-c-serum": 2 }, next: "routine" },
+        { text: "Uneven tone + sensitivity", icon: "feather", scores: { brightening: 2, sensitive: 2 }, productBoosts: { "sensitive-skin-moisturiser": 3, "vitamin-c-serum": 1 }, next: "routine" }
       ]
     },
     sensitive_trigger: {
       question: "What tends to trigger your skin?",
       subtitle: "Identifying the trigger helps us avoid it in your routine",
       options: [
-        { text: "New products & ingredients", icon: "package", scores: { sensitive: 2 }, productBoosts: { "dark-spot-serum-sensitive-skin": 2 }, next: "routine" },
-        { text: "Hot water, sun, weather", icon: "thermometer", scores: { sensitive: 2 }, productBoosts: { "aloe-tea-tree-radiance-gel": 2 }, next: "routine" },
-        { text: "Stress", icon: "zap", scores: { sensitive: 1, hydration: 1 }, productBoosts: { "hyaluronic-acid-serum": 1 }, next: "routine" },
-        { text: "Not sure \u2014 feels like everything", icon: "help-circle", scores: { sensitive: 3 }, productBoosts: { "dark-spot-serum-sensitive-skin": 3 }, next: "routine" }
+        { text: "New products & ingredients", icon: "package", scores: { sensitive: 2 }, productBoosts: { "sensitive-skin-moisturiser": 2, "micellar-cleansing-water": 1 }, next: "routine" },
+        { text: "Hot water, sun, weather", icon: "thermometer", scores: { sensitive: 2 }, productBoosts: { "sensitive-skin-moisturiser": 2 }, next: "routine" },
+        { text: "Stress", icon: "zap", scores: { sensitive: 1, hydration: 1 }, productBoosts: { "moisturising-day-cream": 1, "sensitive-skin-moisturiser": 1 }, next: "routine" },
+        { text: "Not sure \u2014 feels like everything", icon: "help-circle", scores: { sensitive: 3 }, productBoosts: { "sensitive-skin-moisturiser": 3, "micellar-cleansing-water": 2 }, next: "routine" }
       ]
     },
 
@@ -206,7 +206,7 @@
       options: [
         { text: "Never \u2014 my skin is pretty easygoing", icon: "check", scores: {}, next: null },
         { text: "Once or twice", icon: "alert-circle", scores: { sensitive: 1 }, next: null },
-        { text: "Often \u2014 I avoid strong actives", icon: "shield", scores: { sensitive: 3 }, productBoosts: { "dark-spot-serum-sensitive-skin": 2 }, next: null },
+        { text: "Often \u2014 I avoid strong actives", icon: "shield", scores: { sensitive: 3 }, productBoosts: { "sensitive-skin-moisturiser": 2, "retinol-alternative-serum": 1 }, next: null },
         { text: "I don\u2019t know what\u2019s safe to try", icon: "help-circle", scores: { sensitive: 2 }, next: null }
       ]
     }
@@ -246,7 +246,7 @@
             var dbEntry = productDB[prod.handle];
             if (dbEntry) {
               prod.name = dbEntry.title;
-              prod.fallbackPrice = '\u00A3' + (dbEntry.price / 100).toFixed(2);
+              prod.fallbackPrice = '$' + (dbEntry.price / 100).toFixed(2);
             } else {
               prod.name = prod.handle;
               prod.fallbackPrice = '';

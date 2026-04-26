@@ -1,8 +1,8 @@
 <section class="comparison section-padding bg-white" data-fade-in>
   <div class="container">
     <div class="section-head text-center mb-xl">
-      <h2>{{ section.settings.heading | default: 'Nutrava vs. Generic Skincare' }}</h2>
-      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'Why personalised beats the one-size-fits-all aisle' }}</p>
+      <h2>{{ section.settings.heading | default: 'Nutrava vs. Generic Skincare vs. The Ordinary' }}</h2>
+      <p class="text-muted mt-sm">{{ section.settings.subheading | default: 'Why personalised routines beat both the drugstore aisle and the DIY chemistry set' }}</p>
     </div>
     <div class="comparison__wrap">
       <table class="comparison__table">
@@ -14,6 +14,7 @@
               <br><span class="comparison__brand">Nutrava</span>
             </th>
             <th class="comparison__generic-col">Generic Brands</th>
+            <th class="comparison__generic-col">The Ordinary</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,13 @@
                   <span class="comparison__icon comparison__icon--no"><i data-lucide="x"></i></span>
                 {% endif %}
               </td>
+              <td class="comparison__check">
+                {% if block.settings.ordinary %}
+                  <span class="comparison__icon comparison__icon--yes"><i data-lucide="check"></i></span>
+                {% else %}
+                  <span class="comparison__icon comparison__icon--no"><i data-lucide="x"></i></span>
+                {% endif %}
+              </td>
             </tr>
           {% endfor %}
         </tbody>
@@ -44,7 +52,7 @@
 
 <style>
   .comparison__wrap {
-    max-width: 700px;
+    max-width: 820px;
     margin: 0 auto;
     border-radius: 16px;
     overflow: hidden;
@@ -58,7 +66,7 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    min-width: 420px;
+    min-width: 560px;
   }
 
   .comparison__table thead tr {
@@ -70,13 +78,13 @@
     text-align: left;
     color: var(--color-dark-text);
     font-weight: 600;
-    width: 40%;
+    width: 34%;
   }
 
   .comparison__nutrava-col {
     padding: 16px 20px;
     text-align: center;
-    width: 30%;
+    width: 22%;
   }
 
   .comparison__badge {
@@ -103,7 +111,7 @@
     text-align: center;
     color: rgba(245,242,236,0.5);
     font-weight: 500;
-    width: 30%;
+    width: 22%;
   }
 
   .comparison__table tbody tr {
@@ -176,13 +184,13 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Nutrava vs. Generic Skincare"
+      "default": "Nutrava vs. Generic Skincare vs. The Ordinary"
     },
     {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Why personalised beats the one-size-fits-all aisle"
+      "default": "Why personalised routines beat both the drugstore aisle and the DIY chemistry set"
     }
   ],
   "blocks": [
@@ -207,6 +215,12 @@
           "id": "generic",
           "label": "Generic brands have this",
           "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "ordinary",
+          "label": "The Ordinary has this",
+          "default": false
         }
       ]
     }
@@ -215,12 +229,13 @@
     {
       "name": "Comparison Table",
       "blocks": [
-        { "type": "row", "settings": { "feature": "Personalised to your goals", "nutrava": true, "generic": false } },
-        { "type": "row", "settings": { "feature": "Clinically effective doses", "nutrava": true, "generic": false } },
-        { "type": "row", "settings": { "feature": "No proprietary blends", "nutrava": true, "generic": false } },
-        { "type": "row", "settings": { "feature": "Third-party lab tested", "nutrava": true, "generic": false } },
-        { "type": "row", "settings": { "feature": "Free from fillers & binders", "nutrava": true, "generic": false } },
-        { "type": "row", "settings": { "feature": "Transparent ingredient labels", "nutrava": true, "generic": false } }
+        { "type": "row", "settings": { "feature": "Matched to your skin type & concern", "nutrava": true, "generic": false, "ordinary": false } },
+        { "type": "row", "settings": { "feature": "Built as a complete routine, not random picks", "nutrava": true, "generic": false, "ordinary": false } },
+        { "type": "row", "settings": { "feature": "Beginner-friendly with no guesswork", "nutrava": true, "generic": false, "ordinary": false } },
+        { "type": "row", "settings": { "feature": "Clinically effective active percentages", "nutrava": true, "generic": false, "ordinary": true } },
+        { "type": "row", "settings": { "feature": "Fragrance-free options for sensitive skin", "nutrava": true, "generic": false, "ordinary": true } },
+        { "type": "row", "settings": { "feature": "Full INCI ingredient transparency", "nutrava": true, "generic": false, "ordinary": true } },
+        { "type": "row", "settings": { "feature": "Cruelty-free & vegan-friendly", "nutrava": true, "generic": false, "ordinary": true } }
       ]
     }
   ]
