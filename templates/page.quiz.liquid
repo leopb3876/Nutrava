@@ -1,14 +1,889 @@
 {{ 'quiz.css' | asset_url | stylesheet_tag }}
 
-<div class="quiz-container" data-quiz-container>
-  <!-- Quiz renders here via JavaScript -->
-  <noscript>
-    <div class="container text-center" style="padding: 64px 24px;">
-      <h2>JavaScript Required</h2>
-      <p>Please enable JavaScript to take the personalised skincare quiz.</p>
+
+<div class="quiz-shell">
+
+  <!-- ============== HEADER ============== -->
+  <header class="quiz-header">
+    <div class="quiz-header__nav">
+      <button class="quiz-header__btn" id="back-btn" aria-label="Back" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
     </div>
-  </noscript>
+    <a href="/" class="quiz-header__logo">
+      <span class="quiz-header__logo-mark">N</span>
+      Nutrava
+    </a>
+    <div class="quiz-header__right">
+      <span class="quiz-header__counter" id="counter">Welcome</span>
+      <a class="quiz-header__btn" href="/" aria-label="Close quiz and return home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ============== PROGRESS BAR ============== -->
+  <div class="quiz-progress" aria-hidden="true"><div class="quiz-progress__fill" id="progress-fill"></div></div>
+
+  <!-- ============== STAGE ============== -->
+  <div class="quiz-stage">
+
+    <!-- INTRO -->
+    <section class="quiz-screen is-active" data-screen="intro">
+      <div class="intro">
+        <span class="intro__eyebrow"><span class="dot"></span> Personalised clean skincare</span>
+        <h1 class="intro__title">Find your routine,<br><em>in 60 seconds.</em></h1>
+        <p class="intro__sub">Nine quick questions and we'll match you with a clean skincare routine engineered around your skin type, concerns, age, climate, and current habits.</p>
+        <div class="intro__pills">
+          <span class="intro__pill">9 questions</span>
+          <span class="intro__pill">Free, always</span>
+          <span class="intro__pill">Built for your skin</span>
+        </div>
+        <button class="btn btn--ink btn--lg" data-advance>Begin the quiz</button>
+        <p class="intro__reassurance">No account needed. We only ask for your email at the very end.</p>
+      </div>
+    </section>
+
+    <!-- Q1: SKIN TYPE -->
+    <section class="quiz-screen" data-screen="q1">
+      <span class="question__overline">Question 1 of 9</span>
+      <h2 class="question__title">What's your <em>skin type?</em></h2>
+      <p class="question__sub">This is the biggest signal for what your skin actually needs.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Oily</span>
+            <span class="answer__hint">Shine, large pores, frequent breakouts</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Dry</span>
+            <span class="answer__hint">Tight feeling, flaky patches, rough texture</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Combination</span>
+            <span class="answer__hint">Oily T-zone, dry or normal cheeks</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Sensitive</span>
+            <span class="answer__hint">Redness, easily irritated, reactive</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Normal / I'm not sure</span>
+            <span class="answer__hint">No major pattern — we'll figure it out</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q2: TOP CONCERN -->
+    <section class="quiz-screen" data-screen="q2">
+      <span class="question__overline">Question 2 of 9</span>
+      <h2 class="question__title">What's your <em>top concern</em> right now?</h2>
+      <p class="question__sub">Pick the one that bothers you most — your routine will focus here.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Breakouts &amp; blemishes</span>
+            <span class="answer__hint">Active acne, post-acne marks, congestion</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Fine lines &amp; firmness</span>
+            <span class="answer__hint">Smoothing, anti-aging, support over time</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Dehydration &amp; dullness</span>
+            <span class="answer__hint">Tightness, midday dryness, lack of glow</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Dark spots &amp; uneven tone</span>
+            <span class="answer__hint">Hyperpigmentation, sun damage, melasma</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Redness &amp; reactivity</span>
+            <span class="answer__hint">Sensitive flares, easily irritated barrier</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q3: BRANCH (acne_freq for the demo) -->
+    <section class="quiz-screen" data-screen="q3">
+      <span class="question__overline">Question 3 of 9</span>
+      <h2 class="question__title">How often do you <em>break out?</em></h2>
+      <p class="question__sub">Frequency helps us match the right strength of treatment.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Daily</span>
+            <span class="answer__hint">Constant active breakouts</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Weekly</span>
+            <span class="answer__hint">Regular flare-ups</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Hormonal</span>
+            <span class="answer__hint">Around your monthly cycle</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.4 4.2 4.2 1.4-4.2 1.4L12 13.2l-1.4-4.2-4.2-1.4 4.2-1.4z"/><path d="M19 14l.7 2.1 2.1.7-2.1.7L19 19.6l-.7-2.1-2.1-.7 2.1-.7z"/><path d="M5 14l.7 2.1 2.1.7-2.1.7L5 19.6l-.7-2.1-2.1-.7 2.1-.7z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Rarely</span>
+            <span class="answer__hint">But I want clearer skin</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q4: ACNE SCARS / POST-ACNE MARKS (NEW) -->
+    <section class="quiz-screen" data-screen="q4">
+      <span class="question__overline">Question 4 of 9</span>
+      <h2 class="question__title">Are <em>post-acne marks</em> a concern?</h2>
+      <p class="question__sub">Different from active breakouts — these are the marks left behind after blemishes heal, plus any textured scars.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><path d="M3 12h2M19 12h2M12 3v2M12 19v2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Yes — fading them is a top focus</span>
+            <span class="answer__hint">Marks linger long after blemishes heal</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="2"/><circle cx="16" cy="14" r="2"/><circle cx="8" cy="16" r="1.5"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Some leftover marks</span>
+            <span class="answer__hint">From past breakouts — would like them gone</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 6c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Textured scars</span>
+            <span class="answer__hint">Rolling, boxcar, or ice-pick — uneven surface</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">No marks or scars</span>
+            <span class="answer__hint">Skin heals cleanly</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q5: AGE RANGE (NEW) -->
+    <section class="quiz-screen" data-screen="q5">
+      <span class="question__overline">Question 5 of 9</span>
+      <h2 class="question__title">What's your <em>age range?</em></h2>
+      <p class="question__sub">We'll calibrate the strength of actives like retinol and peptides accordingly — gentler for prevention years, more concentrated for repair.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Under 25</span>
+            <span class="answer__hint">Building good habits early</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">25 – 34</span>
+            <span class="answer__hint">Prevention years — get ahead of fine lines</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">35 – 44</span>
+            <span class="answer__hint">Active anti-aging — peptides and gentle retinol</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">45+</span>
+            <span class="answer__hint">Repair and renew — full anti-aging support</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q6: CLIMATE (NEW) -->
+    <section class="quiz-screen" data-screen="q6">
+      <span class="question__overline">Question 6 of 9</span>
+      <h2 class="question__title">What's your <em>climate?</em></h2>
+      <p class="question__sub">Dry winter air or tropical humidity — formula textures need to adapt to your environment.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2"/><path d="M2 17l2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Cold &amp; dry</span>
+            <span class="answer__hint">Indoor heating, low humidity, winter skin</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Hot &amp; humid</span>
+            <span class="answer__hint">Tropical or summer humid — gel textures preferred</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Mild &amp; temperate</span>
+            <span class="answer__hint">Moderate year-round, no extremes</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Four seasons</span>
+            <span class="answer__hint">Varies dramatically — swap formulas seasonally</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q7: ROUTINE -->
+    <section class="quiz-screen" data-screen="q7">
+      <span class="question__overline">Question 7 of 9</span>
+      <h2 class="question__title">What's your <em>current routine?</em></h2>
+      <p class="question__sub">We'll meet you where you are — beginner or expert.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Nothing special</span>
+            <span class="answer__hint">Soap and water</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Basic</span>
+            <span class="answer__hint">Cleanser + moisturiser</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0M5.58 16.5h12.85"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">I use serums</span>
+            <span class="answer__hint">And targeted treatments</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Full detailed routine</span>
+            <span class="answer__hint">Ready to upgrade</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q8: SUN CARE -->
+    <section class="quiz-screen" data-screen="q8">
+      <span class="question__overline">Question 8 of 9</span>
+      <h2 class="question__title">How often do you <em>wear SPF?</em></h2>
+      <p class="question__sub">This is the #1 factor in aging and uneven tone — no judgement.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9-4.97 0-9-4.03-9-9 0-4.97 4.03-9 9-9 1.66 0 3.22.45 4.56 1.24"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Every single day</span>
+            <span class="answer__hint">Even cloudy days, even indoors</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">When I'm going outside</span>
+            <span class="answer__hint">If I remember</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10"/><path d="M12 18a2 2 0 0 0 2-2 2 2 0 0 0-2-2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Rarely</span>
+            <span class="answer__hint">Only beach days, that sort of thing</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Never</span>
+            <span class="answer__hint">We'll help you start</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q9: BAD REACTION -->
+    <section class="quiz-screen" data-screen="q9">
+      <span class="question__overline">Question 9 of 9</span>
+      <h2 class="question__title">Have you ever had a <em>bad reaction</em> to skincare?</h2>
+      <p class="question__sub">This tells us what to avoid in your routine.</p>
+      <div class="answers">
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Never</span>
+            <span class="answer__hint">My skin's pretty easygoing</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Once or twice</span>
+            <span class="answer__hint">A specific product I now avoid</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Often</span>
+            <span class="answer__hint">I avoid strong actives</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">I don't know what's safe</span>
+            <span class="answer__hint">We'll guide you carefully</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- EMAIL GATE -->
+    <section class="quiz-screen" data-screen="email">
+      <div class="email-gate">
+        <div class="email-gate__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <h2 class="email-gate__title">Your routine is <em>ready.</em></h2>
+        <p class="email-gate__sub">Where should we send it? We'll save your routine so you can come back to it any time.</p>
+        <form class="email-gate__form" id="email-form">
+          <input class="field" type="text" placeholder="First name (optional)" autocomplete="given-name">
+          <input class="field" type="email" placeholder="you@email.com" required autocomplete="email">
+          <button class="btn btn--ink btn--lg" type="submit" style="margin-top: 4px;">See my routine</button>
+        </form>
+        <p class="email-gate__priv">No spam, ever. Unsubscribe in one click. We use your email to send your routine and occasional skincare tips — never share or sell it.</p>
+      </div>
+    </section>
+
+    <!-- LOADING -->
+    <section class="quiz-screen" data-screen="loading">
+      <div class="loading">
+        <div class="loading__ring"></div>
+        <h2 class="loading__title">Building your routine…</h2>
+        <ul class="loading__steps" id="loading-steps">
+          <li class="loading__step is-active" data-step="1">Analysing your skin profile</li>
+          <li class="loading__step" data-step="2">Matching with our 20 formulas</li>
+          <li class="loading__step" data-step="3">Building your personalised routine</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="quiz-screen is-wide" data-screen="results">
+
+      <div class="results-hero">
+        <span class="results-hero__overline"><span class="dot"></span> Your match</span>
+        <h2 class="results-hero__title">Your <em>acne-clearing</em> routine,<br>matched to <em>combination</em> skin.</h2>
+        <p class="results-hero__why">Based on your answers, your skin needs gentle clarification — not stripping. We've built a routine around niacinamide and a non-stripping blemish wash, plus a non-comedogenic moisturiser so your skin gets hydration without congestion. SPF is the one product we'll always nudge you on.</p>
+      </div>
+
+      <!-- Ingredients you need panel -->
+      <section class="ingredients-panel" aria-label="Ingredients your skin needs">
+        <div class="ingredients-panel__head">
+          <h3 class="ingredients-panel__heading">The ingredients your <em>skin needs</em></h3>
+          <p class="ingredients-panel__intro">Five clean actives, mapped from your specific answers. Tap any one to see how it works.</p>
+        </div>
+
+        <div class="ingredients-list" id="ingredients-list">
+          <!-- Populated dynamically from quiz answers -->
+        </div>
+
+        <div class="ingredients-panel__foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L3 18a2 2 0 0 0 1.73 3h14.54a2 2 0 0 0 1.73-3L15 8V2"/><line x1="8" y1="2" x2="16" y2="2"/></svg>
+          <span>Matched from 9 responses</span>
+        </div>
+      </section>
+
+      <!-- Recommendations section header -->
+      <div class="rec-head">
+        <span class="rec-head__overline">Your matched products</span>
+        <h3 class="rec-head__title">Six products,<br><em>chosen for you.</em></h3>
+        <p class="rec-head__sub">Each one earns its place in your routine — and tested to layer cleanly with the others. Add only what feels right.</p>
+      </div>
+
+      <div class="recommendations">
+
+        <!-- Card 1: Niacinamide Gel — TOP MATCH -->
+        <article class="rec rec--top">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Niacinamide Gel"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <span class="rec__badge">Top match</span>
+                <h4 class="rec__name">Niacinamide Gel Moisturiser</h4>
+                <span class="rec__role">Pore-refining oil-balancer · 30 ml</span>
+              </div>
+              <span class="rec__price">$19</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">Hits three of your concerns at once — pore congestion, post-acne tone and barrier support — without triggering sensitivity. The single most-impactful product for combination, blemish-prone skin. If you only do one thing, do this.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Blemish Face Wash</span>
+                    <span class="rec-pair-row__why">Pre-cleanse — your gel works on properly cleansed skin</span>
+                  </span>
+                  <span class="rec-pair-row__price">$35</span>
+                  <button class="rec-pair-row__add" aria-label="Add Blemish Face Wash to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Sunscreen SPF30</span>
+                    <span class="rec-pair-row__why">Locks in the niacinamide tone work</span>
+                  </span>
+                  <span class="rec-pair-row__price">$24</span>
+                  <button class="rec-pair-row__add" aria-label="Add Sunscreen SPF30 to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Dark Spot Care</span>
+                    <span class="rec-pair-row__why">Doubles down on post-acne marks</span>
+                  </span>
+                  <span class="rec-pair-row__price">$32</span>
+                  <button class="rec-pair-row__add" aria-label="Add Dark Spot Care to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 4 as routine</span>
+                <span class="rec__bundle-text">Complete acne routine</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$110</span>
+                <span class="rec__bundle-price-now">$99</span>
+                <span class="rec__bundle-saves">save $11</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $19</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Blemish Purifying Face Wash -->
+        <article class="rec rec--cream">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Blemish Wash"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Blemish Purifying Face Wash</h4>
+                <span class="rec__role">Daily clarifying cleanser · 140 ml</span>
+              </div>
+              <span class="rec__price">$35</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">A twice-daily blemish wash that clears pore-clogging buildup without stripping. The morning + night step that breaks the breakout cycle — gentle enough to use through active flares, effective enough to prevent new ones.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Treatment that follows the wash</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Micellar Water</span>
+                    <span class="rec-pair-row__why">First cleanse so the wash works harder</span>
+                  </span>
+                  <span class="rec-pair-row__price">$18</span>
+                  <button class="rec-pair-row__add" aria-label="Add Micellar Water to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Cleanse + treat trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$72</span>
+                <span class="rec__bundle-price-now">$65</span>
+                <span class="rec__bundle-saves">save $7</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $35</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Targeted Dark Spot Care -->
+        <article class="rec rec--lilac">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Dark Spot Care"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Targeted Dark Spot Care</h4>
+                <span class="rec__role">1% kojic acid spot treatment · 15 ml</span>
+              </div>
+              <span class="rec__price">$32</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">You said leftover marks were a concern — this targets them directly. 1% kojic acid is one of the most studied tone-correcting actives, applied directly to dark spots and post-acne marks rather than all over the face. Patient consistency over weeks.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Sunscreen SPF30</span>
+                    <span class="rec-pair-row__why">Without it, kojic acid is wasted effort</span>
+                  </span>
+                  <span class="rec-pair-row__price">$24</span>
+                  <button class="rec-pair-row__add" aria-label="Add Sunscreen SPF30 to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Stops new pigmentation forming</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Tone-correction trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$75</span>
+                <span class="rec__bundle-price-now">$67</span>
+                <span class="rec__bundle-saves">save $8</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $32</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Sunscreen SPF30 -->
+        <article class="rec rec--sage">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="SPF 30"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Sunscreen SPF30</h4>
+                <span class="rec__role">Daily broad-spectrum protection · 50 ml</span>
+              </div>
+              <span class="rec__price">$24</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">SPF locks in everything else your routine is doing. Without it, dark spots come back faster and post-acne marks darken instead of fading. Non-negotiable for clear skin long-term — and we built one you'll actually want to wear.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Anti-inflammatory base under SPF</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Vitamin C Serum</span>
+                    <span class="rec-pair-row__why">Vit C supercharges sunscreen protection</span>
+                  </span>
+                  <span class="rec-pair-row__price">$40</span>
+                  <button class="rec-pair-row__add" aria-label="Add Vitamin C Serum to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Daily protection trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$83</span>
+                <span class="rec__bundle-price-now">$75</span>
+                <span class="rec__bundle-saves">save $8</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $24</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: Vitamin C Serum -->
+        <article class="rec rec--cream">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Vit. C Serum"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Vitamin C Serum</h4>
+                <span class="rec__role">Brightening antioxidant · 30 ml</span>
+              </div>
+              <span class="rec__price">$40</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">Pairs with your Dark Spot Care to attack hyperpigmentation from two angles — kojic acid at night, vitamin C in the morning. Also shields your skin from the new daily damage that creates new marks.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Sunscreen SPF30</span>
+                    <span class="rec-pair-row__why">Vit C without SPF is half the routine</span>
+                  </span>
+                  <span class="rec-pair-row__price">$24</span>
+                  <button class="rec-pair-row__add" aria-label="Add Sunscreen SPF30 to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Dark Spot Care</span>
+                    <span class="rec-pair-row__why">AM brighten + PM tone correct</span>
+                  </span>
+                  <span class="rec-pair-row__price">$32</span>
+                  <button class="rec-pair-row__add" aria-label="Add Dark Spot Care to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Brightening trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$96</span>
+                <span class="rec__bundle-price-now">$86</span>
+                <span class="rec__bundle-saves">save $10</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $40</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6: Micellar Cleansing Water -->
+        <article class="rec rec--lilac">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Micellar Water"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Micellar Cleansing Water</h4>
+                <span class="rec__role">No-rinse first cleanse · 200 ml</span>
+              </div>
+              <span class="rec__price">$18</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">Use before your Blemish Wash to remove makeup, SPF and grime — your wash works better when it's not having to chew through a whole day of buildup. Especially helpful if you wear makeup or daily SPF.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Blemish Face Wash</span>
+                    <span class="rec-pair-row__why">First-cleanse step before the wash</span>
+                  </span>
+                  <span class="rec-pair-row__price">$35</span>
+                  <button class="rec-pair-row__add" aria-label="Add Blemish Face Wash to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Treatment to follow the wash</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Cleanse-and-treat trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$72</span>
+                <span class="rec__bundle-price-now">$65</span>
+                <span class="rec__bundle-saves">save $7</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $18</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="results-foot">
+        <p class="results-foot__text">Want to retake the quiz? You can refine your answers any time.</p>
+        <button class="btn btn--ghost" data-restart>Retake the quiz</button>
+      </div>
+
+    </section>
+
+  </div>
 </div>
 
-<script src="{{ 'lucide.min.js' | asset_url }}"></script>
 {{ 'quiz.js' | asset_url | script_tag }}

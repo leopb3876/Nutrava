@@ -50,7 +50,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ 'selfnamed.css' | asset_url | stylesheet_tag }}
 
@@ -101,16 +101,23 @@
 <body class="template-{{ template.name | handle }}">
   <a class="skip-to-content" href="#main">{{ 'general.skip_to_content' | t }}</a>
 
-  {% section 'announcement-bar' %}
-  {% section 'header' %}
+  {%- assign hide_chrome = false -%}
+  {%- if template.name == 'page' and template.suffix == 'quiz' -%}{%- assign hide_chrome = true -%}{%- endif -%}
+
+  {%- unless hide_chrome -%}
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+  {%- endunless -%}
 
   <main id="main" role="main">
     {{ content_for_layout }}
   </main>
 
-  {% section 'footer' %}
-  {% section 'cart-drawer' %}
-  {% render 'search-modal' %}
+  {%- unless hide_chrome -%}
+    {% section 'footer' %}
+    {% section 'cart-drawer' %}
+    {% render 'search-modal' %}
+  {%- endunless -%}
 
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
   <script src="{{ 'lucide.min.js' | asset_url }}" defer onload="lucide.createIcons()"></script>
