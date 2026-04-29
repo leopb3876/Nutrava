@@ -3,182 +3,118 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "label": "Personalised Skincare Routines",
-        "heading": "Your Skin, Understood",
-        "subheading": "Take our 60-second quiz and we\u2019ll match you with a skincare routine built for your skin type, concerns, and current habits.",
+        "eyebrow": "Personalised clean skincare",
+        "heading_before": "Your skin,",
+        "heading_word": "understood",
+        "subheading": "Take our 60-second quiz and we'll match you with a clean skincare routine engineered around your skin type, concerns, and current habits.",
+        "rating_text": "4.9 · 50+ verified routines built",
         "cta_quiz": "Take the Free Quiz",
-        "cta_shop": "Browse Products",
-        "promo_text": "Launch special: 20% off your first routine — use code GLOW20"
-      }
+        "cta_shop": "Browse Products"
+      },
+      "blocks": {
+        "check-1": { "type": "check", "settings": { "text": "5 skin concerns" } },
+        "check-2": { "type": "check", "settings": { "text": "20 clean formulas" } },
+        "check-3": { "type": "check", "settings": { "text": "30-day money-back guarantee" } }
+      },
+      "block_order": ["check-1", "check-2", "check-3"]
+    },
+    "stats-card": {
+      "type": "stats-bar",
+      "settings": {
+        "heading": "Skincare that actually fits"
+      },
+      "blocks": {
+        "stat-1": { "type": "stat", "settings": { "number": "20", "label": "Clean formulas across 5 skin concerns" } },
+        "stat-2": { "type": "stat", "settings": { "number": "100%", "label": "Cruelty-free, vegan-friendly, fragrance-flexible" } },
+        "stat-3": { "type": "stat", "settings": { "number": "30", "label": "Day money-back guarantee on every routine" } }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3"]
     },
     "how-it-works": {
       "type": "how-it-works",
       "settings": {
-        "heading": "How Nutrava Works",
-        "subheading": "Three simple steps to a routine that actually fits"
+        "heading": "A routine matched to your skin",
+        "subheading": "Three quick steps and you're matched with a routine that's built around your specific skin — not the average customer."
       },
       "blocks": {
-        "step-1": {
-          "type": "step",
-          "settings": {
-            "title": "Take the Quiz",
-            "text": "Answer quick questions about your skin type, concerns, and current routine. Under 60 seconds."
-          }
-        },
-        "step-2": {
-          "type": "step",
-          "settings": {
-            "title": "Get Your Routine",
-            "text": "We match you with a personalised 2\u20134 product routine based on your skin profile \u2014 Essential, Recommended, or Complete."
-          }
-        },
-        "step-3": {
-          "type": "step",
-          "settings": {
-            "title": "See the Difference",
-            "text": "Most people notice visible results in 2\u20134 weeks of consistent daily use. Full benefits compound over 6\u20138 weeks."
-          }
-        }
+        "step-1": { "type": "step", "settings": { "title": "Take the quiz", "text": "7 quick questions about your skin type, top concern, current habits, and what you avoid." } },
+        "step-2": { "type": "step", "settings": { "title": "Get your routine", "text": "A 2–4 product Nutrava routine matched to your profile, with clear AM/PM instructions." } },
+        "step-3": { "type": "step", "settings": { "title": "See the difference", "text": "Most people notice visible results in 2–4 weeks of consistent use. Full results compound over 6–8 weeks." } }
       },
       "block_order": ["step-1", "step-2", "step-3"]
+    },
+    "concerns": {
+      "type": "goal-categories",
+      "settings": {
+        "heading": "What's your skin concern?",
+        "subheading": "Start where it bothers you most. Your routine focuses there, then supports the rest."
+      },
+      "blocks": {
+        "concern-1": { "type": "concern", "settings": { "label": "Most popular · 38% of customers", "title": "Acne & blemishes", "description": "Clear breakouts, calm redness, and prevent new blemishes — without stripping your moisture barrier or triggering rebound oil.", "cta_text": "Build acne routine →", "tone": "cream", "link": "/collections/all" } },
+        "concern-2": { "type": "concern", "settings": { "label": "Anti-aging", "title": "Fine lines", "tone": "lilac", "link": "/collections/all" } },
+        "concern-3": { "type": "concern", "settings": { "label": "Hydration", "title": "Dehydrated skin", "tone": "sage", "link": "/collections/all" } },
+        "concern-4": { "type": "concern", "settings": { "label": "Brightening", "title": "Dark spots", "tone": "bright", "link": "/collections/all" } },
+        "concern-5": { "type": "concern", "settings": { "label": "Sensitive", "title": "Reactive skin", "tone": "cream", "link": "/collections/all" } }
+      },
+      "block_order": ["concern-1", "concern-2", "concern-3", "concern-4", "concern-5"]
+    },
+    "mid-cta": {
+      "type": "quiz-cta",
+      "settings": {
+        "heading": "Whether you're starting from scratch or upgrading a 6-step routine, we'll meet you where you are.",
+        "cta_text": "Start the Quiz",
+        "text_link": "Or browse all products",
+        "text_link_url": "/collections/all"
+      }
     },
     "best-sellers": {
       "type": "best-sellers",
       "settings": {
-        "heading": "Best Sellers",
-        "subheading": "The products our customers reach for first",
-        "view_all_link": "/collections/all"
-      }
-    },
-    "goals": {
-      "type": "goal-categories",
-      "settings": {
-        "heading": "What\u2019s Your Skin Concern?"
+        "heading": "Best sellers",
+        "subheading": "The formulas customers reach for first — and reorder."
       },
       "blocks": {
-        "acne": { "type": "goal", "settings": { "icon": "droplet", "title": "Acne & Blemishes", "description": "Clear breakouts, calm redness, and prevent new blemishes without stripping your skin" } },
-        "anti-aging": { "type": "goal", "settings": { "icon": "sparkles", "title": "Anti-Aging", "description": "Smooth fine lines, support firmness, and keep skin looking its age \u2014 or younger" } },
-        "hydration": { "type": "goal", "settings": { "icon": "glass-water", "title": "Hydration", "description": "Relieve tightness, restore plumpness, and lock moisture in all day" } },
-        "brightening": { "type": "goal", "settings": { "icon": "sun", "title": "Brightening", "description": "Fade dark spots, even out tone, and bring back your natural radiance" } },
-        "sensitive": { "type": "goal", "settings": { "icon": "feather", "title": "Sensitive Skin", "description": "Calm reactive skin with gentle, fragrance-free formulas that actually work" } }
+        "p-1": { "type": "manual_product", "settings": { "category": "Brightening", "title": "Vitamin C Serum", "description": "Triple-form vitamin C for tone correction.", "price": "$40", "link": "/collections/all" } },
+        "p-2": { "type": "manual_product", "settings": { "category": "Pores · Oil", "title": "Niacinamide Gel", "description": "Refines pores and balances oil.", "price": "$19", "link": "/collections/all" } },
+        "p-3": { "type": "manual_product", "settings": { "category": "Daily Essential", "title": "Moisturising Day Cream", "description": "Daily hydration, layers under SPF.", "price": "$22", "link": "/collections/all" } },
+        "p-4": { "type": "manual_product", "settings": { "category": "Daily SPF", "title": "Sunscreen SPF30", "description": "No white cast, no sticky finish.", "price": "$24", "link": "/collections/all" } }
       },
-      "block_order": ["acne", "anti-aging", "hydration", "brightening", "sensitive"]
-    },
-    "why-nutrava": {
-      "type": "why-nutrava",
-      "settings": {
-        "heading": "The Nutrava Difference",
-        "subheading": "What sets us apart from generic skincare brands"
-      },
-      "blocks": {
-        "point-1": { "type": "point", "settings": { "icon": "user", "stat": "Unique", "title": "Personalised to You", "text": "No one-size-fits-all. Your routine is matched to your skin type, concerns, sensitivity, and current habits." } },
-        "point-2": { "type": "point", "settings": { "icon": "flask-conical", "stat": "100%", "title": "Clinically Dosed Actives", "text": "Real percentages of proven ingredients \u2014 not trace amounts on the back of the label." } },
-        "point-3": { "type": "point", "settings": { "icon": "shield-check", "stat": "Zero", "title": "Fragrance, Fillers, Drama", "text": "No synthetic fragrance, no harsh sulphates, no proprietary blends. Clean formulas your skin can trust." } },
-        "point-4": { "type": "point", "settings": { "icon": "eye", "stat": "100%", "title": "Transparent Labels", "text": "Full INCI ingredient lists on every product \u2014 you see exactly what goes on your skin." } }
-      },
-      "block_order": ["point-1", "point-2", "point-3", "point-4"]
-    },
-    "stats-bar": {
-      "type": "stats-bar",
-      "settings": {},
-      "blocks": {
-        "stat-1": { "type": "stat", "settings": { "icon": "sparkles", "number": "20", "label": "Formulas across 5 skin concerns" } },
-        "stat-2": { "type": "stat", "settings": { "icon": "leaf", "number": "100%", "label": "Cruelty-free, vegan-friendly" } },
-        "stat-3": { "type": "stat", "settings": { "icon": "shield-check", "number": "30", "label": "Day money-back guarantee" } },
-        "stat-4": { "type": "stat", "settings": { "icon": "truck", "number": "Free", "label": "US shipping over $50" } }
-      },
-      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
-    },
-    "science-bar": {
-      "type": "science-bar",
-      "settings": {
-        "heading": "What Goes On Your Skin Matters",
-        "subheading": "Every formula built around actives with proven clinical evidence"
-      },
-      "blocks": {
-        "card-1": { "type": "card", "settings": { "icon": "flask-conical", "title": "Real Active Percentages", "text": "Clinically effective doses of retinol, vitamin C, hyaluronic acid and peptides \u2014 not symbolic dustings." } },
-        "card-2": { "type": "card", "settings": { "icon": "shield-check", "title": "Barrier-First Formulas", "text": "Every routine is designed around your moisture barrier so actives can work without causing irritation." } },
-        "card-3": { "type": "card", "settings": { "icon": "eye", "title": "No Secret Ingredients", "text": "Full INCI lists on every product \u2014 nothing hiding behind \u201Cproprietary blend.\u201D" } }
-      },
-      "block_order": ["card-1", "card-2", "card-3"]
-    },
-    "comparison": {
-      "type": "comparison-table",
-      "settings": {
-        "heading": "Nutrava vs. Generic Skincare vs. The Ordinary",
-        "subheading": "Why personalised routines beat both the drugstore aisle and the DIY chemistry set"
-      },
-      "blocks": {
-        "row-1": { "type": "row", "settings": { "feature": "Matched to your skin type & concern", "nutrava": true, "generic": false, "ordinary": false } },
-        "row-2": { "type": "row", "settings": { "feature": "Built as a complete routine, not random picks", "nutrava": true, "generic": false, "ordinary": false } },
-        "row-3": { "type": "row", "settings": { "feature": "Beginner-friendly with no guesswork", "nutrava": true, "generic": false, "ordinary": false } },
-        "row-4": { "type": "row", "settings": { "feature": "Clinically effective active percentages", "nutrava": true, "generic": false, "ordinary": true } },
-        "row-5": { "type": "row", "settings": { "feature": "Fragrance-free options for sensitive skin", "nutrava": true, "generic": false, "ordinary": true } },
-        "row-6": { "type": "row", "settings": { "feature": "Full INCI ingredient transparency", "nutrava": true, "generic": false, "ordinary": true } },
-        "row-7": { "type": "row", "settings": { "feature": "Cruelty-free & vegan-friendly", "nutrava": true, "generic": false, "ordinary": true } }
-      },
-      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6", "row-7"]
-    },
-    "spotlight": {
-      "type": "ingredient-spotlight",
-      "settings": {
-        "heading": "Ingredient Spotlight",
-        "subheading": "The actives behind our best-selling routines"
-      },
-      "blocks": {
-        "ing-1": { "type": "ingredient", "settings": { "name": "Niacinamide", "dose": "Clinically dosed", "description": "A multitasker that refines pores, evens tone, balances oil and strengthens the moisture barrier. Well-tolerated by every skin type \u2014 the workhorse active behind our gel moisturiser." } },
-        "ing-2": { "type": "ingredient", "settings": { "name": "Vitamin C", "dose": "Stabilised", "description": "The gold standard for brightening and antioxidant defence. Fades dark spots, evens tone, and shields skin from daily UV and pollution damage." } },
-        "ing-3": { "type": "ingredient", "settings": { "name": "Retinol Alternative", "dose": "Plant-derived", "description": "All the smoothing, line-refining benefits of retinol \u2014 without the redness, peeling or downtime. Safe for sensitive skin and pregnancy-conscious users." } },
-        "ing-4": { "type": "ingredient", "settings": { "name": "Kojic Acid", "dose": "1% targeted", "description": "One of the most studied tone-correcting actives. Fades stubborn dark spots, post-acne marks, sun damage and uneven patches over consistent use." } },
-        "ing-5": { "type": "ingredient", "settings": { "name": "Peptides", "dose": "Multi-peptide complex", "description": "Signal molecules that target firmness, fine lines and the look of skin elasticity. The premium addition to any anti-aging routine." } },
-        "ing-6": { "type": "ingredient", "settings": { "name": "Hyaluronic Acid", "dose": "Multi-weight", "description": "Holds up to 1,000x its weight in water. Pulls moisture into the skin so it stays hydrated through the day, layered into our day cream and gel moisturiser." } }
-      },
-      "block_order": ["ing-1", "ing-2", "ing-3", "ing-4", "ing-5", "ing-6"]
+      "block_order": ["p-1", "p-2", "p-3", "p-4"]
     },
     "faq": {
       "type": "home-faq",
       "settings": {
-        "heading": "Frequently Asked Questions",
-        "subheading": "Everything you need to know before building your routine"
+        "heading": "Frequently asked",
+        "first_open": true
       },
       "blocks": {
-        "faq-1": { "type": "faq", "settings": { "question": "What makes Nutrava different from other skincare brands?", "answer": "Most skincare is a lottery \u2014 you buy what the aisle has. Nutrava matches a routine to your skin type, top concern, sensitivity, and current habits. Every formula is clinically dosed, fragrance-free where it matters, and transparent about what\u2019s inside." } },
-        "faq-2": { "type": "faq", "settings": { "question": "How does the personalised quiz work?", "answer": "Our quiz takes under 60 seconds and asks about your skin type, top concern, current routine, and sensitivity. It branches based on your answers and matches you with a 2\u20134 product routine built specifically for your skin." } },
-        "faq-3": { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "Hydration and calming products usually feel different on day one. For brightening and anti-aging actives, expect visible improvement in 2\u20134 weeks of consistent use, with the full benefits building over 6\u20138 weeks." } },
-        "faq-4": { "type": "faq", "settings": { "question": "Can I use these products together?", "answer": "Yes \u2014 every routine is designed to layer. We handle the order and balance so you\u2019re not mixing incompatible actives. A good rule: apply thinnest to thickest, water-based serums before oils, SPF last in the morning." } },
-        "faq-5": { "type": "faq", "settings": { "question": "What\u2019s your shipping and returns policy?", "answer": "Free US shipping on orders over $50, delivered within 3\u20135 business days. Every product is covered by our 30-day satisfaction guarantee \u2014 if it doesn\u2019t work for your skin, we\u2019ll refund you, no questions asked." } },
-        "faq-6": { "type": "faq", "settings": { "question": "Are your products vegan and cruelty-free?", "answer": "100% cruelty-free, never tested on animals, and the vast majority are vegan. Every product page lists the full INCI ingredient list so you can check for anything you need to avoid." } }
+        "faq-1": { "type": "faq", "settings": { "question": "How does the personalised quiz work?", "answer": "Our quiz takes about 60 seconds. It branches based on your answers — your skin type, top concern, current routine, and sensitivity — and matches you with a 2–4 product routine engineered for your skin profile." } },
+        "faq-2": { "type": "faq", "settings": { "question": "How long until I see results?", "answer": "Hydration and calming products feel different on day one. Brightening and anti-aging actives need 2–4 weeks of consistent use, with full benefits compounding over 6–8 weeks." } },
+        "faq-3": { "type": "faq", "settings": { "question": "Are your formulas vegan and cruelty-free?", "answer": "100% cruelty-free, never tested on animals, and the vast majority are vegan. Every product page lists the full INCI ingredient list so you can check." } },
+        "faq-4": { "type": "faq", "settings": { "question": "What's the return policy?", "answer": "Free US shipping on orders over $50, and a 30-day money-back guarantee on every routine. If it doesn't work for your skin, we refund you, no questions asked." } }
       },
-      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6"]
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4"]
     },
-    "quiz-cta": {
-      "type": "quiz-cta",
+    "final-cta": {
+      "type": "final-cta",
       "settings": {
-        "heading": "Ready to find your routine?",
-        "text": "Take our quiz and we\u2019ll match you with a skincare routine built for your skin. Under 60 seconds.",
-        "cta_text": "Take the Quiz"
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Stay in the loop",
-        "subheading": "Skincare tips, new launches, and exclusive subscriber offers \u2014 no spam."
+        "heading_before": "Find your ",
+        "heading_em": "routine",
+        "heading_after": " in 60 seconds.",
+        "subheading": "7 questions. One routine that actually fits your skin. Use code GLOW20 for 20% off your first order.",
+        "cta_text": "Start the Quiz",
+        "cta_url": "/pages/quiz"
       }
     }
   },
   "order": [
     "hero",
+    "stats-card",
     "how-it-works",
+    "concerns",
+    "mid-cta",
     "best-sellers",
-    "goals",
-    "why-nutrava",
-    "stats-bar",
-    "science-bar",
-    "comparison",
-    "spotlight",
     "faq",
-    "quiz-cta",
-    "newsletter"
+    "final-cta"
   ]
 }

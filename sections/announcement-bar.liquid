@@ -1,154 +1,55 @@
-<div class="announcement-bar" data-announcement-bar>
-  <div class="announcement-bar__inner">
-    <div class="announcement-bar__messages" data-announcement-messages>
-      {%- for block in section.blocks -%}
-        <div class="announcement-bar__message{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
-          {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
-          {%- else -%}
-            <span>{{ block.settings.text }}</span>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
-    </div>
-    <button class="announcement-bar__close" data-announcement-close aria-label="Close announcement">
-      <i data-lucide="x"></i>
-    </button>
+{%- if section.blocks.size > 0 -%}
+<div class="sn-topbar" data-announcement-bar>
+  <div class="sn-topbar__inner" data-announcement-messages>
+    {%- for block in section.blocks -%}
+      <div class="sn-topbar__msg{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
+        {%- if block.settings.link != blank -%}
+          {{ block.settings.text_before }}<a href="{{ block.settings.link }}">{{ block.settings.link_text }}</a>{{ block.settings.text_after }}
+        {%- else -%}
+          <span>{{ block.settings.text_before }}{{ block.settings.link_text }}{{ block.settings.text_after }}</span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
   </div>
 </div>
+{%- endif -%}
 
 <style>
-  .announcement-bar {
-    background: var(--color-primary);
-    color: #fff;
+  .sn-topbar {
+    background: var(--sn-cream);
+    color: var(--sn-ink);
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--sn-line);
     position: relative;
     z-index: 101;
-    overflow: hidden;
   }
-
-  .announcement-bar.is-hidden {
-    display: none;
-  }
-
-  .announcement-bar__inner {
-    max-width: var(--container-max);
+  .sn-topbar__inner {
+    max-width: var(--sn-w-page);
     margin: 0 auto;
-    padding: 10px 48px 10px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 18px;
     position: relative;
-    min-height: 40px;
   }
-
-  .announcement-bar__messages {
-    position: relative;
-    text-align: center;
-    width: 100%;
+  .sn-topbar__msg {
+    display: none;
+    line-height: 1.4;
   }
-
-  .announcement-bar__message {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .announcement-bar__message.is-active {
-    opacity: 1;
-    position: relative;
-    pointer-events: auto;
-  }
-
-  .announcement-bar__message a {
-    color: #fff;
+  .sn-topbar__msg.is-active { display: block; }
+  .sn-topbar a {
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
+    font-weight: 500;
+    color: inherit;
   }
-
-  .announcement-bar__message a:hover {
-    opacity: 0.85;
-  }
-
-  .announcement-bar__close {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.7);
-    padding: 4px;
-    transition: color var(--transition-fast);
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-
-  .announcement-bar__close:hover {
-    color: #fff;
-  }
-
-  .announcement-bar__close svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  @media (max-width: 768px) {
-    .announcement-bar__message {
-      font-size: 12px;
-    }
-
-    .announcement-bar__inner {
-      padding: 8px 40px 8px 16px;
-    }
-  }
+  .sn-topbar a:hover { opacity: 0.7; }
 </style>
-
-<script>
-  (function() {
-    const bar = document.querySelector('[data-announcement-bar]');
-    if (!bar) return;
-
-    // Check if dismissed this session
-    if (sessionStorage.getItem('nutrava_announcement_dismissed')) {
-      bar.classList.add('is-hidden');
-      return;
-    }
-
-    // Close button
-    const closeBtn = bar.querySelector('[data-announcement-close]');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        bar.classList.add('is-hidden');
-        sessionStorage.setItem('nutrava_announcement_dismissed', '1');
-      });
-    }
-
-    // Rotate messages
-    const messages = bar.querySelectorAll('.announcement-bar__message');
-    if (messages.length > 1) {
-      let current = 0;
-      setInterval(function() {
-        messages[current].classList.remove('is-active');
-        current = (current + 1) % messages.length;
-        messages[current].classList.add('is-active');
-      }, 4000);
-    }
-  })();
-</script>
 
 {% schema %}
 {
-  "name": "Announcement Bar",
+  "name": "Announcement bar",
+  "max_blocks": 5,
   "settings": [],
   "blocks": [
     {
@@ -157,25 +58,35 @@
       "settings": [
         {
           "type": "text",
-          "id": "text",
-          "label": "Message text",
-          "default": "Free shipping on orders over $50"
+          "id": "text_before",
+          "label": "Text before link",
+          "default": "Launch Special — 20% off your first routine with code "
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text (or plain text if no link)",
+          "default": "GLOW20"
+        },
+        {
+          "type": "text",
+          "id": "text_after",
+          "label": "Text after link",
+          "default": ""
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link (optional)"
+          "label": "Link URL"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Announcement Bar",
+      "name": "Announcement bar",
       "blocks": [
-        { "type": "message", "settings": { "text": "Free shipping on orders over $50" } },
-        { "type": "message", "settings": { "text": "Take our quiz → find your skincare routine" } },
-        { "type": "message", "settings": { "text": "30-day money-back guarantee on all products" } }
+        { "type": "message" }
       ]
     }
   ]

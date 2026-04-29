@@ -50,18 +50,18 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
   {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'selfnamed.css' | asset_url | stylesheet_tag }}
 
   {%- comment -%} Inline critical above-fold styles to avoid render-blocking {%- endcomment -%}
   <style>
-    .header{position:sticky;top:0;z-index:100;background:var(--color-bg);height:var(--header-height);display:flex;align-items:center;border-bottom:1px solid var(--color-border)}
-    .header__logo{font-family:'Josefin Sans',sans-serif;font-size:1.4rem;font-weight:400;color:#2C1E14;text-decoration:none;letter-spacing:.27em;text-transform:uppercase}
-    .hero{background:linear-gradient(180deg,var(--color-mint-mist) 0%,var(--color-bg) 100%);padding:48px 0}
-    .hero__grid{display:grid;grid-template-columns:55% 45%;gap:48px;align-items:center}
-    .hero__heading{margin-bottom:var(--space-md);line-height:1.2}
-    .hero__image img{width:100%;height:auto;min-height:400px;object-fit:cover;display:block;border-radius:20px}
-    @media(max-width:768px){.hero__grid{grid-template-columns:1fr;gap:32px}}
+    body.template-index,body.template-page{font-family:"Inter Tight",-apple-system,system-ui,sans-serif;color:#0F1010;background:#fff;letter-spacing:-0.005em}
+    .sn-topbar{background:#FBF4E6;color:#0F1010;text-align:center;font-size:13px;letter-spacing:-0.01em;padding:10px 16px;border-bottom:1px solid rgba(15,16,16,0.08)}
+    .sn-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1240px;margin:0 auto;gap:24px}
+    .sn-hero{text-align:center;padding:80px 32px 100px}
+    .sn-hero__title{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(48px,7vw,96px);line-height:1.0;letter-spacing:-0.04em;margin:0 auto 28px}
+    @media(max-width:640px){.sn-hero{padding:48px 20px 64px}}
   </style>
 
   {% render 'social-meta' %}

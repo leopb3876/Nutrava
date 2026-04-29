@@ -1,154 +1,146 @@
-<footer class="footer bg-mint">
-  <div class="container">
-    <div class="footer__grid">
-      <!-- Brand -->
-      <div class="footer__brand">
-        <a href="/" class="footer__logo">{{ shop.name }}</a>
-        <p class="footer__tagline">Personalised wellness, backed by science.</p>
-      </div>
+<footer class="sn-footer">
+  <div class="sn-footer__grid">
+    <div class="sn-footer__brand">
+      <h3 class="sn-footer__brand-name">{{ section.settings.brand_name | default: shop.name }}</h3>
+      <p class="sn-footer__brand-desc">{{ section.settings.brand_desc }}</p>
+    </div>
 
-      <!-- Quick Links -->
-      <div class="footer__col">
-        <h4 class="footer__heading">{{ 'footer.quick_links' | t }}</h4>
-        <ul class="footer__links">
-          <li><a href="/pages/quiz">{{ 'header.take_quiz' | t }}</a></li>
-          <li><a href="/collections/all">{{ 'header.shop_stacks' | t }}</a></li>
-          <li><a href="/pages/stacks">Browse Routines</a></li>
-          <li><a href="/pages/about">{{ 'header.learn' | t }}</a></li>
-        </ul>
-      </div>
-
-      <!-- Support -->
-      <div class="footer__col">
-        <h4 class="footer__heading">{{ 'footer.support' | t }}</h4>
-        <ul class="footer__links">
-          <li><a href="/pages/shipping">Shipping & Returns</a></li>
-          <li><a href="/policies/privacy-policy">{{ 'footer.privacy' | t }}</a></li>
-          <li><a href="/policies/terms-of-service">{{ 'footer.terms' | t }}</a></li>
-          <li><a href="/pages/contact">{{ 'footer.contact' | t }}</a></li>
-        </ul>
-      </div>
-
-      <!-- Social -->
-      <div class="footer__col">
-        <h4 class="footer__heading">Follow Us</h4>
-        <div class="footer__social">
-          {%- if settings.social_instagram != blank -%}
-            <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-          {%- endif -%}
-          {%- if settings.social_tiktok != blank -%}
-            <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok" class="footer__social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.92 2.92 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.64 6.33 6.33 0 0 0 9.37 22a6.33 6.33 0 0 0 6.38-6.33V9.19a8.16 8.16 0 0 0 4.84 1.58v-3.4a4.85 4.85 0 0 1-1-.68z"/></svg>
-            </a>
-          {%- endif -%}
-          {%- if settings.social_twitter != blank -%}
-            <a href="{{ settings.social_twitter }}" target="_blank" rel="noopener" aria-label="X / Twitter" class="footer__social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-          {%- endif -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'column' -%}
+        <div class="sn-footer__col" {{ block.shopify_attributes }}>
+          <h4 class="sn-footer__col-title">{{ block.settings.title }}</h4>
+          <ul>
+            {%- for i in (1..5) -%}
+              {%- assign label_key = 'link_' | append: i | append: '_label' -%}
+              {%- assign url_key = 'link_' | append: i | append: '_url' -%}
+              {%- assign label = block.settings[label_key] -%}
+              {%- assign url = block.settings[url_key] -%}
+              {%- if label != blank -%}
+                <li><a href="{{ url | default: '#' }}">{{ label }}</a></li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
         </div>
-      </div>
-    </div>
-
-    <div class="footer__bottom">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.copyright' | t }}</p>
-    </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+  <div class="sn-footer__bottom">
+    {%- assign current_year = 'now' | date: '%Y' -%}
+    <span>{{ section.settings.copyright | replace: '{year}', current_year | default: '© Nutrava — Made in the USA' }}</span>
+    <span>{{ section.settings.legal_links | default: 'Privacy · Terms · Accessibility' }}</span>
   </div>
 </footer>
 
 <style>
-  .footer {
-    padding: var(--space-3xl) 0 var(--space-xl);
+  .sn-footer {
+    background: var(--sn-ink);
+    color: var(--sn-paper);
+    padding: 64px 32px 32px;
+    margin-top: 80px;
   }
-
-  .footer__grid {
+  .sn-footer__grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: var(--space-2xl);
-    margin-bottom: var(--space-2xl);
+    gap: 48px;
+    max-width: var(--sn-w-page);
+    margin: 0 auto;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
   }
-
-  .footer__logo {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: #2C1E14;
-    text-decoration: none;
-    letter-spacing: 0.27em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: var(--space-sm);
+  .sn-footer__brand-name {
+    font-family: var(--sn-display);
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    color: var(--sn-paper);
   }
-
-  .footer__tagline {
-    font-size: 14px;
-    color: var(--color-text-muted);
+  .sn-footer__brand-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 14.5px;
+    max-width: 320px;
+    line-height: 1.6;
   }
-
-  .footer__heading {
-    font-family: var(--font-body);
+  .sn-footer__col-title {
     font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 18px;
+    font-family: var(--sn-ui);
   }
-
-  .footer__links li {
-    margin-bottom: var(--space-sm);
-  }
-
-  .footer__links a {
-    font-size: 14px;
-    color: var(--color-text-body);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .footer__links a:hover {
-    color: var(--color-primary);
-  }
-
-  .footer__social {
+  .sn-footer__col ul {
     display: flex;
-    gap: var(--space-md);
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
-
-  .footer__social-link {
-    color: var(--color-text-body);
-    transition: color var(--transition-fast);
+  .sn-footer__col a {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.85);
+    transition: color .15s;
+    text-decoration: none;
   }
-
-  .footer__social-link:hover {
-    color: var(--color-primary);
-  }
-
-  .footer__bottom {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-lg);
-    text-align: center;
+  .sn-footer__col a:hover { color: var(--sn-paper); }
+  .sn-footer__bottom {
+    max-width: var(--sn-w-page);
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: space-between;
     font-size: 13px;
-    color: var(--color-text-muted);
+    color: rgba(255,255,255,0.5);
   }
 
-  @media (max-width: 768px) {
-    .footer__grid {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-    }
-
-    .footer__brand {
-      grid-column: 1 / -1;
-    }
+  @media (max-width: 980px) {
+    .sn-footer__grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .sn-footer__grid { grid-template-columns: 1fr; gap: 32px; }
+    .sn-footer__bottom { flex-direction: column; gap: 8px; }
   }
 </style>
 
 {% schema %}
 {
   "name": "Footer",
-  "settings": []
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Nutrava" },
+    { "type": "textarea", "id": "brand_desc", "label": "Brand description", "default": "Personalised clean skincare, built around your skin. Never tested on animals. Always real percentages." },
+    { "type": "text", "id": "copyright", "label": "Copyright text", "default": "© 2026 Nutrava — Made in the USA" },
+    { "type": "text", "id": "legal_links", "label": "Legal links text", "default": "Privacy · Terms · Accessibility" }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Column title" },
+        { "type": "text", "id": "link_1_label", "label": "Link 1 label" },
+        { "type": "url", "id": "link_1_url", "label": "Link 1 URL" },
+        { "type": "text", "id": "link_2_label", "label": "Link 2 label" },
+        { "type": "url", "id": "link_2_url", "label": "Link 2 URL" },
+        { "type": "text", "id": "link_3_label", "label": "Link 3 label" },
+        { "type": "url", "id": "link_3_url", "label": "Link 3 URL" },
+        { "type": "text", "id": "link_4_label", "label": "Link 4 label" },
+        { "type": "url", "id": "link_4_url", "label": "Link 4 URL" },
+        { "type": "text", "id": "link_5_label", "label": "Link 5 label" },
+        { "type": "url", "id": "link_5_url", "label": "Link 5 URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "column", "settings": { "title": "Shop", "link_1_label": "All products", "link_1_url": "/collections/all", "link_2_label": "Routines", "link_2_url": "/collections/all", "link_3_label": "Best sellers", "link_3_url": "/collections/all", "link_4_label": "The Quiz", "link_4_url": "/pages/quiz" } },
+        { "type": "column", "settings": { "title": "Company", "link_1_label": "Our story", "link_1_url": "/pages/about", "link_2_label": "Ingredients", "link_2_url": "/pages/about", "link_3_label": "Journal", "link_3_url": "/blogs/news", "link_4_label": "Contact", "link_4_url": "/pages/contact" } },
+        { "type": "column", "settings": { "title": "Help", "link_1_label": "Shipping", "link_1_url": "/pages/shipping", "link_2_label": "Returns", "link_2_url": "/pages/shipping", "link_3_label": "FAQ", "link_3_url": "/pages/about", "link_4_label": "Account", "link_4_url": "/account" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

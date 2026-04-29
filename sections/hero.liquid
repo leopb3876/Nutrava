@@ -1,133 +1,164 @@
-<section class="hero">
-  <div class="hero__grid container">
-    <div class="hero__content">
-      <span class="label">{{ section.settings.label }}</span>
-      <h1 class="hero__heading">{{ section.settings.heading }}</h1>
-      <p class="hero__subheading">{{ section.settings.subheading }}</p>
-      <div class="hero__actions">
-        <a href="/pages/quiz" class="btn btn--primary btn--lg">{{ section.settings.cta_quiz }}</a>
-        <a href="/collections/all" class="btn btn--outline btn--lg">{{ section.settings.cta_shop }}</a>
-      </div>
-      {% if section.settings.promo_text != blank %}
-        <div class="hero__promo">
-          <i data-lucide="tag"></i>
-          <span>{{ section.settings.promo_text }}</span>
-        </div>
-      {% endif %}
+<section class="sn-hero">
+  {%- if section.settings.eyebrow != blank -%}
+    <span class="sn-hero__eyebrow"><span class="sn-hero__dot"></span> {{ section.settings.eyebrow }}</span>
+  {%- endif -%}
+
+  <h1 class="sn-hero__title">
+    {{ section.settings.heading_before }}<br>
+    <em data-rotate-word>{{ section.settings.heading_word }}</em>
+  </h1>
+
+  <p class="sn-hero__sub">{{ section.settings.subheading }}</p>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="sn-hero__check-row">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'check' -%}
+          <span class="sn-hero__check" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
-    {% if section.settings.image != blank %}
-      <div class="hero__image">
-        <img
-          srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
-                  {{ section.settings.image | image_url: width: 600 }} 600w,
-                  {{ section.settings.image | image_url: width: 800 }} 800w"
-          sizes="(max-width: 768px) 100vw, 45vw"
-          src="{{ section.settings.image | image_url: width: 800 }}"
-          alt="{{ section.settings.image.alt | default: section.settings.heading }}"
-          loading="eager"
-          fetchpriority="high"
-          width="800"
-          height="600"
-        >
-      </div>
-    {% endif %}
+  {%- endif -%}
+
+  {%- if section.settings.rating_text != blank -%}
+    <div class="sn-hero__rating">
+      <span class="sn-hero__rating-mark">N</span>
+      <span class="sn-hero__rating-stars">★★★★★</span>
+      <span class="sn-hero__rating-text">{{ section.settings.rating_text }}</span>
+    </div>
+  {%- endif -%}
+
+  <div class="sn-hero__cta">
+    <a href="/pages/quiz" class="sn-btn sn-btn--ink">{{ section.settings.cta_quiz }}</a>
+    <a href="/collections/all" class="sn-btn sn-btn--ghost">{{ section.settings.cta_shop }}</a>
   </div>
 </section>
 
 <style>
-  .hero {
-    background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%);
-    padding: 48px 0;
+  .sn-hero {
+    text-align: center;
+    padding: 80px 32px 100px;
   }
-
-  .hero__grid {
-    display: grid;
-    grid-template-columns: 55% 45%;
-    gap: 48px;
-    align-items: center;
-  }
-
-  .hero__content {
-    text-align: left;
-  }
-
-  .hero .label {
-    display: block;
-    margin-bottom: var(--space-md);
-  }
-
-  .hero__heading {
-    margin-bottom: var(--space-md);
-    line-height: 1.2;
-  }
-
-  .hero__subheading {
-    font-size: 1.125rem;
-    color: var(--color-text-body);
-    margin-bottom: var(--space-xl);
-    line-height: 1.6;
-  }
-
-  .hero__actions {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-lg);
-  }
-
-  .hero__promo {
+  .sn-hero__eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, rgba(199,163,115,0.15) 0%, rgba(199,163,115,0.08) 100%);
-    border: 1px solid rgba(199,163,115,0.3);
-    border-radius: 9999px;
-    padding: 10px 20px;
+    background: var(--sn-cream);
+    border-radius: var(--sn-r-pill);
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sn-ink-soft);
+    margin-bottom: 28px;
+  }
+  .sn-hero__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sn-amber);
+  }
+  .sn-hero__title {
+    font-family: var(--sn-display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin: 0 auto 28px;
+    font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144;
+  }
+  .sn-hero__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--sn-amber);
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+    display: inline-block;
+    transform-origin: 50% 70%;
+    will-change: transform, opacity;
+    animation: sn-word-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+  @keyframes sn-word-reveal {
+    from { opacity: 0; transform: translate3d(0, 0.28em, 0) scale(0.97); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sn-hero__title em { animation: none; }
+  }
+  .sn-hero__sub {
+    font-size: 18px;
+    color: var(--sn-ink-soft);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    letter-spacing: -0.01em;
+  }
+  .sn-hero__check-row {
+    display: flex; flex-wrap: wrap;
+    gap: 20px 32px;
+    justify-content: center;
+    margin: 0 auto 32px;
+    max-width: 600px;
+  }
+  .sn-hero__check {
+    display: inline-flex; align-items: center; gap: 8px;
     font-size: 14px;
-    color: var(--color-text-body);
+    font-weight: 500;
+    color: var(--sn-ink-soft);
+  }
+  .sn-hero__check::before {
+    content: "";
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--sn-sage);
+    display: inline-block;
+    flex: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233F5238' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .sn-hero__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--sn-cream);
+    border-radius: var(--sn-r-pill);
+    padding: 10px 22px 10px 14px;
+    margin-bottom: 36px;
+  }
+  .sn-hero__rating-mark {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--sn-ink);
+    color: var(--sn-paper);
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 700;
+  }
+  .sn-hero__rating-stars { color: var(--sn-amber); letter-spacing: 1px; font-size: 13px; }
+  .sn-hero__rating-text { font-size: 13px; color: var(--sn-ink-soft); font-weight: 500; }
+  .sn-hero__cta {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
   }
 
-  .hero__promo svg { width: 16px; height: 16px; color: var(--color-accent); }
-
-  .hero__image {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-
-  .hero__image img {
-    width: 100%;
-    height: auto;
-    min-height: 400px;
-    object-fit: cover;
-    display: block;
-    border-radius: 20px;
-  }
-
-  @media (max-width: 768px) {
-    .hero { padding: 32px 0; }
-
-    .hero__grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .hero__content { text-align: center; }
-
-    .hero__actions {
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero__actions .btn {
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .hero__image img { min-height: 280px; }
+  @media (max-width: 640px) {
+    .sn-hero { padding: 48px 20px 64px; }
+    .sn-hero__sub { font-size: 16px; }
   }
 </style>
+
+<script>
+  (function () {
+    var el = document.querySelector('[data-rotate-word]');
+    if (!el || !el.dataset.words) {
+      var defaultWords = ['understood','decoded','listened to','balanced','nurtured','mapped','considered','read','known','studied','cared for','matched','restored','revealed','protected'];
+      var words = defaultWords;
+    } else {
+      var words = el.dataset.words.split('|').map(function (w) { return w.trim(); }).filter(Boolean);
+    }
+    if (!el || words.length === 0) return;
+    var pick = words[Math.floor(Math.random() * words.length)];
+    el.textContent = pick;
+  })();
+</script>
 
 {% schema %}
 {
@@ -135,49 +166,64 @@
   "settings": [
     {
       "type": "text",
-      "id": "label",
-      "label": "Label",
-      "default": "Personalised Skincare Routines"
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Personalised clean skincare"
     },
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Your Skin, Understood"
+      "id": "heading_before",
+      "label": "Heading (first line)",
+      "default": "Your skin,"
+    },
+    {
+      "type": "text",
+      "id": "heading_word",
+      "label": "Italic accent word (rotates if multiple words below)",
+      "default": "understood"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Take our 60-second quiz and we\u2019ll match you with a skincare routine built for your skin type, concerns, and current habits."
+      "default": "Take our 60-second quiz and we'll match you with a clean skincare routine engineered around your skin type, concerns, and current habits."
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Hero image"
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating text",
+      "default": "4.9 · 50+ verified routines built"
     },
     {
       "type": "text",
       "id": "cta_quiz",
-      "label": "Quiz button text",
+      "label": "Primary button text",
       "default": "Take the Free Quiz"
     },
     {
       "type": "text",
       "id": "cta_shop",
-      "label": "Shop button text",
+      "label": "Secondary button text",
       "default": "Browse Products"
-    },
+    }
+  ],
+  "blocks": [
     {
-      "type": "text",
-      "id": "promo_text",
-      "label": "Promo banner text (leave blank to hide)",
-      "default": "Use code FIRST15 for 15% off your first order"
+      "type": "check",
+      "name": "Check item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "5 skin concerns" }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "blocks": [
+        { "type": "check", "settings": { "text": "5 skin concerns" } },
+        { "type": "check", "settings": { "text": "20 clean formulas" } },
+        { "type": "check", "settings": { "text": "30-day money-back guarantee" } }
+      ]
     }
   ]
 }

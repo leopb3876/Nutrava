@@ -1,0 +1,82 @@
+<section class="sn-cta-card">
+  <div class="sn-cta-card__blob"></div>
+  <div class="sn-cta-card__blob sn-cta-card__blob--bl"></div>
+  <div class="sn-cta-card__inner">
+    <h2 class="sn-cta-card__title">
+      {{ section.settings.heading_before }}<em>{{ section.settings.heading_em }}</em>{{ section.settings.heading_after }}
+    </h2>
+    {%- if section.settings.subheading != blank -%}
+      <p class="sn-cta-card__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    <a href="{{ section.settings.cta_url | default: '/pages/quiz' }}" class="sn-btn sn-btn--ink">{{ section.settings.cta_text }}</a>
+  </div>
+</section>
+
+<style>
+  .sn-cta-card {
+    background: var(--sn-cream);
+    border-radius: var(--sn-r-card-lg);
+    padding: 80px 48px;
+    text-align: center;
+    margin: 80px 32px 0;
+    max-width: var(--sn-w-page);
+    margin-left: auto; margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .sn-cta-card__inner { position: relative; z-index: 2; }
+  .sn-cta-card__title {
+    font-family: var(--sn-display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    max-width: 16ch;
+    margin: 0 auto 24px;
+  }
+  .sn-cta-card__title em {
+    font-style: italic;
+    color: var(--sn-amber);
+    font-weight: 400;
+  }
+  .sn-cta-card__sub {
+    font-size: 17px;
+    color: var(--sn-ink-soft);
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
+  .sn-cta-card__blob {
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle at 35% 35%, var(--sn-blob-4) 0%, var(--sn-blob-4b) 45%, transparent 75%);
+    pointer-events: none;
+  }
+  .sn-cta-card__blob--bl {
+    top: auto; right: auto;
+    bottom: -80px; left: -100px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle at 60% 40%, var(--sn-blob-3) 0%, var(--sn-blob-3b) 50%, transparent 75%);
+  }
+
+  @media (max-width: 640px) {
+    .sn-cta-card { margin: 64px 16px 0; padding: 56px 24px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Final CTA card",
+  "settings": [
+    { "type": "text", "id": "heading_before", "label": "Heading text before italic", "default": "Find your " },
+    { "type": "text", "id": "heading_em", "label": "Italic accent word", "default": "routine" },
+    { "type": "text", "id": "heading_after", "label": "Heading text after italic", "default": " in 60 seconds." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "7 questions. One routine that actually fits your skin. Use code GLOW20 for 20% off your first order." },
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Start the Quiz" },
+    { "type": "url", "id": "cta_url", "label": "Button URL" }
+  ],
+  "presets": [
+    { "name": "Final CTA card" }
+  ]
+}
+{% endschema %}

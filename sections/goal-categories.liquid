@@ -1,151 +1,154 @@
-<section class="goals section-padding" data-fade-in>
-  <div class="container">
-    <h2 class="text-center mb-xl">{{ section.settings.heading }}</h2>
+<section class="sn-section">
+  <div class="sn-section__head">
+    <h2 class="sn-section__title">{{ section.settings.heading }}</h2>
+    {%- if section.settings.subheading != blank -%}
+      <p class="sn-section__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+  </div>
 
-    <div class="goals__grid">
-      {%- for block in section.blocks -%}
-        <a href="/pages/quiz" class="goals__card" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            <div class="goals__image">
-              <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.image.alt | default: block.settings.title }}" width="80" height="80" loading="lazy">
-            </div>
-          {% else %}
-            <span class="goals__icon"><i data-lucide="{{ block.settings.icon }}"></i></span>
-          {% endif %}
-          <h3 class="goals__title">{{ block.settings.title }}</h3>
-          <p class="goals__desc">{{ block.settings.description }}</p>
-        </a>
-      {%- endfor -%}
-    </div>
+  <div class="sn-concerns">
+    {%- for block in section.blocks -%}
+      {%- assign url = block.settings.link | default: '/pages/quiz' -%}
+      {%- assign tone = block.settings.tone | default: 'cream' -%}
+      <a href="{{ url }}" class="sn-concern{% if forloop.first %} sn-concern--lg{% endif %} sn-concern--{{ tone }}" {{ block.shopify_attributes }}>
+        <div>
+          {%- if block.settings.label != blank -%}
+            <span class="sn-concern__label">{{ block.settings.label }}</span>
+          {%- endif -%}
+          <h3 class="sn-concern__title">{{ block.settings.title }}</h3>
+          {%- if block.settings.description != blank -%}
+            <p class="sn-concern__desc">{{ block.settings.description }}</p>
+          {%- endif -%}
+        </div>
+        <span class="sn-concern__cta">{{ block.settings.cta_text | default: 'Explore →' }}</span>
+        <div class="sn-concern__blob"></div>
+      </a>
+    {%- endfor -%}
   </div>
 </section>
 
 <style>
-  .goals__grid {
+  .sn-concerns {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 18px;
+    max-width: var(--sn-w-page);
+    margin: 0 auto;
+    min-height: 540px;
   }
-
-  .goals__card {
-    background: var(--color-card-bg);
-    border: 1.5px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    text-align: center;
-    text-decoration: none;
-    transition: all var(--transition-base);
-  }
-
-  .goals__card:hover {
-    border-color: var(--color-primary);
-    background: var(--color-mint-mist);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-  }
-
-  .goals__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--space-md);
-    color: var(--color-primary);
-  }
-
-  .goals__icon svg {
-    width: 32px;
-    height: 32px;
-    stroke-width: 1.5;
-  }
-
-  .goals__image {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto var(--space-md);
-    border-radius: 50%;
+  .sn-concern {
+    border-radius: var(--sn-r-card);
+    padding: 32px;
+    color: var(--sn-ink);
+    position: relative;
     overflow: hidden;
+    transition: transform .25s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-
-  .goals__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .sn-concern:hover { transform: translateY(-3px); }
+  .sn-concern--lg { grid-row: 1 / span 2; }
+  .sn-concern--cream  { background: var(--sn-cream); }
+  .sn-concern--peach  { background: var(--sn-peach); }
+  .sn-concern--lilac  { background: var(--sn-lilac); }
+  .sn-concern--sage   { background: var(--sn-sage); }
+  .sn-concern--bright { background: var(--sn-peach); filter: brightness(1.05); }
+  .sn-concern__label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--sn-ink-soft);
   }
-
-  .goals__title {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: var(--space-xs);
+  .sn-concern__title {
+    font-family: var(--sn-display);
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.025em; line-height: 1.05;
+    margin: 12px 0 14px;
   }
-
-  .goals__desc {
-    font-size: 13px;
-    color: var(--color-text-muted);
+  .sn-concern--lg .sn-concern__title { font-size: 44px; }
+  .sn-concern__desc {
+    font-size: 14.5px;
+    color: var(--sn-ink-soft);
     line-height: 1.5;
+    max-width: 32ch;
+  }
+  .sn-concern__cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: auto;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 3px;
+    align-self: flex-start;
+  }
+  .sn-concern__blob {
+    position: absolute;
+    inset: auto -30px -40px auto;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5) 0%, transparent 70%);
+    pointer-events: none;
   }
 
-  @media (max-width: 768px) {
-    .goals__grid {
-      grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 980px) {
+    .sn-concerns {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      min-height: 0;
     }
-
-    .goals__card {
-      padding: var(--space-lg);
-    }
+    .sn-concern--lg { grid-row: auto; grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .sn-concerns { grid-template-columns: 1fr; }
+    .sn-concern { padding: 28px 24px; }
+    .sn-concern--lg .sn-concern__title { font-size: 36px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Goal Categories",
+  "name": "Skin concerns",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Explore Your Goals"
-    }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What's your skin concern?" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Start where it bothers you most. Your routine focuses there, then supports the rest." }
   ],
+  "max_blocks": 5,
   "blocks": [
     {
-      "type": "goal",
-      "name": "Goal",
+      "type": "concern",
+      "name": "Concern",
       "settings": [
+        { "type": "text", "id": "label", "label": "Eyebrow label" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description (large card only)" },
+        { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Explore →" },
+        { "type": "url", "id": "link", "label": "Link" },
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Goal image (replaces icon if set)"
-        },
-        {
-          "type": "text",
-          "id": "icon",
-          "label": "Lucide icon name (fallback if no image)",
-          "default": "target"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description"
+          "type": "select",
+          "id": "tone",
+          "label": "Card tone",
+          "default": "cream",
+          "options": [
+            { "value": "cream", "label": "Cream" },
+            { "value": "peach", "label": "Peach" },
+            { "value": "lilac", "label": "Lilac" },
+            { "value": "sage", "label": "Sage" },
+            { "value": "bright", "label": "Bright peach" }
+          ]
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Goal Categories",
+      "name": "Skin concerns",
       "blocks": [
-        { "type": "goal", "settings": { "icon": "droplet", "title": "Acne & Blemishes", "description": "Clear breakouts without stripping your skin" } },
-        { "type": "goal", "settings": { "icon": "sparkles", "title": "Anti-Aging", "description": "Smooth fine lines and support firmness" } },
-        { "type": "goal", "settings": { "icon": "glass-water", "title": "Hydration", "description": "Relieve tightness and plump dehydrated skin" } },
-        { "type": "goal", "settings": { "icon": "sun", "title": "Brightening", "description": "Fade dark spots and even out tone" } },
-        { "type": "goal", "settings": { "icon": "feather", "title": "Sensitive Skin", "description": "Calm reactive skin with gentle formulas" } }
+        { "type": "concern", "settings": { "label": "Most popular · 38% of customers", "title": "Acne & blemishes", "description": "Clear breakouts, calm redness, and prevent new blemishes — without stripping your moisture barrier or triggering rebound oil.", "cta_text": "Build acne routine →", "tone": "cream" } },
+        { "type": "concern", "settings": { "label": "Anti-aging", "title": "Fine lines", "tone": "lilac" } },
+        { "type": "concern", "settings": { "label": "Hydration", "title": "Dehydrated skin", "tone": "sage" } },
+        { "type": "concern", "settings": { "label": "Brightening", "title": "Dark spots", "tone": "bright" } },
+        { "type": "concern", "settings": { "label": "Sensitive", "title": "Reactive skin", "tone": "cream" } }
       ]
     }
   ]

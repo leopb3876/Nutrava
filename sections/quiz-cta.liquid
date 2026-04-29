@@ -1,66 +1,100 @@
-<section class="quiz-cta section-padding" data-fade-in>
-  <div class="container">
-    <div class="quiz-cta__card" {% if section.settings.background_image != blank %}style="background-image: linear-gradient(135deg, rgba(226,237,218,0.9) 0%, rgba(181,202,165,0.9) 100%), url('{{ section.settings.background_image | image_url: width: 1200 }}'); background-size: cover; background-position: center;"{% endif %}>
-      <h2 class="quiz-cta__heading">{{ section.settings.heading }}</h2>
-      <p class="quiz-cta__text">{{ section.settings.text }}</p>
-      <a href="/pages/quiz" class="btn btn--primary btn--lg">{{ section.settings.cta_text }}</a>
+<section class="sn-dark-section">
+  <div class="sn-dark-section__blob-l"></div>
+  <div class="sn-dark-section__blob-r"></div>
+  <div class="sn-dark-section__inner">
+    <h2 class="sn-dark-section__title">{{ section.settings.heading }}</h2>
+    <div class="sn-dark-section__cta">
+      <a href="/pages/quiz" class="sn-btn sn-btn--paper">{{ section.settings.cta_text }}</a>
+      {%- if section.settings.text_link != blank -%}
+        <a href="{{ section.settings.text_link_url | default: '/collections/all' }}" class="sn-text-link">{{ section.settings.text_link }}</a>
+      {%- endif -%}
     </div>
   </div>
 </section>
 
 <style>
-  .quiz-cta__card {
-    background: linear-gradient(135deg, var(--color-mint-mist) 0%, var(--color-fern) 100%);
-    border-radius: var(--radius-lg);
-    padding: var(--space-3xl) var(--space-xl);
+  .sn-dark-section {
+    background: var(--sn-forest);
+    color: var(--sn-ink);
+    border-radius: var(--sn-r-card-lg);
+    margin: 0 32px;
+    max-width: var(--sn-w-page);
+    margin-left: auto; margin-right: auto;
+    padding: 100px 64px;
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .sn-dark-section__inner { position: relative; z-index: 2; }
+  .sn-dark-section__title {
+    font-family: var(--sn-display);
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    max-width: 22ch;
+    margin: 0 auto 36px;
+  }
+  .sn-dark-section__cta {
+    display: flex; gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .sn-dark-section__blob-l,
+  .sn-dark-section__blob-r {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    width: 520px; height: 380px;
+    border-radius: 50%;
+    filter: blur(28px);
+  }
+  .sn-dark-section__blob-l {
+    top: 50%; left: -14%;
+    transform: translateY(-50%);
+    mix-blend-mode: multiply;
+    background: radial-gradient(ellipse at 60% 50%,
+      rgba(125, 152, 113, 0.95) 0%,
+      rgba(140, 168, 128, 0.65) 28%,
+      rgba(170, 192, 158, 0.30) 52%,
+      rgba(184, 205, 168, 0.0) 78%);
+    opacity: 0.85;
+  }
+  .sn-dark-section__blob-r {
+    top: 50%; right: -12%;
+    transform: translateY(-50%);
+    width: 480px; height: 360px;
+    mix-blend-mode: screen;
+    background: radial-gradient(ellipse at 35% 50%,
+      rgba(232, 240, 220, 0.85) 0%,
+      rgba(214, 229, 208, 0.55) 30%,
+      rgba(199, 218, 195, 0.25) 55%,
+      rgba(184, 205, 168, 0.0) 80%);
+    opacity: 0.9;
   }
 
-  .quiz-cta__heading {
-    margin-bottom: var(--space-sm);
-  }
-
-  .quiz-cta__text {
-    font-size: 1rem;
-    color: var(--color-text-body);
-    margin-bottom: var(--space-xl);
+  @media (max-width: 640px) {
+    .sn-dark-section { margin: 0 16px; padding: 64px 28px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Quiz CTA",
+  "name": "Mid-page CTA",
   "settings": [
     {
-      "type": "text",
+      "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Not sure where to start?"
+      "default": "Whether you're starting from scratch or upgrading a 6-step routine, we'll meet you where you are."
     },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Text",
-      "default": "Take our quiz and we'll match you with a skincare routine built for your skin. Under 60 seconds."
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Button text",
-      "default": "Take the Quiz"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image (optional)"
-    }
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Start the Quiz" },
+    { "type": "text", "id": "text_link", "label": "Secondary text link", "default": "Or browse all products" },
+    { "type": "url", "id": "text_link_url", "label": "Secondary link URL" }
   ],
   "presets": [
-    {
-      "name": "Quiz CTA"
-    }
+    { "name": "Mid-page CTA" }
   ]
 }
 {% endschema %}

@@ -12,11 +12,84 @@
     "social_tiktok": "",
     "social_twitter": "",
     "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "msg-1": {
+            "type": "message",
+            "settings": {
+              "text_before": "Launch Special — 20% off your first routine with code ",
+              "link_text": "GLOW20",
+              "text_after": ""
+            }
+          }
+        },
+        "block_order": ["msg-1"]
+      },
       "header": {
-        "type": "header"
+        "type": "header",
+        "settings": {
+          "logo_text": "Nutrava",
+          "menu_1_text": "Shop All",
+          "menu_2_text": "Routines",
+          "menu_3_text": "Skin Concerns",
+          "menu_4_text": "The Quiz",
+          "menu_5_text": "Journal"
+        }
       },
       "footer": {
-        "type": "footer"
+        "type": "footer",
+        "settings": {
+          "brand_name": "Nutrava",
+          "brand_desc": "Personalised clean skincare, built around your skin. Never tested on animals. Always real percentages.",
+          "copyright": "© 2026 Nutrava — Made in the USA",
+          "legal_links": "Privacy · Terms · Accessibility"
+        },
+        "blocks": {
+          "col-1": {
+            "type": "column",
+            "settings": {
+              "title": "Shop",
+              "link_1_label": "All products",
+              "link_1_url": "/collections/all",
+              "link_2_label": "Routines",
+              "link_2_url": "/collections/all",
+              "link_3_label": "Best sellers",
+              "link_3_url": "/collections/all",
+              "link_4_label": "The Quiz",
+              "link_4_url": "/pages/quiz"
+            }
+          },
+          "col-2": {
+            "type": "column",
+            "settings": {
+              "title": "Company",
+              "link_1_label": "Our story",
+              "link_1_url": "/pages/about",
+              "link_2_label": "Ingredients",
+              "link_2_url": "/pages/about",
+              "link_3_label": "Journal",
+              "link_3_url": "/blogs/news",
+              "link_4_label": "Contact",
+              "link_4_url": "/pages/contact"
+            }
+          },
+          "col-3": {
+            "type": "column",
+            "settings": {
+              "title": "Help",
+              "link_1_label": "Shipping",
+              "link_1_url": "/pages/shipping",
+              "link_2_label": "Returns",
+              "link_2_url": "/pages/shipping",
+              "link_3_label": "FAQ",
+              "link_3_url": "/pages/about",
+              "link_4_label": "Account",
+              "link_4_url": "/account"
+            }
+          }
+        },
+        "block_order": ["col-1", "col-2", "col-3"]
       }
     },
     "content_for_index": []

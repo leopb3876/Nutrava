@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Nutrava — SelfNamed-inspired design system
+   Global tokens, base reset, and shared utilities for the homepage redesign.
+   Section-specific styles live in their respective <section>.liquid files.
+   ========================================================================== */
+
+:root {
+  /* Palette */
+  --sn-ink:        #0F1010;
+  --sn-ink-soft:   #4A4946;
+  --sn-ink-mute:   #8B8A85;
+  --sn-paper:      #FFFFFF;
+  --sn-cream:      #FBF4E6;
+  --sn-peach:      #F4DDC2;
+  --sn-sage:       #DDE5D2;
+  --sn-lilac:      #E8E2F0;
+  --sn-forest:     #B8CDA8;
+  --sn-forest-deep:#9DB58C;
+  --sn-amber:      #C58A4B;
+  --sn-line:       rgba(15,16,16,0.08);
+
+  --sn-blob-1:  #F8E5C9; --sn-blob-1b: #F2D5B0;
+  --sn-blob-2:  #FAEBD2; --sn-blob-2b: #F0D5B0;
+  --sn-blob-3:  #DDE5D2; --sn-blob-3b: #B8C8A8;
+  --sn-blob-4:  #F4DDC2; --sn-blob-4b: #E8C595;
+
+  /* Type */
+  --sn-display: "Fraunces", "Times New Roman", serif;
+  --sn-ui:      "Inter Tight", -apple-system, "Segoe UI", system-ui, sans-serif;
+
+  /* Radius */
+  --sn-r-card:    28px;
+  --sn-r-card-lg: 36px;
+  --sn-r-pill:    999px;
+
+  /* Layout */
+  --sn-w-page: 1240px;
+}
+
+/* ---------- Base ---------- */
+body.template-index,
+body.template-page {
+  font-family: var(--sn-ui);
+  color: var(--sn-ink);
+  background: var(--sn-paper);
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.005em;
+}
+
+body.template-index h1,
+body.template-index h2,
+body.template-index h3,
+body.template-index h4 {
+  font-family: var(--sn-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* ---------- Containers ---------- */
+.sn-wrap     { max-width: var(--sn-w-page); margin: 0 auto; padding: 0 32px; }
+.sn-wrap--narrow { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+/* ---------- Buttons ---------- */
+.sn-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--sn-r-pill);
+  font-family: var(--sn-ui);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform .2s ease, background .2s, color .2s, border-color .2s;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+.sn-btn--ink   { background: var(--sn-ink); color: var(--sn-paper); }
+.sn-btn--ink:hover { background: #2a2a2a; transform: translateY(-1px); }
+.sn-btn--ghost { background: transparent; color: var(--sn-ink); border: 1.5px solid var(--sn-ink); }
+.sn-btn--ghost:hover { background: var(--sn-ink); color: var(--sn-paper); }
+.sn-btn--paper { background: var(--sn-paper); color: var(--sn-ink); }
+.sn-btn--paper:hover { transform: translateY(-1px); }
+.sn-btn--sm    { padding: 9px 16px; font-size: 12px; }
+
+.sn-text-link {
+  display: inline-block;
+  font-family: var(--sn-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 4px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Section primitives ---------- */
+.sn-section { padding: 100px 32px; }
+.sn-section--tight { padding: 64px 32px; }
+
+.sn-section__head { text-align: center; margin-bottom: 60px; }
+.sn-section__title {
+  font-family: var(--sn-display);
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  max-width: 18ch;
+  margin: 0 auto 16px;
+}
+.sn-section__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--sn-amber);
+}
+.sn-section__sub {
+  font-size: 17px;
+  color: var(--sn-ink-soft);
+  max-width: 540px;
+  margin: 0 auto;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 640px) {
+  .sn-section { padding: 64px 24px; }
+}
