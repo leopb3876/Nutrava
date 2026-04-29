@@ -1,0 +1,3003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutrava — Quiz flow mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     Nutrava — Quiz flow mockup
+     Same design DNA as homepage (Fraunces + Inter Tight, pastel cards,
+     pill buttons). Full clickable flow — intro → 6 questions → email
+     → loading → personalised results.
+     ------------------------------------------------------------------ */
+
+  :root {
+    --ink:        #0F1010;
+    --ink-soft:   #4A4946;
+    --ink-mute:   #8B8A85;
+    --paper:      #FFFFFF;
+    --cream:      #FBF4E6;
+    --peach:      #F4DDC2;
+    --sage:       #DDE5D2;
+    --lilac:      #E8E2F0;
+    --pastel-sage:#B8CDA8;
+    --amber:      #C58A4B;
+    --line:       rgba(15,16,16,0.08);
+
+    --display: "Fraunces", "Times New Roman", serif;
+    --display-soft: "Lora", "Iowan Old Style", "Georgia", serif;
+    --ui:      "Inter Tight", -apple-system, "Segoe UI", system-ui, sans-serif;
+
+    --r-card:    24px;
+    --r-card-lg: 36px;
+    --r-pill:    999px;
+
+    --w-stage: 720px;
+    --header-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--ui);
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 16px;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ============== SHELL ============== */
+  .quiz-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ============== HEADER ============== */
+  .quiz-header {
+    height: var(--header-h);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 50;
+  }
+  .quiz-header__nav {
+    display: flex;
+    gap: 8px;
+  }
+  .quiz-header__btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    transition: background .15s;
+    color: var(--ink-soft);
+  }
+  .quiz-header__btn:hover { background: var(--cream); color: var(--ink); }
+  .quiz-header__btn[disabled] { opacity: 0.3; cursor: default; }
+  .quiz-header__btn[disabled]:hover { background: transparent; color: var(--ink-soft); }
+  .quiz-header__btn svg { width: 20px; height: 20px; }
+  .quiz-header__logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  .quiz-header__logo-mark {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid; place-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--ui);
+  }
+  .quiz-header__right { display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
+  .quiz-header__counter {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+
+  /* ============== PROGRESS BAR ============== */
+  .quiz-progress {
+    height: 3px;
+    background: var(--cream);
+    position: sticky;
+    top: var(--header-h);
+    z-index: 49;
+  }
+  .quiz-progress__fill {
+    height: 100%;
+    background: var(--ink);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ============== STAGE ============== */
+  .quiz-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 32px 96px;
+    position: relative;
+  }
+  .quiz-screen {
+    width: 100%;
+    max-width: var(--w-stage);
+    display: none;
+    animation: screen-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .quiz-screen.is-active { display: block; }
+  .quiz-screen.is-active.is-wide { max-width: 1100px; margin: 0 auto; }
+
+  @keyframes screen-in {
+    from { opacity: 0; transform: translate3d(0, 14px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+
+  /* ============== BUTTONS ============== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: var(--r-pill);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: transform .2s ease, background .2s, color .2s, opacity .2s;
+    white-space: nowrap;
+  }
+  .btn--ink { background: var(--ink); color: var(--paper); }
+  .btn--ink:hover { background: #2a2a2a; transform: translateY(-1px); }
+  .btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn--lg { padding: 20px 40px; font-size: 14px; }
+  .btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .btn[disabled]:hover { transform: none; background: var(--ink); }
+
+  /* ============== INTRO SCREEN ============== */
+  .intro {
+    text-align: center;
+    padding-top: 24px;
+  }
+  .intro__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border-radius: var(--r-pill);
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .intro__eyebrow .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .intro__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    margin: 0 auto 28px;
+    font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144;
+  }
+  .intro__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--amber);
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+  .intro__sub {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto 36px;
+  }
+  .intro__pills {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .intro__pill {
+    background: var(--cream);
+    border-radius: var(--r-pill);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .intro__pill::before {
+    content: "";
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--sage);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233F5238' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size: 11px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .intro__reassurance {
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+
+  /* ============== QUESTION SCREEN ============== */
+  .question__overline {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+  .question__title {
+    font-family: var(--display);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+  .question__title em { font-style: italic; color: var(--amber); }
+  .question__sub {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+    max-width: 56ch;
+  }
+  .answers {
+    display: grid;
+    gap: 12px;
+  }
+  .answer {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 24px;
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: var(--r-card);
+    text-align: left;
+    width: 100%;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    color: var(--ink);
+  }
+  .answer:nth-child(2n) { background: var(--lilac); }
+  .answer:nth-child(3n) { background: var(--peach); }
+  .answer:nth-child(4n) { background: var(--sage); }
+  .answer:nth-child(5n) { background: var(--cream); }
+  .answer:hover {
+    transform: translateY(-2px);
+    border-color: var(--ink);
+  }
+  .answer.is-selected {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .answer.is-selected .answer__icon { background: rgba(255,255,255,0.12); color: var(--paper); }
+  .answer.is-selected .answer__chevron { color: var(--paper); }
+  .answer__icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.5);
+    display: grid; place-items: center;
+    color: var(--ink);
+    transition: background .18s ease;
+  }
+  .answer__icon svg { width: 24px; height: 24px; }
+  .answer__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .answer__title {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .answer__hint {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .answer.is-selected .answer__hint { color: rgba(255,255,255,0.7); }
+  .answer__chevron {
+    color: var(--ink-mute);
+    transition: transform .15s, color .15s;
+  }
+  .answer__chevron svg { width: 16px; height: 16px; }
+  .answer:hover .answer__chevron { transform: translateX(2px); color: var(--ink); }
+
+  /* ============== EMAIL GATE ============== */
+  .email-gate {
+    text-align: center;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .email-gate__icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    background: var(--cream);
+    display: grid; place-items: center;
+    color: var(--amber);
+  }
+  .email-gate__icon svg { width: 28px; height: 28px; }
+  .email-gate__title {
+    font-family: var(--display);
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 500;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .email-gate__title em { font-style: italic; color: var(--amber); }
+  .email-gate__sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+  }
+  .email-gate__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .field {
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: var(--r-card);
+    padding: 18px 22px;
+    font: inherit;
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color .18s ease, background .18s ease;
+    width: 100%;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--ink);
+    background: var(--paper);
+  }
+  .field::placeholder { color: var(--ink-mute); }
+  .email-gate__priv {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 24px;
+    line-height: 1.5;
+  }
+
+  /* ============== LOADING SCREEN ============== */
+  .loading {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .loading__ring {
+    position: relative;
+    width: 96px; height: 96px;
+    margin: 0 auto 36px;
+  }
+  .loading__ring::before, .loading__ring::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 3px solid var(--cream);
+  }
+  .loading__ring::after {
+    border-top-color: var(--ink);
+    animation: spin 1.1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading__title {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    margin-bottom: 12px;
+  }
+  .loading__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    max-width: 360px;
+    margin: 32px auto 0;
+  }
+  .loading__step {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14.5px;
+    color: var(--ink-mute);
+    transition: color .3s ease;
+  }
+  .loading__step::before {
+    content: "";
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    flex: none;
+  }
+  .loading__step.is-done::before {
+    background: var(--ink);
+    border-color: var(--ink);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size: 11px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .loading__step.is-done { color: var(--ink); }
+  .loading__step.is-active { color: var(--ink); }
+  .loading__step.is-active::before {
+    border-color: var(--ink);
+    border-top-color: transparent;
+    animation: spin 0.9s linear infinite;
+  }
+
+  /* ============== RESULTS SCREEN ============== */
+  .results-hero {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 64px;
+  }
+  .results-hero__overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border-radius: var(--r-pill);
+    padding: 8px 18px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .results-hero__overline .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .results-hero__title {
+    font-family: var(--display);
+    font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+    font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144;
+  }
+  .results-hero__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--amber);
+  }
+  .results-hero__why {
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
+  /* ============== SKIN PROFILE (radar + breakdown) ============== */
+  .skin-profile {
+    background: var(--cream);
+    border-radius: var(--r-card-lg);
+    padding: 56px;
+    margin-bottom: 48px;
+  }
+  .skin-profile__head { text-align: center; margin-bottom: 40px; }
+  .skin-profile__heading {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  .skin-profile__heading em { font-style: italic; color: var(--amber); }
+  .skin-profile__intro {
+    font-family: var(--display-soft);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 50ch;
+    line-height: 1.55;
+    margin: 0 auto;
+  }
+
+  .skin-profile__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .skin-profile__chart { display: grid; place-items: center; }
+  .skin-profile__chart svg {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+  }
+  /* Radar parts — soft amber palette */
+  .radar-axis { stroke: rgba(15,16,16,0.06); stroke-width: 1; }
+  .radar-ring { fill: none; stroke: rgba(197,138,75,0.18); stroke-dasharray: 2 4; }
+  .radar-ring--solid { stroke: rgba(197,138,75,0.32); stroke-dasharray: none; }
+  .radar-fill {
+    fill: rgba(197, 138, 75, 0.18);
+    stroke: var(--amber);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .radar-dot {
+    fill: var(--amber);
+    stroke: var(--cream);
+    stroke-width: 2.5;
+  }
+  .radar-label {
+    font-family: var(--display-soft);
+    font-size: 12px;
+    font-style: italic;
+    fill: var(--ink-soft);
+    letter-spacing: 0;
+  }
+  .radar-pct {
+    font-family: var(--display-soft);
+    font-weight: 500;
+    fill: var(--amber);
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  /* Breakdown list */
+  .skin-profile__breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .profile-row {
+    display: grid;
+    grid-template-columns: 36px 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 16px;
+    border-radius: var(--r-card);
+    transition: background .2s ease;
+  }
+  .profile-row:hover { background: rgba(255,255,255,0.45); }
+  .profile-row--top {
+    background: var(--paper);
+    padding: 18px 20px;
+    margin-bottom: 4px;
+  }
+  .profile-row__icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(197,138,75,0.10);
+    display: grid; place-items: center;
+    color: var(--amber);
+  }
+  .profile-row--top .profile-row__icon {
+    background: rgba(197,138,75,0.18);
+  }
+  .profile-row__icon svg { width: 17px; height: 17px; }
+  .profile-row__main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .profile-row__name {
+    font-family: var(--display-soft);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+  .profile-row__note {
+    font-family: var(--display-soft);
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .profile-row__badge {
+    background: rgba(197,138,75,0.18);
+    color: var(--amber);
+    font-family: var(--display-soft);
+    font-size: 11.5px;
+    font-style: italic;
+    font-weight: 500;
+    padding: 3px 12px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+  .profile-row__pct {
+    font-family: var(--display-soft);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+    text-align: right;
+    min-width: 56px;
+    letter-spacing: 0;
+  }
+
+  .skin-profile__foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(15,16,16,0.05);
+    font-family: var(--display-soft);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mute);
+  }
+  .skin-profile__foot svg { width: 14px; height: 14px; }
+
+  @media (max-width: 900px) {
+    .skin-profile { padding: 36px 24px; }
+    .skin-profile__grid { grid-template-columns: 1fr; gap: 36px; }
+    .profile-row { grid-template-columns: 32px 1fr auto; gap: 12px; padding: 14px 12px; }
+    .profile-row__badge { grid-column: 2 / 4; justify-self: start; margin-top: 4px; }
+  }
+
+  /* ============== INGREDIENTS NEEDED ============== */
+  .ingredients-panel {
+    background: var(--cream);
+    border-radius: var(--r-card-lg);
+    padding: 64px;
+    margin-bottom: 64px;
+    position: relative;
+  }
+  .ingredients-panel__head { text-align: center; margin-bottom: 48px; }
+  .ingredients-panel__heading {
+    font-family: var(--display);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    margin-bottom: 12px;
+  }
+  .ingredients-panel__heading em { font-style: italic; color: var(--amber); }
+  .ingredients-panel__intro {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* Two-column grid: radar left, ingredient list right */
+  .ingredients-panel__grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 56px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ingredients-panel__chart {
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: 100px;
+  }
+  .ingredients-panel__chart svg {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+  }
+
+  .ingredients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ingredient {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--r-card);
+    background: var(--paper);
+    border: 1px solid transparent;
+    transition: transform .2s ease, box-shadow .2s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+  .ingredient:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(15,16,16,0.06); }
+  .ingredient:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .ingredient--top { background: var(--peach); }
+
+  /* Top row — sized for narrower right column */
+  .ingredient__row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 18px 22px;
+  }
+  .ingredient--top .ingredient__row { padding: 22px 24px; }
+
+  .ingredient__symbol {
+    width: 64px; height: 64px;
+    border-radius: 14px;
+    background: rgba(197, 138, 75, 0.10);
+    display: grid; place-items: center;
+    text-align: center;
+    color: var(--ink);
+    position: relative;
+  }
+  .ingredient--top .ingredient__symbol {
+    background: var(--paper);
+    width: 72px; height: 72px;
+  }
+  .ingredient__abbr {
+    font-family: var(--display-soft);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    color: var(--amber);
+  }
+  .ingredient__num {
+    font-family: var(--ui);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .ingredient__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ingredient__top-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .ingredient__name {
+    font-family: var(--display-soft);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+  .ingredient--top .ingredient__name { font-size: 22px; }
+  .ingredient__name em { font-style: italic; color: var(--amber); }
+  .ingredient__role {
+    font-family: var(--display-soft);
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+  }
+  .ingredient__why {
+    font-family: var(--display-soft);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .ingredient--top .ingredient__why { font-size: 14px; color: var(--ink); }
+  .ingredient__badge {
+    background: rgba(197, 138, 75, 0.18);
+    color: var(--amber);
+    font-family: var(--display-soft);
+    font-size: 11.5px;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 3px 11px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+    align-self: center;
+  }
+  .ingredient__order {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink-mute);
+    align-self: center;
+    line-height: 1;
+  }
+
+  /* Right slot: holds badge (top match), match meter, and chevron, stacked */
+  .ingredient__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    align-self: center;
+  }
+  /* Match meter — shows how strongly we matched this ingredient to your answers */
+  .ingredient__match {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    line-height: 1;
+  }
+  .ingredient__match-pct {
+    font-family: var(--display-soft);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .ingredient--top .ingredient__match-pct { font-size: 26px; }
+  .ingredient__match-bar {
+    width: 64px;
+    height: 3px;
+    background: rgba(15,16,16,0.06);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ingredient__match-bar::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: var(--pct, 0%);
+    background: var(--amber);
+    border-radius: 2px;
+    transition: width .6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ingredient__match-label {
+    font-family: var(--display-soft);
+    font-size: 10.5px;
+    font-style: italic;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+    margin-top: -2px;
+  }
+  .ingredient__chevron {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(15,16,16,0.04);
+    display: grid; place-items: center;
+    color: var(--ink-soft);
+    transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), background .15s ease, color .15s ease;
+  }
+  .ingredient__chevron svg { width: 16px; height: 16px; display: block; }
+  .ingredient:hover .ingredient__chevron { background: var(--ink); color: var(--paper); }
+  .ingredient.is-open .ingredient__chevron { transform: rotate(180deg); background: var(--ink); color: var(--paper); }
+
+  /* Expanded panel — animates via grid-template-rows trick */
+  .ingredient__expanded {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ingredient__expanded > .ingredient__expanded-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+  .ingredient.is-open .ingredient__expanded { grid-template-rows: 1fr; }
+  .ingredient__expanded-content {
+    padding: 0 28px 32px;
+    margin-top: 4px;
+    border-top: 1px solid rgba(15,16,16,0.10);
+    padding-top: 28px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity .3s ease .1s, transform .35s cubic-bezier(0.16, 1, 0.3, 1) .1s;
+  }
+  .ingredient--top .ingredient__expanded-content { padding: 28px 32px 36px; }
+  .ingredient.is-open .ingredient__expanded-content { opacity: 1; transform: none; }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 36px;
+  }
+  .exp-section { display: flex; flex-direction: column; gap: 8px; }
+  .exp-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .exp-body {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .exp-body cite {
+    display: block;
+    margin-top: 6px;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--ink-mute);
+  }
+  .exp-product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .exp-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    background: rgba(15,16,16,0.04);
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    align-self: flex-start;
+    transition: background .15s ease, transform .15s ease;
+  }
+  .exp-product:hover { background: var(--ink); color: var(--paper); transform: translateX(2px); }
+  .ingredient--top .exp-product { background: rgba(255,255,255,0.7); }
+  .ingredient--top .exp-product:hover { background: var(--ink); color: var(--paper); }
+  .exp-product__bottle {
+    width: 18px; height: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 100%);
+    border-radius: 4px 4px 1px 1px;
+    border: 1px solid rgba(15,16,16,0.08);
+    position: relative;
+    flex: none;
+  }
+  .exp-product__bottle::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: 50%;
+    transform: translateX(-50%);
+    width: 40%; height: 3px;
+    background: var(--ink);
+    border-radius: 1px;
+  }
+  .exp-product:hover .exp-product__bottle::before { background: var(--paper); }
+
+  .ingredients-panel__foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(15,16,16,0.05);
+    font-family: var(--display-soft);
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .ingredients-panel__foot svg { width: 14px; height: 14px; }
+
+  @media (max-width: 1000px) {
+    .ingredients-panel__grid { grid-template-columns: 1fr; gap: 36px; }
+    .ingredients-panel__chart { position: static; max-width: 360px; margin: 0 auto; }
+  }
+  @media (max-width: 720px) {
+    .ingredients-panel { padding: 36px 24px; }
+    .ingredient__row { grid-template-columns: 56px 1fr auto; padding: 18px; gap: 14px; }
+    .ingredient--top .ingredient__row { padding: 22px 20px; }
+    .ingredient__order { display: none; }
+    .exp-grid { grid-template-columns: 1fr; gap: 22px; }
+    .ingredient__expanded-content { padding: 22px 20px 24px; }
+    .ingredient__symbol { width: 56px; height: 56px; }
+    .ingredient--top .ingredient__symbol { width: 64px; height: 64px; }
+    .ingredient__abbr { font-size: 18px; }
+    .ingredient__name { font-size: 19px; }
+    .ingredient--top .ingredient__name { font-size: 22px; }
+  }
+
+  /* ============== RECOMMENDATIONS ============== */
+  .rec-head { text-align: center; margin-bottom: 48px; }
+  .rec-head__overline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .rec-head__title {
+    font-family: var(--display);
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    margin-bottom: 14px;
+  }
+  .rec-head__title em { font-style: italic; color: var(--amber); }
+  .rec-head__sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .recommendations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+  }
+  .rec {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--paper);
+    border: none;
+    border-radius: var(--r-card);
+    padding: 32px;
+    position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .rec:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(15,16,16,0.05);
+  }
+  .rec--cream { background: var(--cream); border-color: transparent; }
+  .rec--lilac { background: var(--lilac); border-color: transparent; }
+  .rec--sage  { background: var(--sage);  border-color: transparent; }
+  .rec--peach { background: var(--peach); border-color: transparent; }
+  .rec--top {
+    background: var(--peach);
+    border-color: transparent;
+  }
+
+  /* Visual — banner above the body */
+  .rec__visual {
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,0.55);
+    border-radius: 18px;
+    height: 200px;
+    flex: none;
+  }
+  .rec__bottle {
+    width: 80px;
+    aspect-ratio: 0.5;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 100%);
+    border-radius: 14px 14px 5px 5px;
+    border: 1px solid rgba(15,16,16,0.06);
+    position: relative;
+  }
+  .rec__bottle::before {
+    content: "";
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    width: 38%; height: 14px;
+    background: var(--ink);
+    border-radius: 3px 3px 1px 1px;
+  }
+  .rec__bottle::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 38%; left: 8%; right: 8%;
+    background: var(--paper);
+    padding: 6px 3px;
+    font-family: var(--display);
+    font-size: 8px;
+    font-style: italic;
+    text-align: center;
+    color: var(--amber);
+    line-height: 1.3;
+    border-top: 1px solid rgba(15,16,16,0.06);
+    border-bottom: 1px solid rgba(15,16,16,0.06);
+  }
+
+  /* Body fills remaining card height */
+  .rec__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    flex: 1;
+  }
+  .rec__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    align-items: start;
+    border-bottom: 1px solid rgba(15,16,16,0.05);
+    padding-bottom: 16px;
+  }
+  .rec__badge {
+    display: inline-block;
+    background: rgba(197, 138, 75, 0.18);
+    color: var(--amber);
+    font-family: var(--display-soft);
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 3px 12px;
+    border-radius: var(--r-pill);
+    margin-bottom: 10px;
+  }
+  .rec__name {
+    font-family: var(--display-soft);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .rec--top .rec__name { font-size: 22px; }
+  .rec__role {
+    font-family: var(--display-soft);
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .rec__price {
+    font-family: var(--display-soft);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Subsections */
+  .rec-section { display: flex; flex-direction: column; gap: 8px; }
+  .rec-section__label {
+    font-family: var(--display-soft);
+    font-size: 13px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+  }
+  .rec__why {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* Pairs — mini product rows with their own + buttons */
+  .rec__pairs-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .rec-pair-row {
+    display: grid;
+    grid-template-columns: 32px 1fr auto 30px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.55);
+    border: none;
+    border-radius: 14px;
+    transition: background .2s ease, transform .15s ease;
+    color: inherit;
+    text-decoration: none;
+  }
+  .rec-pair-row:hover { background: rgba(255,255,255,0.92); transform: translateY(-1px); }
+  .rec-pair-row__bottle {
+    width: 32px; height: 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.65) 100%);
+    border-radius: 6px 6px 2px 2px;
+    border: 1px solid rgba(15,16,16,0.08);
+    position: relative;
+    flex: none;
+  }
+  .rec-pair-row__bottle::before {
+    content: "";
+    position: absolute;
+    top: -3px; left: 50%;
+    transform: translateX(-50%);
+    width: 42%; height: 5px;
+    background: var(--ink);
+    border-radius: 1px;
+  }
+  .rec-pair-row__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+  }
+  .rec-pair-row__name {
+    font-family: var(--display-soft);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .rec-pair-row__why {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    line-height: 1.35;
+  }
+  .rec-pair-row__price {
+    font-family: var(--display-soft);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .rec-pair-row__add {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(15,16,16,0.06);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    transition: transform .15s ease, background .2s ease, color .2s ease;
+    flex: none;
+  }
+  .rec-pair-row__add svg { width: 14px; height: 14px; display: block; }
+  .rec-pair-row__add:hover { transform: scale(1.08); background: var(--ink); color: var(--paper); }
+
+  /* Bundle CTA — soft warm tint with amber accent. No hard borders.
+     `margin-top: auto` pushes it to the bottom of the card body so it
+     always sits directly above the action row, regardless of how many
+     pair rows the card has. */
+  .rec__bundle {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    background: rgba(197, 138, 75, 0.10);
+    color: var(--ink);
+    border: none;
+    padding: 18px 22px;
+    border-radius: 16px;
+    margin-top: auto;
+    cursor: pointer;
+    transition: transform .15s ease, background .25s ease;
+    text-align: left;
+    position: relative;
+  }
+  .rec__bundle::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 14px; bottom: 14px;
+    width: 3px;
+    background: var(--amber);
+    border-radius: 0 3px 3px 0;
+    opacity: 0.7;
+  }
+  .rec__bundle:hover {
+    transform: translateY(-1px);
+    background: rgba(197, 138, 75, 0.18);
+  }
+  .rec__bundle-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.2;
+  }
+  .rec__bundle-label {
+    font-family: var(--display-soft);
+    font-size: 12.5px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--amber);
+  }
+  .rec__bundle-text {
+    font-family: var(--display-soft);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .rec__bundle-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    line-height: 1.1;
+  }
+  .rec__bundle-price-was {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+  .rec__bundle-price-now {
+    font-family: var(--display-soft);
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .rec__bundle-saves {
+    font-family: var(--display-soft);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--amber);
+    margin-top: 2px;
+  }
+
+  /* Action — sits below the bundle CTA (which has margin-top: auto). */
+  .rec__action {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 4px;
+  }
+  .rec__cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 13px 24px;
+    border-radius: var(--r-pill);
+    font-family: var(--display-soft);
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    transition: background .15s, transform .15s;
+  }
+  .rec__cta:hover { background: #2a2a2a; transform: translateY(-1px); }
+  .rec__view {
+    font-family: var(--display-soft);
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+    border-bottom: 1px solid rgba(15,16,16,0.25);
+    padding-bottom: 2px;
+    white-space: nowrap;
+  }
+  .rec__view:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .recommendations { grid-template-columns: 1fr; }
+    .rec__visual { height: 160px; }
+  }
+
+  /* Tier cards */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+  .tier {
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: var(--r-card);
+    padding: 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform .25s ease;
+  }
+  .tier:nth-child(1) { background: var(--lilac); }
+  .tier:nth-child(2) {
+    background: var(--peach);
+    border-color: var(--ink);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 40px rgba(15,16,16,0.10);
+  }
+  .tier:nth-child(3) { background: var(--sage); }
+  .tier__badge {
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+  }
+  .tier__name {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .tier__pitch {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .tier__products {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .tier-prod {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+  .tier-prod__bottle {
+    width: 44px; height: 56px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(15,16,16,0.06);
+    border-radius: 8px 8px 4px 4px;
+    position: relative;
+    flex: none;
+  }
+  .tier-prod__bottle::before {
+    content: "";
+    position: absolute;
+    top: -7px; left: 50%;
+    transform: translateX(-50%);
+    width: 36%; height: 8px;
+    background: var(--ink);
+    border-radius: 2px 2px 0 0;
+  }
+  .tier-prod__name {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .tier-prod__why {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  .tier__price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid rgba(15,16,16,0.10);
+    padding-top: 16px;
+    margin-bottom: 16px;
+  }
+  .tier__price-label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .tier__price {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .tier__cta {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: var(--r-pill);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background .15s, color .15s;
+  }
+  .tier__cta--primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .tier__cta--primary:hover { background: #2a2a2a; }
+  .tier__cta--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+  .tier__cta--ghost:hover { background: var(--ink); color: var(--paper); }
+
+  /* Add-ons row */
+  .addons-head {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .addons-head__overline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .addons-head__title {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  .addons-head__title em { font-style: italic; color: var(--amber); }
+  .addons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .addon {
+    background: var(--cream);
+    border-radius: var(--r-card);
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 18px;
+    transition: transform .2s ease;
+  }
+  .addon:nth-child(2) { background: var(--lilac); }
+  .addon:hover { transform: translateY(-2px); }
+  .addon__bottle {
+    width: 70px; height: 88px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(15,16,16,0.06);
+    border-radius: 12px 12px 5px 5px;
+    position: relative;
+  }
+  .addon__bottle::before {
+    content: "";
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    width: 36%; height: 12px;
+    background: var(--ink);
+    border-radius: 2px 2px 1px 1px;
+  }
+  .addon__cat {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .addon__name {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .addon__why {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .addon__add {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid; place-items: center;
+    transition: transform .15s;
+    flex: none;
+  }
+  .addon__add:hover { transform: scale(1.08); }
+
+  /* Restart row */
+  .results-foot {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .results-foot__text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+
+  /* ============== MOCKUP TAG ============== */
+  .mockup-tag {
+    position: fixed;
+    bottom: 16px; right: 16px;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 16px;
+    border-radius: var(--r-pill);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 820px) {
+    .tiers { grid-template-columns: 1fr; }
+    .tier:nth-child(2) { transform: none; }
+    .addons { grid-template-columns: 1fr; }
+    .answer { grid-template-columns: 48px 1fr auto; padding: 18px 18px; gap: 14px; }
+    .answer__icon { width: 48px; height: 48px; }
+    .quiz-stage { padding: 40px 20px 80px; }
+  }
+  @media (max-width: 480px) {
+    .quiz-header { padding: 0 16px; }
+    .quiz-header__counter { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-tag">Mockup · Quiz</div>
+
+<div class="quiz-shell">
+
+  <!-- ============== HEADER ============== -->
+  <header class="quiz-header">
+    <div class="quiz-header__nav">
+      <button class="quiz-header__btn" id="back-btn" aria-label="Back" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+    </div>
+    <a href="#" class="quiz-header__logo">
+      <span class="quiz-header__logo-mark">N</span>
+      Nutrava
+    </a>
+    <div class="quiz-header__right">
+      <span class="quiz-header__counter" id="counter">Welcome</span>
+      <button class="quiz-header__btn" aria-label="Close" onclick="alert('In production this returns to the home page')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============== PROGRESS BAR ============== -->
+  <div class="quiz-progress" aria-hidden="true"><div class="quiz-progress__fill" id="progress-fill"></div></div>
+
+  <!-- ============== STAGE ============== -->
+  <main class="quiz-stage">
+
+    <!-- INTRO -->
+    <section class="quiz-screen is-active" data-screen="intro">
+      <div class="intro">
+        <span class="intro__eyebrow"><span class="dot"></span> Personalised clean skincare</span>
+        <h1 class="intro__title">Find your routine,<br><em>in 60 seconds.</em></h1>
+        <p class="intro__sub">Nine quick questions and we'll match you with a clean skincare routine engineered around your skin type, concerns, age, climate, and current habits.</p>
+        <div class="intro__pills">
+          <span class="intro__pill">9 questions</span>
+          <span class="intro__pill">Free, always</span>
+          <span class="intro__pill">Built for your skin</span>
+        </div>
+        <button class="btn btn--ink btn--lg" data-advance>Begin the quiz</button>
+        <p class="intro__reassurance">No account needed. We only ask for your email at the very end.</p>
+      </div>
+    </section>
+
+    <!-- Q1: SKIN TYPE -->
+    <section class="quiz-screen" data-screen="q1">
+      <span class="question__overline">Question 1 of 9</span>
+      <h2 class="question__title">What's your <em>skin type?</em></h2>
+      <p class="question__sub">This is the biggest signal for what your skin actually needs.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Oily</span>
+            <span class="answer__hint">Shine, large pores, frequent breakouts</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Dry</span>
+            <span class="answer__hint">Tight feeling, flaky patches, rough texture</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Combination</span>
+            <span class="answer__hint">Oily T-zone, dry or normal cheeks</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Sensitive</span>
+            <span class="answer__hint">Redness, easily irritated, reactive</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q2">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Normal / I'm not sure</span>
+            <span class="answer__hint">No major pattern — we'll figure it out</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q2: TOP CONCERN -->
+    <section class="quiz-screen" data-screen="q2">
+      <span class="question__overline">Question 2 of 9</span>
+      <h2 class="question__title">What's your <em>top concern</em> right now?</h2>
+      <p class="question__sub">Pick the one that bothers you most — your routine will focus here.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Breakouts &amp; blemishes</span>
+            <span class="answer__hint">Active acne, post-acne marks, congestion</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Fine lines &amp; firmness</span>
+            <span class="answer__hint">Smoothing, anti-aging, support over time</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Dehydration &amp; dullness</span>
+            <span class="answer__hint">Tightness, midday dryness, lack of glow</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Dark spots &amp; uneven tone</span>
+            <span class="answer__hint">Hyperpigmentation, sun damage, melasma</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q3">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Redness &amp; reactivity</span>
+            <span class="answer__hint">Sensitive flares, easily irritated barrier</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q3: BRANCH (acne_freq for the demo) -->
+    <section class="quiz-screen" data-screen="q3">
+      <span class="question__overline">Question 3 of 9</span>
+      <h2 class="question__title">How often do you <em>break out?</em></h2>
+      <p class="question__sub">Frequency helps us match the right strength of treatment.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Daily</span>
+            <span class="answer__hint">Constant active breakouts</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Weekly</span>
+            <span class="answer__hint">Regular flare-ups</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Hormonal</span>
+            <span class="answer__hint">Around your monthly cycle</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q4">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.4 4.2 4.2 1.4-4.2 1.4L12 13.2l-1.4-4.2-4.2-1.4 4.2-1.4z"/><path d="M19 14l.7 2.1 2.1.7-2.1.7L19 19.6l-.7-2.1-2.1-.7 2.1-.7z"/><path d="M5 14l.7 2.1 2.1.7-2.1.7L5 19.6l-.7-2.1-2.1-.7 2.1-.7z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Rarely</span>
+            <span class="answer__hint">But I want clearer skin</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q4: ACNE SCARS / POST-ACNE MARKS (NEW) -->
+    <section class="quiz-screen" data-screen="q4">
+      <span class="question__overline">Question 4 of 9</span>
+      <h2 class="question__title">Are <em>post-acne marks</em> a concern?</h2>
+      <p class="question__sub">Different from active breakouts — these are the marks left behind after blemishes heal, plus any textured scars.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><path d="M3 12h2M19 12h2M12 3v2M12 19v2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Yes — fading them is a top focus</span>
+            <span class="answer__hint">Marks linger long after blemishes heal</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="2"/><circle cx="16" cy="14" r="2"/><circle cx="8" cy="16" r="1.5"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Some leftover marks</span>
+            <span class="answer__hint">From past breakouts — would like them gone</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 6c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Textured scars</span>
+            <span class="answer__hint">Rolling, boxcar, or ice-pick — uneven surface</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q5">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">No marks or scars</span>
+            <span class="answer__hint">Skin heals cleanly</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q5: AGE RANGE (NEW) -->
+    <section class="quiz-screen" data-screen="q5">
+      <span class="question__overline">Question 5 of 9</span>
+      <h2 class="question__title">What's your <em>age range?</em></h2>
+      <p class="question__sub">We'll calibrate the strength of actives like retinol and peptides accordingly — gentler for prevention years, more concentrated for repair.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Under 25</span>
+            <span class="answer__hint">Building good habits early</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">25 – 34</span>
+            <span class="answer__hint">Prevention years — get ahead of fine lines</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">35 – 44</span>
+            <span class="answer__hint">Active anti-aging — peptides and gentle retinol</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q6">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">45+</span>
+            <span class="answer__hint">Repair and renew — full anti-aging support</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q6: CLIMATE (NEW) -->
+    <section class="quiz-screen" data-screen="q6">
+      <span class="question__overline">Question 6 of 9</span>
+      <h2 class="question__title">What's your <em>climate?</em></h2>
+      <p class="question__sub">Dry winter air or tropical humidity — formula textures need to adapt to your environment.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2"/><path d="M2 17l2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2 2 2 2-2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Cold &amp; dry</span>
+            <span class="answer__hint">Indoor heating, low humidity, winter skin</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Hot &amp; humid</span>
+            <span class="answer__hint">Tropical or summer humid — gel textures preferred</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Mild &amp; temperate</span>
+            <span class="answer__hint">Moderate year-round, no extremes</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q7">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Four seasons</span>
+            <span class="answer__hint">Varies dramatically — swap formulas seasonally</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q7: ROUTINE -->
+    <section class="quiz-screen" data-screen="q7">
+      <span class="question__overline">Question 7 of 9</span>
+      <h2 class="question__title">What's your <em>current routine?</em></h2>
+      <p class="question__sub">We'll meet you where you are — beginner or expert.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Nothing special</span>
+            <span class="answer__hint">Soap and water</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Basic</span>
+            <span class="answer__hint">Cleanser + moisturiser</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0M5.58 16.5h12.85"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">I use serums</span>
+            <span class="answer__hint">And targeted treatments</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q8">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Full detailed routine</span>
+            <span class="answer__hint">Ready to upgrade</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q8: SUN CARE -->
+    <section class="quiz-screen" data-screen="q8">
+      <span class="question__overline">Question 8 of 9</span>
+      <h2 class="question__title">How often do you <em>wear SPF?</em></h2>
+      <p class="question__sub">This is the #1 factor in aging and uneven tone — no judgement.</p>
+      <div class="answers">
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9-4.97 0-9-4.03-9-9 0-4.97 4.03-9 9-9 1.66 0 3.22.45 4.56 1.24"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Every single day</span>
+            <span class="answer__hint">Even cloudy days, even indoors</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">When I'm going outside</span>
+            <span class="answer__hint">If I remember</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10"/><path d="M12 18a2 2 0 0 0 2-2 2 2 0 0 0-2-2"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Rarely</span>
+            <span class="answer__hint">Only beach days, that sort of thing</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="q9">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Never</span>
+            <span class="answer__hint">We'll help you start</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Q9: BAD REACTION -->
+    <section class="quiz-screen" data-screen="q9">
+      <span class="question__overline">Question 9 of 9</span>
+      <h2 class="question__title">Have you ever had a <em>bad reaction</em> to skincare?</h2>
+      <p class="question__sub">This tells us what to avoid in your routine.</p>
+      <div class="answers">
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Never</span>
+            <span class="answer__hint">My skin's pretty easygoing</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Once or twice</span>
+            <span class="answer__hint">A specific product I now avoid</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">Often</span>
+            <span class="answer__hint">I avoid strong actives</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+        <button class="answer" data-advance="email">
+          <span class="answer__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg></span>
+          <span class="answer__body">
+            <span class="answer__title">I don't know what's safe</span>
+            <span class="answer__hint">We'll guide you carefully</span>
+          </span>
+          <span class="answer__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- EMAIL GATE -->
+    <section class="quiz-screen" data-screen="email">
+      <div class="email-gate">
+        <div class="email-gate__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <h2 class="email-gate__title">Your routine is <em>ready.</em></h2>
+        <p class="email-gate__sub">Where should we send it? We'll save your routine so you can come back to it any time.</p>
+        <form class="email-gate__form" id="email-form">
+          <input class="field" type="text" placeholder="First name (optional)" autocomplete="given-name">
+          <input class="field" type="email" placeholder="you@email.com" required autocomplete="email">
+          <button class="btn btn--ink btn--lg" type="submit" style="margin-top: 4px;">See my routine</button>
+        </form>
+        <p class="email-gate__priv">No spam, ever. Unsubscribe in one click. We use your email to send your routine and occasional skincare tips — never share or sell it.</p>
+      </div>
+    </section>
+
+    <!-- LOADING -->
+    <section class="quiz-screen" data-screen="loading">
+      <div class="loading">
+        <div class="loading__ring"></div>
+        <h2 class="loading__title">Building your routine…</h2>
+        <ul class="loading__steps" id="loading-steps">
+          <li class="loading__step is-active" data-step="1">Analysing your skin profile</li>
+          <li class="loading__step" data-step="2">Matching with our 20 formulas</li>
+          <li class="loading__step" data-step="3">Building your personalised routine</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="quiz-screen is-wide" data-screen="results">
+
+      <div class="results-hero">
+        <span class="results-hero__overline"><span class="dot"></span> Your match</span>
+        <h2 class="results-hero__title">Your <em>acne-clearing</em> routine,<br>matched to <em>combination</em> skin.</h2>
+        <p class="results-hero__why">Based on your answers, your skin needs gentle clarification — not stripping. We've built a routine around niacinamide and a non-stripping blemish wash, plus a non-comedogenic moisturiser so your skin gets hydration without congestion. SPF is the one product we'll always nudge you on.</p>
+      </div>
+
+      <!-- Ingredients you need panel -->
+      <section class="ingredients-panel" aria-label="Ingredients your skin needs">
+        <div class="ingredients-panel__head">
+          <h3 class="ingredients-panel__heading">The ingredients your <em>skin needs</em></h3>
+          <p class="ingredients-panel__intro">Five clean actives, mapped from your specific answers. Tap any one to see how it works.</p>
+        </div>
+
+        <div class="ingredients-list" id="ingredients-list">
+          <!-- Populated dynamically from quiz answers -->
+        </div>
+
+        <div class="ingredients-panel__foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L3 18a2 2 0 0 0 1.73 3h14.54a2 2 0 0 0 1.73-3L15 8V2"/><line x1="8" y1="2" x2="16" y2="2"/></svg>
+          <span>Matched from 9 responses</span>
+        </div>
+      </section>
+
+      <!-- Recommendations section header -->
+      <div class="rec-head">
+        <span class="rec-head__overline">Your matched products</span>
+        <h3 class="rec-head__title">Six products,<br><em>chosen for you.</em></h3>
+        <p class="rec-head__sub">Each one earns its place in your routine — and tested to layer cleanly with the others. Add only what feels right.</p>
+      </div>
+
+      <div class="recommendations">
+
+        <!-- Card 1: Niacinamide Gel — TOP MATCH -->
+        <article class="rec rec--top">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Niacinamide Gel"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <span class="rec__badge">Top match</span>
+                <h4 class="rec__name">Niacinamide Gel Moisturiser</h4>
+                <span class="rec__role">Pore-refining oil-balancer · 30 ml</span>
+              </div>
+              <span class="rec__price">$19</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">Hits three of your concerns at once — pore congestion, post-acne tone and barrier support — without triggering sensitivity. The single most-impactful product for combination, blemish-prone skin. If you only do one thing, do this.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Blemish Face Wash</span>
+                    <span class="rec-pair-row__why">Pre-cleanse — your gel works on properly cleansed skin</span>
+                  </span>
+                  <span class="rec-pair-row__price">$35</span>
+                  <button class="rec-pair-row__add" aria-label="Add Blemish Face Wash to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Sunscreen SPF30</span>
+                    <span class="rec-pair-row__why">Locks in the niacinamide tone work</span>
+                  </span>
+                  <span class="rec-pair-row__price">$24</span>
+                  <button class="rec-pair-row__add" aria-label="Add Sunscreen SPF30 to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Dark Spot Care</span>
+                    <span class="rec-pair-row__why">Doubles down on post-acne marks</span>
+                  </span>
+                  <span class="rec-pair-row__price">$32</span>
+                  <button class="rec-pair-row__add" aria-label="Add Dark Spot Care to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 4 as routine</span>
+                <span class="rec__bundle-text">Complete acne routine</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$110</span>
+                <span class="rec__bundle-price-now">$99</span>
+                <span class="rec__bundle-saves">save $11</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $19</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Blemish Purifying Face Wash -->
+        <article class="rec rec--cream">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Blemish Wash"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Blemish Purifying Face Wash</h4>
+                <span class="rec__role">Daily clarifying cleanser · 140 ml</span>
+              </div>
+              <span class="rec__price">$35</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">A twice-daily blemish wash that clears pore-clogging buildup without stripping. The morning + night step that breaks the breakout cycle — gentle enough to use through active flares, effective enough to prevent new ones.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Treatment that follows the wash</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Micellar Water</span>
+                    <span class="rec-pair-row__why">First cleanse so the wash works harder</span>
+                  </span>
+                  <span class="rec-pair-row__price">$18</span>
+                  <button class="rec-pair-row__add" aria-label="Add Micellar Water to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Cleanse + treat trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$72</span>
+                <span class="rec__bundle-price-now">$65</span>
+                <span class="rec__bundle-saves">save $7</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $35</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Targeted Dark Spot Care -->
+        <article class="rec rec--lilac">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Dark Spot Care"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Targeted Dark Spot Care</h4>
+                <span class="rec__role">1% kojic acid spot treatment · 15 ml</span>
+              </div>
+              <span class="rec__price">$32</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">You said leftover marks were a concern — this targets them directly. 1% kojic acid is one of the most studied tone-correcting actives, applied directly to dark spots and post-acne marks rather than all over the face. Patient consistency over weeks.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Sunscreen SPF30</span>
+                    <span class="rec-pair-row__why">Without it, kojic acid is wasted effort</span>
+                  </span>
+                  <span class="rec-pair-row__price">$24</span>
+                  <button class="rec-pair-row__add" aria-label="Add Sunscreen SPF30 to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Stops new pigmentation forming</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Tone-correction trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$75</span>
+                <span class="rec__bundle-price-now">$67</span>
+                <span class="rec__bundle-saves">save $8</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $32</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Sunscreen SPF30 -->
+        <article class="rec rec--sage">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="SPF 30"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Sunscreen SPF30</h4>
+                <span class="rec__role">Daily broad-spectrum protection · 50 ml</span>
+              </div>
+              <span class="rec__price">$24</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">SPF locks in everything else your routine is doing. Without it, dark spots come back faster and post-acne marks darken instead of fading. Non-negotiable for clear skin long-term — and we built one you'll actually want to wear.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Anti-inflammatory base under SPF</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Vitamin C Serum</span>
+                    <span class="rec-pair-row__why">Vit C supercharges sunscreen protection</span>
+                  </span>
+                  <span class="rec-pair-row__price">$40</span>
+                  <button class="rec-pair-row__add" aria-label="Add Vitamin C Serum to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Daily protection trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$83</span>
+                <span class="rec__bundle-price-now">$75</span>
+                <span class="rec__bundle-saves">save $8</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $24</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: Vitamin C Serum -->
+        <article class="rec rec--cream">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Vit. C Serum"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Vitamin C Serum</h4>
+                <span class="rec__role">Brightening antioxidant · 30 ml</span>
+              </div>
+              <span class="rec__price">$40</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">Pairs with your Dark Spot Care to attack hyperpigmentation from two angles — kojic acid at night, vitamin C in the morning. Also shields your skin from the new daily damage that creates new marks.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Sunscreen SPF30</span>
+                    <span class="rec-pair-row__why">Vit C without SPF is half the routine</span>
+                  </span>
+                  <span class="rec-pair-row__price">$24</span>
+                  <button class="rec-pair-row__add" aria-label="Add Sunscreen SPF30 to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Dark Spot Care</span>
+                    <span class="rec-pair-row__why">AM brighten + PM tone correct</span>
+                  </span>
+                  <span class="rec-pair-row__price">$32</span>
+                  <button class="rec-pair-row__add" aria-label="Add Dark Spot Care to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Brightening trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$96</span>
+                <span class="rec__bundle-price-now">$86</span>
+                <span class="rec__bundle-saves">save $10</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $40</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6: Micellar Cleansing Water -->
+        <article class="rec rec--lilac">
+          <div class="rec__visual">
+            <div class="rec__bottle" data-label="Micellar Water"></div>
+          </div>
+          <div class="rec__body">
+            <div class="rec__head">
+              <div>
+                <h4 class="rec__name">Micellar Cleansing Water</h4>
+                <span class="rec__role">No-rinse first cleanse · 200 ml</span>
+              </div>
+              <span class="rec__price">$18</span>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Why this for you</span>
+              <p class="rec__why">Use before your Blemish Wash to remove makeup, SPF and grime — your wash works better when it's not having to chew through a whole day of buildup. Especially helpful if you wear makeup or daily SPF.</p>
+            </div>
+
+            <div class="rec-section">
+              <span class="rec-section__label">Complete the routine</span>
+              <div class="rec__pairs-block">
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Blemish Face Wash</span>
+                    <span class="rec-pair-row__why">First-cleanse step before the wash</span>
+                  </span>
+                  <span class="rec-pair-row__price">$35</span>
+                  <button class="rec-pair-row__add" aria-label="Add Blemish Face Wash to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+                <a href="#" class="rec-pair-row">
+                  <span class="rec-pair-row__bottle"></span>
+                  <span class="rec-pair-row__info">
+                    <span class="rec-pair-row__name">Niacinamide Gel</span>
+                    <span class="rec-pair-row__why">Treatment to follow the wash</span>
+                  </span>
+                  <span class="rec-pair-row__price">$19</span>
+                  <button class="rec-pair-row__add" aria-label="Add Niacinamide Gel to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                </a>
+              </div>
+            </div>
+
+            <button class="rec__bundle" type="button">
+              <span class="rec__bundle-main">
+                <span class="rec__bundle-label">Add all 3 as routine</span>
+                <span class="rec__bundle-text">Cleanse-and-treat trio</span>
+              </span>
+              <span class="rec__bundle-price">
+                <span class="rec__bundle-price-was">$72</span>
+                <span class="rec__bundle-price-now">$65</span>
+                <span class="rec__bundle-saves">save $7</span>
+              </span>
+            </button>
+
+            <div class="rec__action">
+              <button class="rec__cta">Add just this · $18</button>
+              <a href="#" class="rec__view">View product →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="results-foot">
+        <p class="results-foot__text">Want to retake the quiz? You can refine your answers any time.</p>
+        <button class="btn btn--ghost" data-restart>Retake the quiz</button>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // Quiz flow controller
+  // ============================================================
+  (function () {
+
+    // ============================================================
+    // INGREDIENT MATCH SCORING
+    // Real scoring: each quiz answer adds points to specific
+    // ingredients. After all 9 answers, totals are sorted, top 5
+    // are kept, normalized so the top match displays at 92%.
+    // ============================================================
+
+    const INGREDIENTS = {
+      niacinamide: {
+        abbr: "B3",
+        name: "Niacinamide",
+        role: "Pore-refining oil-balancer",
+        why: "Hits multiple concerns at once — pore congestion, post-acne tone and barrier support — without triggering sensitivity.",
+        base: 25,
+        howItWorks: "A form of vitamin B3 that signals skin cells to slow sebum production, strengthen the lipid barrier, and reduce the appearance of pores. Also inhibits melanin transfer — which is why it fades post-acne marks over time.",
+        bestUsed: "AM and PM, applied before moisturiser. Plays nicely with vitamin C, retinol, and exfoliating acids — despite the old internet myth that you can't layer it.",
+        clinical: "Studied in 100+ peer-reviewed papers. Effective at 2–10% concentration. Our formula sits in the clinically meaningful range — not the symbolic 'trace amount' found on most product labels.",
+        products: ["Niacinamide Gel Moisturiser"]
+      },
+      teaTree: {
+        abbr: "TT",
+        name: "Tea Tree",
+        role: "Clarifying",
+        why: "A gentle clarifier for active blemishes — works on visible blemishes without stripping the rest of your face.",
+        base: 5,
+        howItWorks: "An essential oil with terpinen-4-ol that targets P. acnes bacteria — the same bacteria prescription antibiotics treat — but at a much gentler dose. Reduces inflammation around active blemishes.",
+        bestUsed: "As a spot treatment on active blemishes, or diluted in a daily wash. Skip on the same night as retinol to avoid layered irritation.",
+        clinical: "5% tea tree oil shown comparable to 5% benzoyl peroxide for mild-to-moderate acne, with significantly less irritation.<cite>— Med J Aust, 1990</cite>",
+        products: ["Blemish Purifying Face Wash"]
+      },
+      ceramides: {
+        abbr: "Cer",
+        name: "Ceramides",
+        role: "Barrier support",
+        why: "Strengthens your moisture barrier so the actives in your routine can do their work without irritation.",
+        base: 20,
+        howItWorks: "Lipid molecules that already exist in your skin barrier, gluing skin cells together to keep moisture in and irritants out. Topical ceramides replenish what's lost from cleansing, weather, and aging.",
+        bestUsed: "AM and PM in moisturiser. Especially helpful when starting a new active — they pre-empt the irritation that often makes people quit after a week.",
+        clinical: "Skin with damaged barrier function has up to 50% lower ceramide levels. Topical replacement restores barrier integrity within 4 weeks of consistent use.",
+        products: ["Niacinamide Gel Moisturiser", "Sensitive Skin Moisturiser"]
+      },
+      hyaluronicAcid: {
+        abbr: "HA",
+        name: "Hyaluronic Acid",
+        role: "Hydration",
+        why: "Hydrates without adding oil — the unlock for combination skin that needs moisture without feeding congestion.",
+        base: 22,
+        howItWorks: "A naturally-occurring molecule that holds up to 1,000× its weight in water. Different molecular sizes hydrate different layers — the smaller weights penetrate deeper, the larger weights cushion the surface.",
+        bestUsed: "AM and PM on damp skin — it pulls moisture from the air, so works best in humid environments. In dry climates, apply to wet skin then seal with cream.",
+        clinical: "Topical HA increases skin hydration by 30–55% within 8 hours of application. Effect compounds with regular use.",
+        products: ["Niacinamide Gel Moisturiser", "Moisturising Day Cream"]
+      },
+      kojicAcid: {
+        abbr: "KA",
+        name: "Kojic Acid",
+        role: "Tone correction",
+        why: "Targets the post-acne marks left behind from past breakouts — fades stubborn pigmentation over consistent use.",
+        base: 3,
+        howItWorks: "A fungal-derived compound that inhibits tyrosinase — the enzyme responsible for melanin production. Slows new pigmentation while existing pigment fades through normal cell turnover.",
+        bestUsed: "PM only, applied directly to dark spots. SPF non-negotiable in the morning — without it, kojic acid is wasted effort because new UV creates new pigment faster than you can fade old.",
+        clinical: "1–2% kojic acid as effective as 4% hydroquinone for melasma and post-inflammatory hyperpigmentation, with significantly fewer side effects.<cite>— J Clin Aesthet Dermatol, 2017</cite>",
+        products: ["Targeted Dark Spot Care", "Brightening Exfoliator"]
+      },
+      vitaminC: {
+        abbr: "C",
+        name: "Vitamin C",
+        role: "Brightening antioxidant",
+        why: "Fades existing dark spots, evens tone, and shields skin from new daily damage that creates new marks.",
+        base: 12,
+        howItWorks: "L-ascorbic acid neutralises free radicals from UV and pollution before they damage skin cells. Inhibits melanin production at the source, slowing new pigmentation while existing fades.",
+        bestUsed: "AM under sunscreen for maximum antioxidant protection. Pairs especially well with SPF — they reinforce each other against UV damage.",
+        clinical: "10–20% L-ascorbic acid clinically shown to reduce hyperpigmentation by ~35% over 12 weeks of consistent use.",
+        products: ["Vitamin C Serum"]
+      },
+      retinolAlt: {
+        abbr: "RA",
+        name: "Retinol Alternative",
+        role: "Gentle anti-aging",
+        why: "All the smoothing benefits of retinol — without the redness, peeling or downtime. Safe for sensitive and pregnancy-conscious users.",
+        base: 8,
+        howItWorks: "Plant-derived bakuchiol triggers similar cell-turnover and collagen pathways as traditional retinol, but without binding the same skin receptors that cause irritation.",
+        bestUsed: "PM nightly. Build up gradually — start 2–3 nights/week. Pairs cleanly with peptides for a full anti-aging stack.",
+        clinical: "Bakuchiol shown comparable to 0.5% retinol for fine lines and elasticity, with significantly less irritation.<cite>— Br J Dermatol, 2019</cite>",
+        products: ["Retinol Alternative Serum", "Retinol Alternative Moisturiser"]
+      },
+      peptides: {
+        abbr: "Pep",
+        name: "Peptides",
+        role: "Firmness support",
+        why: "Signal molecules that target firmness, fine lines and the look of skin elasticity — the premium addition to any anti-aging routine.",
+        base: 5,
+        howItWorks: "Short chains of amino acids that mimic skin's own signaling molecules. Tell your skin to produce more collagen, elastin, and barrier lipids over consistent use.",
+        bestUsed: "AM and PM. Layers cleanly under any moisturiser. Pairs especially well with retinol-alternatives for compound anti-aging effect.",
+        clinical: "Multi-peptide complexes shown to reduce wrinkle depth by ~18% and increase skin firmness by ~22% over 12 weeks.",
+        products: ["Peptide Anti-Aging Serum", "Anti-Aging Collection Box"]
+      }
+    };
+
+    // Per-answer impact: each entry is the ingredient score delta for that
+    // option index. Indices match the DOM order of .answer buttons in each screen.
+    const IMPACTS = {
+      // Q1 skin type — oily / dry / combination / sensitive / normal
+      q1: [
+        { niacinamide: 15, teaTree: 5,  hyaluronicAcid: 3 },
+        { ceramides: 20, hyaluronicAcid: 25, niacinamide: 3 },
+        { niacinamide: 12, hyaluronicAcid: 10, ceramides: 5 },
+        { ceramides: 25, hyaluronicAcid: 15, retinolAlt: 8, teaTree: -10, kojicAcid: -8 },
+        { niacinamide: 5, hyaluronicAcid: 5 }
+      ],
+      // Q2 top concern — breakouts / fine lines / dehydration / dark spots / redness
+      q2: [
+        { niacinamide: 25, teaTree: 25, kojicAcid: 5 },
+        { peptides: 30, retinolAlt: 28, vitaminC: 12, ceramides: 8 },
+        { hyaluronicAcid: 30, ceramides: 18, niacinamide: 5 },
+        { vitaminC: 30, kojicAcid: 30, niacinamide: 12 },
+        { ceramides: 25, hyaluronicAcid: 12, niacinamide: 8, teaTree: -8, kojicAcid: -5 }
+      ],
+      // Q3 acne_freq — daily / weekly / hormonal / rarely
+      q3: [
+        { teaTree: 22, niacinamide: 12, kojicAcid: 5 },
+        { teaTree: 16, niacinamide: 10, kojicAcid: 3 },
+        { niacinamide: 15, teaTree: 6 },
+        { niacinamide: 5, vitaminC: 3 }
+      ],
+      // Q4 post-acne marks — top focus / leftover / textured / none
+      q4: [
+        { kojicAcid: 35, vitaminC: 22, niacinamide: 10 },
+        { kojicAcid: 20, vitaminC: 12, niacinamide: 6 },
+        { retinolAlt: 18, vitaminC: 12, niacinamide: 10, peptides: 8 },
+        {}
+      ],
+      // Q5 age — under 25 / 25-34 / 35-44 / 45+
+      q5: [
+        { niacinamide: 5 },
+        { peptides: 10, retinolAlt: 8, niacinamide: 5, vitaminC: 5 },
+        { peptides: 22, retinolAlt: 22, ceramides: 5, hyaluronicAcid: 5 },
+        { peptides: 30, retinolAlt: 25, ceramides: 12, hyaluronicAcid: 8 }
+      ],
+      // Q6 climate — cold-dry / hot-humid / mild / four seasons
+      q6: [
+        { ceramides: 18, hyaluronicAcid: 18 },
+        { niacinamide: 10, hyaluronicAcid: 5 },
+        {},
+        { ceramides: 12, hyaluronicAcid: 10 }
+      ],
+      // Q7 routine — nothing / basic / serums / detailed
+      q7: [
+        { niacinamide: 5, hyaluronicAcid: 5, ceramides: 5, teaTree: -5, kojicAcid: -3, retinolAlt: -3 },
+        { niacinamide: 3, hyaluronicAcid: 3 },
+        {},
+        { peptides: 5, retinolAlt: 5, vitaminC: 5 }
+      ],
+      // Q8 sun care — daily / outside-only / rarely / never
+      q8: [
+        {},
+        { vitaminC: 5, kojicAcid: 3 },
+        { vitaminC: 18, kojicAcid: 8, niacinamide: 3 },
+        { vitaminC: 25, kojicAcid: 12, niacinamide: 5 }
+      ],
+      // Q9 bad reaction — never / once / often / dont know
+      q9: [
+        {},
+        { ceramides: 5 },
+        { ceramides: 22, hyaluronicAcid: 12, retinolAlt: 5, teaTree: -15, kojicAcid: -12, vitaminC: -5 },
+        { ceramides: 12, hyaluronicAcid: 5, teaTree: -5 }
+      ]
+    };
+
+    // Per-screen tracking of which answer index the user picked
+    const answers = {};
+
+    function scoreIngredients() {
+      const scores = {};
+      Object.keys(INGREDIENTS).forEach(id => {
+        scores[id] = INGREDIENTS[id].base;
+      });
+      Object.keys(answers).forEach(qid => {
+        const idx = answers[qid];
+        const impacts = (IMPACTS[qid] || [])[idx] || {};
+        Object.keys(impacts).forEach(ingId => {
+          scores[ingId] = (scores[ingId] || 0) + impacts[ingId];
+        });
+      });
+      // Floor at 0 (don't show negative percentages)
+      Object.keys(scores).forEach(id => { scores[id] = Math.max(0, scores[id]); });
+      // Sort descending, take top 5
+      const sorted = Object.keys(scores)
+        .map(id => ({ id, score: scores[id] }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
+      const topRaw = sorted[0].score || 1;
+      return sorted.map(item => ({
+        id: item.id,
+        ingredient: INGREDIENTS[item.id],
+        rawScore: item.score,
+        // top match displays at 92% (humble — never claim 100); others scale proportionally
+        pct: Math.round((item.score / topRaw) * 92)
+      }));
+    }
+
+    function renderIngredientRow(match, index) {
+      const isTop = index === 0;
+      const ing = match.ingredient;
+      const num = String(index + 1).padStart(2, '0');
+      const productLinks = ing.products.map(p =>
+        '<a href="#" class="exp-product"><span class="exp-product__bottle"></span>' + p + '</a>'
+      ).join('');
+
+      return (
+        '<div class="ingredient ' + (isTop ? 'ingredient--top' : '') + '" tabindex="0" role="button" aria-expanded="false" data-toggle>' +
+          '<div class="ingredient__row">' +
+            '<div class="ingredient__symbol">' +
+              '<span class="ingredient__abbr">' + ing.abbr + '</span>' +
+              '<span class="ingredient__num">' + num + '</span>' +
+            '</div>' +
+            '<div class="ingredient__body">' +
+              (isTop
+                ? '<div class="ingredient__top-row"><span class="ingredient__role">Key active</span></div>' +
+                  '<h4 class="ingredient__name"><em>' + ing.name + '</em></h4>'
+                : '<span class="ingredient__role">' + ing.role + '</span>' +
+                  '<h4 class="ingredient__name">' + ing.name + '</h4>') +
+              '<p class="ingredient__why">' + ing.why + '</p>' +
+            '</div>' +
+            '<div class="ingredient__right">' +
+              (isTop ? '<span class="ingredient__badge">Top match</span>' : '') +
+              '<span class="ingredient__match">' +
+                '<span class="ingredient__match-pct">' + match.pct + '%</span>' +
+                '<span class="ingredient__match-bar" style="--pct: ' + match.pct + '%"></span>' +
+                '<span class="ingredient__match-label">match</span>' +
+              '</span>' +
+              '<span class="ingredient__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ingredient__expanded">' +
+            '<div class="ingredient__expanded-inner">' +
+              '<div class="ingredient__expanded-content">' +
+                '<div class="exp-grid">' +
+                  '<div class="exp-section">' +
+                    '<span class="exp-label">How it works</span>' +
+                    '<p class="exp-body">' + ing.howItWorks + '</p>' +
+                  '</div>' +
+                  '<div class="exp-section">' +
+                    '<span class="exp-label">Best used</span>' +
+                    '<p class="exp-body">' + ing.bestUsed + '</p>' +
+                  '</div>' +
+                  '<div class="exp-section">' +
+                    '<span class="exp-label">Clinical evidence</span>' +
+                    '<p class="exp-body">' + ing.clinical + '</p>' +
+                  '</div>' +
+                  '<div class="exp-section">' +
+                    '<span class="exp-label">Found in your routine</span>' +
+                    '<div class="exp-product-list">' + productLinks + '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function renderIngredientsPanel() {
+      const list = document.getElementById('ingredients-list');
+      if (!list) return;
+      const top5 = scoreIngredients();
+      list.innerHTML = top5.map(renderIngredientRow).join('');
+    }
+
+    // ============================================================
+    // Original quiz controller
+    // ============================================================
+    const screens = ['intro','q1','q2','q3','q4','q5','q6','q7','q8','q9','email','loading','results'];
+    const counters = {
+      intro: 'Welcome',
+      q1: 'Question 1 of 9',
+      q2: 'Question 2 of 9',
+      q3: 'Question 3 of 9',
+      q4: 'Question 4 of 9',
+      q5: 'Question 5 of 9',
+      q6: 'Question 6 of 9',
+      q7: 'Question 7 of 9',
+      q8: 'Question 8 of 9',
+      q9: 'Question 9 of 9',
+      email: 'Almost there',
+      loading: 'Building your routine',
+      results: 'Your routine'
+    };
+    const history = ['intro'];
+
+    const stage = document.querySelector('.quiz-stage');
+    const fill  = document.getElementById('progress-fill');
+    const counter = document.getElementById('counter');
+    const back  = document.getElementById('back-btn');
+
+    function go(name) {
+      const current = document.querySelector('.quiz-screen.is-active');
+      const target  = document.querySelector('.quiz-screen[data-screen="' + name + '"]');
+      if (!target) return;
+      if (current) current.classList.remove('is-active');
+      target.classList.add('is-active');
+
+      // Re-trigger entrance animation
+      target.style.animation = 'none';
+      void target.offsetWidth;
+      target.style.animation = '';
+
+      // Update progress bar (0% on intro, 100% on results)
+      const idx = screens.indexOf(name);
+      const pct = idx <= 0 ? 0 : Math.round((idx / (screens.length - 1)) * 100);
+      fill.style.width = pct + '%';
+
+      // Update counter + back button
+      counter.textContent = counters[name] || '';
+      back.disabled = history.length <= 1;
+
+      // Reset selection states on every entry
+      target.querySelectorAll('.answer.is-selected').forEach(a => a.classList.remove('is-selected'));
+
+      // Special-case the loading screen — sequence the steps then advance
+      if (name === 'loading') runLoadingSequence();
+
+      // When entering results: compute scoring + render ingredient panel
+      if (name === 'results') renderIngredientsPanel();
+
+      // Scroll stage to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function advance(toName) {
+      history.push(toName);
+      go(toName);
+    }
+
+    function goBack() {
+      if (history.length <= 1) return;
+      history.pop();
+      go(history[history.length - 1]);
+    }
+
+    // Wire up answer cards: record answer index → select state → advance
+    document.querySelectorAll('[data-advance]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const next = el.getAttribute('data-advance');
+        if (el.classList.contains('answer')) {
+          // Record which answer index the user picked for this screen
+          const screenEl = el.closest('.quiz-screen');
+          const screenId = screenEl && screenEl.dataset.screen;
+          const screenAnswers = screenEl ? screenEl.querySelectorAll('.answer') : [];
+          const idx = Array.prototype.indexOf.call(screenAnswers, el);
+          if (screenId && idx >= 0) answers[screenId] = idx;
+          // Mark as selected for satisfying click feedback
+          el.classList.add('is-selected');
+          setTimeout(() => advance(next || 'q1'), 240);
+        } else {
+          // For the intro CTA — no select state, just advance
+          advance(next || 'q1');
+        }
+      });
+    });
+
+    // Email form: prevent submit, advance to loading
+    const emailForm = document.getElementById('email-form');
+    if (emailForm) {
+      emailForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        advance('loading');
+      });
+    }
+
+    // Back button
+    back.addEventListener('click', goBack);
+
+    // Restart from results
+    document.querySelectorAll('[data-restart]').forEach(el => {
+      el.addEventListener('click', () => {
+        history.length = 0;
+        history.push('intro');
+        go('intro');
+      });
+    });
+
+    // Loading screen sequence
+    function runLoadingSequence() {
+      const steps = document.querySelectorAll('#loading-steps .loading__step');
+      // Reset
+      steps.forEach((s, i) => {
+        s.classList.remove('is-done');
+        s.classList.toggle('is-active', i === 0);
+      });
+      // Step 1 done → 2 active
+      setTimeout(() => {
+        steps[0].classList.remove('is-active');
+        steps[0].classList.add('is-done');
+        steps[1].classList.add('is-active');
+      }, 900);
+      // Step 2 done → 3 active
+      setTimeout(() => {
+        steps[1].classList.remove('is-active');
+        steps[1].classList.add('is-done');
+        steps[2].classList.add('is-active');
+      }, 1800);
+      // Step 3 done → results
+      setTimeout(() => {
+        steps[2].classList.remove('is-active');
+        steps[2].classList.add('is-done');
+      }, 2700);
+      setTimeout(() => advance('results'), 3100);
+    }
+
+    // Initial state
+    go('intro');
+
+    // ============================================================
+    // Ingredient cards: event delegation (rows are rendered dynamically)
+    // ============================================================
+    const ingList = document.getElementById('ingredients-list');
+    if (ingList) {
+      const toggleCard = (card) => {
+        const open = card.classList.toggle('is-open');
+        card.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      ingList.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // let inner links behave normally
+        const card = e.target.closest('[data-toggle]');
+        if (card) toggleCard(card);
+      });
+      ingList.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const card = e.target.closest('[data-toggle]');
+        if (!card) return;
+        e.preventDefault();
+        toggleCard(card);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

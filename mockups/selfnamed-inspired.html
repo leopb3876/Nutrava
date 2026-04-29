@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutrava — Mockup: SelfNamed-inspired direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     Nutrava — SelfNamed-inspired mockup
+     Direction: clean white canvas, warm tinted card sections,
+     deep forest accent, pill buttons, oversized type, organic textures.
+     ------------------------------------------------------------------ */
+
+  :root {
+    /* Palette */
+    --ink:        #0F1010;     /* near-black for type */
+    --ink-soft:   #4A4946;     /* secondary text */
+    --ink-mute:   #8B8A85;     /* tertiary / labels */
+    --paper:      #FFFFFF;     /* main canvas */
+    --cream:      #FBF4E6;     /* warm card section */
+    --peach:      #F4DDC2;     /* accent card */
+    --sage:       #DDE5D2;     /* secondary card */
+    --lilac:      #E8E2F0;     /* tertiary card */
+    --forest:     #B8CDA8;     /* pastel sage section */
+    --forest-deep:#9DB58C;     /* deeper variant */
+    --amber:      #C58A4B;     /* brand accent */
+    --line:       rgba(15,16,16,0.08);
+    --blob-1: #F8E5C9; --blob-1b: #F2D5B0;
+    --blob-2: #FAEBD2; --blob-2b: #F0D5B0;
+    --blob-3: #DDE5D2; --blob-3b: #B8C8A8;
+    --blob-4: #F4DDC2; --blob-4b: #E8C595;
+
+    /* Type */
+    --display: "Fraunces", "Times New Roman", serif;
+    --ui:      "Inter Tight", -apple-system, "Segoe UI", system-ui, sans-serif;
+
+    /* Radius */
+    --r-card:    28px;
+    --r-card-lg: 36px;
+    --r-pill:    999px;
+
+    /* Containers */
+    --w-page: 1240px;
+  }
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body {
+    font-family: var(--ui);
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: "ss01", "cv11";
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  .wrap { max-width: var(--w-page); margin: 0 auto; padding: 0 32px; }
+  .wrap--narrow { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+  /* ============== TOP BAR ============== */
+  .topbar {
+    background: var(--cream);
+    color: var(--ink);
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+
+  /* ============== NAV ============== */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+    gap: 24px;
+  }
+  .nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .nav__logo-mark {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid; place-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--ui);
+  }
+  .nav__menu {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .nav__menu a { padding: 6px 0; transition: opacity .15s; }
+  .nav__menu a:hover { opacity: .55; }
+  .nav__cta { display: flex; gap: 10px; align-items: center; }
+
+  /* ============== BUTTONS ============== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: var(--r-pill);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: transform .2s ease, background .2s, color .2s;
+    white-space: nowrap;
+  }
+  .btn--ink { background: var(--ink); color: var(--paper); }
+  .btn--ink:hover { background: #2a2a2a; transform: translateY(-1px); }
+  .btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn--paper { background: var(--paper); color: var(--ink); }
+  .btn--paper:hover { transform: translateY(-1px); }
+  .btn--sm { padding: 9px 16px; font-size: 12px; }
+
+  .text-link {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 4px;
+  }
+
+  /* ============== HERO ============== */
+  .hero {
+    text-align: center;
+    padding: 80px 32px 100px;
+  }
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border-radius: var(--r-pill);
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .hero__eyebrow .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .hero__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin: 0 auto 28px;
+    font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144;
+  }
+  .hero__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--amber);
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+    display: inline-block;
+    transform-origin: 50% 70%;
+    will-change: transform, opacity;
+    animation: word-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+  @keyframes word-reveal {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0.28em, 0) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__title em { animation: none; }
+  }
+  .hero__sub {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    letter-spacing: -0.01em;
+  }
+  .hero__check-row {
+    display: flex; flex-wrap: wrap;
+    gap: 20px 32px;
+    justify-content: center;
+    margin: 0 auto 32px;
+    max-width: 600px;
+  }
+  .hero__check {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .hero__check::before {
+    content: "";
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--sage);
+    display: inline-block;
+    flex: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233F5238' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .hero__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--cream);
+    border-radius: var(--r-pill);
+    padding: 10px 22px 10px 14px;
+    margin-bottom: 36px;
+  }
+  .hero__rating-mark {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 700;
+  }
+  .hero__rating-stars { color: var(--amber); letter-spacing: 1px; font-size: 13px; }
+  .hero__rating-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .hero__cta {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ============== STATS CARD ============== */
+  .stats-card {
+    background: var(--cream);
+    border-radius: var(--r-card-lg);
+    padding: 80px 48px;
+    margin: 0 32px;
+    max-width: var(--w-page);
+    margin-left: auto; margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats-card__title {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.03em;
+    margin-bottom: 64px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 2;
+  }
+  .stats-card__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .stat__number {
+    font-family: var(--display);
+    font-size: clamp(64px, 7vw, 96px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .stat__label {
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+    margin: 0 auto;
+  }
+  .stats-card__blob {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle at 35% 35%, var(--blob-1) 0%, var(--blob-1b) 40%, transparent 72%);
+    filter: blur(2px);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  .stats-card__blob--bl {
+    top: auto; right: auto;
+    bottom: -120px; left: -120px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle at 60% 40%, var(--blob-2) 0%, var(--blob-2b) 50%, transparent 75%);
+    opacity: 0.55;
+  }
+
+  /* ============== SECTION HEADER ============== */
+  .section { padding: 100px 32px; }
+  .section--tight { padding: 64px 32px; }
+  .section__head { text-align: center; margin-bottom: 60px; }
+  .section__title {
+    font-family: var(--display);
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    max-width: 18ch;
+    margin: 0 auto 16px;
+  }
+  .section__sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto;
+    letter-spacing: -0.01em;
+  }
+
+  /* ============== STEPS ============== */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+  }
+  .step {
+    background: var(--cream);
+    border-radius: var(--r-card);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 4.5;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease;
+  }
+  .step:nth-child(2) { background: var(--lilac); }
+  .step:nth-child(3) { background: var(--peach); }
+  .step:hover { transform: translateY(-3px); }
+  .step__num {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: var(--r-pill);
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    align-self: flex-start;
+    letter-spacing: 0.04em;
+  }
+  .step__visual {
+    flex: 1;
+    margin: 24px 0;
+    border-radius: 18px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,0.55);
+    position: relative;
+  }
+  .step__visual svg { width: 65%; height: auto; }
+  .step__title {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .step__text {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+  }
+
+  /* ============== CONCERNS ============== */
+  .concerns {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 18px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+    min-height: 540px;
+  }
+  .concern {
+    border-radius: var(--r-card);
+    padding: 32px;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .concern:hover { transform: translateY(-3px); }
+  .concern--lg { grid-row: 1 / span 2; background: var(--cream); }
+  .concern--acne   { background: var(--peach); }
+  .concern--aging  { background: var(--lilac); }
+  .concern--hydra  { background: var(--sage); }
+  .concern--bright { background: var(--peach); filter: brightness(1.05); }
+  .concern__label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .concern__title {
+    font-family: var(--display);
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.025em; line-height: 1.05;
+    margin: 12px 0 14px;
+  }
+  .concern--lg .concern__title { font-size: 44px; }
+  .concern__desc {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 32ch;
+  }
+  .concern__cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: auto;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 3px;
+    align-self: flex-start;
+  }
+  .concern__blob {
+    position: absolute;
+    inset: auto -30px -40px auto;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ============== DARK SECTION (pastel sage) ============== */
+  .dark-section {
+    background: var(--forest);
+    color: var(--ink);
+    border-radius: var(--r-card-lg);
+    margin: 0 32px;
+    max-width: var(--w-page);
+    margin-left: auto; margin-right: auto;
+    padding: 100px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .dark-section__inner { position: relative; z-index: 2; }
+  .dark-section__title {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    max-width: 22ch;
+    margin: 0 auto 36px;
+  }
+  .dark-section__cta { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .dark-section__blob-l, .dark-section__blob-r {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Pastel-sage section blobs — tonal greens, smoothly blended into background */
+  .dark-section__blob-l, .dark-section__blob-r {
+    width: 520px; height: 380px;
+    border-radius: 50%;
+    filter: blur(28px);
+    mix-blend-mode: multiply;
+  }
+  .dark-section__blob-l {
+    top: 50%; left: -14%;
+    transform: translateY(-50%);
+    /* deeper warm sage core, fading through mid-tones into the page sage (#B8CDA8) */
+    background: radial-gradient(ellipse at 60% 50%,
+      rgba(125, 152, 113, 0.95) 0%,
+      rgba(140, 168, 128, 0.65) 28%,
+      rgba(170, 192, 158, 0.30) 52%,
+      rgba(184, 205, 168, 0.0) 78%);
+    opacity: 0.85;
+  }
+  .dark-section__blob-r {
+    top: 50%; right: -12%;
+    transform: translateY(-50%);
+    width: 480px; height: 360px;
+    mix-blend-mode: screen;
+    /* lighter celadon highlight, fading out smoothly */
+    background: radial-gradient(ellipse at 35% 50%,
+      rgba(232, 240, 220, 0.85) 0%,
+      rgba(214, 229, 208, 0.55) 30%,
+      rgba(199, 218, 195, 0.25) 55%,
+      rgba(184, 205, 168, 0.0) 80%);
+    opacity: 0.9;
+  }
+
+  /* ============== PRODUCTS ============== */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+  }
+  .product {
+    background: var(--cream);
+    border-radius: var(--r-card);
+    padding: 22px;
+    transition: transform .25s ease;
+    display: flex; flex-direction: column;
+    color: inherit;
+  }
+  .product:nth-child(2) { background: var(--lilac); }
+  .product:nth-child(3) { background: var(--peach); }
+  .product:nth-child(4) { background: var(--sage); }
+  .product:hover { transform: translateY(-3px); }
+  .product__visual {
+    aspect-ratio: 1;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.55);
+    margin-bottom: 18px;
+    display: grid; place-items: center;
+    position: relative;
+  }
+  .product__bottle {
+    width: 60%;
+    aspect-ratio: 0.5;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%);
+    border-radius: 22px 22px 12px 12px;
+    border: 1px solid rgba(15,16,16,0.08);
+    position: relative;
+  }
+  .product__bottle::before {
+    content: "";
+    position: absolute;
+    top: -16px; left: 50%;
+    transform: translateX(-50%);
+    width: 38%; height: 18px;
+    background: var(--ink);
+    border-radius: 4px 4px 2px 2px;
+  }
+  .product__bottle::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 38%; left: 50%; transform: translateX(-50%);
+    width: 75%;
+    background: var(--paper);
+    border-radius: 2px;
+    padding: 8px 4px;
+    font-family: var(--display);
+    font-size: 9px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+    box-shadow: 0 0 0 1px rgba(15,16,16,0.05);
+  }
+  .product__cat {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .product__title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .product__desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .product__row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto;
+  }
+  .product__price {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .product__add {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid; place-items: center;
+    transition: transform .15s;
+  }
+  .product__add:hover { transform: scale(1.08); }
+
+  /* ============== FAQ ============== */
+  .faq {
+    max-width: 760px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--line);
+    padding: 28px 4px;
+    cursor: pointer;
+  }
+  .faq__q {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px;
+  }
+  .faq__q-text {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .faq__icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--cream);
+    display: grid; place-items: center;
+    flex: none;
+    transition: transform .25s;
+    font-size: 18px;
+  }
+  .faq__item[open] .faq__icon { transform: rotate(45deg); background: var(--ink); color: var(--paper); }
+  .faq__a {
+    margin-top: 14px;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* ============== CTA CARD ============== */
+  .cta-card {
+    background: var(--cream);
+    border-radius: var(--r-card-lg);
+    padding: 80px 48px;
+    text-align: center;
+    margin: 0 32px;
+    max-width: var(--w-page);
+    margin-left: auto; margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card__inner { position: relative; z-index: 2; }
+  .cta-card__title {
+    font-family: var(--display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    max-width: 16ch;
+    margin: 0 auto 24px;
+  }
+  .cta-card__title em {
+    font-style: italic;
+    color: var(--amber);
+  }
+  .cta-card__sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
+  .cta-card__blob {
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle at 35% 35%, var(--blob-4) 0%, var(--blob-4b) 45%, transparent 75%);
+    pointer-events: none;
+  }
+  .cta-card__blob--bl {
+    top: auto; right: auto;
+    bottom: -80px; left: -100px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle at 60% 40%, var(--blob-3) 0%, var(--blob-3b) 50%, transparent 75%);
+  }
+
+  /* ============== FOOTER ============== */
+  .footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 32px 32px;
+    margin-top: 80px;
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .footer__brand-name {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .footer__brand-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 14.5px;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+  .footer__col-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 18px;
+  }
+  .footer__col ul { display: flex; flex-direction: column; gap: 10px; }
+  .footer__col a {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.85);
+    transition: color .15s;
+  }
+  .footer__col a:hover { color: var(--paper); }
+  .footer__bottom {
+    max-width: var(--w-page);
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ============== MOCKUP TAG ============== */
+  .mockup-tag {
+    position: fixed;
+    top: 16px; right: 16px;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 16px;
+    border-radius: var(--r-pill);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    z-index: 999;
+  }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 980px) {
+    .stats-card__grid,
+    .steps,
+    .products { grid-template-columns: repeat(2, 1fr); }
+    .concerns {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      min-height: 0;
+    }
+    .concern--lg { grid-row: auto; grid-column: 1 / -1; }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .nav__menu { display: none; }
+  }
+  @media (max-width: 640px) {
+    .stats-card__grid,
+    .steps,
+    .products,
+    .concerns { grid-template-columns: 1fr; }
+    .section { padding: 64px 24px; }
+    .stats-card, .dark-section, .cta-card { margin: 0 16px; padding: 48px 24px; }
+    .footer__grid { grid-template-columns: 1fr; }
+    .footer__bottom { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-tag">Mockup · v1</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  Launch Special — 20% off your first routine with code <a href="#">GLOW20</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav__logo">
+    <span class="nav__logo-mark">N</span>
+    Nutrava
+  </a>
+  <div class="nav__menu">
+    <a href="#">Shop All</a>
+    <a href="#">Routines</a>
+    <a href="#">Skin Concerns</a>
+    <a href="#">The Quiz</a>
+    <a href="#">Journal</a>
+  </div>
+  <div class="nav__cta">
+    <a href="#" class="btn btn--ghost btn--sm">Log in</a>
+    <a href="#" class="btn btn--ink btn--sm">Take the Quiz</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero__eyebrow"><span class="dot"></span> Personalised clean skincare</span>
+  <h1 class="hero__title">Your skin,<br><em data-rotate-word>understood</em></h1>
+  <p class="hero__sub">Take our 60-second quiz and we'll match you with a clean skincare routine engineered around your skin type, concerns, and current habits.</p>
+  <div class="hero__check-row">
+    <span class="hero__check">5 skin concerns</span>
+    <span class="hero__check">20 clean formulas</span>
+    <span class="hero__check">30-day money-back guarantee</span>
+  </div>
+  <div class="hero__rating">
+    <span class="hero__rating-mark">N</span>
+    <span class="hero__rating-stars">★★★★★</span>
+    <span class="hero__rating-text">4.9 · 50+ verified routines built</span>
+  </div>
+  <div class="hero__cta">
+    <a href="#" class="btn btn--ink">Take the Free Quiz</a>
+    <a href="#" class="btn btn--ghost">Browse Products</a>
+  </div>
+</section>
+
+<!-- STATS CARD -->
+<section class="stats-card">
+  <div class="stats-card__blob"></div>
+  <div class="stats-card__blob stats-card__blob--bl"></div>
+  <h2 class="stats-card__title">Skincare that actually fits</h2>
+  <div class="stats-card__grid">
+    <div class="stat">
+      <div class="stat__number">20</div>
+      <div class="stat__label">Clean formulas across 5 skin concerns</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">100%</div>
+      <div class="stat__label">Cruelty-free, vegan-friendly, fragrance-flexible</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">30</div>
+      <div class="stat__label">Day money-back guarantee on every routine</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS / STEPS -->
+<section class="section">
+  <div class="section__head">
+    <h2 class="section__title">A routine matched to <em style="color:var(--amber); font-style:italic; font-weight:400;">your</em> skin</h2>
+    <p class="section__sub">Three quick steps and you're matched with a routine that's built around your specific skin — not the average customer.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <span class="step__num">01</span>
+      <div class="step__visual">
+        <svg viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="78" stroke="#0F1010" stroke-width="2"/>
+          <path d="M70 100h60M100 70v60" stroke="#0F1010" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="40" stroke="#0F1010" stroke-width="2" stroke-dasharray="4 6"/>
+        </svg>
+      </div>
+      <h3 class="step__title">Take the quiz</h3>
+      <p class="step__text">7 quick questions about your skin type, top concern, current habits, and what you avoid.</p>
+    </div>
+    <div class="step">
+      <span class="step__num">02</span>
+      <div class="step__visual">
+        <svg viewBox="0 0 200 200" fill="none">
+          <rect x="50" y="40" width="40" height="120" rx="20" stroke="#0F1010" stroke-width="2"/>
+          <rect x="110" y="60" width="40" height="100" rx="20" stroke="#0F1010" stroke-width="2"/>
+          <rect x="58" y="58" width="24" height="6" rx="3" fill="#0F1010"/>
+          <rect x="118" y="78" width="24" height="6" rx="3" fill="#0F1010"/>
+        </svg>
+      </div>
+      <h3 class="step__title">Get your routine</h3>
+      <p class="step__text">A 2–4 product Nutrava routine matched to your profile, with clear AM/PM instructions.</p>
+    </div>
+    <div class="step">
+      <span class="step__num">03</span>
+      <div class="step__visual">
+        <svg viewBox="0 0 200 200" fill="none">
+          <path d="M40 130c30-50 90-50 120 0" stroke="#0F1010" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="100" cy="80" r="22" stroke="#0F1010" stroke-width="2"/>
+          <path d="M88 80l8 8 16-16" stroke="#0F1010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 class="step__title">See the difference</h3>
+      <p class="step__text">Most people notice visible results in 2–4 weeks of consistent use. Full results compound over 6–8 weeks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKIN CONCERNS -->
+<section class="section">
+  <div class="section__head">
+    <h2 class="section__title">What's your <em style="font-style:italic; font-weight:400; color:var(--amber);">skin concern?</em></h2>
+    <p class="section__sub">Start where it bothers you most. Your routine focuses there, then supports the rest.</p>
+  </div>
+  <div class="concerns">
+    <a href="#" class="concern concern--lg">
+      <div>
+        <span class="concern__label">Most popular · 38% of customers</span>
+        <h3 class="concern__title">Acne &<br>blemishes</h3>
+        <p class="concern__desc">Clear breakouts, calm redness, and prevent new blemishes — without stripping your moisture barrier or triggering rebound oil.</p>
+      </div>
+      <span class="concern__cta">Build acne routine →</span>
+      <div class="concern__blob"></div>
+    </a>
+    <a href="#" class="concern concern--aging">
+      <div>
+        <span class="concern__label">Anti-aging</span>
+        <h3 class="concern__title">Fine lines</h3>
+      </div>
+      <span class="concern__cta">Explore →</span>
+      <div class="concern__blob"></div>
+    </a>
+    <a href="#" class="concern concern--hydra">
+      <div>
+        <span class="concern__label">Hydration</span>
+        <h3 class="concern__title">Dehydrated skin</h3>
+      </div>
+      <span class="concern__cta">Explore →</span>
+      <div class="concern__blob"></div>
+    </a>
+    <a href="#" class="concern concern--bright">
+      <div>
+        <span class="concern__label">Brightening</span>
+        <h3 class="concern__title">Dark spots</h3>
+      </div>
+      <span class="concern__cta">Explore →</span>
+      <div class="concern__blob"></div>
+    </a>
+    <a href="#" class="concern concern--acne" style="background: var(--cream);">
+      <div>
+        <span class="concern__label">Sensitive</span>
+        <h3 class="concern__title">Reactive skin</h3>
+      </div>
+      <span class="concern__cta">Explore →</span>
+      <div class="concern__blob"></div>
+    </a>
+  </div>
+</section>
+
+<!-- DARK SECTION -->
+<section class="dark-section">
+  <div class="dark-section__blob-l"></div>
+  <div class="dark-section__blob-r"></div>
+  <div class="dark-section__inner">
+    <h2 class="dark-section__title">Whether you're starting from scratch or upgrading a 6-step routine, we'll meet you where you are.</h2>
+    <div class="dark-section__cta">
+      <a href="#" class="btn btn--paper">Start the Quiz</a>
+      <a href="#" class="text-link">Or browse all products</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section">
+  <div class="section__head">
+    <h2 class="section__title">Best sellers</h2>
+    <p class="section__sub">The formulas customers reach for first — and reorder.</p>
+  </div>
+  <div class="products">
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Vitamin C Serum"></div>
+      </div>
+      <span class="product__cat">Brightening</span>
+      <h3 class="product__title">Vitamin C Serum</h3>
+      <p class="product__desc">Triple-form vitamin C for tone correction.</p>
+      <div class="product__row">
+        <span class="product__price">$40</span>
+        <button class="product__add" aria-label="Add to cart">+</button>
+      </div>
+    </a>
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Niacinamide Gel"></div>
+      </div>
+      <span class="product__cat">Pores · Oil</span>
+      <h3 class="product__title">Niacinamide Gel</h3>
+      <p class="product__desc">Refines pores and balances oil.</p>
+      <div class="product__row">
+        <span class="product__price">$19</span>
+        <button class="product__add" aria-label="Add to cart">+</button>
+      </div>
+    </a>
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Day Cream"></div>
+      </div>
+      <span class="product__cat">Daily Essential</span>
+      <h3 class="product__title">Moisturising Day Cream</h3>
+      <p class="product__desc">Daily hydration, layers under SPF.</p>
+      <div class="product__row">
+        <span class="product__price">$22</span>
+        <button class="product__add" aria-label="Add to cart">+</button>
+      </div>
+    </a>
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Sunscreen SPF30"></div>
+      </div>
+      <span class="product__cat">Daily SPF</span>
+      <h3 class="product__title">Sunscreen SPF30</h3>
+      <p class="product__desc">No white cast, no sticky finish.</p>
+      <div class="product__row">
+        <span class="product__price">$24</span>
+        <button class="product__add" aria-label="Add to cart">+</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section__head">
+    <h2 class="section__title">Frequently asked</h2>
+  </div>
+  <div class="faq">
+    <details class="faq__item" open>
+      <summary class="faq__q">
+        <span class="faq__q-text">How does the personalised quiz work?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Our quiz takes about 60 seconds. It branches based on your answers — your skin type, top concern, current routine, and sensitivity — and matches you with a 2–4 product routine engineered for your skin profile.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">How long until I see results?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Hydration and calming products feel different on day one. Brightening and anti-aging actives need 2–4 weeks of consistent use, with full benefits compounding over 6–8 weeks.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">Are your formulas vegan and cruelty-free?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">100% cruelty-free, never tested on animals, and the vast majority are vegan. Every product page lists the full INCI ingredient list so you can check.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">What's the return policy?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Free US shipping on orders over $50, and a 30-day money-back guarantee on every routine. If it doesn't work for your skin, we refund you, no questions asked.</p>
+    </details>
+  </div>
+</section>
+
+<!-- BIG CTA -->
+<section class="cta-card">
+  <div class="cta-card__blob"></div>
+  <div class="cta-card__blob cta-card__blob--bl"></div>
+  <div class="cta-card__inner">
+    <h2 class="cta-card__title">Find your <em>routine</em><br>in 60 seconds.</h2>
+    <p class="cta-card__sub">7 questions. One routine that actually fits your skin. Use code GLOW20 for 20% off your first order.</p>
+    <a href="#" class="btn btn--ink">Start the Quiz</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <h3 class="footer__brand-name">Nutrava</h3>
+      <p class="footer__brand-desc">Personalised clean skincare, built around your skin. Never tested on animals. Always real percentages.</p>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Shop</h4>
+      <ul>
+        <li><a href="#">All products</a></li>
+        <li><a href="#">Routines</a></li>
+        <li><a href="#">Best sellers</a></li>
+        <li><a href="#">The Quiz</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul>
+        <li><a href="#">Our story</a></li>
+        <li><a href="#">Ingredients</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Help</h4>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Nutrava — Made in the USA</span>
+    <span>Privacy · Terms · Accessibility</span>
+  </div>
+</footer>
+
+<script>
+  // Rotate the italic accent word in the hero on every page load.
+  (function () {
+    var words = [
+      'understood',
+      'decoded',
+      'listened to',
+      'balanced',
+      'nurtured',
+      'mapped',
+      'considered',
+      'read',
+      'known',
+      'studied',
+      'cared for',
+      'matched',
+      'restored',
+      'revealed',
+      'protected'
+    ];
+    var el = document.querySelector('[data-rotate-word]');
+    if (!el) return;
+    var pick = words[Math.floor(Math.random() * words.length)];
+    el.textContent = pick;
+  })();
+</script>
+</body>
+</html>

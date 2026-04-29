@@ -12,6 +12,11 @@ assets/hero-spacer-options.html
 assets/nutrava-logo.html
 assets/photo-strip-options.html
 
+# Local reference materials (not part of the Shopify theme)
+*.docx
+~$*.docx
+scraped/
+
 # OS files
 .DS_Store
 Thumbs.db

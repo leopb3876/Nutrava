@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutrava — Mockup v2: Refined Apothecary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     Nutrava — V2: Refined Apothecary
+     Direction: warm off-white canvas, clinical sage as the single
+     accent, sharper editorial typography, tighter geometry,
+     less playful, more pharmacy/apothecary luxury.
+     ------------------------------------------------------------------ */
+
+  :root {
+    /* Palette */
+    --ink:        #1A1A1A;     /* near-black */
+    --ink-soft:   #5C5A55;     /* secondary text */
+    --ink-mute:   #8F8B82;     /* tertiary / labels */
+    --paper:      #F8F5EE;     /* warm off-white canvas */
+    --paper-pure: #FBF9F3;     /* slightly lighter for cards */
+    --linen:      #ECE5D2;     /* tinted divider sections */
+    --bone:       #E0D7BE;     /* deeper warm tone */
+    --sage:       #88A077;     /* primary accent */
+    --sage-deep:  #5B7B4F;     /* for darker accents */
+    --sage-mist:  #DCE3D2;     /* very pale sage tint */
+    --line:       rgba(26,26,26,0.10);
+    --line-soft:  rgba(26,26,26,0.06);
+
+    /* Type */
+    --display: "Instrument Serif", "Times New Roman", serif;
+    --ui:      "DM Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+
+    /* Radius — tighter than v1 */
+    --r-sm:      4px;
+    --r-card:    16px;
+    --r-card-lg: 22px;
+    --r-pill:    999px;
+
+    /* Containers */
+    --w-page: 1240px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body {
+    font-family: var(--ui);
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: "ss01";
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  .wrap { max-width: var(--w-page); margin: 0 auto; padding: 0 32px; }
+  .wrap--narrow { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+  /* ============== TOP BAR ============== */
+  .topbar {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 9px 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .topbar a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    color: var(--sage);
+  }
+
+  /* ============== NAV ============== */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 32px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+    gap: 24px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__logo {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1;
+  }
+  .nav__logo .ampersand {
+    font-style: italic;
+    color: var(--sage);
+    margin: 0 2px;
+  }
+  .nav__menu {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .nav__menu a { padding: 6px 0; transition: color .15s; position: relative; }
+  .nav__menu a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .25s ease;
+  }
+  .nav__menu a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav__cta { display: flex; gap: 12px; align-items: center; }
+
+  /* ============== BUTTONS ============== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all .25s ease;
+    white-space: nowrap;
+  }
+  .btn--ink {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn--ink:hover { background: var(--sage-deep); }
+  .btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn--paper { background: var(--paper); color: var(--ink); }
+  .btn--paper:hover { background: var(--sage); color: var(--paper); }
+  .btn--sm { padding: 10px 18px; font-size: 11px; }
+
+  .text-link {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 4px;
+  }
+
+  /* ============== HERO ============== */
+  .hero {
+    text-align: center;
+    padding: 100px 32px 80px;
+    position: relative;
+  }
+  .hero__overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 32px;
+  }
+  .hero__overline::before, .hero__overline::after {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--sage-deep);
+    display: inline-block;
+  }
+  .hero__title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(56px, 8.5vw, 124px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+    margin: 0 auto 32px;
+  }
+  .hero__title em {
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+  .hero__sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    letter-spacing: -0.005em;
+    line-height: 1.6;
+  }
+  .hero__cta {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .hero__meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .hero__meta-item { display: inline-flex; align-items: center; gap: 8px; }
+  .hero__meta-item::before {
+    content: "";
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--sage);
+  }
+
+  /* ============== STATS STRIP ============== */
+  .stats-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 32px;
+    background: var(--paper-pure);
+  }
+  .stats-strip__inner {
+    max-width: var(--w-page);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    align-items: end;
+  }
+  .stat__num {
+    font-family: var(--display);
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    margin-bottom: 12px;
+  }
+  .stat__num em { font-style: italic; color: var(--sage-deep); }
+  .stat__label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 22ch;
+  }
+
+  /* ============== SECTION ============== */
+  .section { padding: 120px 32px; }
+  .section--tight { padding: 80px 32px; }
+  .section--linen { background: var(--linen); }
+  .section--ink { background: var(--ink); color: var(--paper); }
+  .section__head { text-align: center; margin-bottom: 80px; }
+  .section__overline {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 16px;
+  }
+  .section--ink .section__overline { color: var(--sage); }
+  .section__title {
+    font-family: var(--display);
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    max-width: 18ch;
+    margin: 0 auto 16px;
+  }
+  .section__title em { font-style: italic; color: var(--sage-deep); }
+  .section--ink .section__title em { color: var(--sage); }
+  .section__sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 16px auto 0;
+    letter-spacing: -0.005em;
+    line-height: 1.6;
+  }
+  .section--ink .section__sub { color: rgba(248,245,238,0.7); }
+
+  /* ============== STEPS — clean line layout ============== */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: var(--w-page);
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .step {
+    padding: 48px 32px;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+  .step__num {
+    font-family: var(--display);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--sage-deep);
+    margin-bottom: 32px;
+    display: block;
+  }
+  .step__title {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    max-width: 12ch;
+  }
+  .step__text {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 32ch;
+  }
+  .step__icon {
+    margin-top: 32px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--sage-deep);
+  }
+  .step__icon svg { width: 22px; height: 22px; }
+
+  /* ============== CONCERNS — list-style editorial ============== */
+  .concerns {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .concern {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr 140px;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    color: inherit;
+    transition: padding .25s ease;
+    cursor: pointer;
+  }
+  .concern:first-child { border-top: 1px solid var(--line); }
+  .concern:hover {
+    padding-left: 16px;
+    padding-right: 16px;
+    background: var(--paper-pure);
+  }
+  .concern__num {
+    font-family: var(--display);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+  .concern__title {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+  .concern__title em {
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+  .concern__desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 32ch;
+  }
+  .concern__cta {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+  .concern__cta::after {
+    content: "  →";
+    transition: margin-left .2s;
+    display: inline-block;
+  }
+  .concern:hover .concern__cta::after { margin-left: 6px; }
+
+  /* ============== DARK PROMISE STRIP ============== */
+  .promise-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 100px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .promise-strip__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .promise-strip__quote {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 32px;
+  }
+  .promise-strip__quote em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .promise-strip__attr {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(248,245,238,0.5);
+    margin-bottom: 40px;
+  }
+  .promise-strip__cta {
+    display: inline-flex; gap: 16px; align-items: center; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .promise-strip__leaf {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(136, 160, 119, 0.35) 0%, rgba(136, 160, 119, 0.15) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .promise-strip__leaf--l { left: -120px; top: 50%; transform: translateY(-50%); }
+  .promise-strip__leaf--r { right: -120px; top: 50%; transform: translateY(-50%); }
+
+  /* ============== PRODUCTS ============== */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+  }
+  .product {
+    color: inherit;
+    transition: transform .25s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .product:hover .product__visual { background: var(--sage-mist); }
+  .product__visual {
+    aspect-ratio: 4 / 5;
+    background: var(--paper-pure);
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+    display: grid; place-items: center;
+    transition: background .3s ease;
+    border-radius: var(--r-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .product__bottle {
+    width: 50%;
+    aspect-ratio: 0.42;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.65) 100%);
+    border-radius: 12px 12px 4px 4px;
+    border: 1px solid rgba(26,26,26,0.06);
+    position: relative;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  }
+  .product__bottle::before {
+    content: "";
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 32%; height: 22px;
+    background: var(--ink);
+    border-radius: 2px 2px 1px 1px;
+  }
+  .product__bottle::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 38%; left: 8%; right: 8%;
+    background: var(--paper);
+    padding: 10px 4px;
+    font-family: var(--display);
+    font-size: 10px;
+    font-style: italic;
+    text-align: center;
+    color: var(--sage-deep);
+    line-height: 1.3;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .product__cat {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .product__title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .product__desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .product__row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+  .product__price {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .product__add {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    color: var(--sage-deep);
+  }
+
+  /* ============== INGREDIENT MARQUEE ============== */
+  .ingredients {
+    background: var(--linen);
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ingredients__row {
+    display: flex;
+    gap: 64px;
+    white-space: nowrap;
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ingredients__item {
+    font-family: var(--display);
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 64px;
+  }
+  .ingredients__item::after {
+    content: "✦";
+    color: var(--sage);
+    font-size: 18px;
+    font-style: normal;
+  }
+  .ingredients__item em { font-style: italic; color: var(--sage-deep); }
+
+  /* ============== FAQ ============== */
+  .faq {
+    max-width: 760px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--line);
+    padding: 32px 0;
+    cursor: pointer;
+  }
+  .faq__q {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px;
+    list-style: none;
+  }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q-text {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .faq__icon {
+    width: 32px; height: 32px;
+    flex: none;
+    color: var(--sage-deep);
+    transition: transform .3s;
+    font-family: var(--display);
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+  }
+  .faq__item[open] .faq__icon { transform: rotate(45deg); }
+  .faq__a {
+    margin-top: 18px;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  /* ============== FINAL CTA ============== */
+  .final-cta {
+    padding: 140px 32px;
+    text-align: center;
+    background: var(--paper);
+    position: relative;
+  }
+  .final-cta__title {
+    font-family: var(--display);
+    font-size: clamp(56px, 8vw, 120px);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+    max-width: 16ch;
+    margin: 0 auto 28px;
+  }
+  .final-cta__title em { font-style: italic; color: var(--sage-deep); }
+  .final-cta__sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .final-cta__sage-leaf {
+    position: absolute;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(136, 160, 119, 0.18) 0%, rgba(136, 160, 119, 0.08) 50%, transparent 75%);
+    pointer-events: none;
+    top: 10%;
+    left: 8%;
+  }
+
+  /* ============== FOOTER ============== */
+  .footer {
+    background: var(--paper-pure);
+    border-top: 1px solid var(--line);
+    padding: 72px 32px 28px;
+  }
+  .footer__top {
+    max-width: var(--w-page);
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+  .footer__brand-name {
+    font-family: var(--display);
+    font-size: 64px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .footer__brand-name em { font-style: italic; color: var(--sage-deep); }
+  .footer__tagline {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer__col-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--ink-mute);
+    margin-bottom: 22px;
+  }
+  .footer__col ul { display: flex; flex-direction: column; gap: 12px; }
+  .footer__col a {
+    font-size: 14px;
+    color: var(--ink);
+    transition: color .15s;
+  }
+  .footer__col a:hover { color: var(--sage-deep); }
+  .footer__bottom {
+    max-width: var(--w-page);
+    margin: 28px auto 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+
+  /* ============== MOCKUP DEBUG TAGS ============== */
+  .mockup-tag {
+    position: fixed;
+    top: 16px; right: 16px;
+    background: var(--sage-deep); color: var(--paper);
+    padding: 8px 16px;
+    border-radius: var(--r-sm);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 999;
+  }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 980px) {
+    .stats-strip__inner,
+    .products { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: none; }
+    .concern { grid-template-columns: 40px 1fr 100px; }
+    .concern__desc { display: none; }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .nav__menu { display: none; }
+  }
+  @media (max-width: 640px) {
+    .stats-strip__inner,
+    .products { grid-template-columns: 1fr; }
+    .section { padding: 80px 24px; }
+    .footer__grid { grid-template-columns: 1fr; }
+    .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-tag">Mockup · v2 · Apothecary</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  Launch · 20% off your first routine with <a href="#">GLOW20</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav__logo">
+    Nutrava<span class="ampersand">.</span>
+  </a>
+  <div class="nav__menu">
+    <a href="#">Shop</a>
+    <a href="#">Routines</a>
+    <a href="#">Concerns</a>
+    <a href="#">Quiz</a>
+    <a href="#">Journal</a>
+  </div>
+  <div class="nav__cta">
+    <a href="#" class="text-link" style="font-size:12px; padding-bottom:2px;">Account</a>
+    <a href="#" class="btn btn--ink btn--sm">Take the Quiz</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero__overline">Personalised · Clean · USA</span>
+  <h1 class="hero__title">A routine, <em>truly</em> yours.</h1>
+  <p class="hero__sub">Take our 60-second quiz. Get a clean skincare routine engineered around your skin type, top concern, and current habits — not the average customer.</p>
+  <div class="hero__cta">
+    <a href="#" class="btn btn--ink">Begin the Quiz</a>
+    <a href="#" class="btn btn--ghost">Browse the Shop</a>
+  </div>
+  <div class="hero__meta">
+    <span class="hero__meta-item">5 skin concerns</span>
+    <span class="hero__meta-item">20 clean formulas</span>
+    <span class="hero__meta-item">30-day guarantee</span>
+    <span class="hero__meta-item">Made in the USA</span>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<section class="stats-strip">
+  <div class="stats-strip__inner">
+    <div class="stat">
+      <div class="stat__num">20</div>
+      <div class="stat__label">Clean formulas in the catalog</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">5</div>
+      <div class="stat__label">Skin concerns we focus on</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num"><em>60</em>s</div>
+      <div class="stat__label">To match you with a routine</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">100%</div>
+      <div class="stat__label">Cruelty-free, vegan-friendly</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">The Method</span>
+    <h2 class="section__title">A routine, <em>matched</em> to your skin.</h2>
+    <p class="section__sub">Three quiet steps. No 12-product regimens, no chasing trends.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <span class="step__num">i.</span>
+      <h3 class="step__title">Take the quiz</h3>
+      <p class="step__text">Seven branching questions about your skin type, top concern, and current habits. Sixty seconds.</p>
+      <div class="step__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step__num">ii.</span>
+      <h3 class="step__title">Receive your match</h3>
+      <p class="step__text">A two-to-four product Nutrava routine matched to your specific profile, with clear AM and PM instructions.</p>
+      <div class="step__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step__num">iii.</span>
+      <h3 class="step__title">See the difference</h3>
+      <p class="step__text">Most see visible results in two-to-four weeks of consistent use. Full benefits compound over six-to-eight weeks.</p>
+      <div class="step__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l6-6 4 4 8-8"/><path d="M14 8h7v7"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENT MARQUEE -->
+<section class="ingredients">
+  <div class="ingredients__row">
+    <span class="ingredients__item">Niacinamide</span>
+    <span class="ingredients__item"><em>Vitamin C</em></span>
+    <span class="ingredients__item">Retinol-Alt</span>
+    <span class="ingredients__item"><em>Kojic Acid</em></span>
+    <span class="ingredients__item">Peptides</span>
+    <span class="ingredients__item"><em>Hyaluronic Acid</em></span>
+    <span class="ingredients__item">Niacinamide</span>
+    <span class="ingredients__item"><em>Vitamin C</em></span>
+    <span class="ingredients__item">Retinol-Alt</span>
+    <span class="ingredients__item"><em>Kojic Acid</em></span>
+    <span class="ingredients__item">Peptides</span>
+    <span class="ingredients__item"><em>Hyaluronic Acid</em></span>
+  </div>
+</section>
+
+<!-- CONCERNS — editorial list -->
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">Five Concerns, One Method</span>
+    <h2 class="section__title">Where it <em>bothers</em> you most.</h2>
+  </div>
+  <div class="concerns">
+    <a href="#" class="concern">
+      <span class="concern__num">01</span>
+      <h3 class="concern__title">Acne &<br>blemishes</h3>
+      <p class="concern__desc">Clear breakouts, calm redness, prevent new blemishes — without stripping your barrier.</p>
+      <span class="concern__cta">Build routine</span>
+    </a>
+    <a href="#" class="concern">
+      <span class="concern__num">02</span>
+      <h3 class="concern__title">Anti-<em>aging</em></h3>
+      <p class="concern__desc">Smooth fine lines, support firmness — through peptides and gentle retinol-alternatives.</p>
+      <span class="concern__cta">Build routine</span>
+    </a>
+    <a href="#" class="concern">
+      <span class="concern__num">03</span>
+      <h3 class="concern__title">Hydration &<br>dehydration lines</h3>
+      <p class="concern__desc">Relieve tightness, plump dehydrated skin, lock moisture in.</p>
+      <span class="concern__cta">Build routine</span>
+    </a>
+    <a href="#" class="concern">
+      <span class="concern__num">04</span>
+      <h3 class="concern__title"><em>Brightening</em> &<br>dark spots</h3>
+      <p class="concern__desc">Fade hyperpigmentation, even out tone, restore natural radiance.</p>
+      <span class="concern__cta">Build routine</span>
+    </a>
+    <a href="#" class="concern">
+      <span class="concern__num">05</span>
+      <h3 class="concern__title">Sensitive &<br>reactive skin</h3>
+      <p class="concern__desc">Calm reactivity with fragrance-free, ceramide-supporting formulas.</p>
+      <span class="concern__cta">Build routine</span>
+    </a>
+  </div>
+</section>
+
+<!-- DARK PROMISE STRIP -->
+<section class="promise-strip">
+  <div class="promise-strip__leaf promise-strip__leaf--l"></div>
+  <div class="promise-strip__leaf promise-strip__leaf--r"></div>
+  <div class="promise-strip__inner">
+    <p class="promise-strip__quote">"Skincare should feel <em>like ritual</em>, not chemistry homework. Nutrava handles the chemistry — you just enjoy the ritual."</p>
+    <p class="promise-strip__attr">— The Nutrava Method</p>
+    <div class="promise-strip__cta">
+      <a href="#" class="btn btn--paper">Begin the Quiz</a>
+      <a href="#" class="text-link" style="color: rgba(248,245,238,0.7);">Read our story</a>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">The Catalog</span>
+    <h2 class="section__title">Most-loved <em>formulas</em>.</h2>
+  </div>
+  <div class="products">
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Vit. C Serum"></div>
+      </div>
+      <span class="product__cat">Brightening</span>
+      <h3 class="product__title">Vitamin C Serum</h3>
+      <p class="product__desc">Triple-form vitamin C for brightening, tone correction and antioxidant defence.</p>
+      <div class="product__row">
+        <span class="product__price">$40</span>
+        <span class="product__add">Add to cart</span>
+      </div>
+    </a>
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Niacinamide"></div>
+      </div>
+      <span class="product__cat">Pores · Oil Control</span>
+      <h3 class="product__title">Niacinamide Gel</h3>
+      <p class="product__desc">Refines the look of pores, balances oil, evens out tone.</p>
+      <div class="product__row">
+        <span class="product__price">$19</span>
+        <span class="product__add">Add to cart</span>
+      </div>
+    </a>
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="Day Cream"></div>
+      </div>
+      <span class="product__cat">Daily Essential</span>
+      <h3 class="product__title">Day Cream</h3>
+      <p class="product__desc">Daily hydration that layers cleanly under SPF and makeup.</p>
+      <div class="product__row">
+        <span class="product__price">$22</span>
+        <span class="product__add">Add to cart</span>
+      </div>
+    </a>
+    <a href="#" class="product">
+      <div class="product__visual">
+        <div class="product__bottle" data-label="SPF 30"></div>
+      </div>
+      <span class="product__cat">Daily Protection</span>
+      <h3 class="product__title">Sunscreen SPF30</h3>
+      <p class="product__desc">Broad-spectrum protection. No white cast, no sticky finish.</p>
+      <div class="product__row">
+        <span class="product__price">$24</span>
+        <span class="product__add">Add to cart</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--linen">
+  <div class="section__head">
+    <span class="section__overline">Common Questions</span>
+    <h2 class="section__title"><em>Frequently</em> asked.</h2>
+  </div>
+  <div class="faq">
+    <details class="faq__item" open>
+      <summary class="faq__q">
+        <span class="faq__q-text">How does the personalised quiz work?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Our quiz takes about 60 seconds. It branches based on your answers — your skin type, top concern, current routine, and sensitivity — and matches you with a 2–4 product routine engineered for your skin profile.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">How long until I see results?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Hydration and calming products feel different on day one. Brightening and anti-aging actives need 2–4 weeks of consistent use, with full benefits compounding over 6–8 weeks.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">Are your formulas vegan and cruelty-free?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">100% cruelty-free, never tested on animals, and the vast majority are vegan. Every product page lists the full INCI ingredient list so you can check for anything you avoid.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">What's the return policy?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Free US shipping on orders over $50, and a 30-day money-back guarantee on every routine. If it doesn't work for your skin, we refund you, no questions asked.</p>
+    </details>
+  </div>
+</section>
+
+<!-- BIG FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta__sage-leaf"></div>
+  <div class="final-cta__sage-leaf" style="left:auto; right:8%; top:auto; bottom:10%;"></div>
+  <h2 class="final-cta__title">Sixty <em>seconds</em>.<br>One routine.</h2>
+  <p class="final-cta__sub">Use code GLOW20 for 20% off your first order. Free US shipping over $50, every order backed by a 30-day money-back guarantee.</p>
+  <a href="#" class="btn btn--ink">Begin the Quiz</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__top">
+    <h3 class="footer__brand-name">Nutrava<em>.</em></h3>
+    <p class="footer__tagline">Personalised · Clean · USA</p>
+  </div>
+  <div class="footer__grid">
+    <div class="footer__col">
+      <h4 class="footer__col-title">Shop</h4>
+      <ul>
+        <li><a href="#">All products</a></li>
+        <li><a href="#">Routines</a></li>
+        <li><a href="#">Best sellers</a></li>
+        <li><a href="#">The Quiz</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul>
+        <li><a href="#">Our story</a></li>
+        <li><a href="#">Ingredients</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Help</h4>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Account</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Newsletter</h4>
+      <p style="font-size:13px; color:var(--ink-soft); line-height:1.55; margin-bottom:14px;">Skincare notes, new launches, subscriber offers. No spam.</p>
+      <form style="display:flex; border-bottom: 1px solid var(--ink); padding-bottom: 6px;">
+        <input type="email" placeholder="you@email.com" style="flex:1; border:none; background:transparent; font: inherit; color:var(--ink); outline:none;">
+        <button type="submit" style="font-size: 12px; font-weight: 600; letter-spacing:0.1em; text-transform: uppercase; color: var(--sage-deep);">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Nutrava — Made in the USA</span>
+    <span>Privacy · Terms · Accessibility</span>
+  </div>
+</footer>
+
+</body>
+</html>
