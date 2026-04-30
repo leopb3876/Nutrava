@@ -1,47 +1,32 @@
-<section class="account-hero section-padding">
-  <div class="container container--narrow">
-    <div class="auth-page">
-      <div class="auth-page__icon">
-        <i data-lucide="shield-check" style="width:24px; height:24px;"></i>
-      </div>
-      <h1 class="auth-page__title">Activate Your Account</h1>
-      <p class="auth-page__subtitle">Set a password to complete your account setup</p>
-
-      {% form 'activate_customer_password' %}
-        {%- if form.errors -%}
-          <div class="auth-page__errors">{{ form.errors | default_errors }}</div>
-        {%- endif -%}
-
-        <div class="auth-field">
-          <label for="ActivatePassword">Password</label>
-          <input
-            type="password"
-            id="ActivatePassword"
-            name="customer[password]"
-            autocomplete="new-password"
-            placeholder="Enter your password"
-            required
-          >
-        </div>
-
-        <div class="auth-field">
-          <label for="ActivatePasswordConfirm">Confirm Password</label>
-          <input
-            type="password"
-            id="ActivatePasswordConfirm"
-            name="customer[password_confirmation]"
-            autocomplete="new-password"
-            placeholder="Confirm your password"
-            required
-          >
-        </div>
-
-        <button type="submit" class="btn btn--primary">Activate Account</button>
-      {% endform %}
-
-      <p style="text-align:center; margin-top:1.5rem;">
-        <a href="{{ routes.account_login_url }}" class="auth-page__forgot">Back to Login</a>
-      </p>
+<section class="sn-auth-shell">
+  <div class="sn-auth-card">
+    <div class="sn-auth-card__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
     </div>
+    <h1 class="sn-auth-card__title">Activate your <em>account</em>.</h1>
+    <p class="sn-auth-card__sub">Choose a password to finish setting up your Nutrava account.</p>
+
+    {%- if form.errors -%}
+      <div class="sn-auth-msg sn-auth-msg--error">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    {% form 'activate_customer_password' %}
+      <div class="sn-auth-form">
+        <div class="sn-form-field">
+          <label for="ActivatePassword">Password</label>
+          <input type="password" id="ActivatePassword" name="customer[password]" autocomplete="new-password" placeholder="At least 8 characters" required>
+        </div>
+        <div class="sn-form-field">
+          <label for="ActivatePasswordConfirm">Confirm password</label>
+          <input type="password" id="ActivatePasswordConfirm" name="customer[password_confirmation]" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="sn-auth-form__submit">Activate account</button>
+      </div>
+    {% endform %}
+
+    <p class="sn-auth-form__switch"><a href="{{ routes.account_login_url }}">← Back to sign in</a></p>
   </div>
 </section>
