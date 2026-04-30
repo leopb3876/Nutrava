@@ -1,31 +1,29 @@
-<div class="cart-page">
-  <section class="section-padding">
-    <div class="container container--narrow">
+<section class="sn-cart-page">
+  <div class="sn-cart-page__inner">
+    <h1 class="sn-cart-page__title">Your <em>cart</em></h1>
 
-      <h1 class="cart-page__heading">Your Cart</h1>
+    {% if cart.item_count == 0 %}
+      <p class="sn-cart-page__lead">Nothing here yet — let's find a routine that fits.</p>
 
-      {% if cart.item_count == 0 %}
-        <!-- Empty State -->
-        <div class="cart-empty">
-          <div class="cart-empty__icon">
-            <i data-lucide="shopping-bag"></i>
-          </div>
-          <h2 class="cart-empty__title">Your cart is empty</h2>
-          <p class="cart-empty__text">Find the right skincare routine for your skin.</p>
-          <div class="cart-empty__actions">
-            <a href="/pages/quiz" class="btn btn--primary">Take the Quiz</a>
-            <a href="/collections/all" class="btn btn--outline">Browse Products</a>
-          </div>
+      <div class="sn-cart-empty">
+        <h2 class="sn-cart-empty__title">Your cart is empty</h2>
+        <p class="sn-cart-empty__text">Take the 60-second quiz and we'll match you with a clean routine engineered for your skin.</p>
+        <div class="sn-cart-empty__actions">
+          <a href="/pages/quiz" class="sn-btn sn-btn--ink">Take the Quiz</a>
+          <a href="/collections/all" class="sn-btn sn-btn--ghost">Browse Products</a>
         </div>
+      </div>
 
-      {% else %}
-        <!-- Cart Items -->
-        <div class="cart-items">
+    {% else %}
+      <p class="sn-cart-page__lead">Review your routine, then secure your order.</p>
+
+      <div class="sn-cart-grid">
+        <div class="sn-cart-grid__items">
           {% for item in cart.items %}
             <div class="cart-item">
               <div class="cart-item__image">
                 {% if item.image %}
-                  <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.image.alt | default: item.title | escape }}" width="120" height="120" loading="lazy">
+                  <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.image.alt | default: item.title | escape }}" width="120" height="120" loading="lazy">
                 {% else %}
                   <div class="cart-item__placeholder">
                     <i data-lucide="pill"></i>
@@ -62,206 +60,30 @@
           {% endfor %}
         </div>
 
-        <!-- Cart Footer -->
-        <div class="cart-footer">
-          <div class="cart-footer__subtotal">
-            <span>Subtotal</span>
-            <span class="cart-footer__total-price">{{ cart.total_price | money }}</span>
+        <aside class="sn-cart-grid__summary">
+          <h2 class="sn-cart-grid__summary-title">Order summary</h2>
+          <div class="sn-cart-grid__summary-row">
+            <span>Subtotal · {{ cart.item_count }}{% if cart.item_count == 1 %} item{% else %} items{% endif %}</span>
+            <span>{{ cart.items_subtotal_price | money }}</span>
           </div>
-          <p class="cart-footer__shipping">
-            <i data-lucide="truck"></i>
-            {% render 'locale-vars' %}{{ free_shipping_text }}
-          </p>
-          <p class="cart-footer__guarantee">
-            <i data-lucide="shield-check"></i>
-            30-day money-back guarantee
-          </p>
-          <a href="/checkout" class="btn btn--primary btn--lg cart-footer__checkout">
-            Proceed to Checkout
-          </a>
-          <a href="/collections/all" class="cart-footer__continue">
-            <i data-lucide="arrow-left"></i>
-            Continue Shopping
-          </a>
-        </div>
-      {% endif %}
+          {% if cart.total_discount > 0 %}
+            <div class="sn-cart-grid__summary-row">
+              <span>Discount</span>
+              <span>− {{ cart.total_discount | money }}</span>
+            </div>
+          {% endif %}
+          <div class="sn-cart-grid__summary-row sn-cart-grid__summary-row--total">
+            <span>Total</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          {% render 'locale-vars' %}
+          <p class="sn-cart-grid__summary-meta">{{ free_shipping_text }}</p>
+          <p class="sn-cart-grid__summary-meta">30-day money-back guarantee · Secure checkout</p>
 
-    </div>
-  </section>
-</div>
-
-<style>
-  .cart-page__heading {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--color-text);
-    margin-bottom: 32px;
-  }
-
-  /* Empty State */
-  .cart-empty {
-    text-align: center;
-    padding: 64px 0;
-  }
-  .cart-empty__icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 24px;
-    background: var(--color-card-bg, #f5f0eb);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .cart-empty__icon i { width: 36px; height: 36px; color: var(--color-primary); }
-  .cart-empty__title {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--color-text);
-    margin-bottom: 8px;
-  }
-  .cart-empty__text {
-    color: var(--color-text-muted);
-    margin-bottom: 24px;
-  }
-  .cart-empty__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-  /* Cart Items */
-  .cart-items {
-    border-top: 1px solid var(--color-border);
-  }
-  .cart-item {
-    display: flex;
-    gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .cart-item__image img {
-    border-radius: 12px;
-    object-fit: cover;
-    display: block;
-  }
-  .cart-item__placeholder {
-    width: 120px;
-    height: 120px;
-    background: var(--color-card-bg, #f5f0eb);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .cart-item__placeholder i { width: 32px; height: 32px; color: var(--color-primary); }
-  .cart-item__details { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-  .cart-item__title {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: var(--color-text);
-    text-decoration: none;
-  }
-  .cart-item__title:hover { color: var(--color-primary); }
-  .cart-item__variant {
-    font-size: 13px;
-    color: var(--color-text-muted);
-  }
-  .cart-item__price {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--color-primary);
-  }
-  .cart-item__actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 8px;
-  }
-  .cart-item__qty {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    border: 1.5px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .cart-item__qty-btn {
-    background: none;
-    border: none;
-    padding: 8px 10px;
-    cursor: pointer;
-    color: var(--color-text);
-    display: flex;
-    align-items: center;
-  }
-  .cart-item__qty-btn:hover { background: var(--color-card-bg, #f5f0eb); }
-  .cart-item__qty-btn i { width: 14px; height: 14px; }
-  .cart-item__qty-value {
-    padding: 8px 12px;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--color-text);
-    min-width: 20px;
-    text-align: center;
-  }
-  .cart-item__remove {
-    font-size: 13px;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .cart-item__remove:hover { color: #c0392b; }
-  .cart-item__remove i { width: 14px; height: 14px; }
-
-  /* Cart Footer */
-  .cart-footer {
-    padding-top: 24px;
-    text-align: center;
-  }
-  .cart-footer__subtotal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    color: var(--color-text);
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .cart-footer__total-price { color: var(--color-primary); }
-  .cart-footer__shipping,
-  .cart-footer__guarantee {
-    font-size: 13px;
-    color: var(--color-text-muted);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .cart-footer__shipping i,
-  .cart-footer__guarantee i { width: 16px; height: 16px; color: var(--color-primary); }
-  .cart-footer__checkout {
-    width: 100%;
-    margin-top: 16px;
-    display: block;
-    text-align: center;
-  }
-  .cart-footer__continue {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 16px;
-    font-size: 14px;
-    color: var(--color-text-muted);
-    text-decoration: none;
-  }
-  .cart-footer__continue:hover { color: var(--color-primary); }
-  .cart-footer__continue i { width: 16px; height: 16px; }
-
-  @media (max-width: 600px) {
-    .cart-item { gap: 12px; }
-    .cart-item__image img { width: 80px; height: 80px; }
-    .cart-item__placeholder { width: 80px; height: 80px; }
-  }
-</style>
+          <a href="/checkout" class="sn-cart-grid__checkout">Proceed to checkout</a>
+          <a href="/collections/all" class="sn-cart-grid__continue">← Continue shopping</a>
+        </aside>
+      </div>
+    {% endif %}
+  </div>
+</section>
