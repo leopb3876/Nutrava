@@ -1,70 +1,59 @@
-<section style="padding: 80px 0; background: linear-gradient(180deg, var(--color-mint-mist) 0%, var(--color-bg) 100%); text-align: center;">
-  <div class="container container--narrow">
-    <span class="label mb-sm" style="display: block;">Get in Touch</span>
-    <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 2.5rem); color: var(--color-text); margin-bottom: 16px;">Contact Us</h1>
-    <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.6; max-width: 480px; margin: 0 auto;">Have a question about your order, ingredients, or our quiz? We'd love to hear from you.</p>
-  </div>
+<!-- HERO -->
+<section class="sn-page-hero">
+  <span class="sn-page-hero__eyebrow">Get in touch</span>
+  <h1 class="sn-page-hero__title">Say <em>hello</em>.</h1>
+  <p class="sn-page-hero__lead">Have a question about your order, an ingredient, or your quiz match? We read every message and reply within a day.</p>
 </section>
 
-<section style="padding: 64px 0;">
-  <div class="container" style="max-width: 560px;">
-    <div style="background: var(--color-card-bg); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-card);">
-      {% form 'contact' %}
-        {% if form.posted_successfully? %}
-          <div style="text-align: center; padding: 24px;">
-            <div style="width: 56px; height: 56px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--color-primary);">
-              <i data-lucide="check-circle"></i>
-            </div>
-            <h3 style="font-family: var(--font-heading); margin-bottom: 8px;">Message Sent</h3>
-            <p style="font-size: 14px; color: var(--color-text-muted);">We'll get back to you within 24 hours.</p>
+<!-- FORM -->
+<section class="sn-page-section sn-page-section--narrow">
+  <div class="sn-form-card">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <div class="sn-form__success">
+          <div class="sn-form__success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-        {% else %}
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div>
-              <label for="contact-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">Name</label>
-              <input type="text" name="contact[name]" id="contact-name" required
-                style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 14px; background: var(--color-bg); color: var(--color-text); transition: border-color 0.15s;"
-                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'"
-              >
-            </div>
-            <div>
-              <label for="contact-email" style="display: block; font-size: 13px; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">Email</label>
-              <input type="email" name="contact[email]" id="contact-email" required
-                style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 14px; background: var(--color-bg); color: var(--color-text); transition: border-color 0.15s;"
-                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'"
-              >
-            </div>
-            <div>
-              <label for="contact-message" style="display: block; font-size: 13px; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">Message</label>
-              <textarea name="contact[body]" id="contact-message" rows="5" required
-                style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 14px; background: var(--color-bg); color: var(--color-text); resize: vertical; transition: border-color 0.15s;"
-                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'"
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary" style="width: 100%;">Send Message</button>
+          <h3 class="sn-form__success-title">Message sent</h3>
+          <p class="sn-form__success-text">We'll get back to you within 24 hours.</p>
+        </div>
+      {% else %}
+        <div class="sn-form">
+          <div class="sn-form-field">
+            <label for="contact-name">Name</label>
+            <input type="text" name="contact[name]" id="contact-name" required autocomplete="name">
           </div>
-          <p style="font-size: 13px; color: var(--color-text-muted); text-align: center; margin-top: 16px;">
-            Check our <a href="/pages/about#faq" style="color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px;">FAQ</a> first — your question might already be answered.
+          <div class="sn-form-field">
+            <label for="contact-email">Email</label>
+            <input type="email" name="contact[email]" id="contact-email" required autocomplete="email">
+          </div>
+          <div class="sn-form-field">
+            <label for="contact-message">Message</label>
+            <textarea name="contact[body]" id="contact-message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="sn-form__submit">Send message</button>
+          <p class="sn-form__hint">
+            Check our <a href="/pages/about#faq">FAQ</a> first — your question might already be answered.
           </p>
-        {% endif %}
-      {% endform %}
-    </div>
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
 
-    <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-      <div style="background: var(--color-card-bg); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-card);">
-        <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: var(--color-primary);">
-          <i data-lucide="mail"></i>
-        </div>
-        <strong style="display: block; font-size: 14px; margin-bottom: 4px;">Email</strong>
-        <a href="mailto:hello@nutrava.net" style="font-size: 14px; color: var(--color-primary);">hello@nutrava.net</a>
+  <div class="sn-contact-chips">
+    <div class="sn-contact-chip">
+      <div class="sn-contact-chip__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </div>
-      <div style="background: var(--color-card-bg); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-card);">
-        <div style="width: 40px; height: 40px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: var(--color-primary);">
-          <i data-lucide="clock"></i>
-        </div>
-        <strong style="display: block; font-size: 14px; margin-bottom: 4px;">Response Time</strong>
-        <span style="font-size: 14px; color: var(--color-text-muted);">Within 24 hours</span>
+      <span class="sn-contact-chip__label">Email</span>
+      <a href="mailto:hello@nutrava.net" class="sn-contact-chip__value">hello@nutrava.net</a>
+    </div>
+    <div class="sn-contact-chip">
+      <div class="sn-contact-chip__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
+      <span class="sn-contact-chip__label">Response time</span>
+      <span class="sn-contact-chip__value">Within 24 hours</span>
     </div>
   </div>
 </section>
