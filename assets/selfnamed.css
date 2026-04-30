@@ -35,7 +35,83 @@
 
   /* Layout */
   --sn-w-page: 1240px;
+
+  /* ----------------------------------------------------------------
+     Legacy token aliases — remap the old --color-* names from the
+     pre-redesign theme onto the new palette so any template that
+     hasn't been ported yet (article, blog, list-collections, the
+     legacy page.results / page.stacks, gift_card) inherits the new
+     colour story automatically through the CSS cascade.
+     base.css declares these on its own :root; selfnamed.css is loaded
+     after, so these declarations win.
+     ---------------------------------------------------------------- */
+  --color-bg:           var(--sn-paper);
+  --color-bg-alt:       var(--sn-cream);
+  --color-text:         var(--sn-ink);
+  --color-text-body:    var(--sn-ink-soft);
+  --color-text-muted:   var(--sn-ink-mute);
+  --color-border:       var(--sn-line);
+  --color-card-bg:      var(--sn-cream);
+  --color-primary:      var(--sn-ink);
+  --color-accent:       var(--sn-amber);
+  --color-mint-mist:    var(--sn-cream);
+  --color-fern:         var(--sn-sage);
+  --color-oat:          var(--sn-paper);
+
+  /* Type aliases */
+  --font-heading:       var(--sn-display);
+  --font-body:          var(--sn-ui);
+
+  /* Radius aliases */
+  --radius-sm:          12px;
+  --radius-md:          18px;
+  --radius-lg:          var(--sn-r-card);
+  --radius-pill:        var(--sn-r-pill);
 }
+
+/* ----------------------------------------------------------------
+   Legacy utility class overrides — drop the warm-mint backgrounds
+   on .bg-mint / .bg-mint-mist / .bg-oat from the old theme so they
+   blend with the new paper canvas instead of looking off-palette.
+   ---------------------------------------------------------------- */
+.bg-mint, .bg-oat, .bg-mint-mist { background: var(--sn-paper); }
+.bg-cream { background: var(--sn-cream); }
+.bg-sage  { background: var(--sn-sage); }
+
+/* ----------------------------------------------------------------
+   Legacy .btn / .btn--primary / .btn--outline used by the cart
+   drawer empty state, gift card, page.stacks, etc. Map them onto
+   the SelfNamed pill button system so styles match the rest of the
+   site without having to rewrite every legacy template.
+   ---------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--sn-r-pill);
+  font-family: var(--sn-ui);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s, color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.btn--primary { background: var(--sn-ink); color: var(--sn-paper); }
+.btn--primary:hover { background: #2a2a2a; transform: translateY(-1px); }
+.btn--outline {
+  background: transparent;
+  color: var(--sn-ink);
+  border: 1.5px solid var(--sn-ink);
+}
+.btn--outline:hover { background: var(--sn-ink); color: var(--sn-paper); }
+.btn--lg { padding: 18px 32px; font-size: 14px; }
+.btn--sm { padding: 9px 16px; font-size: 12px; }
 
 /* ---------- Base ---------- */
 body {
