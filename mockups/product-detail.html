@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Niacinamide Gel Moisturiser — Nutrava</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
   /* ------------------------------------------------------------------
      Nutrava — Product Detail Page mockup
      Soft Lora + Fraunces, pastel palette, no hard borders.
@@ -171,14 +181,6 @@
   .gallery__main--peach { background: var(--peach); }
   .gallery__main--lilac { background: var(--lilac); }
   .gallery__main--sage  { background: var(--sage); }
-  .gallery__main-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    position: relative;
-    z-index: 1;
-  }
   .gallery__bottle {
     width: 36%;
     aspect-ratio: 0.5;
@@ -197,7 +199,7 @@
     border-radius: 4px 4px 2px 2px;
   }
   .gallery__bottle::after {
-    content: "";
+    content: "Niacinamide";
     position: absolute;
     top: 38%; left: 10%; right: 10%;
     background: var(--paper);
@@ -1232,3 +1234,467 @@
     .footer__grid { grid-template-columns: 1fr; }
     .footer__bottom { flex-direction: column; gap: 8px; }
   }
+</style>
+</head>
+<body>
+
+<div class="mockup-tag">Mockup · PDP</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  Launch Special — 20% off your first routine with <a href="#">GLOW20</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav__logo">
+    <span class="nav__logo-mark">N</span>
+    Nutrava
+  </a>
+  <div class="nav__menu">
+    <a href="#">Shop All</a>
+    <a href="#">Routines</a>
+    <a href="#">Skin Concerns</a>
+    <a href="#">The Quiz</a>
+    <a href="#">Journal</a>
+  </div>
+  <div class="nav__cta">
+    <a href="#" class="btn btn--ghost btn--sm">Log in</a>
+    <a href="#" class="btn btn--ink btn--sm">Take the Quiz</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="crumb">
+  <a href="#">Home</a>
+  <span class="crumb__sep">›</span>
+  <a href="#">Shop</a>
+  <span class="crumb__sep">›</span>
+  <a href="#">Pore-refining</a>
+  <span class="crumb__sep">›</span>
+  <span class="crumb__current">Niacinamide Gel Moisturiser</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- Image gallery -->
+  <div class="gallery">
+    <div class="gallery__main" id="gallery-main">
+      <div class="gallery__bottle"></div>
+      <div class="gallery__blob"></div>
+    </div>
+    <div class="gallery__thumbs">
+      <button class="gallery__thumb is-active" data-thumb="cream" aria-label="Main bottle">
+        <div class="gallery__thumb-bottle"></div>
+      </button>
+      <button class="gallery__thumb gallery__thumb--swatch" data-thumb="peach" aria-label="Texture swatch"></button>
+      <button class="gallery__thumb gallery__thumb--inci" data-thumb="lilac" aria-label="Hero ingredient"></button>
+      <button class="gallery__thumb gallery__thumb--lifestyle" data-thumb="sage" aria-label="Lifestyle"></button>
+    </div>
+  </div>
+
+  <!-- Buy box -->
+  <div class="buy" id="buy-box">
+    <span class="buy__rating">
+      <span class="buy__stars">★★★★★</span>
+      4.9 · 47 reviews
+    </span>
+    <h1 class="buy__title">Niacinamide <em>Gel Moisturiser</em></h1>
+    <p class="buy__role">Pore-refining oil-balancer for combination &amp; oily skin</p>
+
+    <div class="buy__price-row">
+      <span class="buy__price">$19</span>
+      <span class="buy__size">— 30 ml</span>
+    </div>
+
+    <div class="buy__chips">
+      <span class="buy__chip">Combination &amp; oily</span>
+      <span class="buy__chip">Niacinamide</span>
+      <span class="buy__chip">Fragrance-free</span>
+      <span class="buy__chip">Non-comedogenic</span>
+    </div>
+
+    <button class="buy__cta">Add to cart · $19</button>
+
+    <div class="buy__trust">
+      <span class="buy__trust-item">Cruelty-free &amp; vegan-friendly</span>
+      <span class="buy__trust-item">30-day money-back guarantee</span>
+      <span class="buy__trust-item">Free US shipping over $50</span>
+      <span class="buy__trust-item">Made in the USA, third-party tested</span>
+    </div>
+
+    <a href="#" class="buy__quiz">
+      <span class="buy__quiz-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+      </span>
+      <div class="buy__quiz-body">
+        <span class="buy__quiz-title">Not sure if it's right for your skin?</span>
+        <span class="buy__quiz-sub">Take the 90-second quiz for a personal match</span>
+      </div>
+      <span class="buy__quiz-arrow">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- WHY THIS WORKS -->
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">Why this works</span>
+    <h2 class="section__title">Three concerns,<br><em>one gentle gel</em>.</h2>
+    <p class="section__sub">Niacinamide is the rare active that hits multiple problems at once — without forcing you to layer four different serums.</p>
+  </div>
+  <div class="benefits">
+    <div class="benefit">
+      <div class="benefit__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3 class="benefit__title">Refines <em>pores</em></h3>
+      <p class="benefit__text">Reduces the visible appearance of pores by regulating sebum production at the source — so they actually clog less, not just look smaller for the day.</p>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+      <h3 class="benefit__title">Balances <em>oil</em></h3>
+      <p class="benefit__text">Brings combination skin into balance — moisturises the dry zones without feeding the oily ones. Makeup sits cleaner. Skin feels less reactive by mid-afternoon.</p>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3 class="benefit__title">Evens post-acne <em>tone</em></h3>
+      <p class="benefit__text">Inhibits melanin transfer so post-acne marks fade over consistent use. Not a spot treatment — a slow, even daily levelling of tone across the whole face.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HERO INGREDIENT -->
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">The hero ingredient</span>
+    <h2 class="section__title">Backed by 100+ <em>peer-reviewed</em> studies.</h2>
+  </div>
+  <div class="hero-ing">
+    <div class="hero-ing__blob hero-ing__blob--tr"></div>
+    <div class="hero-ing__layout">
+      <div class="hero-ing__symbol">
+        <div>
+          <div class="hero-ing__abbr">B3</div>
+          <div class="hero-ing__num">Niacinamide · vitamin B3</div>
+        </div>
+      </div>
+      <div>
+        <span class="hero-ing__overline">Key active</span>
+        <h3 class="hero-ing__name"><em>Niacinamide</em></h3>
+        <p class="hero-ing__lead">A form of vitamin B3 that signals skin cells to slow sebum production, strengthen the lipid barrier, and reduce the visible appearance of pores. Also inhibits melanin transfer — which is why it fades post-acne marks over time.</p>
+        <div class="hero-ing__grid">
+          <div class="hero-ing__section">
+            <span class="hero-ing__label">How it works</span>
+            <p class="hero-ing__body">B3 boosts ceramide production at the cellular level, repairing the moisture barrier. It also slows the transfer of melanosomes from melanocytes to keratinocytes — slowing new pigmentation.</p>
+          </div>
+          <div class="hero-ing__section">
+            <span class="hero-ing__label">Best used</span>
+            <p class="hero-ing__body">AM and PM, applied to clean skin before your moisturiser or SPF. Plays nicely with vitamin C, retinol, and exfoliating acids — despite the old myth that you can't layer it.</p>
+          </div>
+          <div class="hero-ing__section">
+            <span class="hero-ing__label">Clinical evidence</span>
+            <p class="hero-ing__body">Effective at 2–10% concentration. Our formula sits in the clinically meaningful range — not the symbolic 'trace amount' on most labels.<cite>— J Cosmet Dermatol, 2004 &amp; 2017</cite></p>
+          </div>
+          <div class="hero-ing__section">
+            <span class="hero-ing__label">Skin types it suits</span>
+            <p class="hero-ing__body">Universal — works for oily, combination, dry, and sensitive skin. Especially impactful for combination + post-acne marks, which is why it's our most-recommended active.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCI -->
+<section class="section section--cream">
+  <div class="section__head">
+    <span class="section__overline">Full ingredients</span>
+    <h2 class="section__title">No <em>secrets</em>, no surprises.</h2>
+    <p class="section__sub">Every ingredient earns its place. Tap below to read the full INCI list — exactly what's on the carton.</p>
+  </div>
+  <div class="inci__tags">
+    <span class="inci__tag">Vegan-friendly</span>
+    <span class="inci__tag">Cruelty-free</span>
+    <span class="inci__tag">Fragrance-free</span>
+    <span class="inci__tag">Paraben-free</span>
+    <span class="inci__tag">Sulfate-free</span>
+    <span class="inci__tag">Non-comedogenic</span>
+  </div>
+  <details class="inci__panel inci">
+    <summary class="inci__summary">
+      <span class="inci__summary-text">Read the full INCI list</span>
+      <span class="inci__icon">+</span>
+    </summary>
+    <div class="inci__content">
+      <p>This formula contains no fragrance, essential oils, or essential-oil-derived actives. Suitable for sensitive skin and pregnancy-conscious use.</p>
+      <div class="inci__list">
+        <strong>Aqua/Water/Eau</strong>, Niacinamide, Glycerin, Sodium Hyaluronate, Ceramide NP, Pentylene Glycol, Phenoxyethanol, Carbomer, Sodium Hydroxide, Disodium EDTA, Allantoin, Panthenol, Centella Asiatica Extract, Beta-Glucan, Sodium PCA, Trehalose, Tocopherol, Caprylyl Glycol, Ethylhexylglycerin.
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- PAIRS -->
+<section class="section section--cream">
+  <div class="section__head">
+    <span class="section__overline">Pairs cleanly with</span>
+    <h2 class="section__title">Build the full <em>routine</em>.</h2>
+    <p class="section__sub">Each of these has been tested to layer with Niacinamide Gel without conflict — and you save when you bundle.</p>
+  </div>
+  <div class="pairs">
+    <a href="#" class="pair-card">
+      <div class="pair-card__visual"><div class="pair-card__bottle"></div></div>
+      <h3 class="pair-card__name">Blemish Purifying Face Wash</h3>
+      <p class="pair-card__why">Pre-cleanse — your gel works better on properly cleansed skin.</p>
+      <div class="pair-card__row">
+        <span class="pair-card__price">$35</span>
+        <button class="pair-card__add" aria-label="Add Blemish Wash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </a>
+    <a href="#" class="pair-card">
+      <div class="pair-card__visual"><div class="pair-card__bottle"></div></div>
+      <h3 class="pair-card__name">Sunscreen SPF30</h3>
+      <p class="pair-card__why">Locks in the niacinamide tone work — non-negotiable for combination skin.</p>
+      <div class="pair-card__row">
+        <span class="pair-card__price">$24</span>
+        <button class="pair-card__add" aria-label="Add Sunscreen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </a>
+    <a href="#" class="pair-card">
+      <div class="pair-card__visual"><div class="pair-card__bottle"></div></div>
+      <h3 class="pair-card__name">Targeted Dark Spot Care</h3>
+      <p class="pair-card__why">Doubles down on post-acne marks at night — kojic acid + niacinamide combo.</p>
+      <div class="pair-card__row">
+        <span class="pair-card__price">$32</span>
+        <button class="pair-card__add" aria-label="Add Dark Spot Care"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </a>
+  </div>
+  <button class="bundle">
+    <div class="bundle__main">
+      <span class="bundle__label">Add all 4 as the full routine</span>
+      <span class="bundle__text">Complete acne routine</span>
+    </div>
+    <div class="bundle__price">
+      <span class="bundle__was">$110</span>
+      <span class="bundle__now">$99</span>
+      <span class="bundle__save">save $11</span>
+    </div>
+  </button>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">What customers say</span>
+    <h2 class="section__title">Reviews from <em>real</em> skin.</h2>
+  </div>
+  <div class="reviews">
+    <div class="reviews__head">
+      <div class="reviews__big">
+        <div class="reviews__avg">4.9</div>
+        <div class="reviews__big-stars">★★★★★</div>
+        <div class="reviews__count">based on 47 reviews</div>
+      </div>
+      <div class="reviews__bars">
+        <div class="reviews__bar-row">5 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:88%"></div></div> <span>41</span></div>
+        <div class="reviews__bar-row">4 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:9%"></div></div> <span>4</span></div>
+        <div class="reviews__bar-row">3 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:3%"></div></div> <span>2</span></div>
+        <div class="reviews__bar-row">2 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:0%"></div></div> <span>0</span></div>
+        <div class="reviews__bar-row">1 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:0%"></div></div> <span>0</span></div>
+      </div>
+    </div>
+    <div class="reviews__list">
+
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★★</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Pores actually look smaller</h4>
+        <p class="review__body">Used it morning + night for 6 weeks. The shine on my T-zone went down by week 2, and pores around my nose are noticeably less visible. Doesn't pill under SPF.</p>
+        <div class="review__foot">
+          <span class="review__author">Maya R.</span>
+          <span>Combination · 26-34</span>
+        </div>
+      </article>
+
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★★</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Finally, no breakout from a moisturiser</h4>
+        <p class="review__body">Every other moisturiser gave me bumps. This one's lightweight and my skin actually drinks it. Texture's like a thin gel — not sticky.</p>
+        <div class="review__foot">
+          <span class="review__author">Priya S.</span>
+          <span>Oily · 18-25</span>
+        </div>
+      </article>
+
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★★</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Helping fade post-acne marks</h4>
+        <p class="review__body">I have a few stubborn marks from past breakouts. Two months in, they're noticeably lighter — pairing with SPF as suggested. Didn't expect this much from a moisturiser.</p>
+        <div class="review__foot">
+          <span class="review__author">Daniel K.</span>
+          <span>Combination · 26-34</span>
+        </div>
+      </article>
+
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★☆</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Subtle but real</h4>
+        <p class="review__body">Don't expect overnight miracles — I had to give it a full month. But by week 4 my face just looked calmer overall. Less reactive. I keep buying.</p>
+        <div class="review__foot">
+          <span class="review__author">Alex M.</span>
+          <span>Sensitive · 35-44</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--cream">
+  <div class="section__head">
+    <span class="section__overline">Common questions</span>
+    <h2 class="section__title"><em>Frequently</em> asked.</h2>
+  </div>
+  <div class="faq">
+    <details class="faq__item" open>
+      <summary class="faq__q">
+        <span class="faq__q-text">When will I see results?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Most people notice less shine and clearer pores within 2–3 weeks. Tone-correction (post-acne marks) is slower — give it 6–8 weeks of consistent use to see fading.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">Can I layer this with retinol or vitamin C?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Yes — there's a persistent online myth that you can't, but it's been disproven multiple times. We recommend niacinamide gel first (lighter), then your retinol or vitamin C on top.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">Is it safe during pregnancy?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Niacinamide is generally considered pregnancy-safe — it's water-soluble vitamin B3, with no known risks. We always recommend confirming with your doctor before adding any new product during pregnancy.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">Will it break me out?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">Niacinamide gel is non-comedogenic and fragrance-free. Most blemish-prone customers tolerate it well. If you're highly reactive, patch-test on your jawline for a few days first.</p>
+    </details>
+    <details class="faq__item">
+      <summary class="faq__q">
+        <span class="faq__q-text">How long does one bottle last?</span>
+        <span class="faq__icon">+</span>
+      </summary>
+      <p class="faq__a">A 30 ml bottle, used twice daily as directed, lasts roughly 8–10 weeks. Subscribe-and-save coming soon — for now, our re-order reminder email lands at the 6-week mark.</p>
+    </details>
+  </div>
+</section>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta__info">
+    <span class="sticky-cta__name">Niacinamide Gel Moisturiser</span>
+    <span class="sticky-cta__price">$19 · 30 ml</span>
+  </div>
+  <button class="sticky-cta__btn">Add to cart</button>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <h3 class="footer__brand-name">Nutrava</h3>
+      <p class="footer__brand-desc">Personalised clean skincare, built around your skin. Never tested on animals. Always real percentages.</p>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Shop</h4>
+      <ul>
+        <li><a href="#">All products</a></li>
+        <li><a href="#">Routines</a></li>
+        <li><a href="#">Best sellers</a></li>
+        <li><a href="#">The Quiz</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul>
+        <li><a href="#">Our story</a></li>
+        <li><a href="#">Ingredients</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__col-title">Help</h4>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Nutrava — Made in the USA</span>
+    <span>Privacy · Terms · Accessibility</span>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // Image gallery — click thumbnail to swap main image background
+  // ============================================================
+  (function () {
+    const thumbs = document.querySelectorAll('.gallery__thumb');
+    const main = document.getElementById('gallery-main');
+    if (!thumbs.length || !main) return;
+    thumbs.forEach(t => t.addEventListener('click', () => {
+      thumbs.forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
+      const tint = t.dataset.thumb;
+      main.classList.remove('gallery__main--peach', 'gallery__main--lilac', 'gallery__main--sage');
+      if (tint && tint !== 'cream') main.classList.add('gallery__main--' + tint);
+    }));
+  })();
+
+  // ============================================================
+  // Sticky mobile add-to-cart bar — show after user scrolls past buy box
+  // ============================================================
+  (function () {
+    const bar = document.getElementById('sticky-cta');
+    const buyBox = document.getElementById('buy-box');
+    if (!bar || !buyBox) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => bar.classList.toggle('is-visible', !e.isIntersecting));
+    }, { rootMargin: '0px 0px -40% 0px' });
+    observer.observe(buyBox);
+  })();
+</script>
+
+</body>
+</html>

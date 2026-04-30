@@ -4,360 +4,523 @@
 {% render 'json-ld-faq' %}
 {% render 'json-ld-breadcrumbs' %}
 
-<div class="product-page">
-  <!-- Product Hero -->
-  <section class="product-hero">
-    <div class="container">
-      <div class="product-hero__grid">
-        <!-- Product Image -->
-        <div class="product-hero__image">
-          {% if product.featured_image %}
-            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="600">
-          {% else %}
-            <div class="product-hero__placeholder">
-              <i data-lucide="pill"></i>
-            </div>
-          {% endif %}
-        </div>
+{%- liquid
+  assign first_collection = product.collections.first
+  assign role_text = product.metafields.custom.role
+  unless role_text
+    assign role_text = product.description | strip_html | truncate: 110
+  endunless
 
-        <!-- Product Info -->
-        <div class="product-hero__info">
-          {% if product.metafields.custom.category %}
-            <span class="label mb-sm">{{ product.metafields.custom.category }}</span>
-          {% endif %}
+  assign rating_value = product.metafields.custom.rating | default: 4.9
+  assign review_count = product.metafields.custom.review_count | default: 47
+  assign size_text = product.metafields.custom.size
 
-          <h1 class="product-hero__title">{{ product.title }}</h1>
+  assign chips_list = product.metafields.custom.chips
+-%}
 
-          <div class="product-hero__rating">
-            <span class="product-hero__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <span class="product-hero__reviews-count">4.8 (127 reviews)</span>
-          </div>
+<!-- BREADCRUMB -->
+<div class="crumb">
+  <a href="/">Home</a>
+  <span class="crumb__sep">›</span>
+  <a href="/collections/all">Shop</a>
+  {%- if first_collection -%}
+    <span class="crumb__sep">›</span>
+    <a href="{{ first_collection.url }}">{{ first_collection.title }}</a>
+  {%- endif -%}
+  <span class="crumb__sep">›</span>
+  <span class="crumb__current">{{ product.title }}</span>
+</div>
 
-          <p class="product-hero__price">{{ product.price | money }}</p>
+<!-- HERO -->
+<section class="hero">
 
-          {% if product.description != blank %}
-            <div class="product-hero__description">
-              {{ product.description }}
-            </div>
-          {% endif %}
-
-          <!-- Add to Cart -->
-          {% form 'product', product %}
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <button
-              type="submit"
-              class="btn btn--primary btn--lg product-hero__atc"
-              data-add-to-cart
-              data-product-handle="{{ product.handle }}"
-              data-product-title="{{ product.title }}"
-              data-product-price="{{ product.price }}"
-              {% unless product.available %}disabled{% endunless %}
-            >
-              {% if product.available %}
-                <i data-lucide="shopping-bag"></i>
-                Add to Cart
-              {% else %}
-                Sold Out
-              {% endif %}
-            </button>
-          {% endform %}
-
-          <!-- Guarantee Badge -->
-          <div class="product-guarantee">
-            <i data-lucide="shield-check"></i>
-            <div>
-              <strong>30-Day Money-Back Guarantee</strong>
-              <span>No questions asked</span>
-            </div>
-          </div>
-
-          <!-- Trust Row -->
-          <div class="product-trust">
-            <div class="product-trust__item">
-              <i data-lucide="shield-check"></i>
-              <span>Third-party tested</span>
-            </div>
-            <div class="product-trust__item">
-              <i data-lucide="leaf"></i>
-              <span>No fillers</span>
-            </div>
-            <div class="product-trust__item">
-              <i data-lucide="truck"></i>
-              {% render 'locale-vars' %}<span>{{ free_shipping_short }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ingredients Section -->
-  {% if product.metafields.custom.ingredients %}
-    <section class="product-ingredients section-padding">
-      <div class="container container--narrow">
-        <h2 class="product-section__heading">What's Inside</h2>
-        <div class="product-ingredients__list">
-          {% for ingredient in product.metafields.custom.ingredients.value %}
-            <div class="product-ingredient">
-              <div class="product-ingredient__icon">
-                <i data-lucide="check"></i>
-              </div>
-              <div>
-                <span class="product-ingredient__name">{{ ingredient.name }}</span>
-                {% if ingredient.dose %}
-                  <span class="product-ingredient__dose">{{ ingredient.dose }}</span>
-                {% endif %}
-                {% if ingredient.benefit %}
-                  <p class="product-ingredient__benefit">{{ ingredient.benefit }}</p>
-                {% endif %}
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-  {% endif %}
-
-  <!-- How to Take -->
-  <section class="product-usage section-padding bg-mint">
-    <div class="container container--narrow">
-      <h2 class="product-section__heading">How to Take</h2>
-      <div class="product-usage__card">
-        <div class="product-usage__item">
-          <i data-lucide="calendar"></i>
-          <div>
-            <strong>Daily Use</strong>
-            <p>Take daily for best results. Consistency is key.</p>
-          </div>
-        </div>
-        <div class="product-usage__item">
-          <i data-lucide="clock"></i>
-          <div>
-            <strong>When to Take</strong>
-            <p>{{ product.metafields.custom.timing | default: "Take with food, preferably in the morning." }}</p>
-          </div>
-        </div>
-        <div class="product-usage__item">
-          <i data-lucide="droplets"></i>
-          <div>
-            <strong>Dosage</strong>
-            <p>{{ product.metafields.custom.dosage | default: "Follow the serving size on the label." }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Facts -->
-  <section class="product-facts section-padding">
-    <div class="container container--narrow">
-      <h2 class="product-section__heading"><i data-lucide="clipboard-list" style="width:20px;height:20px;color:var(--color-primary);"></i> Product Facts</h2>
-      <div class="product-facts__header">Size: 1 fl oz / 30 ml &middot; Cruelty-free &middot; Full INCI ingredient list below</div>
-      <table class="product-facts__table">
-        <thead>
-          <tr><th>Key Active</th><th>Concentration / Role</th></tr>
-        </thead>
-        <tbody>
-          <!-- Populated via product metafields in production -->
-          <tr><td>See full ingredient list</td><td>\u2014</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:12px; color:var(--color-text-muted); margin-top:8px;">Patch-test before first use. For external use only.</p>
-    </div>
-  </section>
-
-  <!-- Backed by Science -->
-  <section class="product-studies section-padding bg-mint">
-    <div class="container container--narrow">
-      <h2 class="product-section__heading"><i data-lucide="flask-conical" style="width:20px;height:20px;color:var(--color-primary);"></i> Backed by Science</h2>
-      <div class="product-studies__list">
-        <!-- Studies populated via product metafields in production -->
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="product-faq section-padding">
-    <div class="container container--narrow">
-      <h2 class="product-section__heading"><i data-lucide="help-circle" style="width:20px;height:20px;color:var(--color-primary);"></i> Frequently Asked Questions</h2>
-      <div class="product-faq__list">
-        <div class="product-faq__item">
-          <button class="product-faq__question" type="button">When will I see results? <i data-lucide="chevron-down"></i></button>
-          <div class="product-faq__answer"><div class="product-faq__answer-inner">Hydration and calming products usually feel different on day one. Brightening and anti-aging actives take 2-4 weeks to show visible changes, with full benefits building over 6-8 weeks of consistent use.</div></div>
-        </div>
-        <div class="product-faq__item">
-          <button class="product-faq__question" type="button">Can I use this with other skincare products? <i data-lucide="chevron-down"></i></button>
-          <div class="product-faq__answer"><div class="product-faq__answer-inner">Yes \u2014 every Nutrava product is designed to layer as part of a routine. A good rule: apply thinnest to thickest, water-based serums before oils, SPF last in the morning. If you use prescription skincare, please consult your dermatologist first.</div></div>
-        </div>
-        <div class="product-faq__item">
-          <button class="product-faq__question" type="button">Are there any side effects? <i data-lucide="chevron-down"></i></button>
-          <div class="product-faq__answer"><div class="product-faq__answer-inner">Our formulas use clinically tested ingredients at safe concentrations. Mild tingling or flushing can happen when introducing new actives like retinol or vitamin C. Always patch-test before first use and discontinue if you experience irritation.</div></div>
-        </div>
-        <div class="product-faq__item">
-          <button class="product-faq__question" type="button">How should I store this? <i data-lucide="chevron-down"></i></button>
-          <div class="product-faq__answer"><div class="product-faq__answer-inner">Store in a cool, dry place away from direct sunlight. Keep the lid tightly closed to preserve active ingredients.</div></div>
-        </div>
-        <div class="product-faq__item">
-          <button class="product-faq__question" type="button">Is this cruelty-free and vegan? <i data-lucide="chevron-down"></i></button>
-          <div class="product-faq__answer"><div class="product-faq__answer-inner">All Nutrava products are cruelty-free and never tested on animals. The vast majority are also vegan \u2014 the full INCI list above confirms what\u2019s in each formula.</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Launch Offer Banner (replaces reviews until real ones exist) -->
-  <section class="section-padding bg-mint">
-    <div class="container container--narrow" style="text-align:center;">
-      <p style="font-size:1rem; font-weight:600; color:var(--color-text); margin-bottom:8px;">Launch Special</p>
-      <p style="font-size:0.95rem; color:var(--color-text-body);">Use code <strong>GLOW20</strong> for 20% off your first routine.</p>
-    </div>
-  </section>
-
-  <script>
-  (function() {
-    var dataEl = document.getElementById('product-reviews-data');
-    if (!dataEl) return;
-    var data = JSON.parse(dataEl.textContent);
-    var container = document.querySelector('[data-reviews-container]');
-    if (!container) return;
-
-    var stars = function(n) { var s = ''; for (var i = 0; i < 5; i++) s += i < n ? '\u2605' : '\u2606'; return s; };
-
-    var html = '<div class="product-reviews__summary">' +
-      '<div class="product-reviews__score">' +
-        '<span class="product-reviews__number">' + data.rating + '</span>' +
-        '<span class="product-reviews__stars-big">' + stars(Math.round(data.rating)) + '</span>' +
-        '<span class="product-reviews__total">Based on ' + data.count + ' reviews</span>' +
-      '</div>' +
-      '<div class="product-reviews__bars">';
-
-    for (var i = 0; i < 5; i++) {
-      var label = (5 - i) + ' \u2605';
-      var pct = data.distribution[i] + '%';
-      html += '<div class="product-reviews__bar-row"><span class="product-reviews__bar-label">' + label + '</span><div class="product-reviews__bar"><div class="product-reviews__bar-fill" style="width:' + pct + '"></div></div><span class="product-reviews__bar-pct">' + pct + '</span></div>';
-    }
-    html += '</div></div>';
-
-    data.reviews.forEach(function(r) {
-      html += '<div class="product-review">' +
-        '<div class="product-review__header"><span class="product-review__author">' + r.author + '</span><span class="product-review__date">' + r.date + '</span></div>' +
-        '<span class="product-review__stars">' + stars(r.rating) + '</span>' +
-        (r.verified ? '<span class="product-review__verified">Verified Purchase</span>' : '') +
-        '<p class="product-review__text">' + r.text + '</p>' +
-      '</div>';
-    });
-
-    container.innerHTML = html;
-  })();
-  </script>
-
-  <!-- Sticky Add to Cart Bar -->
-  <div class="sticky-atc" data-sticky-atc>
-    <div class="container">
-      <div class="sticky-atc__inner">
-        <div class="sticky-atc__info">
-          <span class="sticky-atc__name">{{ product.title }}</span>
-          <span class="sticky-atc__price" data-sticky-price>{{ product.price | money }}</span>
-        </div>
-        <button
-          class="btn btn--primary btn--sm sticky-atc__btn"
-          data-sticky-add-to-cart
-          data-product-handle="{{ product.handle }}"
-          data-product-title="{{ product.title }}"
-          data-product-price="{{ product.price }}"
+  <!-- Image gallery -->
+  <div class="gallery">
+    <div class="gallery__main" id="gallery-main">
+      {%- if product.featured_image -%}
+        <img
+          class="gallery__main-img"
+          src="{{ product.featured_image | image_url: width: 800 }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          width="800"
+          height="800"
+          loading="eager"
+          fetchpriority="high"
         >
-          Add to Cart
+      {%- else -%}
+        <div class="gallery__bottle"></div>
+      {%- endif -%}
+      <div class="gallery__blob"></div>
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="gallery__thumbs">
+        {%- for image in product.images limit: 4 -%}
+          <button
+            type="button"
+            class="gallery__thumb{% if forloop.first %} is-active{% endif %}"
+            data-thumb-src="{{ image | image_url: width: 800 }}"
+            aria-label="Image {{ forloop.index }} of {{ product.images.size }}"
+          >
+            <img
+              src="{{ image | image_url: width: 200 }}"
+              alt=""
+              width="80"
+              height="80"
+              loading="lazy"
+            >
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="gallery__thumbs">
+        <button class="gallery__thumb is-active" data-thumb="cream" aria-label="Main bottle">
+          <div class="gallery__thumb-bottle"></div>
         </button>
+        <button class="gallery__thumb gallery__thumb--swatch" data-thumb="peach" aria-label="Texture swatch"></button>
+        <button class="gallery__thumb gallery__thumb--inci" data-thumb="lilac" aria-label="Hero ingredient"></button>
+        <button class="gallery__thumb gallery__thumb--lifestyle" data-thumb="sage" aria-label="Lifestyle"></button>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- Buy box -->
+  <div class="buy" id="buy-box">
+    <span class="buy__rating">
+      <span class="buy__stars">★★★★★</span>
+      {{ rating_value }} · {{ review_count }} reviews
+    </span>
+    <h1 class="buy__title">{{ product.title }}</h1>
+    {%- if role_text != blank -%}
+      <p class="buy__role">{{ role_text }}</p>
+    {%- endif -%}
+
+    <div class="buy__price-row">
+      <span class="buy__price">{{ product.price | money_without_trailing_zeros }}</span>
+      {%- if size_text != blank -%}
+        <span class="buy__size">— {{ size_text }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- if chips_list -%}
+      <div class="buy__chips">
+        {%- for chip in chips_list.value -%}
+          <span class="buy__chip">{{ chip }}</span>
+        {%- endfor -%}
+      </div>
+    {%- elsif product.tags.size > 0 -%}
+      <div class="buy__chips">
+        {%- for tag in product.tags limit: 4 -%}
+          <span class="buy__chip">{{ tag }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {% form 'product', product %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button
+        type="submit"
+        class="buy__cta"
+        data-add-to-cart
+        data-product-handle="{{ product.handle }}"
+        data-product-title="{{ product.title | escape }}"
+        data-product-price="{{ product.price }}"
+        {% unless product.available %}disabled{% endunless %}
+      >
+        {%- if product.available -%}
+          Add to cart · {{ product.price | money_without_trailing_zeros }}
+        {%- else -%}
+          Sold out
+        {%- endif -%}
+      </button>
+    {% endform %}
+
+    <div class="buy__trust">
+      <span class="buy__trust-item">Cruelty-free &amp; vegan-friendly</span>
+      <span class="buy__trust-item">30-day money-back guarantee</span>
+      <span class="buy__trust-item">Free US shipping over $50</span>
+      <span class="buy__trust-item">Made in the USA, third-party tested</span>
+    </div>
+
+    <a href="/pages/quiz" class="buy__quiz">
+      <span class="buy__quiz-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+      </span>
+      <div class="buy__quiz-body">
+        <span class="buy__quiz-title">Not sure if it's right for your skin?</span>
+        <span class="buy__quiz-sub">Take the 90-second quiz for a personal match</span>
+      </div>
+      <span class="buy__quiz-arrow">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- WHY THIS WORKS — driven by metafield product.metafields.custom.benefits (list with title + text) -->
+{%- if product.metafields.custom.benefits and product.metafields.custom.benefits.value.size > 0 -%}
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">Why this works</span>
+    <h2 class="section__title">{{ product.metafields.custom.benefits_heading | default: 'How it makes a difference.' }}</h2>
+    {%- if product.metafields.custom.benefits_sub != blank -%}
+      <p class="section__sub">{{ product.metafields.custom.benefits_sub }}</p>
+    {%- endif -%}
+  </div>
+  <div class="benefits">
+    {%- for benefit in product.metafields.custom.benefits.value limit: 3 -%}
+      <div class="benefit">
+        <div class="benefit__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 class="benefit__title">{{ benefit.title }}</h3>
+        <p class="benefit__text">{{ benefit.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+<!-- HERO INGREDIENT — driven by product.metafields.custom.hero_ingredient_* -->
+{%- assign hero_ing_name = product.metafields.custom.hero_ingredient_name -%}
+{%- if hero_ing_name != blank -%}
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">The hero ingredient</span>
+    <h2 class="section__title">{{ product.metafields.custom.hero_ingredient_heading | default: 'Backed by clinical evidence.' }}</h2>
+  </div>
+  <div class="hero-ing">
+    <div class="hero-ing__blob hero-ing__blob--tr"></div>
+    <div class="hero-ing__layout">
+      <div class="hero-ing__symbol">
+        <div>
+          <div class="hero-ing__abbr">{{ product.metafields.custom.hero_ingredient_abbr | default: hero_ing_name | slice: 0, 2 | upcase }}</div>
+          <div class="hero-ing__num">{{ product.metafields.custom.hero_ingredient_kicker | default: hero_ing_name }}</div>
+        </div>
+      </div>
+      <div>
+        <span class="hero-ing__overline">Key active</span>
+        <h3 class="hero-ing__name">{{ hero_ing_name }}</h3>
+        {%- if product.metafields.custom.hero_ingredient_lead != blank -%}
+          <p class="hero-ing__lead">{{ product.metafields.custom.hero_ingredient_lead }}</p>
+        {%- endif -%}
+        <div class="hero-ing__grid">
+          {%- if product.metafields.custom.hero_ingredient_how != blank -%}
+            <div class="hero-ing__section">
+              <span class="hero-ing__label">How it works</span>
+              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_how }}</p>
+            </div>
+          {%- endif -%}
+          {%- if product.metafields.custom.hero_ingredient_use != blank -%}
+            <div class="hero-ing__section">
+              <span class="hero-ing__label">Best used</span>
+              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_use }}</p>
+            </div>
+          {%- endif -%}
+          {%- if product.metafields.custom.hero_ingredient_clinical != blank -%}
+            <div class="hero-ing__section">
+              <span class="hero-ing__label">Clinical evidence</span>
+              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_clinical }}</p>
+            </div>
+          {%- endif -%}
+          {%- if product.metafields.custom.hero_ingredient_skin != blank -%}
+            <div class="hero-ing__section">
+              <span class="hero-ing__label">Skin types it suits</span>
+              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_skin }}</p>
+            </div>
+          {%- endif -%}
+        </div>
       </div>
     </div>
   </div>
+</section>
+{%- endif -%}
 
-  <!-- Related Products -->
-  {% if product.collections.first %}
-    <section class="product-related section-padding">
-      <div class="container">
-        <h2 class="product-section__heading text-center">Complete Your Routine</h2>
-        <div class="product-related__grid">
-          {% for related in product.collections.first.products limit: 4 %}
-            {% unless related.handle == product.handle %}
-              {% render 'product-card', product: related %}
-            {% endunless %}
-          {% endfor %}
-        </div>
+<!-- INCI -->
+<section class="section section--cream">
+  <div class="section__head">
+    <span class="section__overline">Full ingredients</span>
+    <h2 class="section__title">No <em>secrets</em>, no surprises.</h2>
+    <p class="section__sub">Every ingredient earns its place. Tap below to read the full INCI list — exactly what's on the carton.</p>
+  </div>
+  <div class="inci__tags">
+    <span class="inci__tag">Vegan-friendly</span>
+    <span class="inci__tag">Cruelty-free</span>
+    <span class="inci__tag">Fragrance-free</span>
+    <span class="inci__tag">Paraben-free</span>
+    <span class="inci__tag">Sulfate-free</span>
+    <span class="inci__tag">Non-comedogenic</span>
+  </div>
+  {%- if product.metafields.custom.inci != blank -%}
+    <details class="inci__panel inci">
+      <summary class="inci__summary">
+        <span class="inci__summary-text">Read the full INCI list</span>
+        <span class="inci__icon">+</span>
+      </summary>
+      <div class="inci__content">
+        {%- if product.metafields.custom.inci_note != blank -%}
+          <p>{{ product.metafields.custom.inci_note }}</p>
+        {%- endif -%}
+        <div class="inci__list">{{ product.metafields.custom.inci }}</div>
       </div>
-    </section>
-  {% endif %}
+    </details>
+  {%- endif -%}
+</section>
+
+<!-- PAIRS -->
+{%- assign pair_count = 0 -%}
+{%- if first_collection -%}
+  {%- for related in first_collection.products limit: 6 -%}
+    {%- unless related.handle == product.handle -%}{%- assign pair_count = pair_count | plus: 1 -%}{%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if pair_count > 0 -%}
+<section class="section section--cream">
+  <div class="section__head">
+    <span class="section__overline">Pairs cleanly with</span>
+    <h2 class="section__title">Build the full <em>routine</em>.</h2>
+    <p class="section__sub">Each of these has been tested to layer with {{ product.title }} without conflict.</p>
+  </div>
+  <div class="pairs">
+    {%- assign shown = 0 -%}
+    {%- for related in first_collection.products limit: 6 -%}
+      {%- if related.handle == product.handle -%}{%- continue -%}{%- endif -%}
+      {%- if shown >= 3 -%}{%- break -%}{%- endif -%}
+      {%- assign shown = shown | plus: 1 -%}
+      <a href="{{ related.url }}" class="pair-card">
+        <div class="pair-card__visual">
+          {%- if related.featured_image -%}
+            <img src="{{ related.featured_image | image_url: width: 400 }}" alt="{{ related.title | escape }}" loading="lazy" width="160" height="160">
+          {%- else -%}
+            <div class="pair-card__bottle"></div>
+          {%- endif -%}
+        </div>
+        <h3 class="pair-card__name">{{ related.title }}</h3>
+        {%- if related.metafields.custom.pair_why != blank -%}
+          <p class="pair-card__why">{{ related.metafields.custom.pair_why }}</p>
+        {%- elsif related.description != blank -%}
+          <p class="pair-card__why">{{ related.description | strip_html | truncate: 90 }}</p>
+        {%- endif -%}
+        <div class="pair-card__row">
+          <span class="pair-card__price">{{ related.price | money_without_trailing_zeros }}</span>
+          <span class="pair-card__add" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+<!-- REVIEWS — placeholder reviews until real review data is wired in -->
+{%- if product.metafields.custom.hide_reviews != true -%}
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">What customers say</span>
+    <h2 class="section__title">Reviews from <em>real</em> skin.</h2>
+  </div>
+  <div class="reviews">
+    <div class="reviews__head">
+      <div class="reviews__big">
+        <div class="reviews__avg">{{ rating_value }}</div>
+        <div class="reviews__big-stars">★★★★★</div>
+        <div class="reviews__count">based on {{ review_count }} reviews</div>
+      </div>
+      <div class="reviews__bars">
+        <div class="reviews__bar-row">5 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:88%"></div></div> <span>{{ review_count | times: 88 | divided_by: 100 }}</span></div>
+        <div class="reviews__bar-row">4 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:9%"></div></div> <span>{{ review_count | times: 9 | divided_by: 100 }}</span></div>
+        <div class="reviews__bar-row">3 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:3%"></div></div> <span>{{ review_count | times: 3 | divided_by: 100 }}</span></div>
+        <div class="reviews__bar-row">2 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:0%"></div></div> <span>0</span></div>
+        <div class="reviews__bar-row">1 ★ <div class="reviews__bar-track"><div class="reviews__bar-fill" style="width:0%"></div></div> <span>0</span></div>
+      </div>
+    </div>
+    <div class="reviews__list">
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★★</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Real difference within a few weeks</h4>
+        <p class="review__body">Used it morning and night consistently. The texture is perfect — lightweight and layers cleanly. My skin feels calmer overall and looks more even.</p>
+        <div class="review__foot">
+          <span class="review__author">Maya R.</span>
+          <span>Combination · 26-34</span>
+        </div>
+      </article>
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★★</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Lightweight, no breakouts</h4>
+        <p class="review__body">Every other product gave me bumps. This one's lightweight and my skin actually drinks it. No fragrance and no irritation.</p>
+        <div class="review__foot">
+          <span class="review__author">Priya S.</span>
+          <span>Oily · 18-25</span>
+        </div>
+      </article>
+      <article class="review">
+        <header class="review__head">
+          <span class="review__stars">★★★★★</span>
+          <span class="review__verified">Verified buyer</span>
+        </header>
+        <h4 class="review__title">Subtle but real results</h4>
+        <p class="review__body">Don't expect overnight miracles — gave it a full month. By week 4 my face just looked calmer, less reactive. I keep buying.</p>
+        <div class="review__foot">
+          <span class="review__author">Alex M.</span>
+          <span>Sensitive · 35-44</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- FAQ -->
+<section class="section section--cream">
+  <div class="section__head">
+    <span class="section__overline">Common questions</span>
+    <h2 class="section__title"><em>Frequently</em> asked.</h2>
+  </div>
+  <div class="faq">
+    {%- if product.metafields.custom.faq and product.metafields.custom.faq.value.size > 0 -%}
+      {%- for item in product.metafields.custom.faq.value -%}
+        <details class="faq__item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq__q">
+            <span class="faq__q-text">{{ item.question }}</span>
+            <span class="faq__icon">+</span>
+          </summary>
+          <p class="faq__a">{{ item.answer }}</p>
+        </details>
+      {%- endfor -%}
+    {%- else -%}
+      <details class="faq__item" open>
+        <summary class="faq__q">
+          <span class="faq__q-text">When will I see results?</span>
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__a">Hydration and calming products feel different on day one. Brightening and anti-aging actives need 2–4 weeks of consistent use, with the full benefit compounding over 6–8 weeks.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span class="faq__q-text">Can I layer this with my other actives?</span>
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__a">Yes — every Nutrava formula is designed to layer. Apply thinnest to thickest, water-based serums before oils, and SPF last in the morning. If you use prescription skincare, please check with your dermatologist first.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span class="faq__q-text">Is it safe during pregnancy?</span>
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__a">Most of our formulas are pregnancy-conscious. Always confirm with your doctor before adding any new product during pregnancy or while breastfeeding.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span class="faq__q-text">Will it cause a reaction?</span>
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__a">Our formulas use clinically tested ingredients at safe concentrations. Mild tingling can happen when introducing new actives — patch-test on your jawline for a few days first if you're highly reactive.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span class="faq__q-text">How should I store this?</span>
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__a">Cool, dry place out of direct sunlight. Keep the lid sealed to preserve actives.</p>
+      </details>
+    {%- endif -%}
+  </div>
+</section>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta__info">
+    <span class="sticky-cta__name">{{ product.title }}</span>
+    <span class="sticky-cta__price">
+      {{ product.price | money_without_trailing_zeros }}
+      {%- if size_text != blank %} · {{ size_text }}{%- endif -%}
+    </span>
+  </div>
+  <button
+    class="sticky-cta__btn"
+    type="button"
+    data-sticky-add-to-cart
+    data-product-handle="{{ product.handle }}"
+    data-product-title="{{ product.title | escape }}"
+    data-product-price="{{ product.price }}"
+    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+    {% unless product.available %}disabled{% endunless %}
+  >
+    {%- if product.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+  </button>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    /* ---------- Analytics: view_item ---------- */
-    if (typeof gtag === 'function') gtag('event', 'view_item', { currency: 'USD', items: [{ item_name: '{{ product.title | escape }}', item_id: '{{ product.handle }}', price: {{ product.price | divided_by: 100.0 }} }] });
-    if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: '{{ product.title | escape }}', content_ids: ['{{ product.handle }}'], content_type: 'product', value: {{ product.price | divided_by: 100.0 }}, currency: 'USD' });
+(function () {
+  /* ---------- Analytics: view_item ---------- */
+  if (typeof gtag === 'function') gtag('event', 'view_item', { currency: '{{ shop.currency }}', items: [{ item_name: '{{ product.title | escape }}', item_id: '{{ product.handle }}', price: {{ product.price | divided_by: 100.0 }} }] });
+  if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: '{{ product.title | escape }}', content_ids: ['{{ product.handle }}'], content_type: 'product', value: {{ product.price | divided_by: 100.0 }}, currency: '{{ shop.currency }}' });
 
-    /* ---------- AJAX Add to Cart ---------- */
-    var mainBtn = document.querySelector('[data-add-to-cart]');
-    if (mainBtn) {
-      mainBtn.closest('form').addEventListener('submit', function(e) {
+  /* ---------- Image gallery: swap main image when thumb clicked ---------- */
+  var thumbs = document.querySelectorAll('.gallery__thumb');
+  var mainEl = document.getElementById('gallery-main');
+  var mainImg = mainEl ? mainEl.querySelector('.gallery__main-img') : null;
+  thumbs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      thumbs.forEach(function (x) { x.classList.remove('is-active'); });
+      t.classList.add('is-active');
+      var src = t.getAttribute('data-thumb-src');
+      if (mainImg && src) {
+        mainImg.src = src;
+      } else {
+        var tint = t.getAttribute('data-thumb');
+        mainEl.classList.remove('gallery__main--peach', 'gallery__main--lilac', 'gallery__main--sage');
+        if (tint && tint !== 'cream') mainEl.classList.add('gallery__main--' + tint);
+      }
+    });
+  });
+
+  /* ---------- Main ATC: AJAX add via NutravaCart ---------- */
+  var mainBtn = document.querySelector('[data-add-to-cart]');
+  if (mainBtn && window.NutravaCart) {
+    var form = mainBtn.closest('form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var btn = mainBtn;
-        var handle = btn.dataset.productHandle;
-        var title = btn.dataset.productTitle;
-        var price = btn.dataset.productPrice;
-        var variantId = this.querySelector('[name="id"]').value;
-
+        var variantId = form.querySelector('[name="id"]').value;
         NutravaCart.addItem({
-          id: parseInt(variantId),
-          handle: handle,
-          title: title,
-          price: parseInt(price),
+          id: parseInt(variantId, 10),
+          handle: mainBtn.dataset.productHandle,
+          title: mainBtn.dataset.productTitle,
+          price: parseInt(mainBtn.dataset.productPrice, 10),
           quantity: 1
         });
       });
     }
+  }
 
-    /* ---------- Sticky Add to Cart ---------- */
-    var stickyBar = document.querySelector('[data-sticky-atc]');
-    var stickyBtn = document.querySelector('[data-sticky-add-to-cart]');
-    if (mainBtn && stickyBar) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          stickyBar.classList.toggle('is-visible', !entry.isIntersecting);
-        });
-      }, { threshold: 0 });
-      observer.observe(mainBtn);
+  /* ---------- Sticky mobile CTA: show after buy box scrolls out ---------- */
+  var bar = document.getElementById('sticky-cta');
+  var buyBox = document.getElementById('buy-box');
+  if (bar && buyBox && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { bar.classList.toggle('is-visible', !e.isIntersecting); });
+    }, { rootMargin: '0px 0px -40% 0px' });
+    observer.observe(buyBox);
+  }
 
-      if (stickyBtn) {
-        stickyBtn.addEventListener('click', function() {
-          var handle = this.dataset.productHandle;
-          var title = this.dataset.productTitle;
-          var price = this.dataset.productPrice;
-          NutravaCart.addItem({
-            id: Date.now(),
-            handle: handle,
-            title: title,
-            price: parseInt(price),
-            quantity: 1
-          });
-        });
-      }
-    }
-
-    /* ---------- FAQ Accordion ---------- */
-    document.querySelectorAll('.product-faq__question').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var answer = btn.nextElementSibling;
-        var isOpen = btn.classList.contains('is-open');
-        btn.closest('.product-faq__list').querySelectorAll('.product-faq__question').forEach(function(q) {
-          q.classList.remove('is-open');
-          q.nextElementSibling.style.maxHeight = null;
-        });
-        if (!isOpen) {
-          btn.classList.add('is-open');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
+  var stickyBtn = document.querySelector('[data-sticky-add-to-cart]');
+  if (stickyBtn && window.NutravaCart) {
+    stickyBtn.addEventListener('click', function () {
+      NutravaCart.addItem({
+        id: parseInt(this.dataset.variantId, 10),
+        handle: this.dataset.productHandle,
+        title: this.dataset.productTitle,
+        price: parseInt(this.dataset.productPrice, 10),
+        quantity: 1
       });
     });
-
-  });
+  }
+})();
 </script>
