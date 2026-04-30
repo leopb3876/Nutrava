@@ -6,14 +6,336 @@
 
 {%- liquid
   assign first_collection = product.collections.first
-  assign role_text = product.metafields.custom.role
-  unless role_text
+
+  assign role_default = ''
+  assign size_default = ''
+  assign chips_default = ''
+  assign benefits_heading_default = 'How it makes a difference.'
+  assign benefit_1_title = ''
+  assign benefit_1_text = ''
+  assign benefit_2_title = ''
+  assign benefit_2_text = ''
+  assign benefit_3_title = ''
+  assign benefit_3_text = ''
+  assign hero_ing_name_default = ''
+  assign hero_ing_abbr_default = ''
+  assign hero_ing_kicker_default = ''
+  assign hero_ing_lead_default = ''
+  assign hero_ing_how_default = ''
+  assign hero_ing_use_default = ''
+  assign hero_ing_clinical_default = ''
+  assign hero_ing_skin_default = ''
+
+  case product.handle
+
+    when 'micellar-cleansing-water'
+      assign role_default = 'Gentle no-rinse first cleanse for reactive and sensitive skin'
+      assign size_default = '200 ml'
+      assign chips_default = 'Sensitive · Daily|Fragrance-free|No-rinse|Micellar'
+      assign benefits_heading_default = 'A gentler way to <em>cleanse</em>.'
+      assign benefit_1_title = 'Lifts <em>without rubbing</em>'
+      assign benefit_1_text = 'Micelle technology grabs makeup, SPF and pollution off the skin without surfactant scrubbing — the gentlest possible first cleanse.'
+      assign benefit_2_title = 'No-rinse <em>convenience</em>'
+      assign benefit_2_text = 'Wipe with a cotton round or palm-press in. Skin is left clean, balanced and ready for whatever comes next — no tightness, no stinging.'
+      assign benefit_3_title = 'Safe for <em>reactive skin</em>'
+      assign benefit_3_text = 'Fragrance-free, sulphate-free, with no essential oils or harsh actives. Safe for rosacea-prone, sensitised and post-procedure skin.'
+
+    when 'cleansing-foam'
+      assign role_default = 'Daily creamy foaming wash for normal-to-oily skin'
+      assign size_default = '150 ml'
+      assign chips_default = 'Daily wash|Normal · Oily|Barrier-friendly|Soft cushion lather'
+      assign benefits_heading_default = 'Properly cleansed,<br><em>never stripped</em>.'
+      assign benefit_1_title = 'Removes oil <em>without stripping</em>'
+      assign benefit_1_text = 'Lifts SPF, sebum and makeup without the squeaky-tight finish that triggers rebound oil. Skin is left clean and comfortable.'
+      assign benefit_2_title = 'Soft cushion <em>lather</em>'
+      assign benefit_2_text = 'Whips into a dense pillowy foam — feels like a ritual, not a chore. The kind of texture you actually look forward to using.'
+      assign benefit_3_title = 'Maintains your <em>barrier</em>'
+      assign benefit_3_text = 'Built around mild surfactants and humectants so the moisture barrier stays intact — no compromise between clean and comfortable.'
+
+    when 'blemish-purifying-face-wash'
+      assign role_default = 'Targeted blemish wash that clears congestion without over-drying'
+      assign size_default = '140 ml'
+      assign chips_default = 'Acne · Blemishes|Daily|Non-stripping|Targeted'
+      assign benefits_heading_default = 'Clearer pores,<br><em>calmer skin</em>.'
+      assign benefit_1_title = 'Clears <em>pore-clogging buildup</em>'
+      assign benefit_1_text = 'Targets the dead cells, sebum and pollution that pack into pores and trigger breakouts. Daily use breaks the cycle at the source.'
+      assign benefit_2_title = 'Calms <em>active breakouts</em>'
+      assign benefit_2_text = 'Tea tree and gentle clarifying actives reduce visible inflammation around active blemishes — without the stinging, peeling cycle of stronger washes.'
+      assign benefit_3_title = "Won't <em>over-dry</em>"
+      assign benefit_3_text = "Most blemish washes strip skin and trigger rebound oil within hours. This one keeps your barrier intact so your skin doesn't fight back."
+
+    when 'niacinamide-gel-moisturiser'
+      assign role_default = 'Pore-refining oil-balancer for combination and oily skin'
+      assign size_default = '30 ml'
+      assign chips_default = 'Combination · Oily|Niacinamide|Fragrance-free|Non-comedogenic'
+      assign benefits_heading_default = 'Three concerns,<br><em>one gentle gel</em>.'
+      assign benefit_1_title = 'Refines <em>pores</em>'
+      assign benefit_1_text = "Reduces the visible appearance of pores by regulating sebum production at the source — so they actually clog less, not just look smaller for the day."
+      assign benefit_2_title = 'Balances <em>oil</em>'
+      assign benefit_2_text = 'Brings combination skin into balance — moisturises the dry zones without feeding the oily ones. Makeup sits cleaner. Skin feels less reactive by mid-afternoon.'
+      assign benefit_3_title = 'Evens post-acne <em>tone</em>'
+      assign benefit_3_text = 'Inhibits melanin transfer so post-acne marks fade over consistent use. Not a spot treatment — a slow, even daily levelling of tone across the whole face.'
+      assign hero_ing_name_default = 'Niacinamide'
+      assign hero_ing_abbr_default = 'B3'
+      assign hero_ing_kicker_default = 'Niacinamide · vitamin B3'
+      assign hero_ing_lead_default = 'A form of vitamin B3 that signals skin cells to slow sebum production, strengthen the lipid barrier, and reduce the visible appearance of pores. Also inhibits melanin transfer — which is why it fades post-acne marks over time.'
+      assign hero_ing_how_default = 'B3 boosts ceramide production at the cellular level, repairing the moisture barrier. It also slows the transfer of melanosomes from melanocytes to keratinocytes — slowing new pigmentation.'
+      assign hero_ing_use_default = "AM and PM, applied to clean skin before your moisturiser or SPF. Plays nicely with vitamin C, retinol, and exfoliating acids — despite the old myth that you can't layer it."
+      assign hero_ing_clinical_default = "Effective at 2–10% concentration. Our formula sits in the clinically meaningful range — not the symbolic 'trace amount' on most labels.<cite>— J Cosmet Dermatol, 2004 &amp; 2017</cite>"
+      assign hero_ing_skin_default = "Universal — works for oily, combination, dry, and sensitive skin. Especially impactful for combination + post-acne marks, which is why it's our most-recommended active."
+
+    when 'vitamin-c-serum'
+      assign role_default = 'Brightening antioxidant serum for tone correction and daily defence'
+      assign size_default = '30 ml'
+      assign chips_default = 'Brightening|Vitamin C|Antioxidant|All skin types'
+      assign benefits_heading_default = 'Visible <em>radiance</em>,<br>locked in.'
+      assign benefit_1_title = 'Fades <em>dark spots</em>'
+      assign benefit_1_text = 'Inhibits melanin production at the source, so post-acne marks, sun spots and uneven tone gradually even out over weeks of consistent use.'
+      assign benefit_2_title = 'Brightens <em>dull skin</em>'
+      assign benefit_2_text = 'Wakes up tired-looking complexions by neutralising the free radicals that dull skin tone — pollution, UV, and daily oxidative stress.'
+      assign benefit_3_title = 'Antioxidant <em>defence</em>'
+      assign benefit_3_text = 'Layers under SPF for compound protection — vitamin C and sunscreen reinforce each other against UV damage and ambient pollution.'
+      assign hero_ing_name_default = 'Vitamin C'
+      assign hero_ing_abbr_default = 'C'
+      assign hero_ing_kicker_default = 'L-ascorbic acid + ferulic acid'
+      assign hero_ing_lead_default = 'L-ascorbic acid neutralises free radicals from UV and pollution before they damage skin cells. Inhibits melanin production at the source, slowing new pigmentation while existing pigment fades.'
+      assign hero_ing_how_default = 'Ascorbic acid donates electrons to neutralise free radicals — the unstable molecules that drive oxidative damage. Stabilised with ferulic acid for shelf life and amplified antioxidant effect.'
+      assign hero_ing_use_default = 'AM under sunscreen for maximum antioxidant protection. Pairs especially well with SPF — they reinforce each other against UV damage.'
+      assign hero_ing_clinical_default = '10–20% L-ascorbic acid clinically shown to reduce hyperpigmentation by ~35% over 12 weeks of consistent use.'
+      assign hero_ing_skin_default = 'All skin types. Sensitive skin should start every-other-day to build tolerance.'
+
+    when 'retinol-alternative-serum'
+      assign role_default = 'Anti-aging smoothing serum without the redness or peeling'
+      assign size_default = '30 ml'
+      assign chips_default = 'Anti-aging|Bakuchiol|Pregnancy-safe|Sensitive-friendly'
+      assign benefits_heading_default = 'Anti-aging,<br><em>without the irritation</em>.'
+      assign benefit_1_title = 'Smooths <em>fine lines</em>'
+      assign benefit_1_text = 'Triggers cell-turnover and collagen pathways to soften fine lines and refine texture — measurable in 8–12 weeks of nightly use.'
+      assign benefit_2_title = 'No <em>downtime</em>'
+      assign benefit_2_text = 'All the smoothing benefits of retinol without the redness, dryness or peeling cycle. No purge phase, no week of looking worse before better.'
+      assign benefit_3_title = 'Pregnancy <em>conscious</em>'
+      assign benefit_3_text = 'Bakuchiol-style actives are considered safer during pregnancy than retinol — but always confirm with your doctor before adding new actives.'
+      assign hero_ing_name_default = 'Retinol Alternative'
+      assign hero_ing_abbr_default = 'RA'
+      assign hero_ing_kicker_default = 'Bakuchiol-style retinoid alternative'
+      assign hero_ing_lead_default = "Plant-derived bakuchiol triggers similar cell-turnover and collagen pathways as traditional retinol, but without binding the same skin receptors that cause irritation."
+      assign hero_ing_how_default = 'Activates the same gene-expression pathways that drive collagen synthesis and cell renewal as retinol does — but through different receptor binding, which is why irritation is dramatically lower.'
+      assign hero_ing_use_default = 'PM nightly. Build up gradually — start 2–3 nights/week. Pairs cleanly with peptides for a full anti-aging stack.'
+      assign hero_ing_clinical_default = 'Bakuchiol shown comparable to 0.5% retinol for fine lines and elasticity, with significantly less irritation.<cite>— Br J Dermatol, 2019</cite>'
+      assign hero_ing_skin_default = 'All skin types, especially sensitive and pregnancy-conscious users. Tolerated where traditional retinol is not.'
+
+    when 'peptide-anti-aging-serum'
+      assign role_default = 'Premium peptide serum for firmness and the look of elasticity'
+      assign size_default = '30 ml'
+      assign chips_default = 'Anti-aging|Multi-peptide|Layerable|All skin types'
+      assign benefits_heading_default = 'Firmness, <em>signalled</em>.'
+      assign benefit_1_title = 'Targets <em>firmness</em>'
+      assign benefit_1_text = "Multi-peptide complex signals skin to produce more collagen and elastin over consistent use — measurable improvements in skin firmness within 8–12 weeks."
+      assign benefit_2_title = 'Smooths <em>fine lines</em>'
+      assign benefit_2_text = "Peptides reduce the depth of fine lines around the eyes and mouth without the irritation curve of stronger anti-aging actives."
+      assign benefit_3_title = 'Layers <em>cleanly</em>'
+      assign benefit_3_text = 'Lightweight texture sits invisibly under any moisturiser. Pairs especially well with retinol-alternatives for compound anti-aging effect.'
+      assign hero_ing_name_default = 'Peptides'
+      assign hero_ing_abbr_default = 'Pep'
+      assign hero_ing_kicker_default = 'Multi-peptide complex'
+      assign hero_ing_lead_default = "Short chains of amino acids that mimic skin's own signaling molecules. Tell your skin to produce more collagen, elastin, and barrier lipids over consistent use."
+      assign hero_ing_how_default = 'Different peptides target different pathways: signal peptides boost collagen, carrier peptides deliver minerals to the dermis, neuropeptides relax expression-line muscle activity.'
+      assign hero_ing_use_default = 'AM and PM. Layers cleanly under any moisturiser. Pairs especially well with retinol-alternatives for compound anti-aging effect.'
+      assign hero_ing_clinical_default = 'Multi-peptide complexes shown to reduce wrinkle depth by ~18% and increase skin firmness by ~22% over 12 weeks.'
+      assign hero_ing_skin_default = 'All skin types and ages — but the impact compounds with consistency. Most noticeable on 30+ skin starting to show fine lines.'
+
+    when 'targeted-dark-spot-care'
+      assign role_default = 'Clinical-strength 1% kojic acid spot treatment for stubborn pigmentation'
+      assign size_default = '15 ml'
+      assign chips_default = 'Dark spots|Kojic Acid 1%|Targeted|PM use'
+      assign benefits_heading_default = 'Stubborn marks,<br><em>finally fading</em>.'
+      assign benefit_1_title = 'Fades <em>dark spots</em>'
+      assign benefit_1_text = 'Targets melanin production at the source — slowing new pigmentation so existing spots can fade through normal cell turnover. Visible difference in 6–12 weeks.'
+      assign benefit_2_title = 'Treats <em>post-acne marks</em>'
+      assign benefit_2_text = 'Specifically effective on the brown marks left after blemishes heal — the kind that linger long after the spot itself is gone.'
+      assign benefit_3_title = 'Clinical <em>strength</em>'
+      assign benefit_3_text = '1% kojic acid is in the clinically meaningful range. Most spot treatments use trace amounts to claim the active without delivering effect.'
+      assign hero_ing_name_default = 'Kojic Acid'
+      assign hero_ing_abbr_default = 'KA'
+      assign hero_ing_kicker_default = 'Kojic Acid · 1% targeted'
+      assign hero_ing_lead_default = 'A fungal-derived compound that inhibits tyrosinase — the enzyme responsible for melanin production. Slows new pigmentation while existing pigment fades through normal cell turnover.'
+      assign hero_ing_how_default = 'Binds to tyrosinase and prevents it from catalysing melanin production. Existing pigment fades naturally as skin cells turn over (~28 days for surface spots, longer for deeper pigment).'
+      assign hero_ing_use_default = 'PM only, applied directly to dark spots. SPF non-negotiable in the morning — without it, kojic acid is wasted effort because new UV creates new pigment faster than you can fade old.'
+      assign hero_ing_clinical_default = '1–2% kojic acid as effective as 4% hydroquinone for melasma and post-inflammatory hyperpigmentation, with significantly fewer side effects.<cite>— J Clin Aesthet Dermatol, 2017</cite>'
+      assign hero_ing_skin_default = 'All skin tones, especially deeper skin tones where hydroquinone risks rebound pigmentation. Patch-test for sensitivity first.'
+
+    when 'moisturising-day-cream'
+      assign role_default = 'Daily hydration that layers cleanly under SPF and makeup'
+      assign size_default = '50 ml'
+      assign chips_default = 'Daily Essential|Hyaluronic Acid|Lightweight|Layerable'
+      assign benefits_heading_default = 'The <em>middle step</em><br>everything depends on.'
+      assign benefit_1_title = 'All-day <em>hydration</em>'
+      assign benefit_1_text = 'Multi-weight hyaluronic acid pulls moisture into multiple layers of skin. Stays comfortable through morning meetings and afternoon air conditioning.'
+      assign benefit_2_title = 'Layers under <em>SPF</em>'
+      assign benefit_2_text = "Lightweight texture absorbs cleanly so SPF goes on smoothly without pilling. The non-negotiable middle step you've been missing."
+      assign benefit_3_title = 'Smooths the look <em>of texture</em>'
+      assign benefit_3_text = 'Hydrated skin reflects light better — fine lines, pores and uneven texture all look softer when the moisture barrier is properly fed.'
+
+    when 'blemish-care-moisturiser'
+      assign role_default = 'Non-comedogenic moisturiser engineered for blemish-prone skin'
+      assign size_default = '50 ml'
+      assign chips_default = 'Acne|Non-comedogenic|Lightweight|Daily'
+      assign benefits_heading_default = 'Hydration,<br><em>without the breakouts</em>.'
+      assign benefit_1_title = 'Hydrates <em>without clogging</em>'
+      assign benefit_1_text = "Comedogenic-tested formula uses oils and actives that don't pack into pores or feed P. acnes bacteria. Hydration without the cost."
+      assign benefit_2_title = 'Calms <em>active blemishes</em>'
+      assign benefit_2_text = 'Niacinamide and centella asiatica reduce visible inflammation around active spots — so your moisturiser is working with your blemish routine, not against it.'
+      assign benefit_3_title = 'Stops <em>rebound oil</em>'
+      assign benefit_3_text = 'Most blemish-prone people skip moisturiser, which triggers more oil production. This formula breaks the cycle.'
+
+    when 'retinol-alternative-moisturiser'
+      assign role_default = 'Daily anti-aging moisturiser with retinol-alternative actives'
+      assign size_default = '50 ml'
+      assign chips_default = 'Anti-aging|Bakuchiol|Ceramides|Daily-use friendly'
+      assign benefits_heading_default = 'Anti-aging<br><em>in your daily step</em>.'
+      assign benefit_1_title = 'Smooths <em>fine lines</em>'
+      assign benefit_1_text = 'Bakuchiol-style retinoid alternative refines texture and reduces the look of fine lines without the irritation curve of traditional retinol.'
+      assign benefit_2_title = 'Daily-use <em>friendly</em>'
+      assign benefit_2_text = "No purge, no peeling, no need to skip nights when your skin is sensitised. The kind of anti-aging consistency actually rewards."
+      assign benefit_3_title = 'Barrier <em>support</em>'
+      assign benefit_3_text = 'Ceramides and hyaluronic acid keep the moisture barrier intact while the retinol-alternative does its work — preventing the sensitisation most retinols cause.'
+
+    when 'sensitive-skin-moisturiser'
+      assign role_default = 'Fragrance-free moisturiser that calms reactivity and rebuilds the barrier'
+      assign size_default = '50 ml'
+      assign chips_default = 'Sensitive · Reactive|Fragrance-free|Ceramides|Rosacea-friendly'
+      assign benefits_heading_default = 'When everything <em>reacts</em>.'
+      assign benefit_1_title = 'Calms <em>redness</em>'
+      assign benefit_1_text = 'Centella asiatica and panthenol reduce visible redness within days, not weeks. Specifically formulated for skin that flares from new products.'
+      assign benefit_2_title = 'Rebuilds <em>the barrier</em>'
+      assign benefit_2_text = 'Ceramides replenish the lipids that hold skin cells together — restoring barrier integrity within 4 weeks of consistent use.'
+      assign benefit_3_title = '100% <em>fragrance-free</em>'
+      assign benefit_3_text = 'No fragrance, no essential oils, no essential-oil-derived actives. Suitable for rosacea-prone, perioral-derm-prone and post-procedure skin.'
+      assign hero_ing_name_default = 'Ceramides'
+      assign hero_ing_abbr_default = 'Cer'
+      assign hero_ing_kicker_default = 'Ceramide complex · barrier support'
+      assign hero_ing_lead_default = 'Lipid molecules that already exist in your skin barrier, gluing skin cells together to keep moisture in and irritants out. Topical ceramides replenish what is lost from cleansing, weather, and aging.'
+      assign hero_ing_how_default = 'Ceramides make up ~50% of the lipids in the stratum corneum. Replacing them topically restores the brick-and-mortar structure that prevents transepidermal water loss.'
+      assign hero_ing_use_default = 'AM and PM in moisturiser. Especially helpful when starting a new active — they pre-empt the irritation that often makes people quit after a week.'
+      assign hero_ing_clinical_default = 'Skin with damaged barrier function has up to 50% lower ceramide levels. Topical replacement restores barrier integrity within 4 weeks of consistent use.'
+      assign hero_ing_skin_default = 'Sensitive, reactive, rosacea-prone, and post-procedure skin. Also valuable for anyone using retinol or exfoliating acids regularly.'
+
+    when 'smoothing-eye-cream'
+      assign role_default = 'Featherweight eye cream for fine lines and under-eye brightness'
+      assign size_default = '15 ml'
+      assign chips_default = 'Eye Care|Peptides|Layerable|Daily'
+      assign benefits_heading_default = 'The eye area,<br><em>noticeably softer</em>.'
+      assign benefit_1_title = 'Smooths <em>fine lines</em>'
+      assign benefit_1_text = "Peptides target the depth of expression lines around the eyes — the area that ages first because the skin is thinnest there."
+      assign benefit_2_title = 'Brightens <em>under-eyes</em>'
+      assign benefit_2_text = 'Caffeine and vitamin K reduce the appearance of dark circles by improving microcirculation and tightening the look of vessels.'
+      assign benefit_3_title = 'Layers under <em>concealer</em>'
+      assign benefit_3_text = "Lightweight texture absorbs cleanly without the silicone-pilling concealers usually do over richer eye creams. Looks invisible."
+
+    when 'sunscreen-spf30'
+      assign role_default = "Daily broad-spectrum SPF30 you'll actually want to wear"
+      assign size_default = '50 ml'
+      assign chips_default = 'Daily SPF|Broad-spectrum|No white cast|Non-greasy'
+      assign benefits_heading_default = 'The single <em>most important</em> step.'
+      assign benefit_1_title = 'Broad-spectrum <em>protection</em>'
+      assign benefit_1_text = 'Filters UVA and UVB across the full spectrum that causes aging, dark spots and skin cancer. The non-negotiable foundation of any skincare routine.'
+      assign benefit_2_title = 'No <em>white cast</em>'
+      assign benefit_2_text = 'Modern hybrid filters disappear into every skin tone without leaving the chalky residue that made traditional sunscreens unwearable on deeper skin.'
+      assign benefit_3_title = 'Layers under <em>makeup</em>'
+      assign benefit_3_text = "Non-greasy texture sits cleanly under foundation and concealer without pilling. The kind of SPF you actually use, not the one that sits unused."
+
+    when 'brightening-exfoliator'
+      assign role_default = 'Dual face & body kojic acid exfoliator for tone and texture'
+      assign size_default = '150 ml'
+      assign chips_default = 'Exfoliant|Kojic Acid|Face · Body|Weekly'
+      assign benefits_heading_default = 'Smoother, <em>brighter</em>.'
+      assign benefit_1_title = 'Smooths <em>texture</em>'
+      assign benefit_1_text = 'Gentle physical exfoliation paired with kojic acid clears the dead skin layer that dulls tone and traps congestion in pores.'
+      assign benefit_2_title = 'Fades <em>uneven tone</em>'
+      assign benefit_2_text = 'Kojic acid inhibits melanin production while exfoliation accelerates the turnover of pigmented surface cells — for visible brightening over 6–8 weeks.'
+      assign benefit_3_title = 'Face <em>and body</em>'
+      assign benefit_3_text = "Strong enough for KP bumps on arms and uneven tone on legs — gentle enough for the face. Use 2–3x weekly PM."
+      assign hero_ing_name_default = 'Kojic Acid'
+      assign hero_ing_abbr_default = 'KA'
+      assign hero_ing_kicker_default = 'Kojic Acid · brightening + exfoliating'
+      assign hero_ing_lead_default = 'A fungal-derived compound that inhibits tyrosinase — slowing melanin production at the source so existing pigmentation can fade as skin cells turn over.'
+      assign hero_ing_how_default = 'Pairs with mechanical exfoliation: kojic acid handles new pigment formation while the exfoliating beads accelerate the surfacing of pigmented cells already present.'
+      assign hero_ing_use_default = '2–3x per week PM, on damp skin. Massage gently for 30 seconds, rinse. SPF non-negotiable the morning after.'
+      assign hero_ing_clinical_default = '1–2% kojic acid effective for hyperpigmentation. Combined with mechanical exfoliation, results visible faster than topical alone.'
+      assign hero_ing_skin_default = 'All skin tones. Use lighter pressure on the face, normal pressure on body. Patch-test on the jawline first.'
+
+    when 'acne-care-collection-box'
+      assign role_default = 'The complete morning + evening routine for acne and blemish-prone skin'
+      assign size_default = 'Routine bundle'
+      assign chips_default = 'Acne · Blemishes|Bundle|Save vs individual|3 products'
+      assign benefits_heading_default = 'A routine that <em>actually fits</em>.'
+      assign benefit_1_title = 'Complete <em>routine</em>'
+      assign benefit_1_text = 'Cleanser, niacinamide gel and blemish moisturiser — the three steps that clear breakouts without stripping the rest of your face.'
+      assign benefit_2_title = 'Engineered to <em>layer</em>'
+      assign benefit_2_text = "Each formula was tested against the others — no conflicts, no compounded irritation. Apply in the order on the box, and you're done."
+      assign benefit_3_title = 'Save vs <em>individual</em>'
+      assign benefit_3_text = 'Bundling saves ~$15 vs buying separately. Replaces the random pile of products people accumulate trying to figure out what works.'
+
+    when 'anti-aging-collection-box'
+      assign role_default = 'The full anti-aging routine — peptides, retinol-alt, eye cream, barrier'
+      assign size_default = 'Routine bundle'
+      assign chips_default = 'Anti-aging|Bundle|Save vs individual|3 products'
+      assign benefits_heading_default = 'Anti-aging,<br><em>without the puzzle</em>.'
+      assign benefit_1_title = 'Targets the <em>full picture</em>'
+      assign benefit_1_text = 'Peptides for firmness, retinol-alternative for fine lines, eye cream for the area that shows aging first. Nothing missing, nothing redundant.'
+      assign benefit_2_title = 'No <em>irritation</em>'
+      assign benefit_2_text = 'Built around retinol-alternative actives so you can run a full anti-aging routine daily without the redness or peeling cycle of traditional retinols.'
+      assign benefit_3_title = 'Save vs <em>individual</em>'
+      assign benefit_3_text = 'Bundling saves ~$20. Replaces the layered guesswork of stacking serums you bought separately and hoped played nicely.'
+
+    when 'daily-radiance-collection-box'
+      assign role_default = 'The morning routine that makes the biggest visible difference for dull skin'
+      assign size_default = 'Routine bundle'
+      assign chips_default = 'Brightening|Bundle|Save vs individual|3 products'
+      assign benefits_heading_default = 'Glow,<br><em>not optional</em>.'
+      assign benefit_1_title = 'Visible <em>radiance</em>'
+      assign benefit_1_text = 'Vitamin C brightens, day cream hydrates, SPF protects — the three steps that make dull skin look lit-from-within in 2–3 weeks.'
+      assign benefit_2_title = 'Hydration <em>that lasts</em>'
+      assign benefit_2_text = 'Multi-weight hyaluronic acid in the day cream keeps skin plump through the day, not just for the first hour after application.'
+      assign benefit_3_title = 'Daily SPF <em>built in</em>'
+      assign benefit_3_text = "The single biggest gap in most skincare routines — closed. Without SPF, the brightening work undoes itself."
+
+    when 'clear-complexion-collection-box'
+      assign role_default = 'The balanced routine for combination and sensitive skin'
+      assign size_default = 'Routine bundle'
+      assign chips_default = 'Combination · Sensitive|Bundle|Save vs individual|3 products'
+      assign benefits_heading_default = 'Balance,<br><em>without compromise</em>.'
+      assign benefit_1_title = 'Balances <em>combination skin</em>'
+      assign benefit_1_text = 'Niacinamide gel handles oil and pores, sensitive moisturiser hydrates the dry zones — combination skin finally treated as the puzzle it is.'
+      assign benefit_2_title = 'Calms <em>reactivity</em>'
+      assign benefit_2_text = 'Fragrance-free throughout, with ceramides and centella asiatica that quiet the redness sensitive skin produces from almost any new product.'
+      assign benefit_3_title = 'Refines <em>without irritation</em>'
+      assign benefit_3_text = 'Niacinamide refines pores without the stinging or peeling of stronger oil-control actives. Suitable for skin that has reacted to most things tried before.'
+
+    when 'dark-spot-routine-duo'
+      assign role_default = 'Two-product duo to fade hyperpigmentation from morning and night'
+      assign size_default = 'Duo bundle'
+      assign chips_default = 'Dark spots|Duo|Save vs individual|2 products'
+      assign benefits_heading_default = 'Tone correction,<br><em>from both ends</em>.'
+      assign benefit_1_title = 'Two <em>angles</em> of action'
+      assign benefit_1_text = 'Vitamin C in the AM brightens and prevents new pigment. Kojic acid at night fades existing spots. The minimum effective dual-active routine.'
+      assign benefit_2_title = 'Visible in <em>6–8 weeks</em>'
+      assign benefit_2_text = 'The clinical timeline for visible fading. Slower than any "instant brightener" promises — but the difference is permanent, not cosmetic.'
+      assign benefit_3_title = 'Save vs <em>individual</em>'
+      assign benefit_3_text = 'Bundling saves ~$7 — and removes the friction of remembering to layer two separate purchases into a coherent routine.'
+
+  endcase
+
+  assign role_text = product.metafields.custom.role | default: role_default
+  unless role_text != blank
     assign role_text = product.description | strip_html | truncate: 110
   endunless
 
+  assign size_text = product.metafields.custom.size | default: size_default
+  assign chips_default_pipe = chips_default
+
   assign rating_value = product.metafields.custom.rating | default: 4.9
   assign review_count = product.metafields.custom.review_count | default: 47
-  assign size_text = product.metafields.custom.size
 
   assign chips_list = product.metafields.custom.chips
 -%}
@@ -107,6 +429,13 @@
           <span class="buy__chip">{{ chip }}</span>
         {%- endfor -%}
       </div>
+    {%- elsif chips_default_pipe != blank -%}
+      <div class="buy__chips">
+        {%- assign chip_arr = chips_default_pipe | split: '|' -%}
+        {%- for chip in chip_arr -%}
+          <span class="buy__chip">{{ chip }}</span>
+        {%- endfor -%}
+      </div>
     {%- elsif product.tags.size > 0 -%}
       <div class="buy__chips">
         {%- for tag in product.tags limit: 4 -%}
@@ -156,12 +485,12 @@
   </div>
 </section>
 
-<!-- WHY THIS WORKS — driven by metafield product.metafields.custom.benefits (list with title + text) -->
+<!-- WHY THIS WORKS — metafield list takes priority, otherwise per-handle defaults -->
 {%- if product.metafields.custom.benefits and product.metafields.custom.benefits.value.size > 0 -%}
 <section class="section">
   <div class="section__head">
     <span class="section__overline">Why this works</span>
-    <h2 class="section__title">{{ product.metafields.custom.benefits_heading | default: 'How it makes a difference.' }}</h2>
+    <h2 class="section__title">{{ product.metafields.custom.benefits_heading | default: benefits_heading_default }}</h2>
     {%- if product.metafields.custom.benefits_sub != blank -%}
       <p class="section__sub">{{ product.metafields.custom.benefits_sub }}</p>
     {%- endif -%}
@@ -178,10 +507,47 @@
     {%- endfor -%}
   </div>
 </section>
+{%- elsif benefit_1_title != blank -%}
+<section class="section">
+  <div class="section__head">
+    <span class="section__overline">Why this works</span>
+    <h2 class="section__title">{{ benefits_heading_default }}</h2>
+  </div>
+  <div class="benefits">
+    <div class="benefit">
+      <div class="benefit__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3 class="benefit__title">{{ benefit_1_title }}</h3>
+      <p class="benefit__text">{{ benefit_1_text }}</p>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+      <h3 class="benefit__title">{{ benefit_2_title }}</h3>
+      <p class="benefit__text">{{ benefit_2_text }}</p>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3 class="benefit__title">{{ benefit_3_title }}</h3>
+      <p class="benefit__text">{{ benefit_3_text }}</p>
+    </div>
+  </div>
+</section>
 {%- endif -%}
 
-<!-- HERO INGREDIENT — driven by product.metafields.custom.hero_ingredient_* -->
-{%- assign hero_ing_name = product.metafields.custom.hero_ingredient_name -%}
+<!-- HERO INGREDIENT — metafields take priority; per-handle defaults apply when set above -->
+{%- assign hero_ing_name = product.metafields.custom.hero_ingredient_name | default: hero_ing_name_default -%}
+{%- assign hero_ing_abbr = product.metafields.custom.hero_ingredient_abbr | default: hero_ing_abbr_default -%}
+{%- assign hero_ing_kicker = product.metafields.custom.hero_ingredient_kicker | default: hero_ing_kicker_default -%}
+{%- assign hero_ing_lead = product.metafields.custom.hero_ingredient_lead | default: hero_ing_lead_default -%}
+{%- assign hero_ing_how = product.metafields.custom.hero_ingredient_how | default: hero_ing_how_default -%}
+{%- assign hero_ing_use = product.metafields.custom.hero_ingredient_use | default: hero_ing_use_default -%}
+{%- assign hero_ing_clinical = product.metafields.custom.hero_ingredient_clinical | default: hero_ing_clinical_default -%}
+{%- assign hero_ing_skin = product.metafields.custom.hero_ingredient_skin | default: hero_ing_skin_default -%}
 {%- if hero_ing_name != blank -%}
 <section class="section">
   <div class="section__head">
@@ -193,39 +559,43 @@
     <div class="hero-ing__layout">
       <div class="hero-ing__symbol">
         <div>
-          <div class="hero-ing__abbr">{{ product.metafields.custom.hero_ingredient_abbr | default: hero_ing_name | slice: 0, 2 | upcase }}</div>
-          <div class="hero-ing__num">{{ product.metafields.custom.hero_ingredient_kicker | default: hero_ing_name }}</div>
+          {%- if hero_ing_abbr != blank -%}
+            <div class="hero-ing__abbr">{{ hero_ing_abbr }}</div>
+          {%- else -%}
+            <div class="hero-ing__abbr">{{ hero_ing_name | slice: 0, 2 | upcase }}</div>
+          {%- endif -%}
+          <div class="hero-ing__num">{{ hero_ing_kicker | default: hero_ing_name }}</div>
         </div>
       </div>
       <div>
         <span class="hero-ing__overline">Key active</span>
         <h3 class="hero-ing__name">{{ hero_ing_name }}</h3>
-        {%- if product.metafields.custom.hero_ingredient_lead != blank -%}
-          <p class="hero-ing__lead">{{ product.metafields.custom.hero_ingredient_lead }}</p>
+        {%- if hero_ing_lead != blank -%}
+          <p class="hero-ing__lead">{{ hero_ing_lead }}</p>
         {%- endif -%}
         <div class="hero-ing__grid">
-          {%- if product.metafields.custom.hero_ingredient_how != blank -%}
+          {%- if hero_ing_how != blank -%}
             <div class="hero-ing__section">
               <span class="hero-ing__label">How it works</span>
-              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_how }}</p>
+              <p class="hero-ing__body">{{ hero_ing_how }}</p>
             </div>
           {%- endif -%}
-          {%- if product.metafields.custom.hero_ingredient_use != blank -%}
+          {%- if hero_ing_use != blank -%}
             <div class="hero-ing__section">
               <span class="hero-ing__label">Best used</span>
-              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_use }}</p>
+              <p class="hero-ing__body">{{ hero_ing_use }}</p>
             </div>
           {%- endif -%}
-          {%- if product.metafields.custom.hero_ingredient_clinical != blank -%}
+          {%- if hero_ing_clinical != blank -%}
             <div class="hero-ing__section">
               <span class="hero-ing__label">Clinical evidence</span>
-              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_clinical }}</p>
+              <p class="hero-ing__body">{{ hero_ing_clinical }}</p>
             </div>
           {%- endif -%}
-          {%- if product.metafields.custom.hero_ingredient_skin != blank -%}
+          {%- if hero_ing_skin != blank -%}
             <div class="hero-ing__section">
               <span class="hero-ing__label">Skin types it suits</span>
-              <p class="hero-ing__body">{{ product.metafields.custom.hero_ingredient_skin }}</p>
+              <p class="hero-ing__body">{{ hero_ing_skin }}</p>
             </div>
           {%- endif -%}
         </div>
