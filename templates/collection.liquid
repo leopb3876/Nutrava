@@ -1,144 +1,280 @@
 {% render 'json-ld-breadcrumbs' %}
 
-<section class="collection-hero section-padding bg-mint">
-  <div class="container text-center">
-    <span class="label">{{ collection.metafields.custom.category | default: 'Stack' }}</span>
-    <h1>{{ collection.title }}</h1>
-    {%- if collection.description != blank -%}
-      <p class="collection-hero__desc">{{ collection.description }}</p>
-    {%- endif -%}
-  </div>
-</section>
+{%- liquid
+  assign hero_eyebrow = collection.metafields.custom.eyebrow | default: collection.metafields.custom.category
+  unless hero_eyebrow
+    if collection.handle == 'all'
+      assign hero_eyebrow = 'The full catalogue'
+    else
+      assign hero_eyebrow = 'Skin concern'
+    endif
+  endunless
 
-<section class="collection-products section-padding">
-  <div class="container">
-    <!-- Filter Pills -->
-    <div class="collection-filters">
-      <a href="{{ collection.url }}" class="collection-filter{% unless current_tags %} collection-filter--active{% endunless %}">All</a>
-      <a href="{{ collection.url }}/focus" class="collection-filter{% if current_tags contains 'focus' %} collection-filter--active{% endif %}">Focus</a>
-      <a href="{{ collection.url }}/gym" class="collection-filter{% if current_tags contains 'gym' %} collection-filter--active{% endif %}">Gym</a>
-      <a href="{{ collection.url }}/sleep" class="collection-filter{% if current_tags contains 'sleep' %} collection-filter--active{% endif %}">Sleep</a>
-      <a href="{{ collection.url }}/energy" class="collection-filter{% if current_tags contains 'energy' %} collection-filter--active{% endif %}">Energy</a>
-      <a href="{{ collection.url }}/wellness" class="collection-filter{% if current_tags contains 'wellness' %} collection-filter--active{% endif %}">Wellness</a>
-    </div>
-    <p class="collection-count">Showing {{ collection.products.size }} products</p>
+  assign hero_em = collection.metafields.custom.heading_em
+  assign hero_after = collection.metafields.custom.heading_after
+  assign tag_list = collection.all_tags
+-%}
 
-    {%- if collection.products.size > 0 -%}
-      <div class="catalog-grid">
-        {%- for product in collection.products -%}
-          {% render 'product-card', product: product %}
-        {%- endfor -%}
-      </div>
+<!-- BREADCRUMB -->
+<div class="sn-crumb">
+  <a href="/">Home</a>
+  <span class="sn-crumb__sep">›</span>
+  <a href="/collections/all">Shop</a>
+  {%- unless collection.handle == 'all' -%}
+    <span class="sn-crumb__sep">›</span>
+    <span class="sn-crumb__current">{{ collection.title }}</span>
+  {%- endunless -%}
+</div>
+
+<!-- HERO -->
+<section class="sn-collection-hero">
+  <span class="sn-collection-hero__eyebrow"><span class="sn-collection-hero__dot"></span> {{ hero_eyebrow }}</span>
+  <h1 class="sn-collection-hero__title">
+    {%- if hero_em != blank -%}
+      {{ collection.title }} <em>{{ hero_em }}</em>{{ hero_after }}
     {%- else -%}
-      <div class="collection-products__empty text-center">
-        <p>Products coming soon. Take the quiz to get a personalised recommendation.</p>
-        <a href="/pages/quiz" class="btn btn--primary mt-lg">Take the Quiz</a>
+      {{ collection.title }}
+    {%- endif -%}
+  </h1>
+  {%- if collection.description != blank -%}
+    <div class="sn-collection-hero__desc">{{ collection.description }}</div>
+  {%- endif -%}
+</section>
+
+<!-- FILTER PILLS — derived from collection.all_tags -->
+{%- if tag_list.size > 0 -%}
+<div class="sn-collection-filters" role="navigation" aria-label="Filter by tag">
+  <a href="{{ collection.url }}" class="sn-filter-pill{% if current_tags.size == 0 %} is-active{% endif %}">All</a>
+  {%- for tag in tag_list -%}
+    <a href="{{ collection.url }}/{{ tag | handle }}" class="sn-filter-pill{% if current_tags contains tag %} is-active{% endif %}">{{ tag }}</a>
+  {%- endfor -%}
+</div>
+{%- endif -%}
+
+<!-- PRODUCT GRID -->
+<section class="sn-section sn-section--collection">
+  {%- if collection.products.size > 0 -%}
+    <p class="sn-collection-count">Showing {{ collection.products.size }}{% if collection.products.size == 1 %} product{% else %} products{% endif %}</p>
+
+    <div class="sn-products sn-products--3">
+      {%- for product in collection.products -%}
+        {%- assign category_label = product.type | default: product.tags.first -%}
+        <a href="{{ product.url }}" class="sn-product">
+          <div class="sn-product__visual">
+            {%- if product.featured_image -%}
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="300" height="300">
+            {%- else -%}
+              <div class="sn-product__bottle" data-label="{{ product.title | escape }}"></div>
+            {%- endif -%}
+          </div>
+          {%- if category_label != blank -%}
+            <span class="sn-product__cat">{{ category_label }}</span>
+          {%- endif -%}
+          <h3 class="sn-product__title">{{ product.title }}</h3>
+          {%- if product.description != blank -%}
+            <p class="sn-product__desc">{{ product.description | strip_html | truncate: 90 }}</p>
+          {%- endif -%}
+          <div class="sn-product__row">
+            <span class="sn-product__price">{{ product.price | money_without_trailing_zeros }}</span>
+            <button
+              type="button"
+              class="sn-product__add"
+              aria-label="Add {{ product.title | escape }} to cart"
+              onclick="event.preventDefault(); event.stopPropagation(); if(window.NutravaCart){NutravaCart.addItem({id:{{ product.selected_or_first_available_variant.id }},handle:'{{ product.handle }}',title:'{{ product.title | escape }}',price:{{ product.price }},quantity:1})}"
+            >+</button>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <div class="sn-collection-empty">
+      <p>No products match this filter yet. Take the quiz to find what works for your skin.</p>
+      <a href="/pages/quiz" class="sn-btn sn-btn--ink">Take the Quiz</a>
+    </div>
+  {%- endif -%}
+</section>
+
+<!-- ROUTINE INFO — only renders if collection has the metafields populated -->
+{%- if collection.metafields.custom.who_is_it_for != blank or collection.metafields.custom.why_together != blank -%}
+<section class="sn-section sn-section--cream">
+  <div class="sn-collection-info">
+    {%- if collection.metafields.custom.who_is_it_for != blank -%}
+      <div class="sn-collection-info__block">
+        <span class="sn-collection-info__label">Who it's for</span>
+        <p class="sn-collection-info__text">{{ collection.metafields.custom.who_is_it_for }}</p>
+      </div>
+    {%- endif -%}
+    {%- if collection.metafields.custom.why_together != blank -%}
+      <div class="sn-collection-info__block">
+        <span class="sn-collection-info__label">Why these layer cleanly</span>
+        <p class="sn-collection-info__text">{{ collection.metafields.custom.why_together }}</p>
       </div>
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
-<!-- Routine Info Section -->
-<section class="stack-info section-padding bg-white">
-  <div class="container container--narrow">
-    <div class="stack-info__grid">
-      <div class="stack-info__block">
-        <h3>Who is this routine for?</h3>
-        <p>{{ collection.metafields.custom.who_is_it_for | default: 'Anyone looking for a skincare routine matched to their skin type and concerns.' }}</p>
-      </div>
-      <div class="stack-info__block">
-        <h3>Why these products work together</h3>
-        <p>{{ collection.metafields.custom.why_together | default: 'Each product in this routine is chosen to layer with the others \u2014 cleanser, serum, moisturiser designed to complement rather than compete.' }}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Quiz CTA -->
+<!-- QUIZ CTA — reuse the homepage section -->
 {% section 'quiz-cta' %}
 
 <style>
-  .collection-hero__desc {
-    font-size: 1.125rem;
-    color: var(--color-text-body);
-    max-width: 600px;
-    margin: var(--space-md) auto 0;
-    line-height: 1.6;
+  /* ---------- Breadcrumb ---------- */
+  .sn-crumb {
+    max-width: var(--sn-w-page);
+    margin: 0 auto;
+    padding: 28px 32px 0;
+    font-family: var(--sn-ui);
+    font-size: 13px;
+    color: var(--sn-ink-mute);
   }
+  .sn-crumb a { color: var(--sn-ink-soft); text-decoration: none; }
+  .sn-crumb a:hover { color: var(--sn-ink); }
+  .sn-crumb__sep { margin: 0 8px; color: var(--sn-ink-mute); }
+  .sn-crumb__current { color: var(--sn-ink); }
 
-  .collection-filters {
+  /* ---------- Hero ---------- */
+  .sn-collection-hero {
+    text-align: center;
+    padding: 56px 32px 40px;
+    max-width: var(--sn-w-page);
+    margin: 0 auto;
+  }
+  .sn-collection-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--sn-cream);
+    border-radius: var(--sn-r-pill);
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sn-ink-soft);
+    margin-bottom: 24px;
+  }
+  .sn-collection-hero__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sn-amber);
+  }
+  .sn-collection-hero__title {
+    font-family: var(--sn-display);
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 80px);
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    margin: 0 auto 20px;
+    max-width: 16ch;
+  }
+  .sn-collection-hero__title em {
+    font-style: italic;
+    color: var(--sn-amber);
+    font-weight: 400;
+  }
+  .sn-collection-hero__desc {
+    font-size: 17px;
+    color: var(--sn-ink-soft);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+  .sn-collection-hero__desc p { margin-bottom: 0.8em; }
+  .sn-collection-hero__desc p:last-child { margin-bottom: 0; }
+
+  /* ---------- Filter pills ---------- */
+  .sn-collection-filters {
     display: flex;
-    gap: var(--space-sm);
+    gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: var(--space-md);
+    max-width: var(--sn-w-page);
+    margin: 0 auto;
+    padding: 0 32px 8px;
   }
-
-  .collection-filter {
-    padding: 8px 20px;
-    border-radius: var(--radius-pill);
+  .sn-filter-pill {
+    padding: 9px 18px;
+    border-radius: var(--sn-r-pill);
+    font-family: var(--sn-ui);
     font-size: 13px;
-    font-weight: 600;
-    border: 1.5px solid var(--color-border);
-    background: var(--color-card-bg);
-    color: var(--color-text-body);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    background: var(--sn-cream);
+    color: var(--sn-ink-soft);
     text-decoration: none;
-    transition: all 0.2s;
+    transition: background .15s, color .15s;
+    text-transform: capitalize;
+  }
+  .sn-filter-pill:hover { background: #f3e6c8; color: var(--sn-ink); }
+  .sn-filter-pill.is-active {
+    background: var(--sn-ink);
+    color: var(--sn-paper);
   }
 
-  .collection-filter:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+  /* ---------- Section sizing override ---------- */
+  .sn-section--collection { padding: 32px 32px 80px; }
+  .sn-section--cream {
+    background: var(--sn-cream);
+    margin: 0 32px;
+    max-width: var(--sn-w-page);
+    margin-left: auto; margin-right: auto;
+    border-radius: var(--sn-r-card-lg);
+    padding: 64px 48px;
   }
 
-  .collection-filter--active {
-    background: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
-  }
-
-  .collection-count {
+  .sn-collection-count {
     text-align: center;
     font-size: 13px;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xl);
+    color: var(--sn-ink-mute);
+    margin: 0 auto 32px;
+    max-width: var(--sn-w-page);
   }
 
-  .catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+  .sn-collection-empty {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .sn-collection-empty p {
+    color: var(--sn-ink-soft);
+    font-size: 17px;
+    margin-bottom: 24px;
   }
 
-  .collection-products__empty {
-    padding: var(--space-3xl) 0;
-  }
-
-  .stack-info__grid {
+  /* ---------- Routine info card ---------- */
+  .sn-collection-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
+    gap: 48px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .sn-collection-info__label {
+    display: inline-block;
+    font-family: var(--sn-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sn-amber);
+    margin-bottom: 12px;
+  }
+  .sn-collection-info__text {
+    font-family: var(--sn-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: var(--sn-ink);
   }
 
-  .stack-info__block h3 {
-    margin-bottom: var(--space-sm);
+  @media (max-width: 980px) {
+    .sn-collection-info { grid-template-columns: 1fr; gap: 32px; }
   }
-
-  .stack-info__block p {
-    font-size: 15px;
-    color: var(--color-text-body);
-    line-height: 1.7;
-  }
-
-  @media (max-width: 768px) {
-    .catalog-grid {
-      grid-template-columns: 1fr;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .stack-info__grid {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 640px) {
+    .sn-collection-hero { padding: 32px 20px 28px; }
+    .sn-section--collection { padding: 24px 20px 56px; }
+    .sn-section--cream { margin: 0 16px; padding: 48px 24px; }
+    .sn-crumb { padding: 20px 20px 0; }
   }
 </style>
