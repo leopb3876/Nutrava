@@ -7,9 +7,7 @@
   <div class="sn-nav__menu sn-hide-mobile">
     <a href="/collections/all">{{ section.settings.menu_1_text | default: 'Shop All' }}</a>
     <a href="/collections/all">{{ section.settings.menu_2_text | default: 'Routines' }}</a>
-    <a href="/pages/quiz">{{ section.settings.menu_3_text | default: 'Skin Concerns' }}</a>
-    <a href="/pages/quiz">{{ section.settings.menu_4_text | default: 'The Quiz' }}</a>
-    <a href="/pages/about">{{ section.settings.menu_5_text | default: 'Journal' }}</a>
+    <a href="/pages/quiz">{{ section.settings.menu_3_text | default: 'The Quiz' }}</a>
   </div>
 
   <div class="sn-nav__cta">
@@ -23,7 +21,6 @@
     <a href="/account" class="sn-nav__icon-btn sn-hide-mobile" aria-label="Account">
       <i data-lucide="user"></i>
     </a>
-    <a href="/pages/quiz" class="sn-btn sn-btn--ink sn-btn--sm sn-hide-mobile">Take the Quiz</a>
     <button
       class="sn-nav__menu-toggle sn-hide-desktop"
       data-menu-toggle
@@ -201,9 +198,7 @@
     { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Nutrava" },
     { "type": "text", "id": "menu_1_text", "label": "Menu item 1", "default": "Shop All" },
     { "type": "text", "id": "menu_2_text", "label": "Menu item 2", "default": "Routines" },
-    { "type": "text", "id": "menu_3_text", "label": "Menu item 3", "default": "Skin Concerns" },
-    { "type": "text", "id": "menu_4_text", "label": "Menu item 4", "default": "The Quiz" },
-    { "type": "text", "id": "menu_5_text", "label": "Menu item 5", "default": "Journal" }
+    { "type": "text", "id": "menu_3_text", "label": "Menu item 3", "default": "The Quiz" }
   ]
 }
 {% endschema %}

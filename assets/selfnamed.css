@@ -38,8 +38,19 @@
 }
 
 /* ---------- Base ---------- */
+body {
+  background: var(--sn-paper);
+  color: var(--sn-ink);
+}
 body.template-index,
-body.template-page {
+body.template-page,
+body.template-product,
+body.template-collection,
+body.template-cart,
+body.template-search,
+body.template-blog,
+body.template-article,
+body.template-list-collections {
   font-family: var(--sn-ui);
   color: var(--sn-ink);
   background: var(--sn-paper);
