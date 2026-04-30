@@ -1,21 +1,13 @@
-<section style="min-height: calc(100vh - var(--header-height) - 200px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 64px 24px;">
-  <div style="max-width: 480px;">
-    <div style="width: 72px; height: 72px; background: var(--color-mint-mist); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: var(--color-primary);">
-      <i data-lucide="search-x"></i>
+<section class="sn-page-section" style="min-height: 64vh; display: flex; align-items: center; justify-content: center;">
+  <div class="sn-empty-state">
+    <div class="sn-empty-state__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="13.5" y1="8.5" x2="8.5" y2="13.5"/><line x1="8.5" y1="8.5" x2="13.5" y2="13.5"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </div>
-    <h1 style="font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--color-text); margin-bottom: 12px;">Page Not Found</h1>
-    <p style="font-size: 15px; color: var(--color-text-body); line-height: 1.6; margin-bottom: 32px;">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="/pages/quiz" class="btn btn--primary">Take the Quiz</a>
-      <a href="/" class="btn btn--outline">Go Home</a>
+    <h1 class="sn-empty-state__title">Page <em>not found</em>.</h1>
+    <p class="sn-empty-state__text">The page you're looking for has moved, or never existed. Let's get you back on track.</p>
+    <div class="sn-empty-state__actions">
+      <a href="/pages/quiz" class="sn-btn sn-btn--ink">Take the Quiz</a>
+      <a href="/" class="sn-btn sn-btn--ghost">Back home</a>
     </div>
   </div>
 </section>
-
-<style>
-  .template-404 [data-lucide="search-x"] {
-    width: 32px;
-    height: 32px;
-    stroke-width: 1.5;
-  }
-</style>
