@@ -675,11 +675,11 @@
   .ingredients-panel {
     background: var(--cream);
     border-radius: var(--r-card-lg);
-    padding: 64px;
-    margin-bottom: 64px;
+    padding: 36px 36px 28px;
+    margin-bottom: 28px;
     position: relative;
   }
-  .ingredients-panel__head { text-align: center; margin-bottom: 48px; }
+  .ingredients-panel__head { text-align: center; margin-bottom: 24px; }
   .ingredients-panel__heading {
     font-family: var(--display);
     font-size: clamp(30px, 4vw, 44px);
@@ -721,7 +721,7 @@
   .ingredients-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
   .ingredient {
     display: flex;
@@ -741,16 +741,16 @@
   /* Top row — sized for narrower right column */
   .ingredient__row {
     display: grid;
-    grid-template-columns: 64px 1fr auto;
-    gap: 18px;
+    grid-template-columns: 52px 1fr auto;
+    gap: 16px;
     align-items: center;
-    padding: 18px 22px;
+    padding: 13px 20px;
   }
-  .ingredient--top .ingredient__row { padding: 22px 24px; }
+  .ingredient--top .ingredient__row { padding: 16px 22px; grid-template-columns: 60px 1fr auto; }
 
   .ingredient__symbol {
-    width: 64px; height: 64px;
-    border-radius: 14px;
+    width: 52px; height: 52px;
+    border-radius: 12px;
     background: rgba(197, 138, 75, 0.10);
     display: grid; place-items: center;
     text-align: center;
@@ -759,7 +759,7 @@
   }
   .ingredient--top .ingredient__symbol {
     background: var(--paper);
-    width: 72px; height: 72px;
+    width: 60px; height: 60px;
   }
   .ingredient__abbr {
     font-family: var(--display-soft);
@@ -984,8 +984,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-top: 40px;
-    padding-top: 28px;
+    margin-top: 22px;
+    padding-top: 16px;
     border-top: 1px solid rgba(15,16,16,0.05);
     font-family: var(--display-soft);
     font-size: 13.5px;
@@ -995,6 +995,59 @@
     text-transform: none;
   }
   .ingredients-panel__foot svg { width: 14px; height: 14px; }
+
+  /* Scroll cue between ingredients panel and recommendations grid */
+  .results-scroll-cue {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    margin: 0 auto 32px;
+    background: var(--paper);
+    border: 1px solid rgba(15,16,16,0.08);
+    border-radius: var(--r-pill);
+    padding: 10px 22px 10px 24px;
+    font-family: var(--ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+  }
+  html { scroll-behavior: smooth; }
+  .results-scroll-cue:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-1px);
+  }
+  .results-scroll-cue__arrow {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--ink);
+    transition: background .2s ease;
+    animation: results-cue-bounce 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+  .results-scroll-cue:hover .results-scroll-cue__arrow {
+    background: var(--paper);
+    color: var(--ink);
+    animation-play-state: paused;
+  }
+  .results-scroll-cue__arrow svg { width: 14px; height: 14px; }
+  @keyframes results-cue-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30%           { transform: translateY(3px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .results-scroll-cue__arrow { animation: none; }
+  }
 
   @media (max-width: 1000px) {
     .ingredients-panel__grid { grid-template-columns: 1fr; gap: 36px; }
