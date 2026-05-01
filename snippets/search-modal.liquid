@@ -5,7 +5,7 @@
 <div class="search-modal" data-search-modal>
   <div class="search-modal__inner">
     <div class="search-modal__field">
-      <i data-lucide="search"></i>
+      {% render 'icon', name: 'search' %}
       <input
         type="text"
         data-search-input
@@ -14,7 +14,7 @@
         aria-label="Search products"
       >
       <button data-search-close aria-label="Close search">
-        <i data-lucide="x"></i>
+        {% render 'icon', name: 'x' %}
       </button>
     </div>
     <div class="search-modal__results" data-search-results></div>
@@ -61,7 +61,7 @@
     position: relative;
   }
 
-  .search-modal__field > [data-lucide="search"] {
+  .search-modal__field > .sn-icon {
     position: absolute;
     left: 16px;
     top: 50%;

@@ -23,7 +23,7 @@
                   <img src="{{ article.image | image_url: width: 400 }}" alt="{{ article.image.alt | default: article.title | escape }}" class="blog-card__image" width="400" loading="lazy">
                 {% else %}
                   <div class="blog-card__placeholder">
-                    <i data-lucide="file-text"></i>
+                    {% render 'icon', name: 'file-text' %}
                   </div>
                 {% endif %}
                 <div class="blog-card__body">
@@ -32,7 +32,7 @@
                   <p class="blog-card__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
                   <div class="blog-card__meta">
                     <span class="blog-card__author">
-                      <i data-lucide="user"></i>
+                      {% render 'icon', name: 'user' %}
                       {{ article.author }}
                     </span>
                   </div>
@@ -45,7 +45,7 @@
             <nav class="pagination" aria-label="Blog pagination">
               {% if paginate.previous %}
                 <a href="{{ paginate.previous.url }}" class="pagination__link pagination__prev">
-                  <i data-lucide="chevron-left"></i> Previous
+                  {% render 'icon', name: 'chevron-left' %} Previous
                 </a>
               {% endif %}
 
@@ -63,7 +63,7 @@
 
               {% if paginate.next %}
                 <a href="{{ paginate.next.url }}" class="pagination__link pagination__next">
-                  Next <i data-lucide="chevron-right"></i>
+                  Next {% render 'icon', name: 'chevron-right' %}
                 </a>
               {% endif %}
             </nav>
@@ -71,7 +71,7 @@
         {% else %}
           <div class="blog-empty">
             <div class="blog-empty__icon">
-              <i data-lucide="file-text"></i>
+              {% render 'icon', name: 'file-text' %}
             </div>
             <h2 class="blog-empty__title">No articles yet</h2>
             <p class="blog-empty__text">Check back soon for the latest on skincare, ingredients, and routines.</p>

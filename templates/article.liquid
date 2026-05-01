@@ -3,7 +3,7 @@
   <section class="article-header section-padding">
     <div class="container container--narrow">
       <a href="{{ blog.url }}" class="article-back">
-        <i data-lucide="arrow-left"></i>
+        {% render 'icon', name: 'arrow-left' %}
         Back to {{ blog.title }}
       </a>
 
@@ -11,11 +11,11 @@
 
       <div class="article-header__meta">
         <span class="article-header__author">
-          <i data-lucide="user"></i>
+          {% render 'icon', name: 'user' %}
           {{ article.author }}
         </span>
         <span class="article-header__date">
-          <i data-lucide="calendar"></i>
+          {% render 'icon', name: 'calendar' %}
           {{ article.published_at | date: '%B %d, %Y' }}
         </span>
       </div>
@@ -53,7 +53,7 @@
     <section class="article-comments section-padding bg-mint">
       <div class="container container--narrow">
         <h2 class="article-section__heading">
-          <i data-lucide="message-square" style="width:20px;height:20px;color:var(--color-primary);"></i>
+          {% render 'icon', name: 'message-square', size: 20 %}
           Comments ({{ article.comments_count }})
         </h2>
 
@@ -124,7 +124,7 @@
                     <img src="{{ related.image | image_url: width: 400 }}" alt="{{ related.image.alt | default: related.title | escape }}" class="blog-card__image" width="400" loading="lazy">
                   {% else %}
                     <div class="blog-card__placeholder">
-                      <i data-lucide="file-text"></i>
+                      {% render 'icon', name: 'file-text' %}
                     </div>
                   {% endif %}
                   <div class="blog-card__body">

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   {{ 'base.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'lucide.min.js' | asset_url }}" defer onload="lucide.createIcons()"></script>
+  {{ 'selfnamed.css' | asset_url | stylesheet_tag }}
   {{ content_for_header }}
   <style>
     body {
@@ -261,7 +261,7 @@
         <div class="gift-card-code-box__label">Your Gift Card Code</div>
         <div class="gift-card-code" id="gift-card-code">{{ gift_card.code | format_code }}</div>
         <button class="gift-card-copy-btn" id="copy-btn" data-code="{{ gift_card.code }}">
-          <i data-lucide="copy" style="width:16px; height:16px;"></i>
+          {% render 'icon', name: 'copy', size: 16 %}
           <span>Copy Code</span>
         </button>
       </div>
@@ -270,21 +270,21 @@
       <div class="gift-card-meta">
         {%- if gift_card.balance != gift_card.initial_value -%}
           <div class="gift-card-meta__item">
-            <i data-lucide="wallet"></i>
+            {% render 'icon', name: 'wallet' %}
             Initial value: {{ gift_card.initial_value | money }}
           </div>
         {%- endif -%}
 
         {%- if gift_card.expires_on -%}
           <div class="gift-card-meta__item">
-            <i data-lucide="calendar"></i>
+            {% render 'icon', name: 'calendar' %}
             Expires {{ gift_card.expires_on | date: "%B %d, %Y" }}
           </div>
         {%- endif -%}
 
         {%- if gift_card.enabled == false -%}
           <div class="gift-card-meta__item" style="color: #c0392b;">
-            <i data-lucide="alert-circle"></i>
+            {% render 'icon', name: 'alert-circle' %}
             This gift card has been disabled
           </div>
         {%- endif -%}
@@ -299,7 +299,7 @@
       {%- if gift_card.pass_url -%}
         <div class="gift-card-wallet">
           <a href="{{ gift_card.pass_url }}">
-            <i data-lucide="smartphone" style="width:18px; height:18px;"></i>
+            {% render 'icon', name: 'smartphone', size: 18 %}
             Add to Apple Wallet
           </a>
         </div>
@@ -308,7 +308,7 @@
       <!-- Shop Link -->
       <div class="gift-card-shop-link">
         <a href="/" class="btn btn--primary">
-          <i data-lucide="shopping-bag" style="width:16px; height:16px;"></i>
+          {% render 'icon', name: 'shopping-bag', size: 16 %}
           Start Shopping
         </a>
       </div>

@@ -7,14 +7,14 @@
     <h2 class="cart-drawer__title">Your Cart</h2>
     <span class="cart-drawer__count" data-cart-count>0 items</span>
     <button class="cart-drawer__close" data-cart-close aria-label="Close cart">
-      <i data-lucide="x"></i>
+      {% render 'icon', name: 'x' %}
     </button>
   </div>
 
   <!-- Empty State -->
   <div class="cart-drawer__empty" data-cart-empty>
     <div class="cart-drawer__empty-icon">
-      <i data-lucide="shopping-bag"></i>
+      {% render 'icon', name: 'shopping-bag' %}
     </div>
     <p class="cart-drawer__empty-title">Your cart is empty</p>
     <p class="cart-drawer__empty-text">Take the quiz to find your personalised routine.</p>
@@ -70,7 +70,7 @@
       {% render 'locale-vars' %}
       <p class="cart-drawer__shipping">{{ free_shipping_text }}</p>
       <p class="cart-drawer__guarantee">
-        <i data-lucide="shield-check"></i>
+        {% render 'icon', name: 'shield-check' %}
         30-day money-back guarantee
       </p>
       <div class="cart-discount" data-cart-discount>
@@ -98,12 +98,12 @@
 <div class="auth-overlay" data-auth-overlay>
   <div class="auth-card" data-auth-card>
     <button class="auth-card__close" data-auth-close aria-label="Close">
-      <i data-lucide="x"></i>
+      {% render 'icon', name: 'x' %}
     </button>
 
     <div class="auth-card__header">
       <div class="auth-card__icon">
-        <i data-lucide="lock"></i>
+        {% render 'icon', name: 'lock' %}
       </div>
       <h2>Secure Checkout</h2>
       <p>Sign in to complete your order</p>
@@ -111,7 +111,7 @@
 
     <!-- Subscription Summary (shown when Subscribe & Save is active) -->
     <div class="auth-sub-summary" data-auth-sub-summary style="display: none;">
-      <div class="auth-sub-summary__icon"><i data-lucide="repeat"></i></div>
+      <div class="auth-sub-summary__icon">{% render 'icon', name: 'repeat' %}</div>
       <div class="auth-sub-summary__title">Your Monthly Subscription</div>
       <div class="auth-sub-summary__details" data-auth-sub-details></div>
       <div class="auth-sub-summary__cancel">Cancel or modify anytime</div>

@@ -26,7 +26,7 @@
                   <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.image.alt | default: item.title | escape }}" width="120" height="120" loading="lazy">
                 {% else %}
                   <div class="cart-item__placeholder">
-                    <i data-lucide="pill"></i>
+                    {% render 'icon', name: 'pill' %}
                   </div>
                 {% endif %}
               </div>
@@ -42,16 +42,16 @@
                   <form action="/cart/change" method="post" class="cart-item__qty">
                     <input type="hidden" name="id" value="{{ item.key }}">
                     <button type="submit" name="quantity" value="{{ item.quantity | minus: 1 }}" class="cart-item__qty-btn" aria-label="Decrease quantity">
-                      <i data-lucide="minus"></i>
+                      {% render 'icon', name: 'minus' %}
                     </button>
                     <span class="cart-item__qty-value">{{ item.quantity }}</span>
                     <button type="submit" name="quantity" value="{{ item.quantity | plus: 1 }}" class="cart-item__qty-btn" aria-label="Increase quantity">
-                      <i data-lucide="plus"></i>
+                      {% render 'icon', name: 'plus' %}
                     </button>
                   </form>
 
                   <a href="/cart/change?id={{ item.key }}&quantity=0" class="cart-item__remove">
-                    <i data-lucide="trash-2"></i>
+                    {% render 'icon', name: 'trash-2' %}
                     Remove
                   </a>
                 </div>

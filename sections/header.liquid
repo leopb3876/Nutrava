@@ -11,14 +11,14 @@
 
   <div class="sn-nav__cta">
     <button class="sn-nav__icon-btn sn-hide-mobile" data-search-toggle aria-label="Search">
-      <i data-lucide="search"></i>
+      {% render 'icon', name: 'search' %}
     </button>
     <button class="sn-nav__icon-btn" data-cart-toggle aria-label="Open cart">
-      <i data-lucide="shopping-bag"></i>
+      {% render 'icon', name: 'shopping-bag' %}
       <span class="sn-nav__cart-badge" data-cart-badge>0</span>
     </button>
     <a href="/account" class="sn-nav__icon-btn sn-hide-mobile" aria-label="Account">
-      <i data-lucide="user"></i>
+      {% render 'icon', name: 'user' %}
     </a>
     <button
       class="sn-nav__menu-toggle sn-hide-desktop"

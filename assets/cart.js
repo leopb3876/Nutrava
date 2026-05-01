@@ -7,6 +7,16 @@
 (function () {
   'use strict';
 
+  /* ---------- Inline SVG icons (replaces lucide.min.js to save ~360KB) ---------- */
+  var ICONS = {
+    pill: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5L20.5 10.5a4.95 4.95 0 1 0-7-7L3.5 13.5a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>',
+    minus: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+    plus: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+    x: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    'check-circle': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+  };
+  function icon(name) { return ICONS[name] || ''; }
+
   /* ---------- Analytics Helpers ---------- */
   function trackEvent(eventName, params) {
     // GA4
@@ -201,7 +211,7 @@
             <div class="cart-item__image">
               ${item.image
                 ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}">`
-                : `<div class="cart-item__placeholder"><i data-lucide="pill"></i></div>`
+                : `<div class="cart-item__placeholder">${icon('pill')}</div>`
               }
             </div>
             <div class="cart-item__details">
@@ -210,23 +220,20 @@
               <div class="cart-item__price">${formatPrice(price)}</div>
               <div class="cart-item__controls">
                 <button class="cart-item__qty-btn" data-cart-decrease="${item.key}" aria-label="Decrease quantity">
-                  <i data-lucide="minus"></i>
+                  ${icon('minus')}
                 </button>
                 <span class="cart-item__qty">${item.quantity}</span>
                 <button class="cart-item__qty-btn" data-cart-increase="${item.key}" aria-label="Increase quantity">
-                  <i data-lucide="plus"></i>
+                  ${icon('plus')}
                 </button>
               </div>
             </div>
             <button class="cart-item__remove" data-cart-remove="${item.key}" aria-label="Remove item">
-              <i data-lucide="x"></i>
+              ${icon('x')}
             </button>
           </div>
         `;
       }).join('');
-
-      // Re-init Lucide icons inside the drawer
-      if (typeof lucide !== 'undefined') lucide.createIcons({ nameAttr: 'data-lucide' });
 
       // Bind qty/remove events
       itemsContainer.querySelectorAll('[data-cart-decrease]').forEach(btn => {
@@ -344,7 +351,7 @@
       var p = s.product;
       var imgHTML = p.image
         ? '<img src="' + escapeHtml(p.image) + '" alt="' + escapeHtml(p.title) + '" class="cart-cross-sell__img">'
-        : '<div class="cart-cross-sell__img cart-cross-sell__img--placeholder"><i data-lucide="pill"></i></div>';
+        : '<div class="cart-cross-sell__img cart-cross-sell__img--placeholder">' + icon('pill') + '</div>';
       return '<div class="cart-cross-sell">' +
         imgHTML +
         '<div class="cart-cross-sell__info">' +
@@ -354,8 +361,6 @@
         '<button class="btn btn--sm btn--outline cart-cross-sell__add" data-cross-sell-add="' + escapeHtml(p.handle) + '">+ Add</button>' +
       '</div>';
     }).join('');
-
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nameAttr: 'data-lucide' });
 
     // Wire up add buttons
     grid.querySelectorAll('[data-cross-sell-add]').forEach(function(btn) {
@@ -448,7 +453,6 @@
       }
 
       summary.style.display = 'block';
-      if (typeof lucide !== 'undefined') lucide.createIcons({ nameAttr: 'data-lucide' });
     });
   }
 
@@ -631,13 +635,11 @@
     const toast = document.createElement('div');
     toast.className = 'cart-toast';
     toast.innerHTML = `
-      <span class="cart-toast__icon"><i data-lucide="check-circle"></i></span>
+      <span class="cart-toast__icon">${icon('check-circle')}</span>
       <span class="cart-toast__text">${message}</span>
       <button class="cart-toast__view" data-toast-view>View Cart</button>
     `;
     document.body.appendChild(toast);
-
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nameAttr: 'data-lucide' });
 
     // Animate in
     requestAnimationFrame(() => {
