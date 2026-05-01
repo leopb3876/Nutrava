@@ -342,6 +342,27 @@
     text-align: center;
     max-width: 540px;
     margin: 0 auto;
+    position: relative;
+  }
+  .email-gate__close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--ink-soft);
+    display: grid;
+    place-items: center;
+    border: none;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .email-gate__close:hover { background: var(--ink); color: var(--paper); }
+  .email-gate__close svg { width: 16px; height: 16px; }
+  @media (max-width: 600px) {
+    .email-gate__close { top: 0; right: 0; }
   }
   .email-gate__icon {
     width: 64px; height: 64px;
