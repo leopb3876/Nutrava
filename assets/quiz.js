@@ -314,9 +314,9 @@
       const pct = idx <= 0 ? 0 : Math.round((idx / (screens.length - 1)) * 100);
       fill.style.width = pct + '%';
 
-      // Update counter + back button
+      // Update counter — back button stays clickable; if there's no
+      // in-quiz history to pop, goBack() falls through to "/".
       counter.textContent = counters[name] || '';
-      back.disabled = history.length <= 1;
 
       // Reset selection states on every entry
       target.querySelectorAll('.answer.is-selected').forEach(a => a.classList.remove('is-selected'));
@@ -337,7 +337,11 @@
     }
 
     function goBack() {
-      if (history.length <= 1) return;
+      // Nothing in the quiz to go back to → leave the quiz and go home.
+      if (history.length <= 1) {
+        window.location.href = '/';
+        return;
+      }
       history.pop();
       go(history[history.length - 1]);
     }
