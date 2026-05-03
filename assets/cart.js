@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Nutrava — Cart Module
+   Hisae — Cart Module
    Handles AJAX cart operations + slide-out cart drawer.
    Works with Shopify Cart API when deployed, localStorage for local preview.
    ========================================================================== */
@@ -292,7 +292,7 @@
   // 1. On Shopify: read from server-rendered JSON in cart-drawer.liquid
   // 2. In preview: fall back to fetching products.json
   (function loadCrossSellProducts() {
-    var domData = document.getElementById('nutrava-product-data');
+    var domData = document.getElementById('hisae-product-data');
     if (domData) {
       try {
         var parsed = JSON.parse(domData.textContent);

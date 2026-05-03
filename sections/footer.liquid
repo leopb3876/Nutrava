@@ -1,7 +1,10 @@
 <footer class="sn-footer">
   <div class="sn-footer__grid">
     <div class="sn-footer__brand">
-      <h3 class="sn-footer__brand-name">{{ section.settings.brand_name | default: shop.name }}</h3>
+      <h3 class="sn-footer__brand-name">
+        {{ section.settings.brand_name | default: shop.name }}
+        <span class="sn-footer__brand-jp" aria-hidden="true">久恵</span>
+      </h3>
       <p class="sn-footer__brand-desc">{{ section.settings.brand_desc }}</p>
     </div>
 
@@ -26,7 +29,7 @@
   </div>
   <div class="sn-footer__bottom">
     {%- assign current_year = 'now' | date: '%Y' -%}
-    <span>{{ section.settings.copyright | replace: '{year}', current_year | default: '© Nutrava — Made in the USA' }}</span>
+    <span>{{ section.settings.copyright | replace: '{year}', current_year | default: '© Hisae — Made in the USA' }}</span>
     <span>{{ section.settings.legal_links | default: 'Privacy · Terms · Accessibility' }}</span>
   </div>
 </footer>
@@ -54,6 +57,17 @@
     letter-spacing: -0.03em;
     margin-bottom: 16px;
     color: var(--sn-paper);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .sn-footer__brand-jp {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--sn-amber);
+    border-left: 1px solid rgba(255,255,255,0.18);
+    padding-left: 14px;
   }
   .sn-footer__brand-desc {
     color: rgba(255,255,255,0.6);
@@ -108,9 +122,9 @@
   "name": "Footer",
   "max_blocks": 4,
   "settings": [
-    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Nutrava" },
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Hisae" },
     { "type": "textarea", "id": "brand_desc", "label": "Brand description", "default": "Personalised clean skincare, built around your skin. Never tested on animals. Always real percentages." },
-    { "type": "text", "id": "copyright", "label": "Copyright text", "default": "© 2026 Nutrava — Made in the USA" },
+    { "type": "text", "id": "copyright", "label": "Copyright text", "default": "© 2026 Hisae — Made in the USA" },
     { "type": "text", "id": "legal_links", "label": "Legal links text", "default": "Privacy · Terms · Accessibility" }
   ],
   "blocks": [

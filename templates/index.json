@@ -38,7 +38,7 @@
       },
       "blocks": {
         "step-1": { "type": "step", "settings": { "title": "Take the quiz", "text": "7 quick questions about your skin type, top concern, current habits, and what you avoid." } },
-        "step-2": { "type": "step", "settings": { "title": "Get your routine", "text": "A 2–4 product Nutrava routine matched to your profile, with clear AM/PM instructions." } },
+        "step-2": { "type": "step", "settings": { "title": "Get your routine", "text": "A 2–4 product Hisae routine matched to your profile, with clear AM/PM instructions." } },
         "step-3": { "type": "step", "settings": { "title": "See the difference", "text": "Most people notice visible results in 2–4 weeks of consistent use. Full results compound over 6–8 weeks." } }
       },
       "block_order": ["step-1", "step-2", "step-3"]

@@ -1,5 +1,5 @@
   /* ------------------------------------------------------------------
-     Nutrava — Quiz flow mockup
+     Hisae — Quiz flow mockup
      Same design DNA as homepage (Fraunces + Inter Tight, pastel cards,
      pill buttons). Full clickable flow — intro → 6 questions → email
      → loading → personalised results.
@@ -82,13 +82,14 @@
   .quiz-header__btn[disabled]:hover { background: transparent; color: var(--ink-soft); }
   .quiz-header__btn svg { width: 20px; height: 20px; }
   .quiz-header__logo {
-    display: flex; align-items: center; gap: 10px;
+    display: flex; align-items: baseline; gap: 10px;
     font-family: var(--display);
     font-size: 22px;
     font-weight: 500;
     letter-spacing: -0.025em;
   }
   .quiz-header__logo-mark {
+    align-self: center;
     width: 28px; height: 28px;
     border-radius: 8px;
     background: var(--ink);
@@ -97,6 +98,17 @@
     font-size: 14px;
     font-weight: 700;
     font-family: var(--ui);
+  }
+  .quiz-header__logo-text { line-height: 1; }
+  .quiz-header__logo-jp {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    line-height: 1;
+    border-left: 1px solid var(--line);
+    padding-left: 10px;
   }
   .quiz-header__right { display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
   .quiz-header__counter {

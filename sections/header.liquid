@@ -1,7 +1,8 @@
 <nav class="sn-nav" data-header aria-label="Main navigation">
   <a href="/" class="sn-nav__logo">
-    <span class="sn-nav__logo-mark">N</span>
-    {{ section.settings.logo_text | default: shop.name }}
+    <span class="sn-nav__logo-mark">H</span>
+    <span class="sn-nav__logo-text">{{ section.settings.logo_text | default: shop.name }}</span>
+    <span class="sn-nav__logo-jp" aria-hidden="true">久恵</span>
   </a>
 
   <div class="sn-nav__menu sn-hide-mobile">
@@ -59,7 +60,7 @@
   }
   .sn-nav__logo {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
     font-family: var(--sn-display);
     font-size: 22px;
@@ -69,7 +70,20 @@
     color: var(--sn-ink);
     text-transform: none;
   }
+  .sn-nav__logo-text { line-height: 1; }
+  .sn-nav__logo-jp {
+    font-family: var(--sn-display);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--sn-amber);
+    line-height: 1;
+    border-left: 1px solid var(--sn-line);
+    padding-left: 10px;
+    margin-left: 2px;
+  }
   .sn-nav__logo-mark {
+    align-self: center;
     width: 28px; height: 28px;
     border-radius: 8px;
     background: var(--sn-ink);
@@ -194,7 +208,7 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Nutrava" },
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Hisae" },
     { "type": "text", "id": "menu_1_text", "label": "Menu item 1", "default": "Shop All" },
     { "type": "text", "id": "menu_2_text", "label": "Menu item 2", "default": "The Quiz" }
   ]

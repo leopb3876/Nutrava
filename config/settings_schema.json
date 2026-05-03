@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Nutrava",
+    "theme_name": "Hisae",
     "theme_version": "1.0.0",
-    "theme_author": "Nutrava",
-    "theme_documentation_url": "https://nutrava.net",
-    "theme_support_url": "https://nutrava.net"
+    "theme_author": "Hisae",
+    "theme_documentation_url": "https://hisae.net",
+    "theme_support_url": "https://hisae.net"
   },
   {
     "name": "Analytics",

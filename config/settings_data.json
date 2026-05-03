@@ -29,7 +29,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo_text": "Nutrava",
+          "logo_text": "Hisae",
           "menu_1_text": "Shop All",
           "menu_2_text": "The Quiz"
         }
@@ -37,9 +37,9 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "brand_name": "Nutrava",
+          "brand_name": "Hisae",
           "brand_desc": "Personalised clean skincare, built around your skin. Never tested on animals. Always real percentages.",
-          "copyright": "© 2026 Nutrava — Made in the USA",
+          "copyright": "© 2026 Hisae — Made in the USA",
           "legal_links": "Privacy · Terms · Accessibility"
         },
         "blocks": {
