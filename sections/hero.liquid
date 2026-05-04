@@ -1,43 +1,84 @@
 <section class="sn-hero">
-  {%- if section.settings.eyebrow != blank -%}
-    <span class="sn-hero__eyebrow"><span class="sn-hero__dot"></span> {{ section.settings.eyebrow }}</span>
-  {%- endif -%}
+  <div class="sn-hero__grid">
 
-  <h1 class="sn-hero__title">
-    {{ section.settings.heading_before }}<br>
-    <em data-rotate-word>{{ section.settings.heading_word }}</em>
-  </h1>
+    <div class="sn-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="sn-hero__eyebrow"><span class="sn-hero__dot"></span> {{ section.settings.eyebrow }}</span>
+      {%- endif -%}
 
-  <p class="sn-hero__sub">{{ section.settings.subheading }}</p>
+      <h1 class="sn-hero__title">
+        {{ section.settings.heading_before }}<br>
+        <em data-rotate-word>{{ section.settings.heading_word }}</em>
+      </h1>
 
-  {%- if section.blocks.size > 0 -%}
-    <div class="sn-hero__check-row">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'check' -%}
-          <span class="sn-hero__check" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
-        {%- endif -%}
-      {%- endfor -%}
+      <p class="sn-hero__sub">{{ section.settings.subheading }}</p>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="sn-hero__check-row">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'check' -%}
+              <span class="sn-hero__check" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.rating_text != blank -%}
+        <div class="sn-hero__rating">
+          <span class="sn-hero__rating-mark">H</span>
+          <span class="sn-hero__rating-stars">★★★★★</span>
+          <span class="sn-hero__rating-text">{{ section.settings.rating_text }}</span>
+        </div>
+      {%- endif -%}
+
+      <div class="sn-hero__cta">
+        <a href="/pages/quiz" class="sn-btn sn-btn--ink">{{ section.settings.cta_quiz }}</a>
+        <a href="/collections/all" class="sn-btn sn-btn--ghost">{{ section.settings.cta_shop }}</a>
+      </div>
     </div>
-  {%- endif -%}
 
-  {%- if section.settings.rating_text != blank -%}
-    <div class="sn-hero__rating">
-      <span class="sn-hero__rating-mark">N</span>
-      <span class="sn-hero__rating-stars">★★★★★</span>
-      <span class="sn-hero__rating-text">{{ section.settings.rating_text }}</span>
+    <div class="sn-hero__visual">
+      {%- if section.settings.image != blank -%}
+        <img
+          class="sn-hero__image"
+          srcset="{{ section.settings.image | image_url: width: 600 }} 600w,
+                  {{ section.settings.image | image_url: width: 900 }} 900w,
+                  {{ section.settings.image | image_url: width: 1200 }} 1200w"
+          sizes="(max-width: 980px) 100vw, 45vw"
+          src="{{ section.settings.image | image_url: width: 900 }}"
+          alt="{{ section.settings.image.alt | default: section.settings.heading_before | escape }}"
+          loading="eager"
+          fetchpriority="high"
+          width="900"
+          height="1100"
+        >
+      {%- else -%}
+        <div class="sn-hero__placeholder" aria-hidden="true">
+          <div class="sn-hero__placeholder-bottle"></div>
+          <div class="sn-hero__placeholder-blob sn-hero__placeholder-blob--tr"></div>
+          <div class="sn-hero__placeholder-blob sn-hero__placeholder-blob--bl"></div>
+        </div>
+      {%- endif -%}
     </div>
-  {%- endif -%}
 
-  <div class="sn-hero__cta">
-    <a href="/pages/quiz" class="sn-btn sn-btn--ink">{{ section.settings.cta_quiz }}</a>
-    <a href="/collections/all" class="sn-btn sn-btn--ghost">{{ section.settings.cta_shop }}</a>
   </div>
 </section>
 
 <style>
   .sn-hero {
-    text-align: center;
-    padding: 80px 32px 100px;
+    padding: 64px 32px 96px;
+    max-width: var(--sn-w-page);
+    margin: 0 auto;
+  }
+  .sn-hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .sn-hero__content {
+    text-align: left;
+    max-width: 600px;
   }
   .sn-hero__eyebrow {
     display: inline-flex;
@@ -51,7 +92,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--sn-ink-soft);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
   .sn-hero__dot {
     width: 6px; height: 6px;
@@ -61,10 +102,10 @@
   .sn-hero__title {
     font-family: var(--sn-display);
     font-weight: 500;
-    font-size: clamp(48px, 7vw, 96px);
+    font-size: clamp(44px, 5.6vw, 86px);
     line-height: 1.0;
     letter-spacing: -0.04em;
-    margin: 0 auto 28px;
+    margin: 0 0 24px;
     font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144;
   }
   .sn-hero__title em {
@@ -87,16 +128,15 @@
   .sn-hero__sub {
     font-size: 18px;
     color: var(--sn-ink-soft);
-    max-width: 540px;
-    margin: 0 auto 36px;
+    max-width: 520px;
+    margin: 0 0 28px;
     letter-spacing: -0.01em;
+    line-height: 1.55;
   }
   .sn-hero__check-row {
     display: flex; flex-wrap: wrap;
-    gap: 20px 32px;
-    justify-content: center;
-    margin: 0 auto 32px;
-    max-width: 600px;
+    gap: 14px 28px;
+    margin: 0 0 28px;
   }
   .sn-hero__check {
     display: inline-flex; align-items: center; gap: 8px;
@@ -123,7 +163,7 @@
     background: var(--sn-cream);
     border-radius: var(--sn-r-pill);
     padding: 10px 22px 10px 14px;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
   }
   .sn-hero__rating-mark {
     width: 28px; height: 28px;
@@ -136,11 +176,110 @@
   .sn-hero__rating-stars { color: var(--sn-amber); letter-spacing: 1px; font-size: 13px; }
   .sn-hero__rating-text { font-size: 13px; color: var(--sn-ink-soft); font-weight: 500; }
   .sn-hero__cta {
-    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    display: flex; gap: 12px; flex-wrap: wrap;
   }
 
+  /* ---------- Visual / image side ---------- */
+  .sn-hero__visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--sn-r-card-lg);
+    overflow: hidden;
+    background: var(--sn-cream);
+  }
+  .sn-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---------- Fallback placeholder when no image is set ---------- */
+  .sn-hero__placeholder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, var(--sn-cream) 0%, var(--sn-peach) 100%);
+    overflow: hidden;
+  }
+  .sn-hero__placeholder-bottle {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    aspect-ratio: 0.55;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 100%);
+    border-radius: 28px 28px 14px 14px;
+    border: 1px solid rgba(15,16,16,0.08);
+    box-shadow: 0 24px 60px -20px rgba(15,16,16,0.18);
+    z-index: 2;
+  }
+  .sn-hero__placeholder-bottle::before {
+    content: "";
+    position: absolute;
+    top: -28px; left: 50%;
+    transform: translateX(-50%);
+    width: 38%; height: 32px;
+    background: var(--sn-ink);
+    border-radius: 6px 6px 3px 3px;
+  }
+  .sn-hero__placeholder-bottle::after {
+    content: "Hisae";
+    position: absolute;
+    top: 36%; left: 12%; right: 12%;
+    background: var(--sn-paper);
+    padding: 12px 6px;
+    font-family: "Bodoni Moda", "Times New Roman", serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: var(--sn-ink);
+    border-top: 1px solid rgba(15,16,16,0.05);
+    border-bottom: 1px solid rgba(15,16,16,0.05);
+  }
+  .sn-hero__placeholder-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .sn-hero__placeholder-blob--tr {
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 60%);
+    z-index: 1;
+  }
+  .sn-hero__placeholder-blob--bl {
+    bottom: -80px; left: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, var(--sn-lilac) 0%, transparent 60%);
+    opacity: 0.6;
+    z-index: 1;
+  }
+
+  /* ---------- Responsive: stack to single column + recenter ---------- */
+  @media (max-width: 980px) {
+    .sn-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .sn-hero__content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .sn-hero__sub { margin-left: auto; margin-right: auto; }
+    .sn-hero__check-row { justify-content: center; }
+    .sn-hero__cta { justify-content: center; }
+    .sn-hero__visual {
+      max-width: 480px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+    }
+  }
   @media (max-width: 640px) {
-    .sn-hero { padding: 48px 20px 64px; }
+    .sn-hero { padding: 40px 20px 56px; }
     .sn-hero__sub { font-size: 16px; }
   }
 </style>
@@ -187,6 +326,11 @@
       "id": "subheading",
       "label": "Subheading",
       "default": "Take our 60-second quiz and we'll match you with a clean skincare routine engineered around your skin type, concerns, and current habits."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image (right side) — leave empty to use placeholder bottle"
     },
     {
       "type": "text",

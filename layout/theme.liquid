@@ -59,9 +59,11 @@
     body.template-index,body.template-page{font-family:"Inter Tight",-apple-system,system-ui,sans-serif;color:#0F1010;background:#fff;letter-spacing:-0.005em}
     .sn-topbar{background:#FBF4E6;color:#0F1010;text-align:center;font-size:13px;letter-spacing:-0.01em;padding:10px 16px;border-bottom:1px solid rgba(15,16,16,0.08)}
     .sn-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1680px;margin:0 auto;gap:24px}
-    .sn-hero{text-align:center;padding:80px 32px 100px}
-    .sn-hero__title{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(48px,7vw,96px);line-height:1.0;letter-spacing:-0.04em;margin:0 auto 28px}
-    @media(max-width:640px){.sn-hero{padding:48px 20px 64px}}
+    .sn-hero{padding:64px 32px 96px;max-width:1680px;margin:0 auto}
+    .sn-hero__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+    .sn-hero__title{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(44px,5.6vw,86px);line-height:1.0;letter-spacing:-0.04em;margin:0 0 24px}
+    @media(max-width:980px){.sn-hero__grid{grid-template-columns:1fr;gap:40px}}
+    @media(max-width:640px){.sn-hero{padding:40px 20px 56px}}
   </style>
 
   {% render 'social-meta' %}
