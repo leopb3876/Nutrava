@@ -2,8 +2,8 @@
   <div class="sn-footer__grid">
     <div class="sn-footer__brand">
       <h3 class="sn-footer__brand-name">
-        {{ section.settings.brand_name | default: shop.name }}
-        <span class="sn-footer__brand-jp" aria-hidden="true">久恵</span>
+        <span class="sn-footer__brand-jp" aria-hidden="true">ひさえ</span>
+        <span class="sn-footer__brand-text">{{ section.settings.brand_name | default: shop.name }}</span>
       </h3>
       <p class="sn-footer__brand-desc">{{ section.settings.brand_desc }}</p>
     </div>
@@ -51,23 +51,30 @@
     border-bottom: 1px solid rgba(255,255,255,0.12);
   }
   .sn-footer__brand-name {
-    font-family: var(--sn-display);
-    font-size: 36px;
-    font-weight: 500;
-    letter-spacing: -0.03em;
     margin-bottom: 16px;
     color: var(--sn-paper);
     display: inline-flex;
-    align-items: baseline;
-    gap: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    line-height: 1;
   }
   .sn-footer__brand-jp {
+    font-family: "Noto Serif JP", serif;
     font-size: 22px;
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.32em;
     color: var(--sn-amber);
-    border-left: 1px solid rgba(255,255,255,0.18);
-    padding-left: 14px;
+    line-height: 1;
+    padding-left: 0.32em;
+  }
+  .sn-footer__brand-text {
+    font-family: "Bodoni Moda", "Times New Roman", serif;
+    font-size: 44px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--sn-paper);
   }
   .sn-footer__brand-desc {
     color: rgba(255,255,255,0.6);
