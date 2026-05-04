@@ -66,14 +66,14 @@
 
 <style>
   .sn-hero {
-    padding: 64px 32px 96px;
+    padding: 48px 32px 72px;
     max-width: var(--sn-w-page);
     margin: 0 auto;
   }
   .sn-hero__grid {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 64px;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 56px;
     align-items: center;
   }
   .sn-hero__content {
@@ -182,7 +182,10 @@
   /* ---------- Visual / image side ---------- */
   .sn-hero__visual {
     position: relative;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 520px;
+    justify-self: end;
     border-radius: var(--sn-r-card-lg);
     overflow: hidden;
     background: var(--sn-cream);
